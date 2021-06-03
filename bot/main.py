@@ -29,7 +29,6 @@ from streamcollection import CSGOStreams
 from streamcollection import ValoStreams
 from lastgames import LastDota
 from lastgames import LastCSGO
-from keep_alive import keep_alive
 from tournamentcheckers import DotaCheckTourni 
 
 #sets up command prefix
