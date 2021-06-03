@@ -4,8 +4,6 @@ from bs4 import BeautifulSoup as soup
 from dotenv import load_dotenv
 load_dotenv()
 import requests
-from requests import Session
-import requests
 from selenium import webdriver
 import time
 
