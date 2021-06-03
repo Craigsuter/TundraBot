@@ -8,3 +8,4 @@ datetime
 asyncio
 apscheduler
 googletrans
+requests
