@@ -5,7 +5,6 @@ PyNaCl
 dnspython
 bs4
 datetime
-time
 asyncio
 apscheduler
 googletrans
