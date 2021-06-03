@@ -1,0 +1,5 @@
+Add the ability to do multiple time values in 1 reminder  - Requested by: 332438787588227072
+Make CSGO tournament tracker via HLTV  - Requested by: 183707605032501248
+Make Valorant tournament tracker via VLR  - Requested by: 183707605032501248
+figure out how to add roles to users - useful for minigames - Requested by: 183707605032501248
+reformat code to remove duplicate commands that are exactly the same for gardeners / none gardeners <:OGpepeMonkey:720263218362318869>  - Requested by: 183707605032501248
