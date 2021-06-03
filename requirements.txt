@@ -3,3 +3,10 @@ flask
 python-dotenv
 PyNaCl
 dnspython
+bs4
+urllib.request
+datetime
+time
+asyncio
+apscheduler
+googletrans
