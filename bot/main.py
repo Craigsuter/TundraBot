@@ -448,9 +448,11 @@ async def on_message(message):
               while(i < len(sectionsofmessage)):
                 todotoadd = todotoadd + sectionsofmessage[i] + " "
                 i = i+1
+              data = download_file('/droptodo.txt', 'ToDo.txt')
               f=open("ToDo.txt", "a")
               f.write(str(todotoadd) + " - Requested by: " + str(userRequesting) + "\n")
               f.close()
+              upload_file('/droptodo.txt', 'ToDo.txt' )
 
               embed=discord.Embed(title="You have added the following suggestion",color=0x55a7f7)
               embed.add_field(name="Suggestion", value = todotoadd, inline= True)
