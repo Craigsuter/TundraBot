@@ -438,7 +438,7 @@ async def on_message(message):
       else:
           
           if(messagereceived=="!deletetodo"):
-           data=download_file('/droptodo.txt','ToDo.txt'
+           data=download_file('/droptodo.txt','ToDo.txt')
            try:
               todotoremove = secondPartOfMessage
               todotoremove = int(todotoremove)
