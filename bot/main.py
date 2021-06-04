@@ -488,6 +488,7 @@ async def on_message(message):
             await message.channel.send(embed=embed)
 
           if(messagereceived=="!myreminders"):
+            data = download_file('/dropreminders.txt', 'reminders.txt')
             a_file = open("reminders.txt", "r")
             list_of_lines = a_file.readlines()
             i=0
@@ -554,6 +555,8 @@ async def on_message(message):
 
 
           if(messagereceived=="!reminder"):
+            data = download_file('/dropreminders.txt', 'reminders.txt')
+            
             #value checkers
             reminder = secondPartOfMessage 
             timevalue = reminder[-1]
@@ -640,6 +643,7 @@ async def on_message(message):
               f=open("reminders.txt", "a")
               f.write(userID + ", " + channelToSend + ", " + textToSend + ", " + str(new_time) + ", not\n")
               f.close()
+              upload_file('/dropreminders.txt', 'reminders.txt' )
               
               LineOfReminder = sum(1 for line in open('reminders.txt'))
               
@@ -656,6 +660,7 @@ async def on_message(message):
               await asyncio.sleep(timetosleep)
               
               #Will update the file to make sure reminders get saved
+              data = download_file('/dropreminders.txt', 'reminders.txt')
               a_file = open("reminders.txt", "r")
               list_of_lines = a_file.readlines()
               list_of_lines[int(LineOfReminder) - 1] = (userID + ", " + channelToSend + ", " + textToSend + ", " + str(new_time) + ", sent\n")
@@ -663,6 +668,7 @@ async def on_message(message):
               a_file = open("reminders.txt", "w")
               a_file.writelines(list_of_lines)
               a_file.close()
+              upload_file('/dropreminders.txt', 'reminders.txt' )
 
               await message.channel.send("<@" + userID + ">")
               await message.channel.send(embed=embed2)
@@ -1597,6 +1603,7 @@ async def reminder(reminderData):
 
 #Cleans out reminder file if no reminders are left
 async def cleanreminders():
+  data = download_file('/dropreminders.txt', 'reminders.txt')
   a_file = open("reminders.txt", "r")
   list_of_lines = a_file.readlines()
   i=0
@@ -1621,6 +1628,7 @@ async def cleanreminders():
     file = open("reminders.txt", "r+")
     file.truncate(0)
     file.close()
+    upload_file('/dropreminders.txt', 'reminders.txt' )
 
 
 
