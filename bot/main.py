@@ -1439,6 +1439,8 @@ async def on_message(message):
             GardenerHelp8 = "!copyover [channel to copy from here] - use this command to copy the content of a channel from 1 to another, the command will send the last 100 messages from a channel to the channel the command is being used in\n\nE.G of usage - !copyover 847832196294115349\nThis will give you the value from a copy test, the bot must be in both servers if copying from a different server"
 
             GardenerHelp10 = "!reminder - This command will let you set reminders for future you, the bot will remind you in the channel it is used in after a set amount of time! Use !reminder to find more information!\n!myreminders - This command will tell you your currently saved reminders and when they are going to be sent"
+
+            GardenerHelp11 = "!todolist - This will list the current to do list for the bot\n!addtodo - This will add to the todolist the test following the command\n!deletetodo - This will delete the 'todo' that is attached to the number chosen, find the to-do values using !todolist"
             
             embed=discord.Embed(title="The commands you get as a Gardener!", color=0xff8800)
             embed.add_field(name="Getting game streams",value=GardenerHelp7, inline=True)
@@ -1448,6 +1450,7 @@ async def on_message(message):
             embed.add_field(name="Tracking a tournament", value=GardenerHelp9, inline=False)
             embed.add_field(name="Reminders", value=GardenerHelp10, inline=False)
             embed.add_field(name="Copying data", value=GardenerHelp8, inline=False)
+            embed.add_field(name="To-Do / suggestion list", value=GardenerHelp11, inline=False)
             await message.channel.send(embed=embed)
 
 
