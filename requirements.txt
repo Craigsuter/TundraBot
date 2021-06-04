@@ -5,6 +5,7 @@ PyNaCl
 dnspython
 bs4
 datetime
+dropbox
 asyncio
 apscheduler
 selenium
