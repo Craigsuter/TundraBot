@@ -18,6 +18,8 @@ from itertools import cycle
 import asyncio
 import requests
 import time
+from dropboxUploader import upload_file
+from dropboxUploader import download_file
 
 
 def DotaCheckTourni(channelDataID):
