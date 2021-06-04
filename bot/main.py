@@ -1577,6 +1577,7 @@ async def reminder(reminderData):
     a_file = open("reminders.txt", "w")
     a_file.writelines(list_of_lines)
     a_file.close()
+    upload_file('/dropreminders.txt', 'reminders.txt' )
     #Sends to user
     await channel.send("<@" + userID + ">")
     await channel.send(embed=embed)
@@ -1596,6 +1597,7 @@ async def reminder(reminderData):
     a_file = open("reminders.txt", "w")
     a_file.writelines(list_of_lines)
     a_file.close()
+    upload_file('/dropreminders.txt', 'reminders.txt' )
     #Sends to user
     await channel.send("<@" + userID + ">")
     await channel.send(embed=embed)
