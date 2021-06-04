@@ -76,7 +76,7 @@ async def on_ready():
     scheduler.add_job(cleanreminders, CronTrigger(minute= "0, 30"))
     scheduler.start()
 
-
+    data = download_file('/dropreminders.txt', 'reminders.txt')
     a_file = open("reminders.txt", "r")
     list_of_lines = a_file.readlines()
     i=0
