@@ -1417,16 +1417,12 @@ async def on_message(message):
       embed.add_field(name="You seem to be lost, let me help", value = "Do be sure to go through <#829738571010277406> to check out the rules of the server! Follow this up in <#832198110204919848> to get access to the rest of the server! See you in there!", inline=True)
       embed.set_image(url="https://i.imgur.com/zr9Hp7C.png")
       
+        
+      data = download_file('/droplastmessage.txt', 'lastmessage.txt')
       g = open("lastmessage.txt", "r")
       g2 = g.read()
       g.close()
-      time.sleep(2)
-      g = open("lastmessage.txt", "r")
-      g2 = g.read()
-      g.close()
-      g = open("lastmessage.txt", "r")
-      g2 = g.read()
-      g.close()
+      
 
       try:
         print("Tried to delete message: " + g2 )
@@ -1441,6 +1437,7 @@ async def on_message(message):
       f = open("lastmessage.txt", "w")
       f.write(str(message.id))
       f.close()
+      upload_file('/droplastmessage.txt', 'lastmessage.txt' )
 
     if(message.author == discord.Permissions.administrator):
       print("nice")
