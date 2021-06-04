@@ -30,6 +30,8 @@ from streamcollection import ValoStreams
 from lastgames import LastDota
 from lastgames import LastCSGO
 from tournamentcheckers import DotaCheckTourni 
+from dropboxUploader import upload_file
+from dropboxUploader import download_file
 
 #sets up command prefix
 client = commands.Bot(command_prefix = '!')
