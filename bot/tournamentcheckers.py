@@ -186,7 +186,7 @@ def DotaCheckTourni(channelDataID):
       return(embed, Teams,nextgametime, c, links,dayofgame2)
       
   except:
-    embed=discord.Embed(title="NextDT usage - no tournament set correctly", url="https://liquipedia.net/dota2/OG", color=0xf10909)
+    embed=discord.Embed(title="NextDT usage - no tournament set correctly!!", url="https://liquipedia.net/dota2/OG", color=0xf10909)
     embed.add_field(name="Notice",value="An error was hit during the scan, likely caused by incorrect url, please ask a Gardener to check this", inline=False)
     randomval = 0
     
