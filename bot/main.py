@@ -455,13 +455,13 @@ async def on_message(message):
               while( i < len(lines)):
                 if(i != (todotoremove)):
                   new_file.write(lines[i])
-                  print(i)
+                  
                 else:
-                      await message.channel.send(lines[i] + " - was removed")
+                  await message.channel.send(lines[i] + " - was removed")
                 i=i+1
 
-                new_file.close()
-                upload_file('/droptodo.txt', 'ToDo.txt' )
+              new_file.close()
+              upload_file('/droptodo.txt', 'ToDo.txt' )
               
            except:
               embed=discord.Embed(title="Trying to delete a To Do",color=0x55a7f7)
