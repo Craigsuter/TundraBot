@@ -27,7 +27,7 @@ def DotaCheckTourni(channelDataID):
       f = open("dotatournament.txt","r")
       my_url=f.read()
       f.close()
-      print(my_url)
+      print(str(my_url))
      
 
       if (my_url=="test" or my_url=="none"):
