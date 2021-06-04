@@ -519,7 +519,7 @@ async def on_message(message):
                 lineoftext = lineoftext + " " + splitUpLine[j]
                 j=j+1
               
-              savedToDo = savedToDo + str(valueofreminder) + "- " lineoftext + " <@" + userofreminder + ">\n"
+              savedToDo = savedToDo + str(valueofreminder) + "- " + lineoftext + " <@" + userofreminder + ">\n"
 
 
               i=i+1
