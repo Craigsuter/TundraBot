@@ -23,6 +23,7 @@ import time
 def DotaCheckTourni(channelDataID):
   try:
     #Gets the URL for the tourni
+      data = download_file('/dropdotatournament.txt', 'dotatournament.txt')
       f = open("dotatournament.txt","r")
       my_url=f.read()
       f.close()
