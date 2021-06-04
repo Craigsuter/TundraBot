@@ -1683,6 +1683,7 @@ async def cleanreminders():
 
 #Opening the file with last message every 5 mins
 async def openingfile():
+  data = download_file('/droplastmessage.txt', 'lastmessage.txt')
   g = open("lastmessage.txt", "r")
   g2 = g.read()
   g.close()
