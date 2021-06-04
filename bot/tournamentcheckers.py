@@ -33,7 +33,7 @@ def DotaCheckTourni(channelDataID):
 
       if (my_url=="test" or my_url=="none"):
         #If incorrect - it will return an embed telling the user
-        embed=discord.Embed(title="NextDT usage - no tournament set currently", url="https://liquipedia.net/dota2/OG", color=0xf10909)
+        embed=discord.Embed(title="NextDT usage - no tournament set currently!", url="https://liquipedia.net/dota2/OG", color=0xf10909)
         embed.add_field(name="Notice",value="There are currently no tournaments set for the command - please ask a Gardener to update this if there is a tournament that you think should be tracked!", inline=False)
         randomval = 0
         return(embed, randomval)
