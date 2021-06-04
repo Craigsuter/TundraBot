@@ -464,6 +464,7 @@ async def on_message(message):
               pass
 
           if(messagereceived=="!todolist"):
+            data = download_file('/droptodo.txt', 'ToDo.txt')
             a_file = open("ToDo.txt", "r")
             list_of_lines = a_file.readlines()
             i=0
