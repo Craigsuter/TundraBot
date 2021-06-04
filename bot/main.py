@@ -673,21 +673,26 @@ async def on_message(message):
               
           
           if(messagereceived =="!resetdt"):
+            data = download_file('/dropdotatournament.txt', 'dotatournament.txt')
             f=open("dotatournament.txt", "w")
             f.write("none")
             f.close()
+            upload_file('/dropdotatournament.txt', 'dotatournament.txt')
             await message.channel.send("The tournament currently tracked has been removed")
           
           if(messagereceived=="!verifydturl"):
+            data = download_file('/dropdotatournament.txt', 'dotatournament.txt')
             f=open("dotatournament.txt", "r")
             link = f.read()
             await message.channel.send("The link currently stored is - <" + link + ">")
 
           if(messagereceived=="!changedt"):
+            data = download_file('/dropdotatournament.txt', 'dotatournament.txt')
             newlink = secondPartOfMessage
             f=open("dotatournament.txt", "w")
             f.write(newlink)
             f.close()
+            upload_file('/dropdotatournament.txt', 'dotatournament.txt')
             await message.channel.send("The tournament tracked has been updated to the link you have sent - <" + newlink + ">\n\nIf there is an error in your link, you are able to use !verifydturl to check the link or try changing again!")
         
           
