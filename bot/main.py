@@ -443,28 +443,27 @@ async def on_message(message):
               todotoremove = secondPartOfMessage
               todotoremove = int(todotoremove)
               todotoremove = todotoremove - 1
-                               
+                                
               a_file = open("ToDo.txt", "r")
-                lines = a_file.readlines()
-                a_file.close()
-                #print(lines[1])
-                #print(todotoremove)
+              lines = a_file.readlines()
+              a_file.close()
+              #print(lines[1])
+              #print(todotoremove)
 
-                new_file = open("ToDo.txt", "w")
-                i=0
-                while( i < len(lines)):
-                  if(i != (todotoremove)):
-                    new_file.write(lines[i])
-                    print(i)
-                  else:
-                       await message.channel.send(lines[i] + " - was removed")
-                  i=i+1
+              new_file = open("ToDo.txt", "w")
+              i=0
+              while( i < len(lines)):
+                if(i != (todotoremove)):
+                  new_file.write(lines[i])
+                  print(i)
+                else:
+                      await message.channel.send(lines[i] + " - was removed")
+                i=i+1
 
                 new_file.close()
                 upload_file('/droptodo.txt', 'ToDo.txt' )
-                               
-                               
-            except:
+              
+           except:
               embed=discord.Embed(title="Trying to delete a To Do",color=0x55a7f7)
               embed.add_field(name="Usage", value = "To use this function use\n!deletetodo X\nX = The value of the Todo you would like to remove from !todolist", inline= True)
               await message.channel.send(embed=embed)
