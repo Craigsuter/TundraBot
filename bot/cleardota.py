@@ -9,8 +9,8 @@ import time
 
 def cleardota():
   #Loading username / password for Liquipedia
-  LiquiUser =  os.environ['liquiUser']
-  liquiPass = os.environ['liquiPass']
+  LiquiUser =  os.getenv('liquiUser')
+  liquiPass = os.getenv('liquiPass')
 
   #Opening web browser / logging on
   driver = webdriver.Firefox()
