@@ -16,6 +16,8 @@ def cleardota():
   #options = Options()
   #options.add_arugment('--headless')
   options = webdriver.FirefoxOptions()  
+  options.add_argument('--disable-gpu')
+  options.add_argument('--no-sandbox') 
   options.headless = True
   driver = webdriver.Firefox(options=options)
   
