@@ -13,7 +13,12 @@ def cleardota():
   liquiPass = os.getenv('liquiPass')
   print("hi")
   #Opening web browser / logging on
-  driver = webdriver.Firefox()
+  #options = Options()
+  #options.add_arugment('--headless')
+  options = webdriver.FirefoxOptions()  
+  options.headless = True
+  driver = webdriver.Firefox(options=options)
+  
   driver.get("https://liquipedia.net/dota2/index.php?title=Special:UserLogin&returnto=OG&returntoquery=action%3Dedit")
   print("hi2")
   #Finds the username box and types the username in
