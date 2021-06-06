@@ -11,14 +11,16 @@ def cleardota():
   #Loading username / password for Liquipedia
   LiquiUser =  os.getenv('liquiUser')
   liquiPass = os.getenv('liquiPass')
-
+  print("hi")
   #Opening web browser / logging on
   driver = webdriver.Firefox()
   driver.get("https://liquipedia.net/dota2/index.php?title=Special:UserLogin&returnto=OG&returntoquery=action%3Dedit")
+  print("hi2")
   #Finds the username box and types the username in
   button = driver.find_element_by_id('wpName1')
   button.click()
   button.send_keys(LiquiUser)
+  print("hi3")
 
   #Finds the password box and types the password in
   button=driver.find_element_by_id('wpPassword1')
