@@ -1760,117 +1760,21 @@ async def testingspam():
 
 #CSGO daily
   try:
-    uClient2 = uReq(my_url2)
-    page_html2 = uClient2.read()
-    uClient2.close()
-    page_soup2 = soup(page_html2, "html.parser")
-
-    now = datetime.datetime.now()
-
-    dt_string_day = now.strftime("%d")
-    dt_string_month = now.strftime("%m")
-    dt_string_year= now.strftime("%y")
-    dt_string_hour= now.strftime("%H")
-    dt_string_minute= now.strftime("%M")
-    dt_string_second= now.strftime("%S")
-
-    #Parses the HTML data - csgo
-    csgocontainers = page_soup2.findAll(
-        "span", {"class": "team-template-team2-short"})
-    csgocontainers2 = page_soup2.findAll(
-        "span", {"class": "team-template-team-short"})
-    csgocontainers3 = page_soup2.findAll(
-        "span", {"class": "timer-object timer-object-countdown-only"})
-
-    #This finds the next match time - csgo
+    csgodata = CSGOCheck(720263155460079767)
+    #return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed)
+    timeToGame = csgodata[3]
     try:
-        csgonextgametime = csgocontainers3[0].text
-    except:
-        pass
-
-    #Adds game to containers - csgo
-    try:
-        csgoteam1 = csgocontainers[0]
-        csgoteam2 = csgocontainers2[0]
-    except:
-        pass
-
-    #Grabbing 1st team - CSGO
-    try:
-        print(csgoteam1.a["title"])
-        csgoTeams1 = csgoteam1.a["title"]
-    except:
-        try:
-            print(csgoteam1["data-highlightingclass"])
-            csgoTeams1 = csgoteam1["data-highlightingclass"]
-
-        except:
-            pass
-
-    #Grabbing 2nd team - CSGO
-    try:
-        print(csgoteam2.a["title"])
-        csgoTeams2 = csgoteam2.a["title"]
+      timeToGame = timeToGame.rsplit(":")
+      timeToGame = timeToGame[0]
+      if(timeToGame[-1] != "d"):
+        embed = csgodata[6]
+        channel2 = client.get_channel(847601411340501019)
+        await channel2.send(embed=embed)
 
     except:
-        try:
-            print(csgoteam2["data-highlightingclass"])
-            csgoTeams2 = csgoteam2["data-highlightingclass"]
-
-        except:
-            pass
-
-    #prints next CSGO game
-    try:
-        csgoTeams = (csgoTeams1 + " vs " + csgoTeams2)
-        nextcsgogame = ("<:OGpeepoThumbsUp:734000712169553951> " + csgoTeams1 + " vs " + csgoTeams2 + " on " +
-                        csgonextgametime +
-                        ", more information can be found at - " +
-                        my_url2)
-        datetimesplit = csgonextgametime.rsplit(" ")
-        monthofgame = datetimesplit[0]
-        dayofgame1 = datetimesplit[1]
-        dayofgame2 = dayofgame1[:-1]
-        yearofgame = datetimesplit[2]
-        timeofgame = datetimesplit[4]
-        timesplit = timeofgame.rsplit(":")
-        hourofgame = timesplit[0]
-        minuteofgame = timesplit[1]
-        dt_string_year = "20" + str(dt_string_year)
-
-        try:
-          monthnumber = strptime(monthofgame,'%B').tm_mon
-        except:
-          monthnumber = strptime(monthofgame,'%b').tm_mon
-        
-        a = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), int(hourofgame), int(minuteofgame), 0)
-
-        b = datetime.datetime(int(dt_string_year), int(dt_string_month), int(dt_string_day), int(dt_string_hour), int(dt_string_minute), int(dt_string_second))
-
-        c = a-b
-        if (c.days < 0):
-          c = "The game is meant to have begun!"
-        if((currentd[0]== "0")):
-          currentd = currentd[1]
-        
-        if (dayofgame2 == currentd):
-          embed=discord.Embed(title="There is an OG CSGO game today!", url="https://liquipedia.net/counterstrike/OG", color=0xff8800)
-          embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-          embed.add_field(name=csgoTeams, value=csgonextgametime, inline=True)
-          embed.add_field(name="Time remaining", value= c, inline = False)
-          embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-          embed.add_field(name="Links", value="https://www.hltv.org/team/10503/og#tab-matchesBox / https://liquipedia.net/counterstrike/OG", inline=False)
-          print("CS1")
-          channel = client.get_channel(720263155460079767)
-          print ("cs2")
-          channel2 = client.get_channel(847601411340501019)
-          await channel2.send(embed=embed)
-          await channel.send(embed=embed)
-    except:
-      print("tried")
-     
+      print("No CSGO game")
   except:
-    print("no csgo games today")
+    test = "test"
 
  
     
