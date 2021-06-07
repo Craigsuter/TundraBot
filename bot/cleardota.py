@@ -34,6 +34,8 @@ def cleardota():
     button.click()
     button.send_keys(LiquiUser)
     print("hi3")
+    
+    time.sleep(5)
 
     #Finds the password box and types the password in
     button=driver.find_element_by_id('wpPassword1')
