@@ -1,6 +1,7 @@
 discord.py
 flask
 python-dotenv
+pyvirtualdisplay
 PyNaCl
 dnspython
 bs4
