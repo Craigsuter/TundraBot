@@ -12,17 +12,16 @@ def cleardota():
   LiquiUser =  os.getenv('liquiUser')
   liquiPass = os.getenv('liquiPass')
   print("hi")
-  #Opening web browser / logging on
-  #options = Options()
-  #options.add_arugment('--headless')
-  options = webdriver.FirefoxOptions()  
-  options.add_argument('--disable-gpu')
-  options.add_argument('--no-sandbox') 
-  #options.headless = True
-  options.add_argument('--headless')
  
+  chrome_options = webdriver.ChromeOptions()
+  chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BINARY")
+  chrome_options.add_argument("--headless")
+  chrome_options.add_argument("--disable-dev-shm-usage")
+  chrome_options.add_argument("--no-sandbox")
+  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
   print("hi2")
-  driver = webdriver.Firefox(options=options)
+  #driver = webdriver.Firefox(options=options)
   
   driver.get("https://liquipedia.net/dota2/index.php?title=Special:UserLogin&returnto=OG&returntoquery=action%3Dedit")
   print("hi2")
