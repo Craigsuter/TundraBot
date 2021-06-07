@@ -42,12 +42,15 @@ def cleardota():
 
   time.sleep(5)
   driver.get('https://liquipedia.net/dota2/OG')
+  print("hi4")
   time.sleep(10)
   button=driver.find_element_by_id('ca-purge')
+  print("hi5")
   button.click()
 
   time.sleep(17)
   #Finding the clear cache button and then logging out
+  print("hi6")
   button=driver.find_element_by_class_name('fas.fa-fw.fa-user-circle')
   button.click()
 
