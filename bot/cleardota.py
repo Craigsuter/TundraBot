@@ -1,11 +1,11 @@
 import os
 #imports
 from bs4 import BeautifulSoup as soup
-from pyvirtualdisplay import Display
 from dotenv import load_dotenv
 load_dotenv()
 import requests
 from selenium import webdriver
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import time
 
 def cleardota():
@@ -14,17 +14,15 @@ def cleardota():
   liquiPass = os.getenv('liquiPass')
   print("hi")
   
-  
-  display = Display(visible=False, size=(800, 600))
-  display.start()
+  FF_options = webdriver.FirefoxOptions()
+  FF_profile = webdriver.FirefoxProfile()
+  FF_options.add_argument("-headless")
+  FF_profile.update_preferences()
 
-  chrome_options = webdriver.ChromeOptions()
-  chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-  chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36")
-  chrome_options.add_argument("--disable-dev-shm-usage")
-  chrome_options.add_argument("--no-sandbox")
-  chrome_options.add_argument('window-size=1920x1080');
-  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
+  
+  driver = webdriver.Firefox(options=FF_options, firefox_profile=FF_profile, executable_path=os.environ.get("GECKODRIVER_PATH"), firefox_binary=FirefoxBinary(os.environ.get("FIREFOX_BIN")))
+
 
   print("hi2")
   #driver = webdriver.Firefox(options=options)
@@ -68,5 +66,3 @@ def cleardota():
   button.click()
 
   driver.close()
-  display.stop
-  
