@@ -22,6 +22,7 @@ def cleardota():
   chrome_options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36")
   chrome_options.add_argument("--disable-dev-shm-usage")
   chrome_options.add_argument("--no-sandbox")
+  chrome_options.add_argument('window-size=1920x1080');
   driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
   print("hi2")
@@ -30,23 +31,27 @@ def cleardota():
   driver.get("https://liquipedia.net/dota2/index.php?title=Special:UserLogin&returnto=OG&returntoquery=action%3Dedit")
   print("hi2")
   #Finds the username box and types the username in
-  button = driver.find_element_by_id('wpName1')
-  button.click()
-  button.send_keys(LiquiUser)
-  print("hi3")
+  try:
+    button = driver.find_element_by_id('wpName1')
+    button.click()
+    button.send_keys(LiquiUser)
+    print("hi3")
 
-  #Finds the password box and types the password in
-  button=driver.find_element_by_id('wpPassword1')
-  button.click()
-  button.send_keys(liquiPass)
+    #Finds the password box and types the password in
+    button=driver.find_element_by_id('wpPassword1')
+    button.click()
+    button.send_keys(liquiPass)
 
-  button.submit()
+    button.submit()
+  except:
+    print("Error logging in")
 
   #Going to OG's Liquipedia page
 
   time.sleep(5)
   driver.get('https://liquipedia.net/dota2/OG')
   print("hi4")
+  print(driver.page_source)
   time.sleep(10)
   button=driver.find_element_by_id('ca-purge')
   print("hi5")
