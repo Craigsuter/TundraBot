@@ -32,7 +32,7 @@ def DotaCheckTourni(channelDataID):
       f.close()
       print(str(my_url))
 
-      headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+      
 
 
       
@@ -46,9 +46,15 @@ def DotaCheckTourni(channelDataID):
         return(embed, randomval)
 
       #Starts webscraping for the game info
-      OGpage = my_url
-      page_html = requests.get(OGpage, headers=headers)
-      page_soup = soup(page_html, "html.parser")
+      headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+
+
+      OGpage = 'https://liquipedia.net/dota2/OG'
+      r2 = requests.get(OGpage, headers=headers)
+
+      page_soup2 = soup(r2.text, "html.parser")
+
+      
       links = ""
 
       now = datetime.datetime.now()
@@ -61,7 +67,7 @@ def DotaCheckTourni(channelDataID):
       dt_string_second= now.strftime("%S")
 
       #Gets the title of the tournament
-      DTtitle = page_soup.find('title')
+      DTtitle = page_soup2.find('title')
       DTtitledata = DTtitle.string
       DTtitleinfo = DTtitledata.rsplit("-")
       DTtourniname = DTtitleinfo[0]
@@ -69,15 +75,15 @@ def DotaCheckTourni(channelDataID):
      
 
       #Parses the HTML data - Dota
-      containers = page_soup.findAll(
+      containers = page_soup2.findAll(
           "span", {"class": "team-template-team2-short"})
-      containers2 = page_soup.findAll(
+      containers2 = page_soup2.findAll(
           "span", {"class": "team-template-team-short"})
-      containers3 = page_soup.findAll(
+      containers3 = page_soup2.findAll(
           "span", {"class": "timer-object timer-object-countdown-only"})
 
       try:
-        v_table = page_soup.find("table", attrs={"class": "wikitable wikitable-striped infobox_matches_content"})
+        v_table = page_soup2.find("table", attrs={"class": "wikitable wikitable-striped infobox_matches_content"})
         tabledata = v_table.tbody.find_all("tr")
 
 
