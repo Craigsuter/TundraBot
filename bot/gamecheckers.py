@@ -23,10 +23,11 @@ import time
 
 def DotaCheck(channelDataID):
     #Opening OG's Liquipedia page
-      my_url = 'https://liquipedia.net/dota2/OG'  
-      uClient = uReq(my_url)
-      page_html = uClient.read()
-      uClient.close()
+      headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+
+
+      OGpage = 'https://liquipedia.net/dota2/OG'
+      page_html = requests.get(OGpage, headers=headers)
       page_soup = soup(page_html, "html.parser")
       links = 'OG Liquipedia: https://liquipedia.net/dota2/OG'
 
