@@ -23,12 +23,18 @@ import time
 
 def DotaCheck(channelDataID):
     #Opening OG's Liquipedia page
+      
       headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 
 
       OGpage = 'https://liquipedia.net/dota2/OG'
-      page_html = requests.get(OGpage, headers=headers)
-      page_soup = soup(page_html, "html.parser")
+      r2 = requests.get(OGpage, headers=headers)
+
+      page_soup2 = soup(r2.text, "html.parser")
+
+
+
+      
       links = 'OG Liquipedia: https://liquipedia.net/dota2/OG'
 
       now = datetime.datetime.now()
@@ -43,15 +49,15 @@ def DotaCheck(channelDataID):
 
 
       #Parses the HTML data - Dota - grabbing time / both team HTML
-      containers = page_soup.findAll(
+      containers = page_soup2.findAll(
           "span", {"class": "team-template-team2-short"})
-      containers2 = page_soup.findAll(
+      containers2 = page_soup2.findAll(
           "span", {"class": "team-template-team-short"})
-      containers3 = page_soup.findAll(
+      containers3 = page_soup2.findAll(
           "span", {"class": "timer-object timer-object-countdown-only"})
 
       try:
-        v_table = page_soup.find("table", attrs={"class": "wikitable wikitable-striped infobox_matches_content"})
+        v_table = page_soup2.find("table", attrs={"class": "wikitable wikitable-striped infobox_matches_content"})
         tabledata = v_table.tbody.find_all("tr")
 
 
