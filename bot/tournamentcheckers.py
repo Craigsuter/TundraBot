@@ -31,6 +31,11 @@ def DotaCheckTourni(channelDataID):
       my_url=f.read()
       f.close()
       print(str(my_url))
+
+      headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+
+
+      
      
 
       if (my_url=="test" or my_url=="none"):
@@ -41,9 +46,8 @@ def DotaCheckTourni(channelDataID):
         return(embed, randomval)
 
       #Starts webscraping for the game info
-      uClient = uReq(my_url)
-      page_html = uClient.read()
-      uClient.close()
+      OGpage = my_url
+      page_html = requests.get(OGpage, headers=headers)
       page_soup = soup(page_html, "html.parser")
       links = ""
 
