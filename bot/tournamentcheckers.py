@@ -49,7 +49,7 @@ def DotaCheckTourni(channelDataID):
       headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 
 
-      OGpage = 'https://liquipedia.net/dota2/OG'
+      OGpage = my_url
       r2 = requests.get(OGpage, headers=headers)
 
       page_soup2 = soup(r2.text, "html.parser")
