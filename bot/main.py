@@ -490,11 +490,11 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
               else:
                 embed=discord.Embed(title="Reminder deletion error",color=0x55a7f7)
-                embed.add_field(name="Suggestion", value = "To use this find your reminders via !myreminders, and choose the reminder based on the value to the left of your reminder!", inline= True)
+                embed.add_field(name="Suggestion", value = "To use this find your reminders via !myreminders, and choose the reminder based on the value to the left of your reminder!\n E.G - !deletereminder 1", inline= True)
                 await message.channel.send(embed=embed)
             except:
               embed=discord.Embed(title="Reminder deletion error",color=0x55a7f7)
-              embed.add_field(name="Suggestion", value = "To use this find your reminders via !myreminders, and choose the reminder based on the value to the left of your reminder!", inline= True)
+              embed.add_field(name="Suggestion", value = "To use this find your reminders via !myreminders, and choose the reminder based on the value to the left of your reminder!\n E.G - !deletereminder 1", inline= True)
               await message.channel.send(embed=embed)
 
 
@@ -1527,7 +1527,7 @@ async def on_message(message):
 
             GardenerHelp8 = "!copyover [channel to copy from here] - use this command to copy the content of a channel from 1 to another, the command will send the last 100 messages from a channel to the channel the command is being used in\n\nE.G of usage - !copyover 847832196294115349\nThis will give you the value from a copy test, the bot must be in both servers if copying from a different server"
 
-            GardenerHelp10 = "!reminder - This command will let you set reminders for future you, the bot will remind you in the channel it is used in after a set amount of time! Use !reminder to find more information!\n!myreminders - This command will tell you your currently saved reminders and when they are going to be sent"
+            GardenerHelp10 = "!reminder - This command will let you set reminders for future you, the bot will remind you in the channel it is used in after a set amount of time! Use !reminder to find more information!\n!myreminders - This command will tell you your currently saved reminders and when they are going to be sent\n!deletereminder - This will allow for you to remove a reminder of your choice, choose the reminder you want to delete by checking for it on !myreminders and then using it for example like - !deletereminder 1"
 
             GardenerHelp11 = "!todolist - This will list the current to do list for the bot\n!addtodo - This will add to the todolist the test following the command\n!deletetodo - This will delete the 'todo' that is attached to the number chosen, find the to-do values using !todolist"
             
