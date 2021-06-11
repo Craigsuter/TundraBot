@@ -641,7 +641,7 @@ async def on_message(message):
             textToSend = ""
             if (len(reminders) > 0):
               while(j < len(reminders)):
-                textToSend = textToSend + str(j + 1) + " - " reminders[j] + " - " + str(dayofreminding[j]) + "/" + str(monthofreminding[j]) + "/" + str(yearofreminding[j]) + " at " + str(timetosendreminder[j]) +" UTC - <#" + str(channeltosend[j]) + ">\n"
+                textToSend = textToSend + str(j + 1) + " - " + reminders[j] + " - " + str(dayofreminding[j]) + "/" + str(monthofreminding[j]) + "/" + str(yearofreminding[j]) + " at " + str(timetosendreminder[j]) +" UTC - <#" + str(channeltosend[j]) + ">\n"
                 #textToSend = textToSend + reminders[j] + " - " + timeofreminders[j] + "\n"
                 j = j+1
             
