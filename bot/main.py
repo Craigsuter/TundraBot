@@ -596,6 +596,8 @@ async def on_message(message):
 
 
           if(messagereceived=="!reminder"):
+            data = download_file('/dropreminders.txt', 'reminders.txt')
+
             #value checkers
             reminder = secondPartOfMessage 
             timevalue = reminder[-1]
