@@ -436,6 +436,70 @@ async def on_message(message):
 
       #All gardener commands  
       else:
+
+          if(messagereceived=="!deletereminder"):
+            data=download_file('/dropreminders.txt','reminders.txt')
+            a_file = open("reminders.txt", "r")
+            list_of_lines = a_file.readlines()
+            
+            remindertodelete = secondPartOfMessage
+            author = message.author.id
+            
+            i=0
+            j=1
+            k=0
+            datatosave=[]
+            while(i< len(list_of_lines)):
+              reminderdata = list_of_lines[i]
+              remindersplitup = reminderdata.rsplit(", ")
+              text = remindersplitup[0]
+              text = text.strip()
+              checksent = remindersplitup[len(remindersplitup) - 1]
+              checksent = checksent.strip()
+             
+              if(text == str(author) and checksent != "sent"):
+                if(j == int(remindertodelete)):
+                  print("we are here")
+                  user = remindersplitup[0]
+                  
+                  channel = remindersplitup[1]
+                  reminder = remindersplitup[2]
+                  timetosend = remindersplitup[3]
+                  issent = "sent"
+                  remindersaved = reminder + ", to be sent on - " + timetosend
+                  linetosave = user + ", " + channel + ", " + reminder + ", " + timetosend + ", " + issent +"\n"
+                  embed=discord.Embed(title="Reminder removed",color=0x55a7f7)
+                  embed.add_field(name="The deleted reminder", value = remindersaved, inline= True)
+                  datatosave.append(linetosave)
+                  j=j+1
+                  k=k+1
+                else:
+                  datatosave.append(reminderdata)
+                  print(j)
+                  j=j+1
+              else:
+                datatosave.append(reminderdata)
+              i=i+1
+            
+            a_file = open("reminders.txt", "w")
+            a_file.writelines(datatosave)
+            a_file.close()
+            upload_file('/dropreminders.txt', 'reminders.txt')
+            if(k != 0):
+              await message.channel.send(embed=embed)
+            else:
+              embed=discord.Embed(title="Reminder deletion error",color=0x55a7f7)
+              embed.add_field(name="Suggestion", value = "To use this find your reminders via !myreminders, and choose the reminder based on the value to the left of your reminder!", inline= True)
+              await message.channel.send(embed=embed)
+
+
+
+
+
+
+
+
+
           
           if(messagereceived=="!deletetodo"):
            data=download_file('/droptodo.txt','ToDo.txt')
@@ -577,7 +641,7 @@ async def on_message(message):
             textToSend = ""
             if (len(reminders) > 0):
               while(j < len(reminders)):
-                textToSend = textToSend + reminders[j] + " - " + str(dayofreminding[j]) + "/" + str(monthofreminding[j]) + "/" + str(yearofreminding[j]) + " at " + str(timetosendreminder[j]) +" UTC - <#" + str(channeltosend[j]) + ">\n"
+                textToSend = textToSend + str(j + 1) + " - " reminders[j] + " - " + str(dayofreminding[j]) + "/" + str(monthofreminding[j]) + "/" + str(yearofreminding[j]) + " at " + str(timetosendreminder[j]) +" UTC - <#" + str(channeltosend[j]) + ">\n"
                 #textToSend = textToSend + reminders[j] + " - " + timeofreminders[j] + "\n"
                 j = j+1
             
