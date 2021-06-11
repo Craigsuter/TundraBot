@@ -449,48 +449,54 @@ async def on_message(message):
             j=1
             k=0
             datatosave=[]
-            while(i< len(list_of_lines)):
-              reminderdata = list_of_lines[i]
-              remindersplitup = reminderdata.rsplit(", ")
-              text = remindersplitup[0]
-              text = text.strip()
-              checksent = remindersplitup[len(remindersplitup) - 1]
-              checksent = checksent.strip()
-             
-              if(text == str(author) and checksent != "sent"):
-                if(j == int(remindertodelete)):
-                  print("we are here")
-                  user = remindersplitup[0]
-                  
-                  channel = remindersplitup[1]
-                  reminder = remindersplitup[2]
-                  timetosend = remindersplitup[3]
-                  issent = "sent"
-                  remindersaved = reminder + ", to be sent on - " + timetosend
-                  linetosave = user + ", " + channel + ", " + reminder + ", " + timetosend + ", " + issent +"\n"
-                  embed=discord.Embed(title="Reminder removed",color=0x55a7f7)
-                  embed.add_field(name="The deleted reminder", value = remindersaved, inline= True)
-                  datatosave.append(linetosave)
-                  j=j+1
-                  k=k+1
+            try:
+              while(i< len(list_of_lines)):
+                reminderdata = list_of_lines[i]
+                remindersplitup = reminderdata.rsplit(", ")
+                text = remindersplitup[0]
+                text = text.strip()
+                checksent = remindersplitup[len(remindersplitup) - 1]
+                checksent = checksent.strip()
+              
+                if(text == str(author) and checksent != "sent"):
+                  if(j == int(remindertodelete)):
+                    print("we are here")
+                    user = remindersplitup[0]
+                    
+                    channel = remindersplitup[1]
+                    reminder = remindersplitup[2]
+                    timetosend = remindersplitup[3]
+                    issent = "sent"
+                    remindersaved = reminder + ", to be sent on - " + timetosend
+                    linetosave = user + ", " + channel + ", " + reminder + ", " + timetosend + ", " + issent +"\n"
+                    embed=discord.Embed(title="Reminder removed",color=0x55a7f7)
+                    embed.add_field(name="The deleted reminder", value = remindersaved, inline= True)
+                    datatosave.append(linetosave)
+                    j=j+1
+                    k=k+1
+                  else:
+                    datatosave.append(reminderdata)
+                    print(j)
+                    j=j+1
                 else:
                   datatosave.append(reminderdata)
-                  print(j)
-                  j=j+1
+                i=i+1
+              
+              a_file = open("reminders.txt", "w")
+              a_file.writelines(datatosave)
+              a_file.close()
+              upload_file('/dropreminders.txt', 'reminders.txt')
+              if(k != 0):
+                await message.channel.send(embed=embed)
               else:
-                datatosave.append(reminderdata)
-              i=i+1
-            
-            a_file = open("reminders.txt", "w")
-            a_file.writelines(datatosave)
-            a_file.close()
-            upload_file('/dropreminders.txt', 'reminders.txt')
-            if(k != 0):
-              await message.channel.send(embed=embed)
-            else:
+                embed=discord.Embed(title="Reminder deletion error",color=0x55a7f7)
+                embed.add_field(name="Suggestion", value = "To use this find your reminders via !myreminders, and choose the reminder based on the value to the left of your reminder!", inline= True)
+                await message.channel.send(embed=embed)
+            except:
               embed=discord.Embed(title="Reminder deletion error",color=0x55a7f7)
               embed.add_field(name="Suggestion", value = "To use this find your reminders via !myreminders, and choose the reminder based on the value to the left of your reminder!", inline= True)
               await message.channel.send(embed=embed)
+
 
 
 
