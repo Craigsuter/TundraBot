@@ -596,8 +596,6 @@ async def on_message(message):
 
 
           if(messagereceived=="!reminder"):
-            data = download_file('/dropreminders.txt', 'reminders.txt')
-            
             #value checkers
             reminder = secondPartOfMessage 
             timevalue = reminder[-1]
@@ -611,6 +609,7 @@ async def on_message(message):
             currentyear = "20" + str(currentyear)
             currentyear = int(currentyear)
             date_and_time = datetime.datetime(int(currentyear), int(currentmonth), int(currentd), int(currentH), int(currentM), int(currentsecond))
+            timechecker=0
             
 
             
@@ -626,52 +625,70 @@ async def on_message(message):
               #Tells user how to set a reminder if tiem value not given
               if reminder == "none" or (timevalue not in timevaluechecker) :
                 embed.add_field(name="Command used no time set", value="To set the time for this command, please set it using 'days' / 'hours' / 'minutes' / 'seconds'\n\nTo format this you use d / h / m / s, at the end of the time wanted\n\nExample - !reminder 10h This is a reminder\nThis will remind you in 10 hours!")
-
+              timetoadd=""
+              new_time = date_and_time
+              i=0
               #Sets reminder if time value is set
               if( reminder != "none" and (timevalue in timevaluechecker)):
+                while(i < len(reminder)):
+                  if(reminder[i] == "s" or reminder[i] == "m" or reminder[i] == "h" or reminder[i] == "d"):
+                    if (reminder[i] == "s"):
+                      timetillremidningyou = timetoadd
+                      timechecker = timechecker + int(timetoadd)
+                      timetoadd=""
+                      if(i == len(reminder) - 1):
+                        embed.add_field(name="Reminder set, reminding in - " + reminder , value=remindertosave, inline=True)
+                        embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
+                      #calculate time for reminder
+                      time_change = datetime.timedelta(seconds=int(timetillremidningyou))
+                      new_time = new_time + time_change
+                    
+                    if(reminder[i] == "m"):
+                      timetillremidningyou = timetoadd
+                      timechecker = timechecker + (int(timetoadd) * 60)
+                      timetoadd=""
+                      if(i == len(reminder) - 1):
+                        embed.add_field(name="Reminder set, reminding in - " + reminder, value=remindertosave, inline=True)
+                        embed2.add_field(name=
+                        "Your reminder!", value=remindertosave,inline=True)
+                      timetillremidningyou = int(timetillremidningyou) * 60
+                      #calculate time for reminder
+                      time_change = datetime.timedelta(seconds=int(timetillremidningyou))
+                      new_time = new_time + time_change
 
-                if (timevalue == "s"):
-                  timetillremidningyou = reminder[:-1]
+                    if(reminder[i] =="h"):
+                      timetillremidningyou = timetoadd
+                      timechecker = timechecker + (int(timetoadd) * 60 * 60)
+                      timetoadd=""
+                      if(i == len(reminder) - 1):
+                        embed.add_field(name="Reminder set, reminding in - " + reminder, value=remindertosave, inline=True)
+                        embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
+                      timetillremidningyou = int(timetillremidningyou) * 60 * 60
+                      #calculate time for reminder
+                      time_change = datetime.timedelta(seconds=int(timetillremidningyou))
+                      new_time = new_time + time_change
+                    
+                    if(reminder[i]=="d"):
+                      timetillremidningyou = timetoadd
+                      timechecker = timechecker + (int(timetoadd) * 60 * 60 * 24)
+                      timetoadd=""
+                      
+                      if(i == len(reminder) - 1):
+                        embed.add_field(name="Reminder set, reminding in - " + reminder, value=remindertosave, inline=True)
+                        embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
+                      
+                      timetillremidningyou = int(timetillremidningyou) * 60 * 60 * 24
+                      #calculate time for reminder
+                    
+                      time_change = datetime.timedelta(seconds=int(timetillremidningyou))
+                      
+                      new_time = new_time + time_change
+                  else:
+                    timetoadd = timetoadd + str(reminder[i])
+                  i=i+1
                   
-                  embed.add_field(name="Reminder set, reminding in - " + timetillremidningyou + "s", value=remindertosave, inline=True)
-                  embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
-                  #calculate time for reminder
-                  time_change = datetime.timedelta(seconds=int(timetillremidningyou))
-                  new_time = date_and_time + time_change
-                
-                if(timevalue == "m"):
-                  timetillremidningyou = reminder[:-1]
-                  embed.add_field(name="Reminder set, reminding in - " + timetillremidningyou + "m", value=remindertosave, inline=True)
-                  embed2.add_field(name=
-                  "Your reminder!", value=remindertosave,inline=True)
-                  timetillremidningyou = int(timetillremidningyou) * 60
-                  #calculate time for reminder
-                  time_change = datetime.timedelta(seconds=int(timetillremidningyou))
-                  new_time = date_and_time + time_change
+                  
 
-                if(timevalue =="h"):
-                  timetillremidningyou = reminder[:-1]
-                  embed.add_field(name="Reminder set, reminding in - " + timetillremidningyou + "h", value=remindertosave, inline=True)
-                  embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
-                  timetillremidningyou = int(timetillremidningyou) * 60 * 60
-                  #calculate time for reminder
-                  time_change = datetime.timedelta(seconds=int(timetillremidningyou))
-                  new_time = date_and_time + time_change
-                
-                if(timevalue=="d"):
-                  timetillremidningyou = reminder[:-1]
-                  
-
-                  embed.add_field(name="Reminder set, reminding in - " + timetillremidningyou + "d", value=remindertosave, inline=True)
-                  embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
-                  
-                  timetillremidningyou = int(timetillremidningyou) * 60 * 60 * 24
-                  #calculate time for reminder
-                 
-                  time_change = datetime.timedelta(seconds=int(timetillremidningyou))
-                  
-                  new_time = date_and_time + time_change
-                  
                   
 
               #Adding reminder to the text file
@@ -697,7 +714,7 @@ async def on_message(message):
               await message.channel.send(embed=embed2)
 
             try:
-              timetosleep = int(timetillremidningyou)
+              timetosleep = int(timechecker)
               await asyncio.sleep(timetosleep)
               
               #Will update the file to make sure reminders get saved
