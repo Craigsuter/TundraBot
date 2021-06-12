@@ -179,6 +179,178 @@ async def on_message(message):
     #Verifies that message is command usage
     if (first_char=="!"):
 
+
+
+      #Gets the info for the next dota game
+      if ((messagereceived =="!nextdota")  or (messagereceived =="!nextdota2")):
+        embed = DotaCheck(channelDataID)
+        embed=embed[0]
+        if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
+          userID = message.author.id
+          userID = str(userID)
+          await message.channel.send("<@" + userID + "> " + embed)
+        else:
+          await message.channel.send(embed=embed)
+
+      #Gets the info for the next CSGO game   
+      if ((messagereceived =="!nextcsgo")or (messagereceived=="!nextcs")):
+        CSGOGame = CSGOCheck(channelDataID)
+        embed = CSGOGame[6]
+        if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
+          userID = message.author.id
+          userID = str(userID)
+          await message.channel.send("<@" + userID + "> " + embed)
+        else:
+          await message.channel.send(embed=embed)
+
+      #Gets the info for the next Valo game
+      if((messagereceived == "!nextvalo") or (messagereceived == "!nextvalorant")):
+        Valogame = ValoCheck(channelDataID)
+        valorantTeams = Valogame[0]
+        valorantTeamTime = Valogame[1]
+        timeremaining = Valogame[2]
+
+        if(valorantTeams == "No games planned"):
+          embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
+          embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
+          embed.add_field(name="No games planned", value="No games planned", inline=True)
+          embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
+          await message.channel.send(embed=embed)
+        else:
+          embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
+          embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
+          embed.add_field(name=valorantTeams, value=valorantTeamTime, inline=True)
+          embed.add_field(name="Time remaining", value= timeremaining, inline = False)
+          embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
+          embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
+          await message.channel.send(embed=embed)
+
+       #Used for checking the next game in Dota Tourni
+      if (messagereceived=="!nextdt"):   
+        embed = DotaCheckTourni(channelDataID)
+        embed=embed[0]
+        if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
+          userID = message.author.id
+          userID = str(userID)
+          await message.channel.send("<@" + userID + "> " + embed)
+        else:
+          await message.channel.send(embed=embed)
+      
+      
+      #Gets the info for the last dota game
+      if(messagereceived=="!lastdota"):
+        lastinfo = LastDota()
+        Dateandtime1 = lastinfo[0]
+        Dateandtime2 = lastinfo[1]
+        Dateandtime3 = lastinfo[2]
+        LastGameScore1 = lastinfo[3]
+        LastGameEnemy1 = lastinfo[6]
+        LastGameScore2 = lastinfo[4]
+        LastGameEnemy2 = lastinfo[7]
+        LastGameScore3 = lastinfo[5]
+        LastGameEnemy3 = lastinfo[8]
+        
+        embed=discord.Embed(title="The last game OG Dota played",url='https://liquipedia.net/dota2/OG/Played_Matches', color=0xf10909)
+        embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
+        embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +("OG " + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
+        await message.channel.send(embed=embed)
+
+      #Gets the info for the last CSGO game
+      if ((messagereceived =="!lastcsgo")):
+        lastinfo = LastCSGO()
+        Dateandtime1 = lastinfo[0]
+        Dateandtime2 = lastinfo[1]
+        Dateandtime3 = lastinfo[2]
+        LastGameScore1 = lastinfo[3]
+        LastGameEnemy1 = lastinfo[6]
+        LastGameScore2 = lastinfo[4]
+        LastGameEnemy2 = lastinfo[7]
+        LastGameScore3 = lastinfo[5]
+        LastGameEnemy3 = lastinfo[8]
+
+
+        embed=discord.Embed(title="The last OG CSGO games played",url='https://liquipedia.net/counterstrike/OG/Matches', color=0xff8800)
+        embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
+        embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +("OG " + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
+        await message.channel.send(embed=embed)
+
+
+      #Gets the info for the last valo game
+      if((messagereceived=="!lastvalo") or (messagereceived == "!lastvalorant")):
+        testurl = "https://liquipedia.net/valorant/OG/Matches"
+        uClient = uReq(testurl)
+        page_html = uClient.read()
+        uClient.close()
+        page_soup = soup(page_html,"html.parser")
+
+        tabledata = page_soup.find("div", attrs ={"class": "table-responsive recent-matches"})
+        #print(tabledata)
+        tabledata2 = tabledata.tbody.find_all("tr")
+        tabledata3 = tabledata2[1].find_all("td")
+        try:
+          LastGameOG1 = "OG "
+          LastgameDate1 = tabledata3[0].text
+          LastGameTime1 = tabledata3[1].text
+          LastGameTier1 = tabledata3[2].text
+          LastGameTourni1 = tabledata3[3].text
+          LastGameScore1 = tabledata3[5].text
+          LastGameEnemy1 = tabledata3[6].text             
+          Dateandtime1 = LastgameDate1 +  " - " + LastGameTourni1
+          
+          
+          
+        except:
+          print("kek")
+          
+        
+        
+        try:
+          tabledata4 = tabledata2[2].find_all("td")
+          LastGameOG1 ="OG "
+          LastgameDate2 = tabledata4[0].text
+          LastGameTime2 = tabledata4[1].text
+          LastGameTier2 = tabledata4[2].text
+          LastGameTourni2 = tabledata4[3].text
+          LastGameScore2 = tabledata4[5].text
+          LastGameEnemy2 = tabledata4[6].text
+          Dateandtime2 = LastgameDate2 +  " - " + LastGameTourni2
+        except:
+          print("kek2")
+          
+        try:
+          tabledata5 = tabledata2[3].find_all("td")
+          LastGameOG1 = "OG "
+          LastgameDate3 = tabledata5[0].text
+          LastGameTime3 = tabledata5[1].text
+          LastGameTier3 = tabledata5[2].text
+          LastGameTourni3 = tabledata5[3].text
+          LastGameScore3 = tabledata5[5].text
+          LastGameEnemy3 = tabledata5[6].text
+          Dateandtime3 = LastgameDate3 +  " - " + LastGameTourni3
+        except:
+          LastGameOG3 = " "
+          LastgameDate3 = " "
+          LastGameTime3 = " "
+          LastGameTier3 =" "
+          LastGameType3 = " "
+          LastGameTourni3 = " "
+          LastGameScore3 =" "
+          LastGameEnemy3 =" "
+          Dateandtime3 = " "
+          print("kek3")
+
+        embed=discord.Embed(title="The last OG Valo games played",url='https://liquipedia.net/dota2/OG/Played_Matches', color=0xd57280)
+        embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
+        embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +(LastGameOG3 + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
+        await message.channel.send(embed=embed)
+
+
+
+
+
+
+
+
       #None mod commands
       if (author.guild_permissions.administrator == False):
           
@@ -188,16 +360,7 @@ async def on_message(message):
           if (messagereceived in blockedcommands):
             await message.channel.send("No role access")
           
-          #Used for checking the next game in Dota Tourni
-          if (messagereceived=="!nextdt"):   
-            embed = DotaCheckTourni(channelDataID)
-            embed=embed[0]
-            if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
-              userID = message.author.id
-              userID = str(userID)
-              await message.channel.send("<@" + userID + "> " + embed)
-            else:
-              await message.channel.send(embed=embed)
+         
           
           #Get CSGO streams list for next CS game
           if (messagereceived =="!csgostreams"):
@@ -211,156 +374,6 @@ async def on_message(message):
             embed.set_thumbnail(url="https://i.imgur.com/YJfbFth.png")
             embed.add_field(name="Asking for game information", value="To get game information do be sure to use !nextdota / !nextcsgo / !nextvalo, you can get additional help using !goosehelp", inline=True)
             await message.channel.send(embed=embed)
-
-          
-          if((messagereceived == "!nextvalo") or (messagereceived == "!nextvalorant")):
-            Valogame = ValoCheck(channelDataID)
-            valorantTeams = Valogame[0]
-            valorantTeamTime = Valogame[1]
-            timeremaining = Valogame[2]
-
-            if(valorantTeams == "No games planned"):
-              embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
-              embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-              embed.add_field(name="No games planned", value="No games planned", inline=True)
-              embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
-              await message.channel.send(embed=embed)
-            else:
-              embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
-              embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-              embed.add_field(name=valorantTeams, value=valorantTeamTime, inline=True)
-              embed.add_field(name="Time remaining", value= timeremaining, inline = False)
-              embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-              embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
-              await message.channel.send(embed=embed)
-
-
-          if ((messagereceived =="!lastdota")):
-            lastinfo = LastDota()
-            Dateandtime1 = lastinfo[0]
-            Dateandtime2 = lastinfo[1]
-            Dateandtime3 = lastinfo[2]
-            LastGameScore1 = lastinfo[3]
-            LastGameEnemy1 = lastinfo[6]
-            LastGameScore2 = lastinfo[4]
-            LastGameEnemy2 = lastinfo[7]
-            LastGameScore3 = lastinfo[5]
-            LastGameEnemy3 = lastinfo[8]
-            
-            embed=discord.Embed(title="The last game OG Dota played",url='https://liquipedia.net/dota2/OG/Played_Matches', color=0xf10909)
-            embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
-            embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +("OG " + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
-            await message.channel.send(embed=embed)
-
-          if ((messagereceived =="!lastcsgo")):
-            lastinfo = LastCSGO()
-            Dateandtime1 = lastinfo[0]
-            Dateandtime2 = lastinfo[1]
-            Dateandtime3 = lastinfo[2]
-            LastGameScore1 = lastinfo[3]
-            LastGameEnemy1 = lastinfo[6]
-            LastGameScore2 = lastinfo[4]
-            LastGameEnemy2 = lastinfo[7]
-            LastGameScore3 = lastinfo[5]
-            LastGameEnemy3 = lastinfo[8]
-
-
-            embed=discord.Embed(title="The last OG CSGO games played",url='https://liquipedia.net/counterstrike/OG/Matches', color=0xff8800)
-            embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
-            embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +("OG " + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
-            await message.channel.send(embed=embed)
-
-              
-
-          if((messagereceived=="!lastvalo") or (messagereceived == "!lastvalorant")) :
-            testurl = "https://liquipedia.net/valorant/OG/Matches"
-            uClient = uReq(testurl)
-            page_html = uClient.read()
-            uClient.close()
-            page_soup = soup(page_html,"html.parser")
-
-            tabledata = page_soup.find("div", attrs ={"class": "table-responsive recent-matches"})
-            #print(tabledata)
-            tabledata2 = tabledata.tbody.find_all("tr")
-            tabledata3 = tabledata2[1].find_all("td")
-            try:
-              LastGameOG1 = "OG "
-              LastgameDate1 = tabledata3[0].text
-              LastGameTime1 = tabledata3[1].text
-              LastGameTier1 = tabledata3[2].text
-              LastGameTourni1 = tabledata3[3].text
-              LastGameScore1 = tabledata3[5].text
-              LastGameEnemy1 = tabledata3[6].text             
-              Dateandtime1 = LastgameDate1 +  " - " + LastGameTourni1
-             
-              
-              
-            except:
-              print("kek")
-              
-            
-            
-            try:
-              tabledata4 = tabledata2[2].find_all("td")
-              LastGameOG1 ="OG "
-              LastgameDate2 = tabledata4[0].text
-              LastGameTime2 = tabledata4[1].text
-              LastGameTier2 = tabledata4[2].text
-              LastGameTourni2 = tabledata4[3].text
-              LastGameScore2 = tabledata4[5].text
-              LastGameEnemy2 = tabledata4[6].text
-              Dateandtime2 = LastgameDate2 +  " - " + LastGameTourni2
-            except:
-              print("kek2")
-              
-            try:
-              tabledata5 = tabledata2[3].find_all("td")
-              LastGameOG1 = "OG "
-              LastgameDate3 = tabledata5[0].text
-              LastGameTime3 = tabledata5[1].text
-              LastGameTier3 = tabledata5[2].text
-              LastGameTourni3 = tabledata5[3].text
-              LastGameScore3 = tabledata5[5].text
-              LastGameEnemy3 = tabledata5[6].text
-              Dateandtime3 = LastgameDate3 +  " - " + LastGameTourni3
-            except:
-              LastGameOG3 = " "
-              LastgameDate3 = " "
-              LastGameTime3 = " "
-              LastGameTier3 =" "
-              LastGameType3 = " "
-              LastGameTourni3 = " "
-              LastGameScore3 =" "
-              LastGameEnemy3 =" "
-              Dateandtime3 = " "
-              print("kek3")
-
-            embed=discord.Embed(title="The last OG Valo games played",url='https://liquipedia.net/dota2/OG/Played_Matches', color=0xd57280)
-            embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
-            embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +(LastGameOG3 + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
-            await message.channel.send(embed=embed)
-
-
-          if ((messagereceived =="!nextdota")  or (messagereceived =="!nextdota2")):
-              embed = DotaCheck(channelDataID)
-              embed=embed[0]
-              if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
-                userID = message.author.id
-                userID = str(userID)
-                await message.channel.send("<@" + userID + "> " + embed)
-              else:
-                await message.channel.send(embed=embed)
-
-
-          if ((messagereceived =="!nextcsgo")or (messagereceived=="!nextcs")):
-            CSGOGame = CSGOCheck(channelDataID)
-            embed = CSGOGame[6]
-            if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
-              userID = message.author.id
-              userID = str(userID)
-              await message.channel.send("<@" + userID + "> " + embed)
-            else:
-              await message.channel.send(embed=embed)
 
 
           if (messagereceived=="!valostreams" or messagereceived=="!valorantstreams"):
@@ -831,18 +844,6 @@ async def on_message(message):
             upload_file('/dropdotatournament.txt', 'dotatournament.txt')
             await message.channel.send("The tournament tracked has been updated to the link you have sent - <" + newlink + ">\n\nIf there is an error in your link, you are able to use !verifydturl to check the link or try changing again!")
         
-          
-
-          if (messagereceived=="!nextdt"):   
-            embed = DotaCheckTourni(channelDataID)
-            embed=embed[0]
-            if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
-              userID = message.author.id
-              userID = str(userID)
-              await message.channel.send("<@" + userID + "> " + embed)
-            else:
-              await message.channel.send(embed=embed)
-
           #copies 100 messages from 1 channel to another
 
           if (messagereceived=="!copyover"):
@@ -900,113 +901,6 @@ async def on_message(message):
             embed=discord.Embed(title="OGoose bot help",color=0xd57280)
             embed.set_thumbnail(url="https://i.imgur.com/YJfbFth.png")
             embed.add_field(name="Asking for game information", value="To get game information do be sure to use !nextdota / !nextcsgo / !nextvalo, you can get additional help using !goosehelp", inline=True)
-            await message.channel.send(embed=embed)
-
-
-          if(messagereceived=="!lastdota"):
-            lastinfo = LastDota()
-            Dateandtime1 = lastinfo[0]
-            Dateandtime2 = lastinfo[1]
-            Dateandtime3 = lastinfo[2]
-            LastGameScore1 = lastinfo[3]
-            LastGameEnemy1 = lastinfo[6]
-            LastGameScore2 = lastinfo[4]
-            LastGameEnemy2 = lastinfo[7]
-            LastGameScore3 = lastinfo[5]
-            LastGameEnemy3 = lastinfo[8]
-            
-            embed=discord.Embed(title="The last game OG Dota played",url='https://liquipedia.net/dota2/OG/Played_Matches', color=0xf10909)
-            embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
-            embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +("OG " + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
-            await message.channel.send(embed=embed)
-
-          if ((messagereceived =="!lastcsgo")):
-            lastinfo = LastCSGO()
-            Dateandtime1 = lastinfo[0]
-            Dateandtime2 = lastinfo[1]
-            Dateandtime3 = lastinfo[2]
-            LastGameScore1 = lastinfo[3]
-            LastGameEnemy1 = lastinfo[6]
-            LastGameScore2 = lastinfo[4]
-            LastGameEnemy2 = lastinfo[7]
-            LastGameScore3 = lastinfo[5]
-            LastGameEnemy3 = lastinfo[8]
-
-
-            embed=discord.Embed(title="The last OG CSGO games played",url='https://liquipedia.net/counterstrike/OG/Matches', color=0xff8800)
-            embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
-            embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +("OG " + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
-            await message.channel.send(embed=embed)
-
-          
-
-
-          if((messagereceived=="!lastvalo") or (messagereceived == "!lastvalorant")) :
-            testurl = "https://liquipedia.net/valorant/OG/Matches"
-            uClient = uReq(testurl)
-            page_html = uClient.read()
-            uClient.close()
-            page_soup = soup(page_html,"html.parser")
-
-            tabledata = page_soup.find("div", attrs ={"class": "table-responsive recent-matches"})
-            #print(tabledata)
-            tabledata2 = tabledata.tbody.find_all("tr")
-            tabledata3 = tabledata2[1].find_all("td")
-            try:
-              LastGameOG1 = "OG "
-              LastgameDate1 = tabledata3[0].text
-              LastGameTime1 = tabledata3[1].text
-              LastGameTier1 = tabledata3[2].text
-              LastGameTourni1 = tabledata3[3].text
-              LastGameScore1 = tabledata3[5].text
-              LastGameEnemy1 = tabledata3[6].text             
-              Dateandtime1 = LastgameDate1 +  " - " + LastGameTourni1
-             
-              
-              
-            except:
-              print("kek")
-              
-            
-            
-            try:
-              tabledata4 = tabledata2[2].find_all("td")
-              LastGameOG1 ="OG "
-              LastgameDate2 = tabledata4[0].text
-              LastGameTime2 = tabledata4[1].text
-              LastGameTier2 = tabledata4[2].text
-              LastGameTourni2 = tabledata4[3].text
-              LastGameScore2 = tabledata4[5].text
-              LastGameEnemy2 = tabledata4[6].text
-              Dateandtime2 = LastgameDate2 +  " - " + LastGameTourni2
-            except:
-              print("kek2")
-              
-            try:
-              tabledata5 = tabledata2[3].find_all("td")
-              LastGameOG1 = "OG "
-              LastgameDate3 = tabledata5[0].text
-              LastGameTime3 = tabledata5[1].text
-              LastGameTier3 = tabledata5[2].text
-              LastGameTourni3 = tabledata5[3].text
-              LastGameScore3 = tabledata5[5].text
-              LastGameEnemy3 = tabledata5[6].text
-              Dateandtime3 = LastgameDate3 +  " - " + LastGameTourni3
-            except:
-              LastGameOG3 = " "
-              LastgameDate3 = " "
-              LastGameTime3 = " "
-              LastGameTier3 =" "
-              LastGameType3 = " "
-              LastGameTourni3 = " "
-              LastGameScore3 =" "
-              LastGameEnemy3 =" "
-              Dateandtime3 = " "
-              print("kek3")
-
-            embed=discord.Embed(title="The last OG Valo games played",url='https://liquipedia.net/dota2/OG/Played_Matches', color=0xd57280)
-            embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
-            embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +(LastGameOG3 + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
             await message.channel.send(embed=embed)
 
           if (messagereceived =="!csgostreams"):
@@ -1411,19 +1305,6 @@ async def on_message(message):
               await guild.create_role(name="V0-3")
               await message.channel.send("V0-3 created")
           
-         
-
-          if ((messagereceived =="!nextdota") or (messagereceived =="!nextdota2")):
-            embed = DotaCheck(channelDataID)
-            embed=embed[0]
-
-            
-            if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
-              userID = message.author.id
-              userID = str(userID)
-              await message.channel.send("<@" + userID + "> " + embed)
-            else:
-              await message.channel.send(embed=embed)
 
           if ((messagereceived =="!nextcsgo")or (messagereceived=="!nextcs")):
             CSGOGame = CSGOCheck(channelDataID)
@@ -1433,28 +1314,6 @@ async def on_message(message):
               userID = str(userID)
               await message.channel.send("<@" + userID + "> " + embed)
             else:
-              await message.channel.send(embed=embed)
-
-
-          if((messagereceived == "!nextvalo") or (messagereceived == "!nextvalorant")):
-            Valogame = ValoCheck(channelDataID)
-            valorantTeams = Valogame[0]
-            valorantTeamTime = Valogame[1]
-            timeremaining = Valogame[2]
-
-            if(valorantTeams == "No games planned"):
-              embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
-              embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-              embed.add_field(name="No games planned", value="No games planned", inline=True)
-              embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
-              await message.channel.send(embed=embed)
-            else:
-              embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
-              embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-              embed.add_field(name=valorantTeams, value=valorantTeamTime, inline=True)
-              embed.add_field(name="Time remaining", value= timeremaining, inline = False)
-              embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-              embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
               await message.channel.send(embed=embed)
 
 
