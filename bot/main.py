@@ -1306,15 +1306,7 @@ async def on_message(message):
               await message.channel.send("V0-3 created")
           
 
-          if ((messagereceived =="!nextcsgo")or (messagereceived=="!nextcs")):
-            CSGOGame = CSGOCheck(channelDataID)
-            embed = CSGOGame[6]
-            if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
-              userID = message.author.id
-              userID = str(userID)
-              await message.channel.send("<@" + userID + "> " + embed)
-            else:
-              await message.channel.send(embed=embed)
+
 
 
           if(messagereceived=="!dotastreams"):
