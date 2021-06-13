@@ -70,10 +70,23 @@ async def on_ready():
     #Starts schedule
     scheduler = AsyncIOScheduler()
     #Post on the day of a game
-    scheduler.add_job(testingspam,CronTrigger(hour="7"))
+    try:
+      scheduler.add_job(testingspam,CronTrigger(hour="7"))
+      print("Daily announcement success")
+    except:
+      print("Daily announced schedule failed")
     #Opens the file checking the new member support to delete the old bot message
-    scheduler.add_job(openingfile, CronTrigger(minute="5, 10, 15,20, 25, 30, 35, 40, 45, 50,55, 0"))
-    scheduler.add_job(cleanreminders, CronTrigger(minute= "0, 30"))
+    try:
+      scheduler.add_job(openingfile, CronTrigger(minute="0"))
+      print("Opening file schedule success")
+    except:
+      print("Opening file to delete the last message failed")
+
+    try:
+      scheduler.add_job(cleanreminders, CronTrigger(minute= "0, 30"))
+      print("Clean reminder file success")
+    except:
+      print("Clear reminders file schedule failed")
     scheduler.start()
 
     data = download_file('/dropreminders.txt', 'reminders.txt')
