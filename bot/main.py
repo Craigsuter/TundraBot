@@ -77,7 +77,7 @@ async def on_ready():
       print("Daily announced schedule failed")
     #Opens the file checking the new member support to delete the old bot message
     try:
-      scheduler.add_job(openingfile, CronTrigger(minute="0"))
+      scheduler.add_job(openingfile, CronTrigger(minute="0, 20, 40"))
       print("Opening file schedule success")
     except:
       print("Opening file to delete the last message failed")
