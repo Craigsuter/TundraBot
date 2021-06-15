@@ -28,6 +28,7 @@ def DotaCheck(channelDataID):
 
 
       OGpage = 'https://liquipedia.net/dota2/OG'
+      my_url = OGpage
       r2 = requests.get(OGpage, headers=headers)
 
       page_soup2 = soup(r2.text, "html.parser")
