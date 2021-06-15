@@ -203,6 +203,7 @@ async def on_message(message):
             team_name = fullMessage.partition(' ')[2]
             team_name =  ' '.join([w.title() if w.islower() else w[0].upper() + w[1:] for w in team_name.split()])
             team_name = team_name.replace(" ", "_")
+            team_name_for_text = team_name.replace("_", " ")
             print(team_name)
           else:
             team_name="OG"
@@ -310,7 +311,7 @@ async def on_message(message):
             tournamentwins="none"
 
           print(generalinfo)
-          embed=discord.Embed(title="Team: " + team_name ,color=0x55a7f7)
+          embed=discord.Embed(title="Team: " + team_name_for_text ,color=0x55a7f7)
           #embed.set_image(url="https://liquipedia.net/commons/images/thumb/7/70/OG_RB_allmode.png/600px-OG_RB_allmode.png")
           embed.add_field(name="Players", value = playerinfo, inline= True)
           if tournamentwins !="none":
