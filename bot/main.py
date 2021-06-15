@@ -296,16 +296,16 @@ async def on_message(message):
               else:
                 tournamentwins = tournamentwins + value
             except:
-              tournamentwins = tournamentwins
+              tournamentwins = "none"
             i = i+1
         except:
-          tournamentwins=""
+          tournamentwins="none"
 
         print(generalinfo)
         embed=discord.Embed(title="Team: " + team_name ,color=0x55a7f7)
         #embed.set_image(url="https://liquipedia.net/commons/images/thumb/7/70/OG_RB_allmode.png/600px-OG_RB_allmode.png")
         embed.add_field(name="Players", value = playerinfo, inline= True)
-        if tournamentwins is not None:
+        if tournamentwins !="none":
           embed.add_field(name="Tournaments won", value= tournamentwins, inline=False)
         if generalinfo is not None:
           embed.add_field(name="General info", value=generalinfo, inline=False)
