@@ -298,6 +298,7 @@ async def on_message(message):
             else:
               tournamentwins = tournamentwins + value
           except:
+            tournamentwins = tournamentwins
           i = i+1
       
         embed=discord.Embed(title="Team: " + team_name ,color=0x55a7f7)
