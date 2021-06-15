@@ -202,10 +202,6 @@ async def on_message(message):
           team_name = "OG"
         dota_obj = liquipediapy.dota("appname")
         team_details = dota_obj.get_team_info(team_name,False)
-        print(team_details["team_roster"][0])
-        
-
-        print(team_details["info"]["region"])
         image = team_details["cups"]
         generalinfo=""
         try:
@@ -301,12 +297,14 @@ async def on_message(message):
           except:
             tournamentwins = tournamentwins
           i = i+1
-      
+
+        print(generalinfo)
         embed=discord.Embed(title="Team: " + team_name ,color=0x55a7f7)
         #embed.set_image(url="https://liquipedia.net/commons/images/thumb/7/70/OG_RB_allmode.png/600px-OG_RB_allmode.png")
         embed.add_field(name="Players", value = playerinfo, inline= True)
         embed.add_field(name="Tournaments won", value= tournamentwins, inline=False)
-        embed.add_field(name="General info", value=generalinfo, inline=False)
+        if generalinfo is not None:
+          embed.add_field(name="General info", value=generalinfo, inline=False)
         await message.channel.send(embed=embed)
 
 
