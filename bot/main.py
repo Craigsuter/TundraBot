@@ -224,11 +224,15 @@ async def on_message(message):
           i=0
           lenlist = len(sponsorslist) - 1
           sponsor=""
+          
           while(i<len(sponsorslist)):
-            if(i < lenlist):
-              sponsor = sponsor + sponsorslist[i] + ", "
-            else:
-              sponsor = sponsor + sponsorslist[i]
+            try:
+              if(i < lenlist):
+                sponsor = sponsor + sponsorslist[i] + ", "
+              else:
+                sponsor = sponsor + sponsorslist[i]
+            except:
+              sponsor= sponsor
             i = i+1
           
           generalinfo = generalinfo + "Sponsors: " + sponsor + "\n"
