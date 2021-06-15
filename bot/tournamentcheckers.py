@@ -48,7 +48,6 @@ def DotaCheckTourni(channelDataID):
       #Starts webscraping for the game info
       headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 
-
       OGpage = my_url
       r2 = requests.get(OGpage, headers=headers)
 
@@ -177,7 +176,7 @@ def DotaCheckTourni(channelDataID):
           Teams = 'No games planned'
           nextgametime = 'No games planned'
           dayofgame2 = 'no games planned'
-          
+          links= 'Tournament page: ' + str(my_url)
           c = "No games planned"
 
       #Verifies if this is a pro-match channel if so it will send a none embed version of the message

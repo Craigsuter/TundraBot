@@ -49,6 +49,7 @@ global dotadailypost
 global csgodailypost
 global valodailypost
 
+
 dotadailypost = True
 csgodailypost = True
 valodailypost = True
