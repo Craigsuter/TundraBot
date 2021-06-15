@@ -32,6 +32,7 @@ from lastgames import LastCSGO
 from tournamentcheckers import DotaCheckTourni 
 from dropboxUploader import upload_file
 from dropboxUploader import download_file
+import liquipediapy
 
 #sets up command prefix
 client = commands.Bot(command_prefix = '!')
