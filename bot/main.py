@@ -195,14 +195,14 @@ async def on_message(message):
     if (first_char=="!"):
       
       if((messagereceived == "!teaminfo")):
-        
-        dota_obj = liquipediapy.dota("appname")
-        team_details = dota_obj.get_team_info(secondPartOfMessage,False)
-        print(team_details["team_roster"][0])
         if secondPartOfMessage is not None:
           team_name = secondPartOfMessage
         else:
           team_name = "OG"
+        dota_obj = liquipediapy.dota("appname")
+        team_details = dota_obj.get_team_info(team_name,False)
+        print(team_details["team_roster"][0])
+        
 
         print(team_details["info"]["region"])
         image = team_details["cups"]
