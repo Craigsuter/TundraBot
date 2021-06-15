@@ -195,7 +195,7 @@ async def on_message(message):
     if (first_char=="!"):
       
       if((messagereceived == "!teaminfo")):
-        if secondPartOfMessage is not None:
+        if secondPartOfMessage != "none":
           team_name = secondPartOfMessage
         else:
           team_name = "OG"
