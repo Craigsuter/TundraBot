@@ -194,7 +194,7 @@ async def on_message(message):
     #Verifies that message is command usage
     if (first_char=="!"):
       
-      if((messagerecived == "!teaminfo")):
+      if((messagereceived == "!teaminfo")):
         
         dota_obj = liquipediapy.dota("appname")
         team_details = dota_obj.get_team_info(secondPartOfMessage,False)
