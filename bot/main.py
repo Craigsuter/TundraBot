@@ -201,7 +201,6 @@ async def on_message(message):
           team_name=""
           if (lenofmessage > 0):
             team_name = fullMessage.partition(' ')[2]
-            team_name =  ' '.join([w.title() if w.islower() else w[0].upper() + w[1:] for w in team_name.split()])
             team_name = team_name.replace(" ", "_")
             team_name_for_text = team_name.replace("_", " ")
             print(team_name)
