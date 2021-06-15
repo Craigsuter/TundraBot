@@ -320,6 +320,7 @@ async def on_message(message):
         except:
           embed=discord.Embed(title="Team info command usage",color=0x55a7f7)
           embed.add_field(name="Help", value = "I was uanble to find the team you specified sometimes this is caused by capital letters being needed, or could be spelling! Please try again", inline= True)
+          await message.channel.send(embed=embed)
 
       #Gets the info for the next dota game
       if ((messagereceived =="!nextdota")  or (messagereceived =="!nextdota2")):
