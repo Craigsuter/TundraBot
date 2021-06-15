@@ -192,7 +192,115 @@ async def on_message(message):
 
     #Verifies that message is command usage
     if (first_char=="!"):
+      
+      if((messagerecived == "!teaminfo")):
+        
+        dota_obj = liquipediapy.dota("appname")
+        team_details = dota_obj.get_team_info(secondPartOfMessage,False)
+        print(team_details["team_roster"][0])
+        if secondPartOfMessage is not None:
+          team_name = secondPartOfMessage
+        else:
+          team_name = "OG"
 
+        print(team_details["info"]["region"])
+        image = team_details["cups"]
+        generalinfo=""
+        try:
+          region = team_details["info"]["region"]
+          generalinfo = generalinfo + "Region: " + region + "\n"
+        except:
+          pass
+        
+        try:
+          coach=team_details["info"]["coach"]
+          generalinfo = generalinfo + "Coach: " + coach + "\n"
+        except:
+          pass
+        
+
+        try:
+          sponsorslist = team_details["info"]["sponsor"]
+          i=0
+          lenlist = len(sponsorslist) - 1
+          sponsor=""
+          while(i<len(sponsorslist)):
+            if(i < lenlist):
+              sponsor = sponsor + sponsorslist[i] + ", "
+            else:
+              sponsor = sponsor + sponsorslist[i]
+            i = i+1
+          
+          generalinfo = generalinfo + "Sponsors: " + sponsor + "\n"
+        except:
+          pass
+        
+      
+        playerinfo=""
+        try:
+          player1 = team_details["team_roster"][0]
+          
+          pname1 = player1["Name"]
+          pingame1 = player1["ID"]
+          playerinfo = playerinfo  + "Pos1: " + pingame1 + "\n"
+
+          
+        except:
+          player1 = "Could no find player 1"
+
+        try:
+          player2 = team_details["team_roster"][1]
+          pname2 = player2["Name"]
+          pingame2 = player2["ID"]
+          playerinfo = playerinfo  + "Pos2: " + pingame2 + "\n"
+        except:
+          
+          player2 = "Could no find player 1"
+
+        try:
+          player3 = team_details["team_roster"][2]
+          pname3 = player3["Name"]
+          pingame3 = player3["ID"]
+          playerinfo = playerinfo  + "Pos3: " + pingame3 + "\n"
+        except:
+          player3 = "Could no find player 1"
+
+        try:
+          player4 = team_details["team_roster"][3]
+          pname4 = player4["Name"]
+          pingame4 = player4["ID"]
+          playerinfo = playerinfo  + "Pos4: " + pingame4 + "\n"
+        except:
+          player4 = "Could no find player 1"
+
+        try:
+          player5 = team_details["team_roster"][4]
+          pname5 = player5["Name"]
+          pingame5 = player5["ID"]
+          playerinfo = playerinfo  + "Pos5: " + pingame5 + "\n"
+        except:
+          player5 = "Could no find player 1"
+
+        listlength = len(image) - 1
+        i=0
+        tournamentwins=""
+        while(i < 3):
+          try:
+            value = image[listlength - i]
+            
+            if(i < 2):
+              tournamentwins = tournamentwins + value + ", "
+            else:
+              tournamentwins = tournamentwins + value
+          except:
+          i = i+1
+      
+        embed=discord.Embed(title="Team: " + team_name ,color=0x55a7f7)
+        #embed.set_image(url="https://liquipedia.net/commons/images/thumb/7/70/OG_RB_allmode.png/600px-OG_RB_allmode.png")
+        embed.add_field(name="Players", value = playerinfo, inline= True)
+        embed.add_field(name="Tournaments won", value= tournamentwins, inline=False)
+        embed.add_field(name="General info", value=generalinfo, inline=False)
+        await message.channel.send(embed=embed)
 
 
       #Gets the info for the next dota game
