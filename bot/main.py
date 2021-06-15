@@ -562,7 +562,7 @@ async def on_message(message):
             embed.add_field(name="The next OG games", value=willshelp1, inline=True)
             embed.add_field(name="The streams for games", value=willshelp2, inline=False)
             embed.add_field(name="Next game in tournament", value =willshelp3, inline=False)
-            embed.add_field(name-"Team info", value=willshelp4, inline=False)
+            embed.add_field(name="Team info", value=willshelp4, inline=False)
             await message.channel.send(embed=embed) 
 
           return
