@@ -204,9 +204,9 @@ async def on_message(message):
             team_name = team_name.replace(" ", "_")
             team_name =  ' '.join([w.title() if w.islower() and w[0].isdigit()==False else w[0].upper() + w[1:] for w in team_name.split()])
             team_name_for_text = team_name.replace("_", " ")
-            print(team_name)
           else:
             team_name="OG"
+            team_name_for_text = "OG"
 
           
           dota_obj = liquipediapy.dota("appname")
