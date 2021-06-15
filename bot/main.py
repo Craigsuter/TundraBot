@@ -286,23 +286,27 @@ async def on_message(message):
         listlength = len(image) - 1
         i=0
         tournamentwins=""
-        while(i < 3):
-          try:
-            value = image[listlength - i]
-            
-            if(i < 2):
-              tournamentwins = tournamentwins + value + ", "
-            else:
-              tournamentwins = tournamentwins + value
-          except:
-            tournamentwins = tournamentwins
-          i = i+1
+        try:
+          while(i < 3):
+            try:
+              value = image[listlength - i]
+              
+              if(i < 2):
+                tournamentwins = tournamentwins + value + ", "
+              else:
+                tournamentwins = tournamentwins + value
+            except:
+              tournamentwins = tournamentwins
+            i = i+1
+        except:
+          tournamentwins=""
 
         print(generalinfo)
         embed=discord.Embed(title="Team: " + team_name ,color=0x55a7f7)
         #embed.set_image(url="https://liquipedia.net/commons/images/thumb/7/70/OG_RB_allmode.png/600px-OG_RB_allmode.png")
         embed.add_field(name="Players", value = playerinfo, inline= True)
-        embed.add_field(name="Tournaments won", value= tournamentwins, inline=False)
+        if tournamentwins is not None:
+          embed.add_field(name="Tournaments won", value= tournamentwins, inline=False)
         if generalinfo is not None:
           embed.add_field(name="General info", value=generalinfo, inline=False)
         await message.channel.send(embed=embed)
