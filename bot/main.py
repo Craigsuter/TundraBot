@@ -930,13 +930,13 @@ async def on_message(message):
               channelToSend = str(channelDataID)
               textToSend = str(remindertosave)
 
-             
-              f=open("reminders.txt", "a")
-              f.write(userID + ", " + channelToSend + ", " + textToSend + ", " + str(new_time) + ", not\n")
-              f.close()
-              upload_file('/dropreminders.txt', 'reminders.txt' )
+              if(counter > 0):
+                f=open("reminders.txt", "a")
+                f.write(userID + ", " + channelToSend + ", " + textToSend + ", " + str(new_time) + ", not\n")
+                f.close()
+                upload_file('/dropreminders.txt', 'reminders.txt' )
               
-              LineOfReminder = sum(1 for line in open('reminders.txt'))
+                LineOfReminder = sum(1 for line in open('reminders.txt'))
               
               await message.channel.send(embed=embed)
             
