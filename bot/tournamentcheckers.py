@@ -54,7 +54,7 @@ def DotaCheckTourni(channelDataID):
       page_soup2 = soup(r2.text, "html.parser")
 
       
-      links = ""
+      links = "Where to find the game: " + my_url
 
       now = datetime.datetime.now()
 
@@ -89,7 +89,7 @@ def DotaCheckTourni(channelDataID):
         tablestorage = tabledata[1].find_all('a', href=True)
         URL = tablestorage[0]['href']
         extendedURL = "https://liquipedia.net" + URL
-        links = links + "\n Where to find game: " + extendedURL
+        #links = links + "\n Where to find game: " + extendedURL
       except:
         pass
 
