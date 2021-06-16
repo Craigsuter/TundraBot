@@ -839,6 +839,7 @@ async def on_message(message):
             currentyear = int(currentyear)
             date_and_time = datetime.datetime(int(currentyear), int(currentmonth), int(currentd), int(currentH), int(currentM), int(currentsecond))
             timechecker=0
+            counter=0
             
 
             
@@ -865,6 +866,7 @@ async def on_message(message):
                       timetillremidningyou = timetoadd
                       timechecker = timechecker + int(timetoadd)
                       timetoadd=""
+                      counter = counter + 1
                       if(i == len(reminder) - 1):
                         embed.add_field(name="Reminder set, reminding in - " + reminder , value=remindertosave, inline=True)
                         embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
@@ -876,6 +878,7 @@ async def on_message(message):
                       timetillremidningyou = timetoadd
                       timechecker = timechecker + (int(timetoadd) * 60)
                       timetoadd=""
+                      counter = counter + 1
                       if(i == len(reminder) - 1):
                         embed.add_field(name="Reminder set, reminding in - " + reminder, value=remindertosave, inline=True)
                         embed2.add_field(name=
@@ -889,6 +892,7 @@ async def on_message(message):
                       timetillremidningyou = timetoadd
                       timechecker = timechecker + (int(timetoadd) * 60 * 60)
                       timetoadd=""
+                      counter = counter + 1
                       if(i == len(reminder) - 1):
                         embed.add_field(name="Reminder set, reminding in - " + reminder, value=remindertosave, inline=True)
                         embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
@@ -901,7 +905,7 @@ async def on_message(message):
                       timetillremidningyou = timetoadd
                       timechecker = timechecker + (int(timetoadd) * 60 * 60 * 24)
                       timetoadd=""
-                      
+                      counter = counter + 1
                       if(i == len(reminder) - 1):
                         embed.add_field(name="Reminder set, reminding in - " + reminder, value=remindertosave, inline=True)
                         embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
@@ -943,22 +947,23 @@ async def on_message(message):
               await message.channel.send(embed=embed2)
 
             try:
-              timetosleep = int(timechecker)
-              await asyncio.sleep(timetosleep)
-              
-              #Will update the file to make sure reminders get saved
-              data = download_file('/dropreminders.txt', 'reminders.txt')
-              a_file = open("reminders.txt", "r")
-              list_of_lines = a_file.readlines()
-              list_of_lines[int(LineOfReminder) - 1] = (userID + ", " + channelToSend + ", " + textToSend + ", " + str(new_time) + ", sent\n")
+              if(counter > 0):
+                timetosleep = int(timechecker)
+                await asyncio.sleep(timetosleep)
+                
+                #Will update the file to make sure reminders get saved
+                data = download_file('/dropreminders.txt', 'reminders.txt')
+                a_file = open("reminders.txt", "r")
+                list_of_lines = a_file.readlines()
+                list_of_lines[int(LineOfReminder) - 1] = (userID + ", " + channelToSend + ", " + textToSend + ", " + str(new_time) + ", sent\n")
 
-              a_file = open("reminders.txt", "w")
-              a_file.writelines(list_of_lines)
-              a_file.close()
-              upload_file('/dropreminders.txt', 'reminders.txt' )
+                a_file = open("reminders.txt", "w")
+                a_file.writelines(list_of_lines)
+                a_file.close()
+                upload_file('/dropreminders.txt', 'reminders.txt' )
 
-              await message.channel.send("<@" + userID + ">")
-              await message.channel.send(embed=embed2)
+                await message.channel.send("<@" + userID + ">")
+                await message.channel.send(embed=embed2)
             except:
               pass
             
