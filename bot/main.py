@@ -596,10 +596,10 @@ async def on_message(message):
 
           if((messagereceived=="!discordstats")and (message.mentions.__len__()>0)):
             for user in message.mentions:
-              await message.channel.send("<@" + user.id + "> \nDiscord account created on - " + user.created_at +"\nJoined the server on - " + user.joined_at)
-              
+              await message.channel.send("<@" + str(user.id) + "> \nDiscord account created on - " + str(user.created_at) +"\nJoined the server on - " + str(user.joined_at))
+
           if ((messagereceived=="!discordstats")and (message.mentions.__len__()==0)):
-            await message.channel.send("<@" + message.author.id + "> \nDiscord account created on - " + message.author.created_at +"\nJoined the server on - " + message.author.joined_at)
+            await message.channel.send("<@" + str(message.author.id) + "> \nDiscord account created on - " + str(message.author.created_at) +"\nJoined the server on - " + str(message.author.joined_at))
 
           if(messagereceived=="!deletereminder"):
             data=download_file('/dropreminders.txt','reminders.txt')
