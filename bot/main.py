@@ -594,6 +594,13 @@ async def on_message(message):
       #All gardener commands  
       else:
 
+          if((messagereceived=="!discordstats")and (message.mentions.__len__()>0)):
+            for user in message.mentions:
+              await message.channel.send("<@" + user.id + "> \nDiscord account created on - " + user.created_at +"\nJoined the server on - " + user.joined_at)
+              
+          if ((messagereceived=="!discordstats")and (message.mentions.__len__()==0)):
+            await message.channel.send("<@" + message.author.id + "> \nDiscord account created on - " + message.author.created_at +"\nJoined the server on - " + message.author.joined_at)
+
           if(messagereceived=="!deletereminder"):
             data=download_file('/dropreminders.txt','reminders.txt')
             a_file = open("reminders.txt", "r")
