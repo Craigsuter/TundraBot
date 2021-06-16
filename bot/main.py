@@ -614,7 +614,7 @@ async def on_message(message):
               jsecond= joinedon.second
               timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
 
-              embed=discord.Embed(title="Account information of - " + str(user.name),color=0x55a7f7)
+              embed=discord.Embed(title="Account information of - " + str(user.display_name),color=0x55a7f7)
               embed.add_field(name="Account details", value = "User account was created on - " + str(timecreation) + "\nJoined the server on- " + str(timejoining), inline= True)
 
               await message.channel.send(embed=embed)
@@ -642,7 +642,7 @@ async def on_message(message):
             jsecond= joinedon.second
             timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
 
-            embed=discord.Embed(title="Account information of - " + str(user.name),color=0x55a7f7)
+            embed=discord.Embed(title="Account information of - " + str(user.display_name),color=0x55a7f7)
             embed.add_field(name="Account details", value = "User account was created on - " + str(timecreation) + "\nJoined the server on- " + str(timejoining), inline= True)
             await message.channel.send(embed=embed)
 
