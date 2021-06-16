@@ -596,10 +596,56 @@ async def on_message(message):
 
           if((messagereceived=="!discordstats")and (message.mentions.__len__()>0)):
             for user in message.mentions:
-              await message.channel.send("<@" + str(user.id) + "> \nDiscord account created on - " + str(user.created_at) +"\nJoined the server on - " + str(user.joined_at))
+              createdon = user.created_at
+              joinedon = user.joined_at
+              cyear = createdon.year
+              cmonth=createdon.month
+              cday=createdon.day
+              chour=createdon.hour
+              cminute=createdon.minute
+              csecond=createdon.second
+              timecreation = str(cday) + "/" + str(cmonth) + "/" + str(cyear) + " - " + str(chour) + ":" + str(cminute) + ":" + str(csecond)
+
+              jyear = joinedon.year
+              jmonth= joinedon.month
+              jday= joinedon.day
+              jhour= joinedon.hour
+              jminute= joinedon.minute
+              jsecond= joinedon.second
+              timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
+
+              embed=discord.Embed(title="Account information of - <@" + user.id + ">",color=0x55a7f7)
+              embed.add_field(name="Account details", value = "User account was created on - " + str(timecreation) + "\nJoined the server on- " + str(timejoining), inline= True)
+
+              await message.channel.send(embed=embed)
+
+
+              #await message.channel.send("<@" + str(user.id) + "> \nDiscord account created on - " + str(user.created_at) +"\nJoined the server on - " + str(user.joined_at))
 
           if ((messagereceived=="!discordstats")and (message.mentions.__len__()==0)):
-            await message.channel.send("<@" + str(message.author.id) + "> \nDiscord account created on - " + str(message.author.created_at) +"\nJoined the server on - " + str(message.author.joined_at))
+            user=message.author
+            createdon = user.created_at
+            joinedon = user.joined_at
+            cyear = createdon.year
+            cmonth=createdon.month
+            cday=createdon.day
+            chour=createdon.hour
+            cminute=createdon.minute
+            csecond=createdon.second
+            timecreation = str(cday) + "/" + str(cmonth) + "/" + str(cyear) + " - " + str(chour) + ":" + str(cminute) + ":" + str(csecond)
+
+            jyear = joinedon.year
+            jmonth= joinedon.month
+            jday= joinedon.day
+            jhour= joinedon.hour
+            jminute= joinedon.minute
+            jsecond= joinedon.second
+            timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
+
+            embed=discord.Embed(title="Account information of - <@" + user.id + ">",color=0x55a7f7)
+            embed.add_field(name="Account details", value = "User account was created on - " + str(timecreation) + "\nJoined the server on- " + str(timejoining), inline= True)
+            await message.channel.send(embed=embed)
+
 
           if(messagereceived=="!deletereminder"):
             data=download_file('/dropreminders.txt','reminders.txt')
