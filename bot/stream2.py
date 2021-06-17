@@ -21,7 +21,7 @@ def DotaStreams2():
   headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
   try:
     my_url10 = "https://liquipedia.net/dota2/OG"
-    print("Im here")
+    
 
     my_url10 = str(my_url10)
     uClient10 = uReq(my_url10)
@@ -40,7 +40,7 @@ def DotaStreams2():
     URL = tablestorage[0]['href']
     extendedURL = "https://liquipedia.net" + URL
 
-    print("hi")
+    
     #Parses the HTML data - Dota
     containers = page_soup10.findAll(
         "span", {"class": "team-template-team2-short"})
@@ -80,22 +80,21 @@ def DotaStreams2():
             pass
 
   
-    print("test2")
+    
 
 
     #Opens the new page, and checks for the stream table
     page=extendedURL
     r3 = requests.get(page,headers=headers)
     try:
-      print("test2")
+      
       page_soup2 = soup(r3.text,"html.parser")
       streamtable = page_soup2.findAll("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
       
 
-      print("lol2")
+      
       testingtable = streamtable[1]
-      print(testingtable)
-      print("lol")
+     
 
       test=[]
       for tr in testingtable.findAll('tr'):
