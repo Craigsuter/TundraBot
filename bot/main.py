@@ -599,7 +599,7 @@ async def on_message(message):
       else:
 
           if(messagereceived =="!dotastreams2"):
-              await message.channel.send("test")
+              
               streaminfo = DotaStreams2()
               Teams1 = streaminfo[0]
               Teams2 = streaminfo[1]
