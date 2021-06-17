@@ -325,7 +325,7 @@ async def on_message(message):
           await message.channel.send(embed=embed)
 
       #Gets the info for the next dota game
-      if ((messagereceived =="!nextdota")  or (messagereceived =="!nextdota2")):
+      if ((messagereceived =="!nextdota") or (messagereceived =="!nextdoto") or (messagereceived =="!nextdota2")):
         embed = DotaCheck(channelDataID)
         embed=embed[0]
         if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
@@ -512,7 +512,7 @@ async def on_message(message):
             await message.channel.send(embed=embed)
 
           #Checks if user tries using !nextmatch incorrectly
-          if ((messagereceived == "!nextgame") or (messagereceived == "!game") or (messagereceived == "!nextmatch") or (messagereceived == "!next")):
+          if ((messagereceived == "!nextgame") or (messagereceived == "!game") or (messagereceived == "!nextmatch") or(messagereceived == "!match") or (messagereceived == "!next")):
             embed=discord.Embed(title="OGoose bot help",color=0xd57280)
             embed.set_thumbnail(url="https://i.imgur.com/YJfbFth.png")
             embed.add_field(name="Asking for game information", value="To get game information do be sure to use !nextdota / !nextcsgo / !nextvalo, you can get additional help using !goosehelp", inline=True)
