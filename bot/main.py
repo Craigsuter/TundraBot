@@ -562,6 +562,27 @@ async def on_message(message):
               embed.add_field(name="Where I found the streams", value= convertedURL, inline=False)
               await message.channel.send(embed=embed)
 
+          if(messagereceived =="!dotastreams2"):
+              
+              streaminfo = DotaStreams2()
+              Teams1 = streaminfo[0]
+              Teams2 = streaminfo[1]
+              flagMessage= streaminfo[2]
+              convertedURL = streaminfo[3]
+
+              if(Teams1 == "No games found"):
+                embed=discord.Embed(title="No Dota streams / games were found", color=0xf10909)
+                embed.add_field(name="What you can try", value="You can try using !nextdota / !nextdota2 to see if there are any games coming up", inline=True)
+                embed.add_field(name="Links", value="https://liquipedia.net/dota2/OG", inline=False)
+                await message.channel.send(embed=embed)
+
+              else:
+                embed=discord.Embed(title="Dota streams found!", color=0xf10909)
+                embed.add_field(name="The game found", value= Teams1 + " vs " + Teams2, inline=True)
+                embed.add_field(name="Streams available", value=flagMessage, inline=False)
+                embed.add_field(name="Where I found the streams", value= convertedURL, inline=False)
+                await message.channel.send(embed=embed)
+
 
           
 
