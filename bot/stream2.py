@@ -87,13 +87,16 @@ def DotaStreams2():
     r3 = requests.get(page,headers=headers)
     try:
       page_soup2 = soup(r3.text,"html.parser")
-      streamtable = page_soup2.find_all("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
+      streamtable = page_soup2.findAll("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
       table_body = streamtable[1].find('tbody')
       
-
+      print("lol2")
+      testingtable = streamtable[1]
+      print(testingtable)
+      print("lol")
 
       test=[]
-      for tr in streamtable[1].findAll('tr'):
+      for tr in testingtable.findAll('tr'):
         for td in tr.findAll('td'):
           #print(td)
           test.append(td)
