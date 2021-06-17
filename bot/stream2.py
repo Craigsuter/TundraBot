@@ -39,7 +39,7 @@ def DotaStreams2():
     URL = tablestorage[0]['href']
     extendedURL = "https://liquipedia.net" + URL
 
-
+    print("hi")
     #Parses the HTML data - Dota
     containers = page_soup10.findAll(
         "span", {"class": "team-template-team2-short"})
@@ -79,15 +79,16 @@ def DotaStreams2():
             pass
 
   
-    
+    print("test2")
 
 
     #Opens the new page, and checks for the stream table
     page=extendedURL
     r3 = requests.get(page,headers=headers)
     try:
+      print("test2")
       page_soup2 = soup(r3.text,"html.parser")
-      streamtable = page_soup2.findAll("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
+      streamtable = page_soup2.find_all("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
       
 
       print("lol2")
