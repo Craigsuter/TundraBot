@@ -194,8 +194,7 @@ async def on_message(message):
 
     #Verifies that message is command usage
     if (first_char=="!"):
-      if(messagereceived == "!draftforme"):
-        await message.channel.send("Slark into AA GO GO GO... uhm... MEEPO INTO EARTH SHAKER... DAZZLE INTO AXE... UHMM.. SAFELANE HUSKAR... UGHHHH... MID WINDRUNNER... UGHHHHHHHHH.... TRIPLE URN CARRYS")
+      
       
       if((messagereceived == "!teaminfo")):
         try:
