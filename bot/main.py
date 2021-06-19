@@ -694,6 +694,8 @@ async def on_message(message):
               except:
                 playerhis = "unknown"
 
+              print("we made it")
+
               generalinfo=""
               if(name != "unknown"):
                 generalinfo = generalinfo + "Name: " + name + "\n"
@@ -705,7 +707,7 @@ async def on_message(message):
 
               playerinfo =""
               if(signatureheros != "unknown"):
-                playerinfo = playerinfo + "Signature heroes: " + signatureheroes + "\n"
+                playerinfo = playerinfo + "Signature heroes: " + signatureheros + "\n"
               if(earnings != "unknown"):
                 playerinfo = playerinfo + "Earnings: " + earnings + "\n"
               if(playerhis != "unknown"):
