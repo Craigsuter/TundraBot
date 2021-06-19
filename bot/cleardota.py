@@ -7,6 +7,8 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import time
+import phantomjs
+
 
 def cleardota():
   #Loading username / password for Liquipedia
@@ -15,12 +17,16 @@ def cleardota():
   print("hi")
 
 
-  chrome_options = webdriver.ChromeOptions()
-  chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-  chrome_options.add_argument("--headless")
-  chrome_options.add_argument("--disable-dev-shm-usage")
-  chrome_options.add_argument("--no-sandbox")
-  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+  #chrome_options = webdriver.ChromeOptions()
+  #chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+  #chrome_options.add_argument("--headless")
+  #chrome_options.add_argument("--disable-dev-shm-usage")
+  #chrome_options.add_argument("--no-sandbox")
+  #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+
+  driver= webdriver.PhantomJS()
+  driver.set_window_size(1120, 550)
+  
 
 
   print("hi2")
