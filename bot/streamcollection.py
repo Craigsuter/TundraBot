@@ -121,6 +121,10 @@ def DotaStreams():
         while counter3 < (len(flags)):
           if (flags[counter3] == "Indonesia"):
             flagsToSend.append(':flag_id:')
+          elif(flags[counter3] == "Philippines"):
+            flagsToSend.append(':flag_ph:')
+          elif(flags[counter3]=="DeAt_hd.png"):
+            flagsToSend.append(':flag_de:')
           elif (flags[counter3] == "UsGb_hd.png"):
             flagsToSend.append(':flag_gb:')
           elif (flags[counter3] == 'Russia'):
