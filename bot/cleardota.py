@@ -6,6 +6,7 @@ load_dotenv()
 import requests
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
+from selenium.webdriver.firefox.options import Options
 import time
 
 
@@ -24,12 +25,9 @@ def cleardota():
   #chrome_options.add_argument("--no-sandbox")
   #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
-  edge_options = webdriver.EdgeOptions()
-  edge_options.use_chromium = True 
-  edge_options.add_argument('--headless')
-  edge_options.add_argument('--disable-gpu')
-  driver= webdriver.Edge()
-
+  options = Options()
+  options.headless=True
+  driver=webdriver.Firefox(options=options)
 
   
   
