@@ -518,6 +518,11 @@ async def on_message(message):
             age = "unknown"
 
           try:
+            currentteam = player_details["info"]["team"]
+          except:
+            currentteam = "unknown"
+
+          try:
             currentlyplaying = player_details["info"]["status"]
             if(currentlyplaying == "Active"):
               currentlyplaying = "currently playing"
@@ -576,6 +581,8 @@ async def on_message(message):
           
 
           playerinfo =""
+          if(currentteam != "unknown"):
+            playerinfo = playerinfo +_"Current team: " + currentteam + "\n"
           if(signatureheros != "unknown"):
             playerinfo = playerinfo + "Signature heroes: " + signatureheros + "\n"
           if(earnings != "unknown"):
