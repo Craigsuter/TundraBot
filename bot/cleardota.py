@@ -27,7 +27,7 @@ def cleardota():
 
   options = Options()
   options.headless=True
-  driver=webdriver.Firefox(options=options)
+  driver=webdriver.Firefox(options=options, executable_path=os.environ.get("FIREFOX_BIN"))
 
   
   
