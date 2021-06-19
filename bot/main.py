@@ -715,7 +715,7 @@ async def on_message(message):
               
 
               embed=discord.Embed(title="Player card for - " + team_name_for_text,color=0x55a7f7)
-              if(Generalinfo != ""):
+              if(generalinfo != ""):
                 embed.add_field(name = "General information", value = generalinfo)
               if(playerinfo != ""):
                 embed.add_field(name = "Player information", value = playerinfo, inline= False)
