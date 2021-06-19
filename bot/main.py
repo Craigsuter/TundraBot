@@ -196,7 +196,7 @@ async def on_message(message):
     #Verifies that message is command usage
     if (first_char=="!"):
       if(messagereceived=="!spreadthegoose"):
-        await message.channel.send(":OGDuckoWiggle: :OGDuckoWiggle:  <OGDuckoWiggle:855834916871471107> ")
+        await message.channel.send(":OGDuckoWiggle: :OGDuckoWiggle:  :OGDuckoWiggle:  ")
       
       
       if((messagereceived == "!teaminfo")):
