@@ -582,7 +582,7 @@ async def on_message(message):
 
           playerinfo =""
           if(currentteam != "unknown"):
-            playerinfo = playerinfo +_"Current team: " + currentteam + "\n"
+            playerinfo = playerinfo + "Current team: " + currentteam + "\n"
           if(signatureheros != "unknown"):
             playerinfo = playerinfo + "Signature heroes: " + signatureheros + "\n"
           if(earnings != "unknown"):
