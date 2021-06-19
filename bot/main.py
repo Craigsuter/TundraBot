@@ -493,6 +493,109 @@ async def on_message(message):
 
 
 
+      if(messagereceived=="!playerinfo"):
+        try:
+          lenofmessage = len(sectionsofmessage) - 1
+          team_name=""
+          if (lenofmessage > 0):
+            team_name = fullMessage.partition(' ')[2]
+            team_name = team_name.replace(" ", "_")
+            #team_name =  ' '.join([w.title() if w.islower() and w[0].isdigit()==False else w[0].upper() + w[1:] for w in team_name.split()])
+            team_name_for_text = team_name.replace("_", " ")
+          else:
+            team_name="n0tail"
+            team_name_for_text = "n0tail"
+          dota_obj = liquipediapy.dota("appname")
+          player_details = dota_obj.get_player_info(team_name,True)
+          player = "n0tail"
+          try:
+            name = player_details["info"]["name"]
+          except:
+            name = "unknown"
+          try:
+            age = player_details["info"]["birth_details"]
+          except:
+            age = "unknown"
+
+          try:
+            currentlyplaying = player_details["info"]["status"]
+            if(currentlyplaying == "Active"):
+              currentlyplaying = "currently playing"
+            else:
+              currentlyplaying = "No longer playing"
+          except:
+            currentlyplaying = "unknown"
+
+          try:
+            sighero = player_details["info"]["signature_heros"]
+            i=0
+            signatureheros=""
+            while(i < len(sighero)):
+              if(i < len(sighero) - 1):
+                signatureheros = signatureheros + sighero[i] + ", "
+              else:
+                signatureheros = signatureheros + sighero[i] 
+              i=i+1
+            
+          except:
+            signatureheros = "unknown"
+          
+          try:
+            earnings = player_details["info"]["earnings"]
+            earnings = "$" + str(earnings)
+          except:
+            earnings = "unknown"
+        
+
+          try:
+            history=player_details["history"]
+            history.reverse()
+            playerhis =""
+            if(len(history) > 2):
+              j=0
+              while(j < 3):
+                playerhis = playerhis + history[j]["duration"] + " - " + history[j]["name"] + "\n"
+                j=j+1
+
+            else:
+              k=0
+              while(k < len(history)):
+                playerhis = playerhis + history[k]["duration"] + " - " + history[k]["name"] + "\n"
+              
+
+          except:
+            playerhis = "unknown"
+
+          generalinfo=""
+          if(name != "unknown"):
+            generalinfo = generalinfo + "Name: " + name + "\n"
+          if(age != "unknown"):
+            generalinfo = generalinfo + "Age: " + age + "\n"
+          if(currentlyplaying != "unknown"):
+            generalinfo = generalinfo + "Activity: " + currentlyplaying + "\n"
+          
+
+          playerinfo =""
+          if(signatureheros != "unknown"):
+            playerinfo = playerinfo + "Signature heroes: " + signatureheros + "\n"
+          if(earnings != "unknown"):
+            playerinfo = playerinfo + "Earnings: " + earnings + "\n"
+          if(playerhis != "unknown"):
+            playerinfo = playerinfo + "**__Team History__**\n" + playerhis + "\n"
+          
+
+          embed=discord.Embed(title="Player card for - " + team_name_for_text,color=0x55a7f7)
+          if(generalinfo != ""):
+            embed.add_field(name = "General information", value = generalinfo)
+          if(playerinfo != ""):
+            embed.add_field(name = "Player information", value = playerinfo, inline= False)
+          await message.channel.send(embed=embed)
+        except:
+          embed=discord.Embed(title="Player info command usage",color=0x55a7f7)
+          embed.add_field(name="Help", value = "I was uanble to find the player you specified sometimes this is caused by capital letters being needed, or could be spelling! Please try again", inline= True)
+          await message.channel.send(embed=embed)
+
+
 
 
 
@@ -621,109 +724,7 @@ async def on_message(message):
       #All gardener commands  
       else:
 
-          if(messagereceived=="!playerinfo"):
-            try:
-              lenofmessage = len(sectionsofmessage) - 1
-              team_name=""
-              if (lenofmessage > 0):
-                team_name = fullMessage.partition(' ')[2]
-                team_name = team_name.replace(" ", "_")
-                #team_name =  ' '.join([w.title() if w.islower() and w[0].isdigit()==False else w[0].upper() + w[1:] for w in team_name.split()])
-                team_name_for_text = team_name.replace("_", " ")
-              else:
-                team_name="n0tail"
-                team_name_for_text = "n0tail"
-              dota_obj = liquipediapy.dota("appname")
-              player_details = dota_obj.get_player_info(team_name,True)
-              player = "n0tail"
-              try:
-                name = player_details["info"]["name"]
-              except:
-                name = "unknown"
-              try:
-                age = player_details["info"]["birth_details"]
-              except:
-                age = "unknown"
-
-              try:
-                currentlyplaying = player_details["info"]["status"]
-                if(currentlyplaying == "Active"):
-                  currentlyplaying = "currently playing"
-                else:
-                  currentlyplaying = "No longer playing"
-              except:
-                currentlyplaying = "unknown"
-
-              try:
-                sighero = player_details["info"]["signature_heros"]
-                i=0
-                signatureheros=""
-                while(i < len(sighero)):
-                  if(i < len(sighero) - 1):
-                    signatureheros = signatureheros + sighero[i] + ", "
-                  else:
-                    signatureheros = signatureheros + sighero[i] 
-                  i=i+1
-                
-              except:
-                signatureheros = "unknown"
-              
-              try:
-                earnings = player_details["info"]["earnings"]
-                earnings = "$" + str(earnings)
-              except:
-                earnings = "unknown"
-            
-
-              try:
-                history=player_details["history"]
-                history.reverse()
-                playerhis =""
-                if(len(history) > 2):
-                  j=0
-                  while(j < 3):
-                    playerhis = playerhis + history[j]["duration"] + " - " + history[j]["name"] + "\n"
-                    j=j+1
-
-                else:
-                  k=0
-                  while(k < len(history)):
-                    playerhis = playerhis + history[k]["duration"] + " - " + history[k]["name"] + "\n"
-                  
-
-              except:
-                playerhis = "unknown"
-
-              print("we made it")
-
-              generalinfo=""
-              if(name != "unknown"):
-                generalinfo = generalinfo + "Name: " + name + "\n"
-              if(age != "unknown"):
-                generalinfo = generalinfo + "Age: " + age + "\n"
-              if(currentlyplaying != "unknown"):
-                generalinfo = generalinfo + "Activity: " + currentlyplaying + "\n"
-              
-
-              playerinfo =""
-              if(signatureheros != "unknown"):
-                playerinfo = playerinfo + "Signature heroes: " + signatureheros + "\n"
-              if(earnings != "unknown"):
-                playerinfo = playerinfo + "Earnings: " + earnings + "\n"
-              if(playerhis != "unknown"):
-                playerinfo = playerinfo + "__Team History__\n" + playerhis + "\n"
-              
-
-              embed=discord.Embed(title="Player card for - " + team_name_for_text,color=0x55a7f7)
-              if(generalinfo != ""):
-                embed.add_field(name = "General information", value = generalinfo)
-              if(playerinfo != ""):
-                embed.add_field(name = "Player information", value = playerinfo, inline= False)
-              await message.channel.send(embed=embed)
-            except:
-              embed=discord.Embed(title="Player info command usage",color=0x55a7f7)
-              embed.add_field(name="Help", value = "I was uanble to find the player you specified sometimes this is caused by capital letters being needed, or could be spelling! Please try again", inline= True)
-              await message.channel.send(embed=embed)
+          
 
           if(messagereceived =="!dotastreams2"):
               
