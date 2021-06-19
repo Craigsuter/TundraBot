@@ -26,9 +26,9 @@ def cleardota():
 
   edge_options = webdriver.EdgeOptions()
   edge_options.use_chromium = True 
-  edge_options.add_argument('headless')
-  edge_options.add_argument('disable-gpu')
-  driver= webdriver.Edge(options=edge_options)
+  edge_options.add_argument('--headless')
+  edge_options.add_argument('--disable-gpu')
+  driver= webdriver.Edge()
 
 
   
