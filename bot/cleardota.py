@@ -8,9 +8,7 @@ from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import time
 import phantomjs
-from msedge.selenium_tools import EdgeOptions
-from msedge.selenium_tools import Edge
-import msedge
+
 
 
 def cleardota():
@@ -27,11 +25,11 @@ def cleardota():
   #chrome_options.add_argument("--no-sandbox")
   #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
-  edge_options = EdgeOptions()
+  edge_options = webdriver.EdgeOptions()
   edge_options.use_chromium = True 
   edge_options.add_argument('headless')
   edge_options.add_argument('disable-gpu')
-  driver= Edge(options=edge_options)
+  driver= webdriver.Edge(options=edge_options)
 
 
   
