@@ -30,7 +30,7 @@ from streamcollection import ValoStreams
 from lastgames import LastDota
 from lastgames import LastCSGO
 from tournamentcheckers import DotaCheckTourni 
-from tournamentcheckers2 import DotaCheckTourni2
+from tournamentchecker2 import DotaCheckTourni2
 from dropboxUploader import upload_file
 from dropboxUploader import download_file
 import liquipediapy
