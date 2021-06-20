@@ -1208,7 +1208,10 @@ async def on_message(message):
             await message.channel.send("The link currently stored is - <" + link + ">")
 
           if(messagereceived=="!changedt2"):
-            data = download_file('/dropdotatournament2.txt', 'dotatournament2.txt')
+            try:
+              data = download_file('/dropdotatournament2.txt', 'dotatournament2.txt')
+            except:
+              print("lol")
             newlink = secondPartOfMessage
             f=open("dotatournament2.txt", "w")
             f.write(newlink)
