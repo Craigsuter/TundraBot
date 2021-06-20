@@ -30,6 +30,7 @@ from streamcollection import ValoStreams
 from lastgames import LastDota
 from lastgames import LastCSGO
 from tournamentcheckers import DotaCheckTourni 
+from tournamentcheckers2 import DotaCheckTourni2
 from dropboxUploader import upload_file
 from dropboxUploader import download_file
 import liquipediapy
@@ -375,6 +376,16 @@ async def on_message(message):
        #Used for checking the next game in Dota Tourni
       if (messagereceived=="!nextdt"):   
         embed = DotaCheckTourni(channelDataID)
+        embed=embed[0]
+        if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
+          userID = message.author.id
+          userID = str(userID)
+          await message.channel.send("<@" + userID + "> " + embed)
+        else:
+          await message.channel.send(embed=embed)
+
+      if (messagereceived=="!nextdt2"):   
+        embed = DotaCheckTourni2(channelDataID)
         embed=embed[0]
         if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
           userID = message.author.id
@@ -1181,6 +1192,29 @@ async def on_message(message):
                 await message.channel.send(embed=embed2)
             except:
               pass
+
+          if(messagereceived =="!resetdt2"):
+            data = download_file('/dropdotatournament2.txt', 'dotatournament2.txt')
+            f=open("dotatournament2.txt", "w")
+            f.write("none")
+            f.close()
+            upload_file('/dropdotatournament2.txt', 'dotatournament2.txt')
+            await message.channel.send("The tournament currently tracked has been removed")
+          
+          if(messagereceived=="!verifydturl2"):
+            data = download_file('/dropdotatournament2.txt', 'dotatournament2.txt')
+            f=open("dotatournament2.txt", "r")
+            link = f.read()
+            await message.channel.send("The link currently stored is - <" + link + ">")
+
+          if(messagereceived=="!changedt2"):
+            data = download_file('/dropdotatournament2.txt', 'dotatournament2.txt')
+            newlink = secondPartOfMessage
+            f=open("dotatournament2.txt", "w")
+            f.write(newlink)
+            f.close()
+            upload_file('/dropdotatournament2.txt', 'dotatournament2.txt')
+            await message.channel.send("The tournament tracked has been updated to the link you have sent - <" + newlink + ">\n\nIf there is an error in your link, you are able to use !verifydturl to check the link or try changing again!")
             
             
               
