@@ -370,7 +370,7 @@ async def on_message(message):
           await message.channel.send(embed=embed)
 
       #Gets the info for the next Valo game
-      if((messagereceived == "!nextvalo") or (messagereceived == "!nextvalorant")):
+      if((messagereceived == "!nextvalo") or (messagereceived == "!nextvalorant") or (messagereceived == "!nextval")):
         Valogame = ValoCheck(channelDataID)
         valorantTeams = Valogame[0]
         valorantTeamTime = Valogame[1]
