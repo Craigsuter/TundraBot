@@ -136,7 +136,7 @@ async def on_member_update(before, after):
       print(newRole.name)
       if (newRole.name == "Muted"):
         print("Test")
-        channel = client.get_channel(847601411340501017)
+        channel = client.get_channel(839466348970639391)
         await channel.send("Haha you got muted")
 
   
