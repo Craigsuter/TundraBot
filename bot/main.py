@@ -138,6 +138,8 @@ async def on_member_update(before, after):
         print("Test")
         channel = client.get_channel(847601411340501017)
         await channel.send("Haha you got muted")
+  else:
+    print("lol")
 
   
 
