@@ -576,6 +576,7 @@ async def on_message(message):
           
           try:
             earnings = player_details["info"]["earnings"]
+            earnings = ('{:,}'.format(earnings))
             earnings = "$" + str(earnings)
           except:
             earnings = "unknown"
