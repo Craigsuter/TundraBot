@@ -186,7 +186,7 @@ def DotaCheckTourni2(channelDataID):
         if (c == "No games planned"):
           embed = "No games planned currently in the tournament tracked"
         else:
-          embed= Teams + " - Starts in: " + c + " - this is in: "+ DTtourniname + " - For more information use !nextdt in <#721391448812945480>"
+          embed= Teams + " - Starts in: " + c + " - this is in: "+ DTtourniname + " - For more information use !nextdt2 in <#721391448812945480>"
       else:
         embed=discord.Embed(title="Next game in - "+ DTtourniname, url=my_url, color=0xf10909)
         embed.add_field(name=Teams, value=nextgametime, inline=True)
