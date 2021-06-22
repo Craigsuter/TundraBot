@@ -129,14 +129,14 @@ async def on_ready():
 @client.event
 async def on_member_update(before, after):
   guild = after.guild.id
-  if(guild == 731631689826041878):
+  if(guild == 847601410405040128):
     
     if len(before.roles) < len(after.roles):
       newRole = next(role for role in after.roles if role not in before.roles)
       print(newRole.name)
       if (newRole.name == "Muted"):
-        print("Test")
-        channel = client.get_channel(839466348970639391)
+        
+        channel = client.get_channel(847601411340501017)
         await channel.send("Haha you got muted")
 
   
