@@ -129,7 +129,7 @@ async def on_ready():
 @client.event
 async def on_member_update(before, after):
   guild = after.guild.id
-  if(guild == "847601410405040128"):
+  if(guild == 731631689826041878):
     
     if len(before.roles) < len(after.roles):
       newRole = next(role for role in after.roles if role not in before.roles)
