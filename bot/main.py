@@ -148,11 +148,11 @@ async def on_member_update(before, after):
         c= client.get_channel(689865754354384996)
         messages = await c.history(limit=100).flatten()
         i=0
-        while(i<1):
+        if(i<1):
           #Will delete the latest message from the user
           for message in messages:
             user= message.author.id
-            if user == after.id and i < 1:
+            if user == after.id and i < 2:
               #channelID , messageid 
               await client.http.delete_message(689865754354384996, message.id)
               i=i+1
