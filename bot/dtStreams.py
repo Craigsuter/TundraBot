@@ -24,17 +24,14 @@ def dtStreams(tourniURL):
     page=extendedURL
     r3 = requests.get(page,headers=headers)
     try:
-      
       page_soup2 = soup(r3.text,"html.parser")
-      streamtable = page_soup2.findAll("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
+      streamtable = page_soup2.find("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
+      table_body = streamtable.find('tbody')
       
 
-      
-      testingtable = streamtable[1]
-     
 
       test=[]
-      for tr in testingtable.findAll('tr'):
+      for tr in streamtable.findAll('tr'):
         for td in tr.findAll('td'):
           #print(td)
           test.append(td)
