@@ -245,7 +245,7 @@ async def on_message(message):
 
         embed=discord.Embed(title="Streams for the tournament" ,color=0x55a7f7)
         embed.add_field(name="Streams", value = streamlinks, inline= True)
-        embed.add_field(name="Where I found the games", value=urloftourni, inline=False)
+        embed.add_field(name="Where I found the streams", value=urloftourni, inline=False)
         await message.channel.send(embed=embed)
       
       if(messagereceived=="!dtstreams2"):
@@ -259,7 +259,7 @@ async def on_message(message):
 
         embed=discord.Embed(title="Streams for the tournament" ,color=0x55a7f7)
         embed.add_field(name="Streams", value = streamlinks, inline= True)
-        embed.add_field(name="Where I found the games", value=urloftourni, inline=False)
+        embed.add_field(name="Where I found the streams", value=urloftourni, inline=False)
         await message.channel.send(embed=embed)
 
 
