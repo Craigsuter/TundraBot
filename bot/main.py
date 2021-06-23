@@ -35,6 +35,7 @@ from dropboxUploader import upload_file
 from dropboxUploader import download_file
 import liquipediapy
 from stream2 import DotaStreams2
+from dtStreams import dtStreams
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -232,6 +233,36 @@ async def on_message(message):
     if (first_char=="!"):
       if(messagereceived=="!spreadthegoose"):
         await message.channel.send(" <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> ")
+
+      if(messagereceived=="!dtstreams"):
+        data = download_file('/dropdotatournament.txt', 'dotatournament.txt')
+        f = open("dotatournament.txt","r")
+        my_url=f.read()
+        f.close()
+        dtstreaminfo = dtStreams(my_url)
+        streamlinks = dtstreaminfo[0]
+        urloftourni = dtstreaminfo[1]
+
+        embed=discord.Embed(title="Streams for game" ,color=0x55a7f7)
+        embed.add_field(name="Streams", value = streamlinks, inline= True)
+        embed.add_field(name="Where I found the games", value=urloftourni, inline=False)
+        await message.channel.send(embed=embed)
+      
+      if(messagereceived=="!dtstreams2"):
+        data = download_file('/dropdotatournament2.txt', 'dotatournament2.txt')
+        f = open("dotatournament2.txt","r")
+        my_url=f.read()
+        f.close()
+        dtstreaminfo = dtStreams(my_url)
+        streamlinks = dtstreaminfo[0]
+        urloftourni = dtstreaminfo[1]
+
+        embed=discord.Embed(title="Streams for game" ,color=0x55a7f7)
+        embed.add_field(name="Streams", value = streamlinks, inline= True)
+        embed.add_field(name="Where I found the games", value=urloftourni, inline=False)
+        await message.channel.send(embed=embed)
+
+
       
       
       if((messagereceived == "!teaminfo")):
