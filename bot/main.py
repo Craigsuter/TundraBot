@@ -132,7 +132,7 @@ async def on_member_update(before, after):
   guild = after.guild.id
   info= ("<@" + str(after.id) + ">")
   #Only checks this guild
-  if(guild == 731631689826041878):
+  if(guild == 689865753662455829):
     #If user gets given a new role
     if len(before.roles) < len(after.roles):
       newRole = next(role for role in after.roles if role not in before.roles)
@@ -140,11 +140,11 @@ async def on_member_update(before, after):
       #If user gets added to 'Muted' role
       if (newRole.name == "Muted"):
 
-        channel = client.get_channel(839466348970639391)
-        await channel.send(str(info) + "Haha you got muted")
+        channel = client.get_channel(847601410891841561)
+        await channel.send(str(info) + " - user got muted in the main server")
 
         #channel to get messages from [so will be General in main server]
-        c= client.get_channel(731631690249666614)
+        c= client.get_channel(689865754354384996)
         messages = await c.history(limit=100).flatten()
         i=0
         while(i<1):
@@ -153,7 +153,7 @@ async def on_member_update(before, after):
             user= message.author.id
             if user == after.id and i < 1:
               #channelID , messageid 
-              await client.http.delete_message(731631690249666614, message.id)
+              await client.http.delete_message(689865754354384996, message.id)
               i=i+1
 
   
