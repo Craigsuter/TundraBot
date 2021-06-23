@@ -774,6 +774,7 @@ async def on_message(message):
               roletodelete = "r1team-" + str(i)
               role_object = discord.utils.get(guild.roles, name=roletodelete)
               await role_object.delete()
+              i=i+1
 
 
 
