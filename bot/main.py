@@ -761,6 +761,15 @@ async def on_message(message):
       #All gardener commands  
       else:
 
+          if(messagereceived=="!rolequal1"):
+              i=0
+              while(i<3):
+                roletomake = "r1team-" + str(i)
+                await guild.create_role(name=str(roletomake))
+                i=i+1
+
+
+
           
 
           if(messagereceived =="!dotastreams2"):
