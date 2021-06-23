@@ -763,7 +763,7 @@ async def on_message(message):
 
           if(messagereceived=="!rolequal1"):
               i=0
-              while(i<13):
+              while(i<14):
                 roletomake = "r1team-" + str(i)
                 await guild.create_role(name=str(roletomake))
                 i=i+1
@@ -771,7 +771,7 @@ async def on_message(message):
           
           if(messagereceived=="!delrolequal1"):
             i=0
-            while(i<13):
+            while(i<14):
               roletodelete = "r1team-" + str(i)
               role_object = discord.utils.get(guild.roles, name=roletodelete)
               await role_object.delete()
@@ -780,7 +780,7 @@ async def on_message(message):
 
           if(messagereceived=="!rolequal2"):
               i=0
-              while(i<11):
+              while(i<12):
                 roletomake = "r1team-" + str(i)
                 await guild.create_role(name=str(roletomake))
                 i=i+1
@@ -788,7 +788,7 @@ async def on_message(message):
           
           if(messagereceived=="!delrolequal2"):
             i=0
-            while(i<11):
+            while(i<12):
               roletodelete = "r1team-" + str(i)
               role_object = discord.utils.get(guild.roles, name=roletodelete)
               await role_object.delete()
