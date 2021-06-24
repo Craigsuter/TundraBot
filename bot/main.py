@@ -677,11 +677,22 @@ async def on_message(message):
           
 
           embed=discord.Embed(title="Player card for - " + team_name_for_text,color=0x55a7f7)
+          counter1 = 0
+          counter2 = 0
+          print(playerinfo)
           if(generalinfo != ""):
             embed.add_field(name = "General information", value = generalinfo)
-          if(playerinfo != ""):
+            counter1 = counter1 +1
+          if(playerinfo != "" or playerinfo != "**__Team History__**"):
             embed.add_field(name = "Player information", value = playerinfo, inline= False)
-          await message.channel.send(embed=embed)
+            counter2 = counter2 +1
+          
+          if(counter1 > 0 or counter2 > 0):
+            await message.channel.send(embed=embed)
+          else:
+            embed=discord.Embed(title="Player info command usage",color=0x55a7f7)
+            embed.add_field(name="Help", value = "I was uanble to find the player you specified sometimes this is caused by capital letters being needed, or could be spelling! Please try again", inline= True)
+            await message.channel.send(embed=embed)
         except:
           embed=discord.Embed(title="Player info command usage",color=0x55a7f7)
           embed.add_field(name="Help", value = "I was uanble to find the player you specified sometimes this is caused by capital letters being needed, or could be spelling! Please try again", inline= True)
