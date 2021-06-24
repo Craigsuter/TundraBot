@@ -234,6 +234,9 @@ async def on_message(message):
       if(messagereceived=="!spreadthegoose"):
         await message.channel.send(" <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> ")
 
+      if(messagereceived=="!ping"):
+        await message.channel.send("Pong")
+
       if(messagereceived=="!dtstreams"):
         data = download_file('/dropdotatournament.txt', 'dotatournament.txt')
         f = open("dotatournament.txt","r")
