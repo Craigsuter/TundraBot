@@ -808,6 +808,171 @@ async def on_message(message):
       #All gardener commands  
       else:
 
+          if(messagereceived=="!snooze"):
+            try:
+              timevaluechecker = ['d', 'h', 'm', 's']
+              data=download_file('/dropreminders.txt','reminders.txt')
+              a_file = open("reminders.txt", "r")
+              list_of_lines = a_file.readlines()
+
+              date_and_time = datetime.datetime(int(currentyear), int(currentmonth), int(currentd), int(currentH), int(currentM), int(currentsecond))
+
+              embed=discord.Embed(title="Reminder command initiated",color=0x55a7f7)
+              embed2= discord.Embed(title="Your reminder... has arrived!",color=0x55a7f7)
+
+              timechecker=0
+              counter= 0
+              i=0
+              j=0
+
+              reminder = secondPartOfMessage
+              timevalue = reminder[-1]
+              while(i < len(list_of_lines)):
+                lineofinfo = list_of_lines[i].rsplit(", ")
+                checkingsent = lineofinfo[4][0:2]
+              
+                
+                if(str(message.author.id) == lineofinfo[0] and checkingsent != "no"):
+                  linetoresend = lineofinfo
+                  j=j+1
+                  
+                i=i+1
+              if(j>0):
+                
+                usertoping = linetoresend[0]
+                channeltosend= str(linetoresend[1])
+                remindertosave = linetoresend[2]
+                textToSend = str(remindertosave)
+
+                try:
+                  if reminder == "none" or (timevalue not in timevaluechecker) :
+                    embed.add_field(name="Command used no time set", value="To set the time for this command, please set it using 'days' / 'hours' / 'minutes' / 'seconds'\n\nTo format this you use d / h / m / s, at the end of the time wanted\n\nExample - !reminder 10h This is a reminder\nThis will remind you in 10 hours!")
+                  
+                  timetoadd=""
+                  new_time = date_and_time
+                  i=0
+
+                  if( reminder != "none" and (timevalue in timevaluechecker)):
+                    while(i < len(reminder)):
+                      if(reminder[i] == "s" or reminder[i] == "m" or reminder[i] == "h" or reminder[i] == "d"):
+                        if (reminder[i] == "s"):
+                          timetillremidningyou = timetoadd
+                          timechecker = timechecker + int(timetoadd)
+                          timetoadd=""
+                          counter = counter + 1
+                          if(i == len(reminder) - 1):
+                            embed.add_field(name="Reminder set, reminding in - " + reminder , value=remindertosave, inline=True)
+                            embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
+                          #calculate time for reminder
+                          time_change = datetime.timedelta(seconds=int(timetillremidningyou))
+                          new_time = new_time + time_change
+                        
+                        if(reminder[i] == "m"):
+                          timetillremidningyou = timetoadd
+                          timechecker = timechecker + (int(timetoadd) * 60)
+                          timetoadd=""
+                          counter = counter + 1
+                          if(i == len(reminder) - 1):
+                            embed.add_field(name="Reminder set, reminding in - " + reminder, value=remindertosave, inline=True)
+                            embed2.add_field(name=
+                            "Your reminder!", value=remindertosave,inline=True)
+                          timetillremidningyou = int(timetillremidningyou) * 60
+                          #calculate time for reminder
+                          time_change = datetime.timedelta(seconds=int(timetillremidningyou))
+                          new_time = new_time + time_change
+
+                        if(reminder[i] =="h"):
+                          timetillremidningyou = timetoadd
+                          timechecker = timechecker + (int(timetoadd) * 60 * 60)
+                          timetoadd=""
+                          counter = counter + 1
+                          if(i == len(reminder) - 1):
+                            embed.add_field(name="Reminder set, reminding in - " + reminder, value=remindertosave, inline=True)
+                            embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
+                          timetillremidningyou = int(timetillremidningyou) * 60 * 60
+                          #calculate time for reminder
+                          time_change = datetime.timedelta(seconds=int(timetillremidningyou))
+                          new_time = new_time + time_change
+                        
+                        if(reminder[i]=="d"):
+                          timetillremidningyou = timetoadd
+                          timechecker = timechecker + (int(timetoadd) * 60 * 60 * 24)
+                          timetoadd=""
+                          counter = counter + 1
+                          if(i == len(reminder) - 1):
+                            embed.add_field(name="Reminder set, reminding in - " + reminder, value=remindertosave, inline=True)
+                            embed2.add_field(name="Your reminder!", value=remindertosave,inline=True)
+                          
+                          timetillremidningyou = int(timetillremidningyou) * 60 * 60 * 24
+                          #calculate time for reminder
+                        
+                          time_change = datetime.timedelta(seconds=int(timetillremidningyou))
+                          
+                          new_time = new_time + time_change
+                      else:
+                        timetoadd = timetoadd + str(reminder[i])
+                      i=i+1
+
+                  #Adding reminder to the text file
+                  userID = message.author.id
+                  userID = str(userID)
+
+                  if(counter > 0):
+                    f=open("reminders.txt", "a")
+                    f.write(userID + ", " + channelToSend + ", " + textToSend + ", " + str(new_time) + ", not\n")
+                    f.close()
+                    upload_file('/dropreminders.txt', 'reminders.txt' )
+                  
+                    LineOfReminder = sum(1 for line in open('reminders.txt'))
+                  
+                  await message.channel.send(embed=embed)
+
+
+                except:
+                  embed2=discord.Embed(title="Snooze command initiated",color=0x55a7f7)
+                  embed2.add_field(name="Command used no time set", value="To set the time for this command, please set it using 'days' / 'hours' / 'minutes' / 'seconds'\n\nTo format this you use d / h / m / s, at the end of the time wanted\n\nExample - !reminder 10h This is a reminder\nThis will remind you in 10 hours!")
+                  await message.channel.send(embed=embed2)
+                
+
+                try:
+                  if(counter > 0):
+                    timetosleep = int(timechecker)
+                    await asyncio.sleep(timetosleep)
+                    
+                    #Will update the file to make sure reminders get saved
+                    data = download_file('/dropreminders.txt', 'reminders.txt')
+                    a_file = open("reminders.txt", "r")
+                    list_of_lines = a_file.readlines()
+                    list_of_lines[int(LineOfReminder) - 1] = (userID + ", " + channelToSend + ", " + textToSend + ", " + str(new_time) + ", sent\n")
+
+                    a_file = open("reminders.txt", "w")
+                    a_file.writelines(list_of_lines)
+                    a_file.close()
+                    upload_file('/dropreminders.txt', 'reminders.txt' )
+
+                    await message.channel.send("<@" + userID + ">")
+                    await message.channel.send(embed=embed2)
+                except:
+                  pass
+
+
+              else:
+                print("no reminders to snooze")
+
+
+            except:
+              print("error here")
+
+
+
+
+
+
+
+
+
+
+
           if(messagereceived=="!rolequal1"):
               i=0
               while(i<14):
