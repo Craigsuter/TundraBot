@@ -957,7 +957,7 @@ async def on_message(message):
 
 
               else:
-                print("no reminders to snooze")
+                await message.channel.send("You currently have no messages available to snooze")
 
 
             except:
