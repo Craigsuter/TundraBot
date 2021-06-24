@@ -683,7 +683,7 @@ async def on_message(message):
           if(generalinfo != ""):
             embed.add_field(name = "General information", value = generalinfo)
             counter1 = counter1 +1
-          if(playerinfo != "" or playerinfo != "**__Team History__**"):
+          if(playerinfo != "" or playerinfo != "**__Team History__**\n\n"):
             embed.add_field(name = "Player information", value = playerinfo, inline= False)
             counter2 = counter2 +1
           
