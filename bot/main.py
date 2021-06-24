@@ -142,8 +142,7 @@ async def on_member_update(before, after):
       #If user gets added to 'Muted' role
       if (newRole.name == "Muted"):
 
-        channel = client.get_channel(847601410891841561)
-        await channel.send(str(info) + " - user got muted in the main server")
+        
 
         #channel to get messages from [so will be General in main server]
         c= client.get_channel(689865754354384996)
@@ -157,6 +156,8 @@ async def on_member_update(before, after):
               #channelID , messageid 
               await client.http.delete_message(689865754354384996, message.id)
               i=i+1
+        channel = client.get_channel(847601410891841561)
+        await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(i))
 
   
 
