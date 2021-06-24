@@ -237,7 +237,6 @@ async def on_message(message):
 
       if(messagereceived=="!ping"):
         value = random.randint(1, 100)
-        print(value)
         if value == 1:
           await message.channel.send("https://tenor.com/view/cat-ping-pong-funny-animals-cats-gif-8766860")
         else:
