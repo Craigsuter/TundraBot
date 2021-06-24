@@ -36,6 +36,7 @@ from dropboxUploader import download_file
 import liquipediapy
 from stream2 import DotaStreams2
 from dtStreams import dtStreams
+import random
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -235,7 +236,11 @@ async def on_message(message):
         await message.channel.send(" <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> ")
 
       if(messagereceived=="!ping"):
-        await message.channel.send("Pong")
+        value = random.randint(1, 100)
+        if value == 1:
+          await message.channel.send("https://tenor.com/view/cat-ping-pong-funny-animals-cats-gif-8766860")
+        else:
+          await message.channel.send("Pong")
 
       if(messagereceived=="!dtstreams"):
         data = download_file('/dropdotatournament.txt', 'dotatournament.txt')
