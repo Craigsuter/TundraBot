@@ -790,7 +790,7 @@ async def on_message(message):
 
             willshelp2 = "!dotastreams / !dotastreams2 [B-Streams listed for our team] - This will tell you the streams available for the next / current series of dota happening!\n!csgostreams - This will tell you the next / current CSGO games streams\n!valostreams - This will tell you the streams for the current / next Valorant series"
             willshelp3= "!nextdt - This will tell you the next game coming up in the currently tracked tournament"
-            willshelp4 = "!teaminfo - Use this to get info on a dota team you're looking for\nE.G - !teaminfo EG, this will give the information on EG"
+            willshelp4 = "!teaminfo - Use this to get info on a dota team you're looking for\nE.G - !teaminfo EG, this will give the information on EG\n!playerinfo - Use this to get information on a player"
             willshelp5 = "!dtstreams / !dtstreams2 - This will collect the streams listed on the page of the tournaments being tracked for !nextdt / !nextdt2"
 
             embed=discord.Embed(title="The commands I work with", color=0xff8800)
@@ -798,7 +798,7 @@ async def on_message(message):
             embed.add_field(name="The streams for games", value=willshelp2, inline=False)
             embed.add_field(name="The streams for tournament tracked", value=willshelp5, inline=False)
             embed.add_field(name="Next game in tournament", value =willshelp3, inline=False)
-            embed.add_field(name="Team info", value=willshelp4, inline=False)
+            embed.add_field(name="Team / player info", value=willshelp4, inline=False)
             await message.channel.send(embed=embed) 
 
           return
@@ -2052,7 +2052,7 @@ async def on_message(message):
             willshelp1 = "!nextdota - This will tell you the next OG Dota 2 game coming up \n !nextcsgo - This will tell you the next OG CSGO game coming up \n !nextvalo - This will tell you the next OG Valorant  game coming up"
             willshelp2 = "!dotastreams / !dotastreams2 [B-streams if we're on there]- This will tell you the streams available for the next / current series of dota happening!\n !csgostreams - This will tell you the next / current CSGO games streams\n !valostreams - This will tell you the streams for the current / next Valorant series"
             willshelp3= "!nextdt - This will tell you the next game coming up in the currently tracked tournament\n\nAs a gardener you also gain access to commands found in: '!gardenerhelp'"
-            willshelp4 = "!teaminfo - Use this to get info on a dota team you're looking for\nE.G - !teaminfo EG, this will give the information on EG"
+            willshelp4 = "!teaminfo - Use this to get info on a dota team you're looking for\nE.G - !teaminfo EG, this will give the information on EG\n!playerinfo - Use this to get information on a player"
             willshelp5 = "!dtstreams / !dtstreams2 - This will collect the streams listed on the page of the tournaments being tracked for !nextdt / !nextdt2"
 
             embed=discord.Embed(title="The commands I work with", color=0xff8800)
@@ -2060,7 +2060,7 @@ async def on_message(message):
             embed.add_field(name="The streams for games", value=willshelp2, inline=False)
             embed.add_field(name="The streams for tournament tracked", value=willshelp5, inline=False)
             embed.add_field(name="Next game in tournament", value =willshelp3, inline=False)
-            embed.add_field(name="Team info", value=willshelp4, inline=False)
+            embed.add_field(name="Team / player info", value=willshelp4, inline=False)
             await message.channel.send(embed=embed) 
 
 
