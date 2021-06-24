@@ -813,51 +813,61 @@ async def on_message(message):
 
           if(messagereceived=="!snooze"):
             try:
+              #time values
               timevaluechecker = ['d', 'h', 'm', 's']
+
+              #downloads reminder file to local
               data=download_file('/dropreminders.txt','reminders.txt')
               a_file = open("reminders.txt", "r")
               list_of_lines = a_file.readlines()
 
+              #Create current year / time values
               currentyear = "20" + str(currentyear)
               currentyear = int(currentyear)
 
               date_and_time = datetime.datetime(int(currentyear), int(currentmonth), int(currentd), int(currentH), int(currentM), int(currentsecond))
 
-              embed=discord.Embed(title="Reminder command initiated",color=0x55a7f7)
-              embed2= discord.Embed(title="Your reminder... has arrived!",color=0x55a7f7)
 
+              #Start reminder embeds
+              embed=discord.Embed(title="Snooze command initiated",color=0x55a7f7)
+              embed2= discord.Embed(title="Your reminder... has arrived!",color=0x55a7f7)
+              
+              #counters for the command
               timechecker=0
               counter= 0
               i=0
               j=0
 
+              #Get the 2nd part of message for time values
               reminder = secondPartOfMessage
               timevalue = reminder[-1]
+              #Will collect the reminders and find the last sent reminder
               while(i < len(list_of_lines)):
                 lineofinfo = list_of_lines[i].rsplit(", ")
                 checkingsent = lineofinfo[4][0:2]
               
-                
+                #Will collect any sent reminders
                 if(str(message.author.id) == lineofinfo[0] and checkingsent != "no"):
                   linetoresend = lineofinfo
                   j=j+1
                   
                 i=i+1
               if(j>0):
-                
+                #The values used for sending + timing
                 usertoping = linetoresend[0]
                 channelToSend= str(linetoresend[1])
                 remindertosave = linetoresend[2]
                 textToSend = str(remindertosave)
 
                 try:
+                  #Creating the messafge
                   if reminder == "none" or (timevalue not in timevaluechecker) :
                     embed.add_field(name="Command used no time set", value="To set the time for this command, please set it using 'days' / 'hours' / 'minutes' / 'seconds'\n\nTo format this you use d / h / m / s, at the end of the time wanted\n\nExample - !reminder 10h This is a reminder\nThis will remind you in 10 hours!")
                   
                   timetoadd=""
                   new_time = date_and_time
                   i=0
-
+                  #Generates time till reminder in a split way for if the user puts multiple values
                   if( reminder != "none" and (timevalue in timevaluechecker)):
                     while(i < len(reminder)):
                       if(reminder[i] == "s" or reminder[i] == "m" or reminder[i] == "h" or reminder[i] == "d"):
@@ -923,6 +933,7 @@ async def on_message(message):
                   userID = message.author.id
                   userID = str(userID)
 
+                  #For adding value to the file
                   if(counter > 0):
                     f=open("reminders.txt", "a")
                     f.write(userID + ", " + channelToSend + ", " + textToSend + ", " + str(new_time) + ", not\n")
@@ -930,11 +941,12 @@ async def on_message(message):
                     upload_file('/dropreminders.txt', 'reminders.txt' )
                   
                     LineOfReminder = sum(1 for line in open('reminders.txt'))
-                  
+                  #sending embed for starting the command
                   await message.channel.send(embed=embed)
 
 
                 except:
+                  #Error catching
                   embed2=discord.Embed(title="Snooze command initiated",color=0x55a7f7)
                   embed2.add_field(name="Command used no time set", value="To set the time for this command, please set it using 'days' / 'hours' / 'minutes' / 'seconds'\n\nTo format this you use d / h / m / s, at the end of the time wanted\n\nExample - !reminder 10h This is a reminder\nThis will remind you in 10 hours!")
                   await message.channel.send(embed=embed2)
@@ -963,6 +975,7 @@ async def on_message(message):
 
 
               else:
+                #If user has 0 reminders to snooze
                 await message.channel.send("You currently have no messages available to snooze")
 
 
