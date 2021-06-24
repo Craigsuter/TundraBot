@@ -679,7 +679,7 @@ async def on_message(message):
           embed=discord.Embed(title="Player card for - " + team_name_for_text,color=0x55a7f7)
           counter1 = 0
           counter2 = 0
-          playerinfotest = playerinfo
+          playerinfotest = playerinfo.replace("\n", "")
           print(playerinfotest)
           if(generalinfo != ""):
             embed.add_field(name = "General information", value = generalinfo)
