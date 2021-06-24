@@ -818,6 +818,9 @@ async def on_message(message):
               a_file = open("reminders.txt", "r")
               list_of_lines = a_file.readlines()
 
+              currentyear = "20" + str(currentyear)
+              currentyear = int(currentyear)
+
               date_and_time = datetime.datetime(int(currentyear), int(currentmonth), int(currentd), int(currentH), int(currentM), int(currentsecond))
 
               embed=discord.Embed(title="Reminder command initiated",color=0x55a7f7)
