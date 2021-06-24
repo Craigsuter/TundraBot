@@ -840,7 +840,7 @@ async def on_message(message):
               if(j>0):
                 
                 usertoping = linetoresend[0]
-                channeltosend= str(linetoresend[1])
+                channelToSend= str(linetoresend[1])
                 remindertosave = linetoresend[2]
                 textToSend = str(remindertosave)
 
