@@ -449,7 +449,7 @@ async def on_message(message):
         else:
           await message.channel.send(embed=embed)
 
-      if (messagereceived=="!nextdt2" or messagereceived=="!nextdtSA" ):   
+      if (messagereceived=="!nextdt2" or messagereceived=="!nextdtsa" ):   
         embed = DotaCheckTourni2(channelDataID)
         embed=embed[0]
         if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
