@@ -148,16 +148,17 @@ async def on_member_update(before, after):
         c= client.get_channel(689865754354384996)
         messages = await c.history(limit=100).flatten()
         i=0
+        counter=0
         if(i<1):
           #Will delete the latest message from the user
           for message in messages:
             user= message.author.id
-            if user == after.id and i < 2:
+            if user == after.id and counter < 2:
               #channelID , messageid 
               await client.http.delete_message(689865754354384996, message.id)
-              i=i+1
+              counter=counter+1
         channel = client.get_channel(847601410891841561)
-        await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(i))
+        await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
 
   
 
@@ -448,7 +449,7 @@ async def on_message(message):
           await message.channel.send(embed=embed)
 
        #Used for checking the next game in Dota Tourni
-      if (messagereceived=="!nextdt" or messagereceived=="!nextdtcis"):   
+      if (messagereceived=="!nextdt" or messagereceived=="!nextdtna"):   
         embed = DotaCheckTourni(channelDataID)
         embed=embed[0]
         if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
@@ -458,7 +459,7 @@ async def on_message(message):
         else:
           await message.channel.send(embed=embed)
 
-      if (messagereceived=="!nextdt2" or messagereceived=="!nextdtsa" ):   
+      if (messagereceived=="!nextdt2" or messagereceived=="!nextdtsea" ):   
         embed = DotaCheckTourni2(channelDataID)
         embed=embed[0]
         if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
@@ -1014,7 +1015,7 @@ async def on_message(message):
 
           if(messagereceived=="!rolequal1"):
               i=0
-              while(i<14):
+              while(i<15):
                 roletomake = "r1team-" + str(i)
                 await guild.create_role(name=str(roletomake))
                 i=i+1
@@ -1022,7 +1023,7 @@ async def on_message(message):
           
           if(messagereceived=="!delrolequal1"):
             i=0
-            while(i<14):
+            while(i<15):
               roletodelete = "r1team-" + str(i)
               role_object = discord.utils.get(guild.roles, name=roletodelete)
               await role_object.delete()
