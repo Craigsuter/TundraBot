@@ -363,7 +363,7 @@ def ValoStreams():
       headings=[]
       i = 0
       lenrot = len(test)
-      print(lenrot)
+      
       #Gets stream links
       while(i < (lenrot)):
         for a in test[i].findAll('a', href=True):
@@ -415,7 +415,7 @@ def ValoStreams():
 
 
       m=0
-      print(headings)
+      
       streams=""
       while (m < len(headings)):
         streams = str(streams) + actualflags[m] + " <" + headings[m] + ">\n"
@@ -423,9 +423,7 @@ def ValoStreams():
     except:
       streams = "No streams found"
 
-    print(valoenemyteam)
-    print(streams)
-    print(matchlink)
+    
     
     return(valoenemyteam,streams,matchlink)
     
