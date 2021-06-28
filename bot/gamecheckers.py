@@ -350,6 +350,8 @@ def ValoCheck(channelDataID):
     a = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), int(hourofvalo), int(minuteofgame), 0)
     b = datetime.datetime(int(dt_string_year), int(dt_string_month), int(dt_string_day), int(dt_string_hour), int(dt_string_minute), int(dt_string_second))
 
+    print(a)
+    print(b)
     c = a-b
     print(c) 
     #Will check if the game has already begun
