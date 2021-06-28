@@ -363,6 +363,7 @@ def ValoStreams():
       headings=[]
       i = 0
       lenrot = len(test)
+      print(lenrot)
       #Gets stream links
       while(i < (lenrot)):
         for a in test[i].findAll('a', href=True):
