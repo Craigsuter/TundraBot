@@ -342,7 +342,7 @@ def ValoCheck(channelDataID):
         prefixOfTime = "AM"
     if UTCBC > 12:
       hourofvalo = str(UTCBC-12)
-      UTCTime = str(UTCBC - 12) + UTCTime[1] + prefixOfTime
+      UTCTime = str(UTCBC - 12) + ":" + UTCTime[1] + prefixOfTime
     else:
       hourofvalo= UTCBC
       UTCTime = str(UTCBC) + ":" + UTCTime[1] + prefixOfTime
