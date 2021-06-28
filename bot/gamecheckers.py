@@ -333,7 +333,7 @@ def ValoCheck(channelDataID):
 
     UTCTime = timeOfGame.rsplit(":")
     UTCTime2 = timeOfGame.rsplit(":")
-    UTCBC = int(UTCTime[0]) + 4
+    UTCBC = int(UTCTime[0]) - 1
     if UTCBC > 12:
       if prefixOfTime == "AM":
         prefixOfTime = "PM"
