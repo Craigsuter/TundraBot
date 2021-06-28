@@ -357,7 +357,7 @@ def ValoStreams():
 
     try:
       page_soup = soup(r.text, "html.parser")
-      test = page_soup.findAll("div", {"class":"wf-card mod-dark noselect match-streams-btn mod-embed"})
+      test = page_soup.findAll("div", {"class":"wf-card noselect match-streams-btn mod-embed  mod-fullwidth mod-dark"})
 
 
       headings=[]
