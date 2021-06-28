@@ -335,6 +335,7 @@ def ValoCheck(channelDataID):
     if UTCBC > 12:
       if prefixOfTime == "AM":
         prefixOfTime = "PM"
+        hourofvalo = hourofvalo + 12
       else:
         prefixOfTime = "AM"
     if UTCBC > 12:
@@ -345,6 +346,9 @@ def ValoCheck(channelDataID):
       UTCTime = str(UTCBC) + ":" + UTCTime[1] + prefixOfTime
     
     #date/time comparisions to get a countdown
+
+   
+
     minuteofgame = UTCTime2[1]
     dt_string_year = "20" + str(dt_string_year)
     a = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), int(hourofvalo), int(minuteofgame), 0)
