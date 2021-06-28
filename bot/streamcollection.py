@@ -421,6 +421,9 @@ def ValoStreams():
     except:
       streams = "No streams found"
 
+    print(valoenemyteam)
+    print(streams)
+    print(matchlink)
     
     return(valoenemyteam,streams,matchlink)
     
