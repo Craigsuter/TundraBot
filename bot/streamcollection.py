@@ -414,6 +414,7 @@ def ValoStreams():
 
 
       m=0
+      print(headings)
       streams=""
       while (m < len(headings)):
         streams = str(streams) + actualflags[m] + " <" + headings[m] + ">\n"
