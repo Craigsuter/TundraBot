@@ -324,6 +324,8 @@ def ValoCheck(channelDataID):
     yearofgame = datep1
     monthnumber = datep2
     dayofgame2 = datep3
+
+    print(timeOfGame)
   
 
 
