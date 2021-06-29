@@ -326,7 +326,15 @@ def ValoCheck(channelDataID):
     dayofgame2 = datep3
 
     print(timeOfGame)
-  
+
+    try:
+      tags = page_soup.findAll("a", {"class":"wf-module-item mod-flex rm-item mod-first mod-tbd", 'href':True })
+      games=[]
+      for tag in tags:
+        games.append(tag['href'])
+        #print(tag['href'])
+
+      matchlink = 'https://www.vlr.gg' + games[0]
 
 
     
