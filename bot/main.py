@@ -78,7 +78,7 @@ async def on_ready():
     scheduler = AsyncIOScheduler()
     #Post on the day of a game
     try:
-      scheduler.add_job(testingspam,CronTrigger(hour="7"))
+      scheduler.add_job(testingspam,CronTrigger(minute="11"))
       print("Daily announcement success")
     except:
       print("Daily announced schedule failed")
@@ -2386,7 +2386,7 @@ async def testingspam():
 
 #Valo daily
   try:
-    ValoGame = ValoCheck()
+    ValoGame = ValoCheck(720263155460079767)
     valorantTeams = ValoGame[0]
     valorantTeamTime = ValoGame[1]
     c = ValoGame[2]
