@@ -449,7 +449,10 @@ async def on_message(message):
           embed.add_field(name=valorantTeams, value=valorantTeamTime, inline=True)
           embed.add_field(name="Time remaining", value= timeremaining, inline = False)
           embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-          embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG\nMatchlink - " + str(gamelink), inline=False)
+          try:
+            embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG\nMatchlink - " + str(gamelink), inline=False)
+          except:
+            embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
           await message.channel.send(embed=embed)
 
        #Used for checking the next game in Dota Tourni
