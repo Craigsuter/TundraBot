@@ -432,12 +432,16 @@ async def on_message(message):
         valorantTeams = Valogame[0]
         valorantTeamTime = Valogame[1]
         timeremaining = Valogame[2]
+        try:
+          gamelink = Valogame[4]
+        except:
+          pass
 
         if(valorantTeams == "No games planned"):
           embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
           embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
           embed.add_field(name="No games planned", value="No games planned", inline=True)
-          embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
+          embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG / " , inline=False)
           await message.channel.send(embed=embed)
         else:
           embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
@@ -445,7 +449,7 @@ async def on_message(message):
           embed.add_field(name=valorantTeams, value=valorantTeamTime, inline=True)
           embed.add_field(name="Time remaining", value= timeremaining, inline = False)
           embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-          embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
+          embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG\nMatchlink - " + str(gamelink), inline=False)
           await message.channel.send(embed=embed)
 
        #Used for checking the next game in Dota Tourni
@@ -2391,6 +2395,7 @@ async def testingspam():
     valorantTeamTime = ValoGame[1]
     c = ValoGame[2]
     dayofgame2 = ValoGame[3]
+    matchlink = ValoGame[4]
     
 
     if((currentd[0]== "0")):
@@ -2402,7 +2407,7 @@ async def testingspam():
       embed.add_field(name=valorantTeams, value=valorantTeamTime, inline=True)
       embed.add_field(name="Time remaining", value= c, inline = False)
       embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-      embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
+      embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG\nMatchlink - " + str(matchlink) , inline=False)
       channel = client.get_channel(720263155460079767)
       channel2 = client.get_channel(847601411340501019)
       await channel2.send(embed=embed)

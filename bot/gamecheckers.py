@@ -335,7 +335,8 @@ def ValoCheck(channelDataID):
         #print(tag['href'])
 
       matchlink = 'https://www.vlr.gg' + games[0]
-
+    except:
+      pass
 
     
 
@@ -381,7 +382,7 @@ def ValoCheck(channelDataID):
     valorantTeamTime = dateOfGame + " - " + UTCTime + " UTC"
 
 
-    return(valorantTeams, valorantTeamTime, c, dayofgame2)
+    return(valorantTeams, valorantTeamTime, c, dayofgame2, matchlink)
 
   except:
     return("No games planned", "No games planned", "No games planned")
