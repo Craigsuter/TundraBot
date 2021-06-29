@@ -435,7 +435,7 @@ async def on_message(message):
         try:
           gamelink = Valogame[4]
         except:
-          pass
+          gamelink = "Not found"
 
         if(valorantTeams == "No games planned"):
           embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
