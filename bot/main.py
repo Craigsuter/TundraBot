@@ -1022,7 +1022,7 @@ async def on_message(message):
 
           if(messagereceived=="!rolequal1"):
               i=0
-              while(i<15):
+              while(i<14):
                 roletomake = "r1team-" + str(i)
                 await guild.create_role(name=str(roletomake))
                 i=i+1
@@ -1039,7 +1039,7 @@ async def on_message(message):
 
           if(messagereceived=="!rolequal2"):
               i=0
-              while(i<12):
+              while(i<10):
                 roletomake = "r2team-" + str(i)
                 await guild.create_role(name=str(roletomake))
                 i=i+1
