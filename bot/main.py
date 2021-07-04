@@ -456,7 +456,7 @@ async def on_message(message):
           await message.channel.send(embed=embed)
 
        #Used for checking the next game in Dota Tourni
-      if (messagereceived=="!nextdt" or messagereceived=="!nextdtna"):   
+      if (messagereceived=="!nextdt" or messagereceived=="!nextdteuw"):   
         embed = DotaCheckTourni(channelDataID)
         embed=embed[0]
         if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
@@ -466,7 +466,7 @@ async def on_message(message):
         else:
           await message.channel.send(embed=embed)
 
-      if (messagereceived=="!nextdt2" or messagereceived=="!nextdtsea" ):   
+      if (messagereceived=="!nextdt2" or messagereceived=="!nextdtcn" ):   
         embed = DotaCheckTourni2(channelDataID)
         embed=embed[0]
         if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
