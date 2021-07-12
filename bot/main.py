@@ -170,7 +170,7 @@ async def on_member_update(before, after):
         #creates a collection of messahes
         for message in messages:
           user= message.author.id
-          #checks if message and the person who got Seeds is the s
+          #checks if message and the person who got Seeds is the same person deleting the messages
           if user == after.id:
             await client.http.delete_message(689865754354384996, message.id)
             i=i+1
