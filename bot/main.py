@@ -132,6 +132,7 @@ async def on_ready():
 @client.event
 async def on_member_update(before, after):
   guild = after.guild.id
+  guild2 = after.guild
   info= ("<@" + str(after.id) + ">")
   #Only checks this guild
 
@@ -149,19 +150,29 @@ async def on_member_update(before, after):
 
         #channel to get messages from [so will be General in main server]
         c= client.get_channel(689865754354384996)
-        messages = await c.history(limit=100).flatten()
+        
         i=0
         counter=0
         if(i<1):
+          for channel in guild2.text_channels:
+            c=client.get_channel(channel.id)
+            messages = await c.history(limit=100).flatten()
+            i=0
+            
           #Will delete the latest message from the user
-          for message in messages:
-            user= message.author.id
-            if user == after.id and counter < 2:
-              #channelID , messageid 
-              await client.http.delete_message(689865754354384996, message.id)
-              counter=counter+1
+            for message in messages:
+              user= message.author.id
+              if user == after.id and i < 1:
+                #channelID , messageid 
+                await client.http.delete_message(689865754354384996, message.id)
+                counter=counter+1
+                i=i+1
         channel = client.get_channel(847601410891841561)
         await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
+
+
+
+
       #Deletes messages when user gets Seeds role
       if (newRole.name == "Seeds"):
         c=client.get_channel(736505679354921092)
@@ -2461,4 +2472,3 @@ async def testingspam():
 
 client.run(os.getenv('TOKEN'))
 server.server()
-
