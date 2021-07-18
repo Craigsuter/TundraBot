@@ -170,8 +170,10 @@ async def on_member_update(before, after):
                     counter=counter+1
                     i=i+1
                   except:
+                    i=i+1
                     print("No access to channel")
             except:
+              i=i+1
               print("No access to a channel")
         channel = client.get_channel(847601410891841561)
         await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
