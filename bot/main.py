@@ -155,21 +155,24 @@ async def on_member_update(before, after):
         counter=0
         if(i<1):
           for channel in guild2.text_channels:
-            c=client.get_channel(channel.id)
-            messages = await c.history(limit=100).flatten()
-            i=0
-            
-          #Will delete the latest message from the user
-            for message in messages:
-              user= message.author.id
-              if user == after.id and i < 1:
-                #channelID , messageid 
-                try:
-                  await client.http.delete_message(689865754354384996, message.id)
-                  counter=counter+1
-                  i=i+1
+            try:
+              c=client.get_channel(channel.id)
+              messages = await c.history(limit=100).flatten()
+              i=0
+              
+            #Will delete the latest message from the user
+              for message in messages:
+                user= message.author.id
+                if user == after.id and i < 1:
+                  #channelID , messageid 
+                  try:
+                    await client.http.delete_message(689865754354384996, message.id)
+                    counter=counter+1
+                    i=i+1
+                  except:
+                    print("No access to channel")
                 except:
-                  print("No access to channel")
+                  print("No access to a channel")
         channel = client.get_channel(847601410891841561)
         await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
 
