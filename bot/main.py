@@ -167,7 +167,7 @@ async def on_member_update(before, after):
                 if user == after.id and i < 1:
                   #channelID , messageid 
                   try:
-                    await client.http.delete_message(int(c), message.id)
+                    await client.http.delete_message(c, message.id)
                     counter=counter+1
                     i=i+1
                   except:
