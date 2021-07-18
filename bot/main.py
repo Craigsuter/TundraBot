@@ -163,10 +163,11 @@ async def on_member_update(before, after):
             #Will delete the latest message from the user
               for message in messages:
                 user= message.author.id
+                channeldata = message.channel.ID
                 if user == after.id and i < 1:
                   #channelID , messageid 
                   try:
-                    await client.http.delete_message(689865754354384996, message.id)
+                    await client.http.delete_message(int(channeldata), message.id)
                     counter=counter+1
                     i=i+1
                   except:
