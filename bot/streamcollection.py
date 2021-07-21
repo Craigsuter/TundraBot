@@ -420,6 +420,10 @@ def ValoStreams():
       while (m < len(headings)):
         streams = str(streams) + actualflags[m] + " <" + headings[m] + ">\n"
         m=m+1
+
+      if(len(flags) == 0):
+        streams = "No streams found"
+
     except:
       streams = "No streams found"
 
