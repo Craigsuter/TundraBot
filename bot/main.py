@@ -2185,7 +2185,7 @@ async def on_message(message):
         await client.http.delete_message(736505679354921092, g2)
       except:
         print("Failed to delete any message")
-      message = await message.channel.send(embed=embed)
+      message = await message.reply(embed=embed)
       f = open("lastmessage.txt", "w")
       f.write(str(message.id))
       f.close()
