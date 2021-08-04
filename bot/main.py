@@ -876,6 +876,8 @@ async def on_message(message):
 
       #All gardener commands  
       else:
+          if(messagereceived=="!test"):
+            print(message.guild.channels)
 
           if(messagereceived=="!snooze"):
             try:
