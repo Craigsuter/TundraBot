@@ -278,7 +278,6 @@ async def on_message(message):
         print("hi2")
         maps = csgomap()
         print(maps)
-        print("hi")
         linetosend=""
         try:
           
@@ -286,6 +285,7 @@ async def on_message(message):
           i=0
           while(i < len(maps)):
             linetosend = linetosend + maps[i] + ", "
+            i+=1
           await message.channel.send("The maps for the game: " + linetosend)
         except:
           await message.channel.send("No maps were found")
