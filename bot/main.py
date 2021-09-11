@@ -275,7 +275,8 @@ async def on_message(message):
     if (first_char=="!"):
 
       if(messagereceived=="!csmaps"):
-        maps = csgomaps()
+        maps = csgomap()
+        linetosend=""
         try:
           maps = maps[0]
           i=0
