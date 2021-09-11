@@ -275,9 +275,7 @@ async def on_message(message):
     if (first_char=="!"):
 
       if(messagereceived=="!csmaps"):
-        print("hi2")
         maps = csgomap()
-        print(maps)
         linetosend=""
         try:
           
