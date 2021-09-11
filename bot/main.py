@@ -37,6 +37,7 @@ import liquipediapy
 from stream2 import DotaStreams2
 from dtStreams import dtStreams
 import random
+from csmap import csgomap
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -272,6 +273,20 @@ async def on_message(message):
 
     #Verifies that message is command usage
     if (first_char=="!"):
+
+      if(messagereceived=="!csmaps"):
+        maps = csgomaps()
+        try:
+          maps = maps[0]
+          i=0
+          while(i < len(maps)):
+            linetosend = linetosend + maps[i] + ", "
+          await message.channel.send("The maps for the game: " + linetosend)
+        except:
+          await message.channel.send("No maps were found")
+        
+
+
       if(messagereceived=="!spreadthegoose"):
         await message.channel.send(" <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> ")
 
