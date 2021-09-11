@@ -61,7 +61,7 @@ def csgomap():
       maps.append(linkdata)   
       i+=1
 
-
+    print(maps)
     return(maps)
 
 
