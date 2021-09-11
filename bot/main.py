@@ -284,7 +284,7 @@ async def on_message(message):
 
           i=0
           while(i < len(maps)):
-            if(i < len(maps - 1)):
+            if(i < len(maps)- 1):
               linetosend = linetosend + maps[i] + ", "
             else:
               linetosend = linetosend + maps[i]
