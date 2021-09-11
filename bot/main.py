@@ -281,7 +281,7 @@ async def on_message(message):
         print("hi")
         linetosend=""
         try:
-          maps = maps[0]
+          
 
           i=0
           while(i < len(maps)):
