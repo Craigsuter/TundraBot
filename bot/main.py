@@ -277,10 +277,12 @@ async def on_message(message):
       if(messagereceived=="!csmaps"):
         print("hi2")
         maps = csgomap()
+        print(maps)
         print("hi")
         linetosend=""
         try:
           maps = maps[0]
+
           i=0
           while(i < len(maps)):
             linetosend = linetosend + maps[i] + ", "
