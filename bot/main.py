@@ -310,6 +310,8 @@ async def on_message(message):
           for file in os.listdir("./"):
               print(file)
               if file.endswith(".mp3"):
+                  print(file)
+                  print("there is this file that makes it here")
                   os.rename(file, "song.mp3")
           voice.play(discord.FFmpegPCMAudio("song.mp3"))
 
