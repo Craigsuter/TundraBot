@@ -17,6 +17,7 @@ load_dotenv()
 import datetime
 from time import strptime
 import asyncio
+import youtube_dl
 import time
 from apscheduler.triggers.cron import CronTrigger
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -259,7 +260,9 @@ async def on_message(message):
     #Getting the 2nd part of a message
     try:
       secondPartOfMessage= sectionsofmessage[1]
+      url = secondPartOfMessage
     except:
+      url="none"
       secondPartOfMessage = "none"
       
       
@@ -273,6 +276,38 @@ async def on_message(message):
 
     #Verifies that message is command usage
     if (first_char=="!"):
+
+      if (messagereceived=="!pmusic"):
+        
+        song_there = os.path.isfile("song.mp3")
+        try:
+            if song_there:
+                os.remove("song.mp3")
+        except PermissionError:
+            await message.channel.send("Wait for the current playing music to end or use the 'stop' command")
+            return
+
+        voiceChannel = discord.utils.get(message.guild.voice_channels, name='General')
+        await voiceChannel.connect()
+        voice = discord.utils.get(client.voice_clients, guild=message.guild)
+
+        ydl_opts = {
+            'format': 'bestaudio/best',
+            'postprocessors': [{
+                'key': 'FFmpegExtractAudio',
+                'preferredcodec': 'mp3',
+                'preferredquality': '192',
+            }],
+        }
+        if(url == "none"):
+          message.channel.send("No link found")
+        else:
+          with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+              ydl.download([url])
+          for file in os.listdir("./"):
+              if file.endswith(".mp3"):
+                  os.rename(file, "song.mp3")
+          voice.play(discord.FFmpegPCMAudio("song.mp3"))
 
       if(messagereceived=="!csmaps"):
         maps = csgomap()
