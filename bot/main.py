@@ -310,11 +310,11 @@ async def on_message(message):
           voice.play(discord.FFmpegPCMAudio("song.mp3"))
 
       if(messagereceived=="!pleave"):
-         voice = discord.utils.get(client.voice_clients, guild=message.guild)
-          if voice.is_connected():
-              await voice.disconnect()
-          else:
-              await message.channel.send("The bot is not connected to a voice channel.")
+        voice = discord.utils.get(client.voice_clients, guild=message.guild)
+        if voice.is_connected():
+            await voice.disconnect()
+        else:
+            await message.channel.send("The bot is not connected to a voice channel.")
 
       if(messagereceived=="!ppause"):
         voice = discord.utils.get(client.voice_clients, guild=message.guild)
