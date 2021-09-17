@@ -309,6 +309,31 @@ async def on_message(message):
                   os.rename(file, "song.mp3")
           voice.play(discord.FFmpegPCMAudio("song.mp3"))
 
+      if(messagereceived=="!pleave"):
+         voice = discord.utils.get(client.voice_clients, guild=message.guild)
+          if voice.is_connected():
+              await voice.disconnect()
+          else:
+              await message.channel.send("The bot is not connected to a voice channel.")
+
+      if(messagereceived=="!ppause"):
+        voice = discord.utils.get(client.voice_clients, guild=message.guild)
+        if voice.is_playing():
+            voice.pause()
+        else:
+            await message.channel.send("Currently no audio is playing.")
+
+      if(messagereceived=="!presume"):
+        voice = discord.utils.get(client.voice_clients, guild=message.guild)
+        if voice.is_paused():
+            voice.resume()
+        else:
+            await message.channel.send("The audio is not paused.")
+
+      if(messagereceived=="!pstop"):
+        voice = discord.utils.get(client.voice_clients, guild=message.guild)
+        voice.stop()
+
       if(messagereceived=="!csmaps"):
         maps = csgomap()
         linetosend=""
