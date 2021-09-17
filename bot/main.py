@@ -10,6 +10,7 @@ from bs4 import BeautifulSoup as soup
 import discord
 import os
 from cleardota import cleardota
+import ffmpeg
 from discord.ext import commands
 from discord.ext.commands import Bot, has_permissions, CheckFailure
 from dotenv import load_dotenv
@@ -299,12 +300,15 @@ async def on_message(message):
                 'preferredquality': '192',
             }],
         }
+
         if(url == "none"):
           message.channel.send("No link found")
         else:
           with youtube_dl.YoutubeDL(ydl_opts) as ydl:
               ydl.download([url])
+
           for file in os.listdir("./"):
+              print(file)
               if file.endswith(".mp3"):
                   os.rename(file, "song.mp3")
           voice.play(discord.FFmpegPCMAudio("song.mp3"))
