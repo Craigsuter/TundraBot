@@ -2046,6 +2046,84 @@ async def on_message(message):
                   await message.channel.send("V0-3 deleted")
               except:
                   await message.channel.send("V0-3 not found")
+                    
+                    
+          if ((messagereceived =="!deletedotabo2") or (messagereceived == "!deletedota2bo2")):
+              guild = message.guild
+              try:
+                  role_object = discord.utils.get(guild.roles, name="D2-0")
+                  await role_object.delete()
+                  await message.channel.send("D2-0 deleted")
+              except:
+                  await message.channel.send("D2-0 not found")
+
+              
+              try:
+                  role_object = discord.utils.get(guild.roles, name="D1-1")
+                  await role_object.delete()
+                  await message.channel.send("D1-1 deleted")
+              except:
+                  await message.channel.send("D1-1 not found")
+
+              
+
+              try:
+                  role_object = discord.utils.get(guild.roles, name="D0-2")
+                  await role_object.delete()
+                  await message.channel.send("D0-2 deleted")
+              except:
+                  await message.channel.send("D0-2 not found")
+                    
+                    
+          if ((messagereceived =="!deletecsgobo2") or (messagereceived == "!deletecsgobo2")):
+              guild = message.guild
+              try:
+                  role_object = discord.utils.get(guild.roles, name="CS2-0")
+                  await role_object.delete()
+                  await message.channel.send("CS2-0 deleted")
+              except:
+                  await message.channel.send("CS2-0 not found")
+
+              try:
+                  role_object = discord.utils.get(guild.roles, name="CS1-1")
+                  await role_object.delete()
+                  await message.channel.send("CS1-1 deleted")
+              except:
+                  await message.channel.send("CS1-1 not found")
+
+              
+
+              try:
+                  role_object = discord.utils.get(guild.roles, name="CS0-2")
+                  await role_object.delete()
+                  await message.channel.send("CS0-2 deleted")
+              except:
+                  await message.channel.send("CS0-2 not found")
+                    
+                    
+          if ((messagereceived =="!deletevalobo2") or (messagereceived =="!deletevalorantbo2")):
+              guild = message.guild
+              try:
+                  role_object = discord.utils.get(guild.roles, name="V2-0")
+                  await role_object.delete()
+                  await message.channel.send("V2-0 deleted")
+              except:
+                  await message.channel.send("V2-0 not found")
+
+              try:
+                  role_object = discord.utils.get(guild.roles, name="v1-1")
+                  await role_object.delete()
+                  await message.channel.send("1-1 deleted")
+              except:
+                  await message.channel.send("v1-1 not found")
+             
+
+              try:
+                  role_object = discord.utils.get(guild.roles, name="V0-2")
+                  await role_object.delete()
+                  await message.channel.send("V0-2 deleted")
+              except:
+                  await message.channel.send("V0-2 not found")
 
           if (messagereceived =="!dotabo1"):
               guild = message.guild
@@ -2065,6 +2143,35 @@ async def on_message(message):
               await message.channel.send("D1-2 created")
               await guild.create_role(name="D0-2")
               await message.channel.send("D0-2 created")
+            
+          if (messagereceived =="!dotabo2"):
+              guild = message.guild
+              await guild.create_role(name="D2-0")
+              await message.channel.send("D2-0 created")
+              await guild.create_role(name="D1-1")
+              await message.channel.send("D1-1 created")
+              await guild.create_role(name="D0-2")
+              await message.channel.send("D0-2 created")
+                
+                
+          if (messagereceived =="!valobo2"):
+              guild = message.guild
+              await guild.create_role(name="V2-0")
+              await message.channel.send("V2-0 created")
+              await guild.create_role(name="V1-1")
+              await guild.channel.send("V1-1 created")
+              await guild.create_role(name="V0-2")
+              await message.channel.send("V0-2 created")
+          
+        
+          if (messagereceived =="!csgobo2"):
+              guild = message.guild
+              await guild.create_role(name="CS2-0")
+              await message.channel.send("CS2-0 created")
+              await guild.create_role(name="CS1-1")
+              await message.channel.send("CS1-1 created")
+              await guild.create_role(name="CS0-2")
+              await message.channel.send("CS0-2 created")
 
           if (messagereceived =="!dotabo5"):
               guild = message.guild
