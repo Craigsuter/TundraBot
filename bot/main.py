@@ -359,10 +359,27 @@ async def on_message(message):
         
       if(messagereceived=="!test"):
         try:
-          user = await client.get_user_info('183707605032501248')
-          await client.send_message(user, "Hi Will")
-        except:
-          print("error")
+          
+          values=[1,2,4,5,6,7,8]
+          values2=[1,2,4,5,6,7,8]
+          i = int(len(values2)-1)
+          #print(random.randint(0,int(len(values2)-1)))
+
+          while(i >= 0):
+            j= random.randint(0, i)  
+            k=j
+            while(k == j and i>0):
+              k=random.randint(0, i)
+            print(values[j] , "-" , values2[k])
+            values2.pop(k)
+            values.pop(j)
+            i= i-1
+          print(values)
+          print(values2)
+          user = client.get_user(int(183707605032501248))
+          await user.send("<@165907335795965952> this cunt")
+        except Exception as e:
+          print(e)
 
       if(messagereceived=="!spreadthegoose"):
         await message.channel.send(" <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> ")
