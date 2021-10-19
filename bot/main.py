@@ -359,7 +359,7 @@ async def on_message(message):
         
       if(messagereceived=="!test"):
         try:
-          user = await client.get_user_info(183707605032501248)
+          user = await client.get_user_info('183707605032501248')
           await client.send_message(user, "Hi Will")
         except:
           print("error")
