@@ -361,6 +361,8 @@ async def on_message(message):
         try:
           user = await client.get_use_info(183707605032501248)
           await client.send_message(user, "Hi Will")
+        except:
+          print("error")
 
       if(messagereceived=="!spreadthegoose"):
         await message.channel.send(" <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> ")
