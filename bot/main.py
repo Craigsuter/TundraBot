@@ -360,10 +360,11 @@ async def on_message(message):
       if(messagereceived=="!test"):
         try:
           
-          values=[1,2,4,5,6,7,8]
-          values2=[1,2,4,5,6,7,8]
+          values=[183707605032501248, 183707605032501248, 183707605032501248, 183707605032501248, 183707605032501248, 183707605032501248, 183707605032501248, 183707605032501248]
+          values2=[281132706098708480,183707605032501248,236179134299111424,165146318954692608,332438787588227072,213986237785178114,530121845760851968, 141651693694746624]
           i = int(len(values2)-1)
           #print(random.randint(0,int(len(values2)-1)))
+          test=165907335795965952
 
           while(i >= 0):
             j= random.randint(0, i)  
@@ -371,15 +372,30 @@ async def on_message(message):
             while(k == j and i>0):
               k=random.randint(0, i)
             print(values[j] , "-" , values2[k])
+            #user = client.get_user(int(values[j]))
+            #await user.send("Ho ho quack! MERRYYY Christmas! From North Goose! Yor special someone this year to go... Christmas... quackers for is :  <@" + str(values2[k]) +  "> HAVE FUN!")
+            
+            user = client.get_user(int(values[j]))
+            await user.send("Ho ho quack! MERRYYY Christmas! From North Goose! Your special someone this year to go... Christmas... quackers for is :  <@" + str(values2[k]) + "> HAVE FUN!")
             values2.pop(k)
             values.pop(j)
             i= i-1
-          print(values)
-          print(values2)
-          user = client.get_user(int(183707605032501248))
-          await user.send("<@165907335795965952> this cunt")
+          
+          
         except Exception as e:
           print(e)
+
+
+
+
+
+
+
+
+
+
+
+
 
       if(messagereceived=="!spreadthegoose"):
         await message.channel.send(" <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> ")
