@@ -166,14 +166,14 @@ def DotaCheck(channelDataID):
         if (c == "No games planned"):
           embed = "No games planned currently - For more information use !nextdota in <#721391448812945480>"
         else:
-          embed= Teams + " - Starts in: " + c + " - For more information use !nextdota in <#721391448812945480>"
+          embed= Teams + " - Starts in: " + c + "/ <t:" + str(epoch) + "> - For more information use !nextdota in <#721391448812945480>"
 
       #Creates the embed with all the details
       else:
         embed=discord.Embed(title="OG Dota's next game", url="https://liquipedia.net/dota2/OG", color=0xf10909)
         embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-        embed.add_field(name=Teams, value=nextgametime, inline=True)
-        embed.add_field(name="Time remaining", value = str(c) + " / <t:" + str(epoch) + ">", inline=False)
+        embed.add_field(name=Teams, value="<t:" + str(epoch) + "> - this is local to your timezone", inline=True)
+        embed.add_field(name="Time remaining", value = str(c) , inline=False)
         embed.add_field(name="Notice",value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
         embed.add_field(name="Links", value=links, inline=False)
 
