@@ -136,6 +136,11 @@ def DotaCheck(channelDataID):
 
           b = datetime.datetime(int(dt_string_year), int(dt_string_month), int(dt_string_day), int(dt_string_hour), int(dt_string_minute), int(dt_string_second))
 
+          epochtest = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), int(hourofgame), int(minuteofgame), 0).timestamp()
+          print(str(epochtest))
+          lenofepoch = len(str(epochtest))
+          epoch = str(epochtest)[:lenofepoch - 2]
+
           c = a-b
           print(c)       
           #Verifies if the game has begun
@@ -168,7 +173,7 @@ def DotaCheck(channelDataID):
         embed=discord.Embed(title="OG Dota's next game", url="https://liquipedia.net/dota2/OG", color=0xf10909)
         embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
         embed.add_field(name=Teams, value=nextgametime, inline=True)
-        embed.add_field(name="Time remaining", value = c, inline=False)
+        embed.add_field(name="Time remaining", value = str(c) + " / <t:" + str(epoch) + ">", inline=False)
         embed.add_field(name="Notice",value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
         embed.add_field(name="Links", value=links, inline=False)
 
