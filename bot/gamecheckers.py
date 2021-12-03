@@ -238,6 +238,7 @@ def CSGOCheck(channelDataID):
     
 
     datep1 = dateofgame.rsplit(":")
+    #change datep2 on the -1 to fit timezone, since scan is based off UK timezone, once UK is behind UTC make -2
     datep2 = int(datep1[0]) - 1
     if(datep2 < 10):
       datep3 = "0" + str(datep2) + ":" + datep1[1]
