@@ -238,7 +238,7 @@ def CSGOCheck(channelDataID):
     
 
     datep1 = dateofgame.rsplit(":")
-    datep2 = int(datep1[0]) - 2
+    datep2 = int(datep1[0]) - 1
     if(datep2 < 10):
       datep3 = "0" + str(datep2) + ":" + datep1[1]
 
