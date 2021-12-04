@@ -191,7 +191,7 @@ def CSGOCheck(channelDataID):
     headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 
     #change url
-    OGpage = 'https://www.hltv.org/team/4411/nip#tab-matchesBox'
+    OGpage = 'https://www.hltv.org/team/10503/og#tab-matchesBox'
     r2 = requests.get(OGpage, headers=headers)
 
     page_soup2 = soup(r2.text, "html.parser")
@@ -265,13 +265,15 @@ def CSGOCheck(channelDataID):
     if(timetoadd > 0):
       
       timeforstuff = datetime.now() + timedelta(seconds = int(timetoadd))
+      test = int(timeforstuff.timestamp())
  
       
     else:
-       timeforstuff = datetime.now()
+       timeforstuff = "Game should be live now!"
+       test="Game should be live now!"
     
-    test = int(timeforstuff.timestamp())
-    print(test)
+    
+    
     
     #Link to the tournament page
     link4tourni = page_soup.findAll("div", {"class":"event text-ellipsis"})
@@ -295,11 +297,17 @@ def CSGOCheck(channelDataID):
 
     #Prints based on pro-match channel - will give a more chat friendly version
     if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
-      embed=teams + " - Starts in: " + time2 + " /  <t:" + str(test) + "> - For more information use !nextcsgo in <#721391448812945480>"
+      if(timetoadd > 0 ):
+        embed=teams + " - Starts in: " + time2 + " /  <t:" + str(test) + "> - For more information use !nextcsgo in <#721391448812945480>"
+      else:
+        embed=teams + " should be live now - For more information use !nextcsgo in <#721391448812945480>"
     else:
       embed=discord.Embed(title="OG CSGO's next game", url="https://www.hltv.org/team/10503/og#tab-matchesBox",color=0xff8800)
       embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-      embed.add_field(name=teams, value= "<t:" + str(test) + "> - this is in local timezone to you" , inline=True)
+      if(timetoadd > 0 ):
+        embed.add_field(name=teams, value= "<t:" + str(test) + "> - this is in local timezone to you" , inline=True)
+      else:
+        embed.add_field(name=teams, value= "Game should be live now" , inline=True)
       embed.add_field(name="Time till game", value=time2, inline=False)
       embed.add_field(name="Notice", value="Please check HLTV by clicking the title of this embed for more information as the time might not be accurate", inline=False)
       embed.add_field(name="Links", value="OG Liquipedia: https://liquipedia.net/counterstrike/OG\nOG HLTV: https://www.hltv.org/team/10503/og#tab-matchesBox\nGame page: " + matchlink +"\nTournament: " + link4tourni, inline=False)
