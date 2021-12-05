@@ -341,7 +341,7 @@ def ValoCheck(channelDataID):
     uClient.close()
     page_soup = soup(page_html, "html.parser")
 
-    now = datetime.datetime.now()
+    now = datetime.now()
     #Gets current time for later comparisons
     dt_string_day = now.strftime("%d")
     dt_string_month = now.strftime("%m")
