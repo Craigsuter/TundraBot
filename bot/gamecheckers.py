@@ -18,7 +18,7 @@ from itertools import cycle
 import asyncio
 import requests
 import time
-from datetime import datetime, timedelta
+from datetime import timedelta
 
 
 
@@ -39,7 +39,7 @@ def DotaCheck(channelDataID):
       
       links = 'OG Liquipedia: https://liquipedia.net/dota2/OG'
 
-      now = datetime.now()
+      now = datetime.datetime.now()
       #Getting current date / time values
       dt_string_day = now.strftime("%d")
       dt_string_month = now.strftime("%m")
@@ -141,6 +141,7 @@ def DotaCheck(channelDataID):
           print(str(epochtest))
           lenofepoch = len(str(epochtest))
           epoch = str(epochtest)[:lenofepoch - 2]
+          print(epoch)
 
           c = a-b
           print(c)       
@@ -158,7 +159,7 @@ def DotaCheck(channelDataID):
           Teams = 'No games planned'
           nextgametime = 'No games planned'
           dayofgame2 = 'no games planned'
-          
+          epoch = 'No games planned'
           c = "No games planned"
 
       #Verifies the channels if in pro-match 
@@ -171,9 +172,13 @@ def DotaCheck(channelDataID):
 
       #Creates the embed with all the details
       else:
+        print(c)
         embed=discord.Embed(title="OG Dota's next game", url="https://liquipedia.net/dota2/OG", color=0xf10909)
         embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-        embed.add_field(name=Teams, value="<t:" + str(epoch) + "> - this is local to your timezone", inline=True)
+        if(str(epoch) != "No games planned"):
+          embed.add_field(name=Teams, value="<t:" + str(epoch) + "> - this is local to your timezone", inline=True)
+       
+
         embed.add_field(name="Time remaining", value = str(c) , inline=False)
         embed.add_field(name="Notice",value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
         embed.add_field(name="Links", value=links, inline=False)
@@ -341,7 +346,7 @@ def ValoCheck(channelDataID):
     uClient.close()
     page_soup = soup(page_html, "html.parser")
 
-    now = datetime.now()
+    now = datetime.datetime.now()
     #Gets current time for later comparisons
     dt_string_day = now.strftime("%d")
     dt_string_month = now.strftime("%m")
