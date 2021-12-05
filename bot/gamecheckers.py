@@ -39,7 +39,7 @@ def DotaCheck(channelDataID):
       
       links = 'OG Liquipedia: https://liquipedia.net/dota2/OG'
 
-      now = datetime.datetime.now()
+      now = datetime.now()
       #Getting current date / time values
       dt_string_day = now.strftime("%d")
       dt_string_month = now.strftime("%m")
