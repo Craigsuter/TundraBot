@@ -984,7 +984,7 @@ async def on_message(message):
             jminute= joinedon.minute
             jsecond= joinedon.second
             timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
-            if (user.id == '733626039002988574'):
+            if (message.author.id == "733626039002988574"):
               timejoining = " 11/12/2020 - 16:54"
 
 
@@ -1285,6 +1285,7 @@ async def on_message(message):
               csecond=createdon.second
               timecreation = str(cday) + "/" + str(cmonth) + "/" + str(cyear) + " - " + str(chour) + ":" + str(cminute) + ":" + str(csecond)
 
+
               jyear = joinedon.year
               jmonth= joinedon.month
               jday= joinedon.day
@@ -1292,6 +1293,8 @@ async def on_message(message):
               jminute= joinedon.minute
               jsecond= joinedon.second
               timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
+              if (message.author.id == "733626039002988574"):
+              timejoining = " 11/12/2020 - 16:54"
 
               embed=discord.Embed(title="Account information of - " + str(user.display_name),color=0x55a7f7)
               embed.add_field(name="Account details", value = "User account was created on - " + str(timecreation) + "\nJoined the server on- " + str(timejoining), inline= True)
@@ -1320,6 +1323,8 @@ async def on_message(message):
             jminute= joinedon.minute
             jsecond= joinedon.second
             timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
+            if (message.author.id == "733626039002988574"):
+              timejoining = " 11/12/2020 - 16:54"
 
             embed=discord.Embed(title="Account information of - " + str(user.display_name),color=0x55a7f7)
             embed.add_field(name="Account details", value = "User account was created on - " + str(timecreation) + "\nJoined the server on- " + str(timejoining), inline= True)
