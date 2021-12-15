@@ -983,9 +983,12 @@ async def on_message(message):
             jhour= joinedon.hour
             jminute= joinedon.minute
             jsecond= joinedon.second
-            timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
+            
             if (message.author.id == "733626039002988574"):
               timejoining = " 11/12/2020 - 16:54"
+            else:
+              timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
+
 
 
             embed=discord.Embed(title="Account information of - " + str(user.display_name),color=0x55a7f7)
