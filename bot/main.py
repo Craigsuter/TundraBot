@@ -964,6 +964,30 @@ async def on_message(message):
                 embed.add_field(name="Where I found the streams", value= convertedURL, inline=False)
                 await message.channel.send(embed=embed)
 
+          
+          if ((messagereceived=="!discordstats")and (message.mentions.__len__()==0)):
+            user=message.author
+            createdon = user.created_at
+            joinedon = user.joined_at
+            cyear = createdon.year
+            cmonth=createdon.month
+            cday=createdon.day
+            chour=createdon.hour
+            cminute=createdon.minute
+            csecond=createdon.second
+            timecreation = str(cday) + "/" + str(cmonth) + "/" + str(cyear) + " - " + str(chour) + ":" + str(cminute) + ":" + str(csecond)
+
+            jyear = joinedon.year
+            jmonth= joinedon.month
+            jday= joinedon.day
+            jhour= joinedon.hour
+            jminute= joinedon.minute
+            jsecond= joinedon.second
+            timejoining = str(jday) + "/" + str(jmonth) + "/" + str(jyear) + " - " + str(jhour) + ":" + str(jminute) + ":" + str(jsecond)
+
+            embed=discord.Embed(title="Account information of - " + str(user.display_name),color=0x55a7f7)
+            embed.add_field(name="Account details", value = "User account was created on - " + str(timecreation) + "\nJoined the server on- " + str(timejoining), inline= True)
+            await message.channel.send(embed=embed)
 
           
 
