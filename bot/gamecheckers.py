@@ -168,7 +168,7 @@ def DotaCheck(channelDataID):
         if (c == "No games planned"):
           embed = "No games planned currently - For more information use !nextdota in <#721391448812945480>"
         else:
-          embed= Teams + " - Starts in: " + c + "/ <t:" + str(epoch) + "> - This is in your local timezone! - For more information use !nextdota in <#721391448812945480>"
+          embed= Teams + " - Starts in: " + c + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextdota in <#721391448812945480>"
 
       #Creates the embed with all the details
       else:
