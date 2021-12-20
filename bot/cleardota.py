@@ -22,9 +22,10 @@ def cleardota():
     options.add_argument('-no-sandbox') 
     #options.headless = True
     options.add_argument('-headless')
-    options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36")
+    profile = webdriver.FirefoxProfile()
+    profile.set_preference("general.useragent.override","user-agent = Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36")
     binary = FirefoxBinary(os.environ.get('FIREFOX_BIN'))
-    driver = webdriver.Firefox(firefox_binary=binary, executable_path=os.environ.get('GECKODRIVER_PATH'), options=options)
+    driver = webdriver.Firefox(firefox_profile= profile, firefox_binary=binary, executable_path=os.environ.get('GECKODRIVER_PATH'), options=options)
   
     print("hi2")
     headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
