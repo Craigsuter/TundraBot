@@ -16,10 +16,10 @@ def cleardota():
   #options = Options()
   #options.add_arugment('--headless')
   options = webdriver.FirefoxOptions()  
-  options.add_argument('--disable-gpu')
-  options.add_argument('--no-sandbox') 
+  options.add_argument('-disable-gpu')
+  options.add_argument('-no-sandbox') 
   #options.headless = True
-  options.add_argument('--headless')
+  options.add_argument('-headless')
   binary = FirefoxBinary(os.environ.get('FIREFOX_BIN'))
   firefox_driver = webdriver.Firefox(firefox_binary=binary, executable_path=os.environ.get('GECKODRIVER_PATH'(m options=options)
  
