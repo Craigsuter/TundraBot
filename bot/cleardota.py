@@ -7,6 +7,7 @@ import requests
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import time
+from fake_useragent import UserAgent
 
 def cleardota():
   #Loading username / password for Liquipedia
@@ -20,7 +21,9 @@ def cleardota():
   chrome_options.add_argument("--headless")
   chrome_options.add_argument("--disable-dev-shm-usage")
   chrome_options.add_argument("--no-sandbox")
-  chrome_options.add_argument("user-agent=Chrome/76.0.3809.100")
+  ua = UserAgent()
+  userAgent = ua.random
+  chrome_options.add_argument(f'user-agent={userAgent}')
   driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 
