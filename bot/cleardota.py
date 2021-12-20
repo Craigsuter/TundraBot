@@ -52,7 +52,7 @@ def cleardota():
     #Going to OG's Liquipedia page
 
     time.sleep(5)
-    driver.get('https://liquipedia.net/dota2/OG')
+    driver.get('https://liquipedia.net/dota2/index.php?title=OG&action=edit')
     print("hi4")
     print(driver.page_source)
     time.sleep(10)
