@@ -9,7 +9,7 @@ from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import time
 
 def cleardota():
-  #Loading username / password for Liquipedia
+  #Loading username / password for Liquipedia 1
   LiquiUser =  os.getenv('liquiUser')
   liquiPass = os.getenv('liquiPass')
   print("hi")
