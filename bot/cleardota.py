@@ -39,7 +39,7 @@ def cleardota():
     button.send_keys(LiquiUser)
     print("hi3")
     
-    time.sleep(5)
+    time.sleep(12)
 
     #Finds the password box and types the password in
     button=driver.find_element_by_id('wpPassword1')
@@ -50,12 +50,12 @@ def cleardota():
     
 
     #Going to OG's Liquipedia page
-
-    time.sleep(5)
+ 
+    time.sleep(12)
     driver.get('https://liquipedia.net/dota2/index.php?title=OG&action=edit')
     print("hi4")
     print(driver.page_source)
-    time.sleep(10)
+    time.sleep(12)
     button=driver.find_element_by_id('ca-purge')
     print("hi5")
     button.click()
