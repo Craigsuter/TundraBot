@@ -20,9 +20,10 @@ def cleardota():
   options.add_argument('--no-sandbox') 
   #options.headless = True
   options.add_argument('--headless')
+  
  
   print("hi2")
-  driver = webdriver.Firefox(options=options)
+  driver = webdriver.Firefox(executable_path=os.environ.get("FIREFOX_BIN"), options=options)
   
   driver.get("https://liquipedia.net/dota2/index.php?title=Special:UserLogin&returnto=OG&returntoquery=action%3Dedit")
   print("hi2")
