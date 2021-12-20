@@ -20,12 +20,13 @@ def cleardota():
   options.add_argument('--no-sandbox') 
   #options.headless = True
   options.add_argument('--headless')
-  
+  binary = FirefoxBinary(os.environ.get('FIREFOX_BIN'))
+  firefox_driver = webdriver.Firefox(firefox_binary=binary, executable_path=os.environ.get('GECKODRIVER_PATH'(m options=options)
  
   print("hi2")
-  driver = webdriver.Firefox(executable_path=os.environ.get("FIREFOX_BIN"), options=options)
+ 
   
-  driver.get("https://liquipedia.net/dota2/index.php?title=Special:UserLogin&returnto=OG&returntoquery=action%3Dedit")
+  firefox_driver.get("https://liquipedia.net/dota2/index.php?title=Special:UserLogin&returnto=OG&returntoquery=action%3Dedit")
   print("hi2")
   #Finds the username box and types the username in
   button = driver.find_element_by_id('wpName1')
