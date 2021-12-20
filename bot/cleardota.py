@@ -21,7 +21,7 @@ def cleardota():
   #options.headless = True
   options.add_argument('-headless')
   binary = FirefoxBinary(os.environ.get('FIREFOX_BIN'))
-  firefox_driver = webdriver.Firefox(firefox_binary=binary, executable_path=os.environ.get('GECKODRIVER_PATH'(m options=options)
+  firefox_driver = webdriver.Firefox(firefox_binary=binary, executable_path=os.environ.get('GECKODRIVER_PATH'), options=options)
  
   print("hi2")
  
@@ -58,3 +58,4 @@ def cleardota():
   button.click()
 
   driver.close()
+  except Exception as e: print(e)
