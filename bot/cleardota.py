@@ -6,10 +6,7 @@ load_dotenv()
 import requests
 from selenium import webdriver
 from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
-from selenium.webdriver.firefox.options import Options
 import time
-
-
 
 def cleardota():
   #Loading username / password for Liquipedia
@@ -18,21 +15,12 @@ def cleardota():
   print("hi")
 
 
-  #chrome_options = webdriver.ChromeOptions()
-  #chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-  #chrome_options.add_argument("--headless")
-  #chrome_options.add_argument("--disable-dev-shm-usage")
-  #chrome_options.add_argument("--no-sandbox")
-  #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
-
-  #options = Options()
-  #options.headless=True
-  #driver=webdriver.Firefox(options=options, executable_path=os.environ.get("FIREFOX_BIN"))
-
-  
-  
- 
-  
+  chrome_options = webdriver.ChromeOptions()
+  chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+  chrome_options.add_argument("--headless")
+  chrome_options.add_argument("--disable-dev-shm-usage")
+  chrome_options.add_argument("--no-sandbox")
+  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
 
 
   print("hi2")
