@@ -22,14 +22,16 @@ def cleardota():
     options.add_argument('-no-sandbox') 
     #options.headless = True
     options.add_argument('-headless')
+    options.set_preference("general.useragent.override", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36")
     binary = FirefoxBinary(os.environ.get('FIREFOX_BIN'))
     driver = webdriver.Firefox(firefox_binary=binary, executable_path=os.environ.get('GECKODRIVER_PATH'), options=options)
   
     print("hi2")
     headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+
   
     
-    driver.get("https://liquipedia.net/dota2/index.php?title=Special:UserLogin&returnto=OG&returntoquery=action%3Dedit", headers=headers)
+    driver.get("https://liquipedia.net/dota2/index.php?title=Special:UserLogin&returnto=OG&returntoquery=action%3Dedit")
     print("hi2")
     #Finds the username box and types the username in
     button = driver.find_element_by_id('wpName1')
@@ -47,7 +49,7 @@ def cleardota():
     #Going to OG's Liquipedia page
 
     time.sleep(5)
-    text = driver.get('https://liquipedia.net/dota2/OG', headers=headers)
+    text = driver.get('https://liquipedia.net/dota2/OG')
     time.sleep(10)
     print(text)
     button=driver.find_element_by_id('ca-purge')
