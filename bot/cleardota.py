@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import requests
 from selenium import webdriver
+from selenium.webdriver.firefox.firefox_binary import FirefoxBinary
 import time
 
 def cleardota():
