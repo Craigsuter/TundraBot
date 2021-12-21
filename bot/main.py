@@ -571,7 +571,7 @@ async def on_message(message):
       if ((messagereceived =="!nextdota") or (messagereceived =="!nextdoto") or (messagereceived =="!nextdota2")):
         embed = DotaCheck(channelDataID)
         embed=embed[0]
-        if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
+        if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
           userID = message.author.id
           userID = str(userID)
           await message.channel.send("<@" + userID + "> " + embed)
@@ -582,7 +582,7 @@ async def on_message(message):
       if ((messagereceived =="!nextcsgo")or (messagereceived=="!nextcs")):
         CSGOGame = CSGOCheck(channelDataID)
         embed = CSGOGame[6]
-        if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
+        if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569) or(channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
           userID = message.author.id
           userID = str(userID)
           await message.channel.send("<@" + userID + "> " + embed)

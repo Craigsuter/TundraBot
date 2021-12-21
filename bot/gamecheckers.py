@@ -163,7 +163,7 @@ def DotaCheck(channelDataID):
           c = "No games planned"
 
       #Verifies the channels if in pro-match 
-      if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)):
+      if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749)or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
         c= str(c)
         if (c == "No games planned"):
           embed = "No games planned currently - For more information use !nextdota in <#721391448812945480>"
@@ -301,7 +301,7 @@ def CSGOCheck(channelDataID):
       datep3 = str(datep2) + ":" + datep1[1]
 
     #Prints based on pro-match channel - will give a more chat friendly version
-    if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
+    if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
       if(timetoadd > 0 ):
         embed=teams + " - Starts in: " + time2 + " /  <t:" + str(test) + "> - For more information use !nextcsgo in <#721391448812945480>"
       else:
@@ -323,7 +323,7 @@ def CSGOCheck(channelDataID):
 
 
   except:
-    if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
+    if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
       embed= "There is currently no games planned for OG, for more information use !nextcsgo in <#721391448812945480>"
     else:
       embed=discord.Embed(title="OG CSGO's next game", url="https://www.hltv.org/team/10503/og#tab-matchesBox",color=0xff8800)
