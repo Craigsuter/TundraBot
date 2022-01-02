@@ -1037,98 +1037,70 @@ async def on_message(message):
 
       #All gardener commands  
       else:
-          if(messagereceived=="!test"):
-            server = message.guild
-            role_name = "XMAS-Giveaway"
-            role_id = server.roles[0]
-            display_names = []
-            member_ids = []
-            file = open("filetosend.txt", "w")
-            file.close()
-            for role in server.roles:
-                if role_name == role.name:
-                    role_id = role
-                    break
-            else:
-                await message.channel.send("Role doesn't exist")
-                return
-            for member in server.members:
-                if role_id in member.roles:
-                  display_names.append(member.display_name)
-                  member_ids.append(member.id)
 
-            i=0 
-            while(i < len(display_names)):
-              f = open("filetosend.txt", "a")
-              f.write("name: " + display_names[i] + " - their id number: " + str(member_ids[i]) + "\n")
-              f.close
-              i=i+1
-            
-            f = open("filetosend.txt", "r")
-            print(f.read())
-            await message.channel.send('Role returned: XMAS-Giveaway!', file=discord.File("filetosend.txt"))
-          
-          if(messagereceived=="!test2"):
-            server = message.guild
-            role_name = "Sunflowers"
-            role_id = server.roles[0]
-            display_names = []
-            member_ids = []
-            file = open("filetosend.txt", "w")
-            file.close()
-            for role in server.roles:
-                if role_name == role.name:
-                    role_id = role
-                    break
-            else:
-                await message.channel.send("Role doesn't exist")
-                return
-            for member in server.members:
-                if role_id in member.roles:
-                  display_names.append(member.display_name)
-                  member_ids.append(member.id)
+          if((messagereceived=="!testing") and (message.mentions.__len__()>0)):
+            for user in message.mentions:
+              createdon = user.created_at
+              joinedon = user.joined_at
+              cyear = createdon.year
+              cmonth=createdon.month
+              cday=createdon.day
+              chour=createdon.hour
+              cminute=createdon.minute
+              csecond=createdon.second
+              timecreation = str(cday) + "/" + str(cmonth) + "/" + str(cyear) + " - " + str(chour) + ":" + str(cminute) + ":" + str(csecond)
 
-            i=0 
-            while(i < len(display_names)):
-              f = open("filetosend.txt", "a")
-              f.write("name: " + display_names[i] + " - their id number: " + str(member_ids[i]) + "\n")
-              f.close
-              i=i+1
-            
-            f = open("filetosend.txt", "r")
-            print(f.read())
-            await message.channel.send('Role returned: Sunflowers!', file=discord.File("filetosend.txt"))
-          
-          if(messagereceived=="!test3"):
-            server = message.guild
-            role_name = "2021celebration"
-            role_id = server.roles[0]
-            display_names = []
-            member_ids = []
-            file = open("filetosend.txt", "w")
-            file.close()
-            for role in server.roles:
-                if role_name == role.name:
-                    role_id = role
-                    break
-            else:
-                await message.channel.send("Role doesn't exist")
-                return
-            for member in server.members:
-                if role_id in member.roles:
-                  display_names.append(member.display_name)
-                  member_ids.append(member.id)
 
-            i=0 
-            while(i < len(display_names)):
-              f = open("filetosend.txt", "a")
-              f.write("name: " + display_names[i] + " - their id number: " + str(member_ids[i]) + "\n")
-              f.close
-              i=i+1
-            
-            f = open("filetosend.txt", "r")
-            print(f.read())
-            await message.channel.send('Role returned: 2021celebration!', file=discord.File("filetosend.txt"))
+              jyear = joinedon.year
+              jmonth= joinedon.month
+              jday= joinedon.day
+              jhour= joinedon.hour
+              jminute= joinedon.minute
+              jsecond= joinedon.second
+              print(user)
+
+
+          if(messagereceived=="!getuserlist"):
+            if(len(sectionsofmessage) > 1):
+              try:
+                server = message.guild
+                role_name = sectionsofmessage[1]
+                role_name = role_name[3:-1]
+                role_name = discord.utils.get(guild.roles, id=int(role_name))
+                role_name = str(role_name)
+                
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                file = open("filetosend.txt", "w")
+                file.close()
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+                for member in server.members:
+                    if role_id in member.roles:
+                      display_names.append(member.display_name)
+                      member_ids.append(member.id)
+
+                i=0 
+                while(i < len(display_names)):
+                  f = open("filetosend.txt", "a")
+                  f.write("name: " + display_names[i] + " - their id number: " + str(member_ids[i]) + "\n")
+                  f.close
+                  i=i+1
+                
+                f = open("filetosend.txt", "r")
+                print(f.read())
+                await message.channel.send("Role returned: "+ role_name + '!', file=discord.File("filetosend.txt"))
+              except Exception as e:
+                await message.channel.send("Error in command usage please use !getuserlist @testingrole\nWhere the role is pinged with a space between it and the command name")
+            else:
+              await message.channel.send("Please ping a role you wish to get a list for, example - !getuserlist @testingrole")
+
 
 
           if(messagereceived=="!snooze"):
@@ -1373,7 +1345,7 @@ async def on_message(message):
                 embed.add_field(name="Where I found the streams", value= convertedURL, inline=False)
                 await message.channel.send(embed=embed)
 
-          if((messagereceived=="!discordstats")and (message.mentions.__len__()>0)):
+          if((messagereceived=="!discordstats") and (message.mentions.__len__()>0)):
             for user in message.mentions:
               createdon = user.created_at
               joinedon = user.joined_at
