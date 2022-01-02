@@ -363,7 +363,7 @@ async def on_message(message):
         except:
           await message.channel.send("No maps were found")
         
-      if(messagereceived=="!test"):
+      if(messagereceived=="!SecretSanta"):
         try:
           
           values=[281132706098708480,183707605032501248,236179134299111424,165146318954692608,332438787588227072,213986237785178114,530121845760851968, 141651693694746624]
@@ -1038,7 +1038,16 @@ async def on_message(message):
       #All gardener commands  
       else:
           if(messagereceived=="!test"):
-            print(message.guild.channels)
+            role = discord.utils.get(message.server.roles, name="OG")
+            if role is None:
+              await message.channel.send("There is no role called 'OG' in this server")
+            empty=True
+            for member in message.server.members:
+              if role in member.roles:
+                await message.channel.send("{0.name}: {0.id}".format(member))
+                empty=False
+            if empty:
+              await ("No one has that role!")
 
           if(messagereceived=="!snooze"):
             try:
