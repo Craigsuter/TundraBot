@@ -1066,7 +1066,7 @@ async def on_message(message):
             
             f = open("filetosend.txt", "r")
             print(f.read())
-            await message.channel.send('Working!', file=discord.File("filetosend.txt"))
+            await message.channel.send('Role returned: XMAS-Giveaway!', file=discord.File("filetosend.txt"))
           
           if(messagereceived=="!test2"):
             server = message.guild
@@ -1097,7 +1097,7 @@ async def on_message(message):
             
             f = open("filetosend.txt", "r")
             print(f.read())
-            await message.channel.send('Working!', file=discord.File("filetosend.txt"))
+            await message.channel.send('Role returned: Sunflowers!', file=discord.File("filetosend.txt"))
           
           if(messagereceived=="!test3"):
             server = message.guild
@@ -1128,7 +1128,7 @@ async def on_message(message):
             
             f = open("filetosend.txt", "r")
             print(f.read())
-            await message.channel.send('Working!', file=discord.File("filetosend.txt"))
+            await message.channel.send('Role returned: 2021celebration!', file=discord.File("filetosend.txt"))
 
 
           if(messagereceived=="!snooze"):
