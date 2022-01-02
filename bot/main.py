@@ -1038,16 +1038,98 @@ async def on_message(message):
       #All gardener commands  
       else:
           if(messagereceived=="!test"):
-            role = discord.utils.get(message.server.roles, name="OG")
-            if role is None:
-              await message.channel.send("There is no role called 'OG' in this server")
-            empty=True
-            for member in message.server.members:
-              if role in member.roles:
-                await message.channel.send("{0.name}: {0.id}".format(member))
-                empty=False
-            if empty:
-              await ("No one has that role!")
+            server = message.guild
+            role_name = "XMAS-Giveaway"
+            role_id = server.roles[0]
+            display_names = []
+            member_ids = []
+            file = open("filetosend.txt", "w")
+            file.close()
+            for role in server.roles:
+                if role_name == role.name:
+                    role_id = role
+                    break
+            else:
+                await message.channel.send("Role doesn't exist")
+                return
+            for member in server.members:
+                if role_id in member.roles:
+                  display_names.append(member.display_name)
+                  member_ids.append(member.id)
+
+            i=0 
+            while(i < len(display_names)):
+              f = open("filetosend.txt", "a")
+              f.write("name: " + display_names[i] + " - their id number: " + str(member_ids[i]) + "\n")
+              f.close
+              i=i+1
+            
+            f = open("filetosend.txt", "r")
+            print(f.read())
+            await message.channel.send('Working!', file=discord.File("filetosend.txt"))
+          
+          if(messagereceived=="!test2"):
+            server = message.guild
+            role_name = "Sunflowers"
+            role_id = server.roles[0]
+            display_names = []
+            member_ids = []
+            file = open("filetosend.txt", "w")
+            file.close()
+            for role in server.roles:
+                if role_name == role.name:
+                    role_id = role
+                    break
+            else:
+                await message.channel.send("Role doesn't exist")
+                return
+            for member in server.members:
+                if role_id in member.roles:
+                  display_names.append(member.display_name)
+                  member_ids.append(member.id)
+
+            i=0 
+            while(i < len(display_names)):
+              f = open("filetosend.txt", "a")
+              f.write("name: " + display_names[i] + " - their id number: " + str(member_ids[i]) + "\n")
+              f.close
+              i=i+1
+            
+            f = open("filetosend.txt", "r")
+            print(f.read())
+            await message.channel.send('Working!', file=discord.File("filetosend.txt"))
+          
+          if(messagereceived=="!test3"):
+            server = message.guild
+            role_name = "2021celebration"
+            role_id = server.roles[0]
+            display_names = []
+            member_ids = []
+            file = open("filetosend.txt", "w")
+            file.close()
+            for role in server.roles:
+                if role_name == role.name:
+                    role_id = role
+                    break
+            else:
+                await message.channel.send("Role doesn't exist")
+                return
+            for member in server.members:
+                if role_id in member.roles:
+                  display_names.append(member.display_name)
+                  member_ids.append(member.id)
+
+            i=0 
+            while(i < len(display_names)):
+              f = open("filetosend.txt", "a")
+              f.write("name: " + display_names[i] + " - their id number: " + str(member_ids[i]) + "\n")
+              f.close
+              i=i+1
+            
+            f = open("filetosend.txt", "r")
+            print(f.read())
+            await message.channel.send('Working!', file=discord.File("filetosend.txt"))
+
 
           if(messagereceived=="!snooze"):
             try:

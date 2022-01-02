@@ -1,0 +1,3 @@
+name: :b: - their id number: 183707605032501248
+name: OGooseBot - their id number: 825467569800347649
+name: Translation Bot - their id number: 871841361375154227
