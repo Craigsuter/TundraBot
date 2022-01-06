@@ -275,10 +275,10 @@ async def on_message(message):
     if ((mention in message.content) and (messagereceived[0] != '!')):
       await message.channel.send("Im up! Im up! Are you okay... cool... co... <:OGmonkaThink:821509791523930162> ")
 
-    if(channelDataID == 926219724868681749):
-      member = message.author
-      role = discord.utils.get(member.guild.roles, name="2021celebration")
-      await member.add_roles(role)
+    #if(channelDataID == 926219724868681749):
+      #member = message.author
+      #role = discord.utils.get(member.guild.roles, name="2021celebration")
+      #await member.add_roles(role)
 
 
     #Verifies that message is command usage
