@@ -376,19 +376,13 @@ def ValoCheck(channelDataID):
     datebeforesplit = valotimeofgame.strip()
     datesplit = datebeforesplit.rsplit(" ")
     actualdatebeforeclean = datesplit[0]
-    print(actualdatebeforeclean)
     testing = actualdatebeforeclean.split()
-    print(datesplit)
-    print("hi")
-    print(testing)
     #Creating date / time from all values from VLR
     dateOfGame = testing[0]
     timeOfGame = testing[1]
     prefixOfTime = datesplit[1]
-    print(prefixOfTime)
     
     timeOfGame = timeOfGame.rsplit(":")
-    print(timeOfGame)
     hourofgame = timeOfGame[0]
     hourofgame = int(hourofgame)
     minuteofgame = timeOfGame[1]
@@ -412,8 +406,7 @@ def ValoCheck(channelDataID):
     monthnumber = datep2
     dayofgame2 = datep3
 
-    print(timeOfGame)
-    print("hi")
+
 
     try:
       tags = page_soup.findAll("a", {"class":"wf-card fc-flex m-item", 'href':True })
@@ -451,7 +444,7 @@ def ValoCheck(channelDataID):
    
     if prefixOfTime == "pm":
       hourofvalo = int(hourofvalo) + 12
-      print(hourofvalo)
+      
     minuteofgame = UTCTime2[1]
     dt_string_year = "20" + str(dt_string_year)
     a = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), int(hourofvalo), int(minuteofgame), 0)
@@ -468,9 +461,7 @@ def ValoCheck(channelDataID):
     
 
 
-    print(UTCTime)
-    print(nameOfEnemy)
-    print(dayofgame2)
+ 
     valorantTeams = "OG vs " + nameOfEnemy
     valorantTeamTime = dateOfGame + " - " + UTCTime + " UTC"
    

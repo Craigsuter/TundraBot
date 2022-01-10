@@ -341,9 +341,9 @@ def ValoStreams():
   dataofpage =  page_soup2.findAll("a", {"class":"wf-module-item mod-flex rm-item mod-first mod-tbd"})
   
 
-  valoenemyteam  = page_soup2.find("div", attrs={"class":"rm-item-opponent"}).text
+  valoenemyteam  = page_soup2.find("div", attrs={"style":"font-size: 11px; min-width: 0; font-weight: 700; width: 120px;"}).text
   valoenemyteam = valoenemyteam.strip()   
-  tags = page_soup2.findAll("a", {"class":"wf-module-item mod-flex rm-item mod-first mod-tbd", 'href':True })
+  tags = page_soup2.findAll("a", {"class":"wf-card fc-flex m-item", 'href':True })
   games=[]
   for tag in tags:
     games.append(tag['href'])
@@ -352,6 +352,7 @@ def ValoStreams():
 
   try:
     matchlink = 'https://www.vlr.gg' + games[0]
+    print(matchlink)
     
     r = requests.get(matchlink , headers=headers)
 
