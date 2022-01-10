@@ -394,7 +394,7 @@ def ValoCheck(channelDataID):
     minuteofgame = timeOfGame[1]
 
 
-    hourofgame = hourofgame+6
+    hourofgame = hourofgame
     
     
     
@@ -416,13 +416,14 @@ def ValoCheck(channelDataID):
     print("hi")
 
     try:
-      tags = page_soup.findAll("a", {"class":"wf-module-item mod-flex rm-item mod-first mod-tbd", 'href':True })
+      tags = page_soup.findAll("a", {"class":"wf-card fc-flex m-item", 'href':True })
       games=[]
       for tag in tags:
         games.append(tag['href'])
         #print(tag['href'])
 
       matchlink = 'https://www.vlr.gg' + games[0]
+      print(matchlink)
     except:
       pass
 
@@ -472,7 +473,7 @@ def ValoCheck(channelDataID):
     print(dayofgame2)
     valorantTeams = "OG vs " + nameOfEnemy
     valorantTeamTime = dateOfGame + " - " + UTCTime + " UTC"
-    matchlink = 'https://www.vlr.gg/team/2965/og/'
+   
 
 
     return(valorantTeams, valorantTeamTime, c, dayofgame2, matchlink)
