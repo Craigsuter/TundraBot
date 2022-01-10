@@ -358,10 +358,10 @@ def ValoCheck(channelDataID):
 
     tabledata = page_soup.find("div", attrs = {"class":"wf-card "})
     tabledata2 = page_soup.findAll("div", {"class":"text-of"})
-    tabledata3 = page_soup.findAll("div", {"class":"rm-item-date"})
+    tabledata3 = page_soup.findAll("div", {"class":"rm-item-datze"})
     carrot = "carrot"
     #Gets the enemy team's name
-    valoenemyteam  = page_soup.find("div", attrs={"class":"rm-item-opponent"}).text
+    valoenemyteam  = page_soup.find("div", attrs={"style":"font-size: 11px; min-width: 0; font-weight: 700; width: 120px;"}).text
     random = page_soup.find("span", {"class": "rm-item-score-eta"})
     random2 = str(random)
     #This will error out of the check if the score value is null [catching if the game found has already happened / started]
@@ -370,28 +370,50 @@ def ValoCheck(channelDataID):
       print(carrot)
       print("test")
 
-    
+    nameOfEnemy = valoenemyteam.strip() 
+
     valotimeofgame = tabledata3[0].text
     datebeforesplit = valotimeofgame.strip()
     datesplit = datebeforesplit.rsplit(" ")
-    actualdatebeforeclean = datesplit[1]
+    actualdatebeforeclean = datesplit[0]
+    print(actualdatebeforeclean)
     testing = actualdatebeforeclean.split()
+    print(datesplit)
+    print("hi")
+    print(testing)
     #Creating date / time from all values from VLR
-    dateOfGame = testing[1]
-    timeOfGame = datesplit[0]
-    prefixOfTime = testing[0]
-    nameOfEnemy = valoenemyteam.strip() 
+    dateOfGame = testing[0]
+    timeOfGame = testing[1]
+    prefixOfTime = datesplit[1]
+    print(prefixOfTime)
+    
+    timeOfGame = timeOfGame.rsplit(":")
+    print(timeOfGame)
+    hourofgame = timeOfGame[0]
+    hourofgame = int(hourofgame)
+    minuteofgame = timeOfGame[1]
+
+
+    hourofgame = hourofgame+6
+    
+    
+    
+    timeOfGame = str(hourofgame) + ":" + str(minuteofgame)
+    
+   
     datesections = dateOfGame.rsplit("/")
     datep1 = datesections[0]
     datep2 = datesections[1]
     datep3 = datesections[2]
     dateOfGame = datep3 + "/" + datep2 + "/" + datep1
+    print(dateOfGame)
     #Splitting out the date vlaues
     yearofgame = datep1
     monthnumber = datep2
     dayofgame2 = datep3
 
     print(timeOfGame)
+    print("hi")
 
     try:
       tags = page_soup.findAll("a", {"class":"wf-module-item mod-flex rm-item mod-first mod-tbd", 'href':True })
@@ -408,13 +430,14 @@ def ValoCheck(channelDataID):
 
     UTCTime = timeOfGame.rsplit(":")
     UTCTime2 = timeOfGame.rsplit(":")
-    UTCBC = int(UTCTime[0]) - 1
+    UTCBC = int(UTCTime[0])
+
     if UTCBC > 12:
-      if prefixOfTime == "AM":
-        prefixOfTime = "PM"
+      if prefixOfTime == "am":
+        prefixOfTime = "pm"
         
       else:
-        prefixOfTime = "AM"
+        prefixOfTime = "am"
     if UTCBC > 12:
       hourofvalo = str(UTCBC-12)
       UTCTime = str(UTCBC - 12) + ":" + UTCTime[1] + prefixOfTime
@@ -425,8 +448,9 @@ def ValoCheck(channelDataID):
     #date/time comparisions to get a countdown
 
    
-    if prefixOfTime == "PM":
-      hourofvalo = hourofvalo + 12
+    if prefixOfTime == "pm":
+      hourofvalo = int(hourofvalo) + 12
+      print(hourofvalo)
     minuteofgame = UTCTime2[1]
     dt_string_year = "20" + str(dt_string_year)
     a = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), int(hourofvalo), int(minuteofgame), 0)
@@ -443,9 +467,12 @@ def ValoCheck(channelDataID):
     
 
 
-
+    print(UTCTime)
+    print(nameOfEnemy)
+    print(dayofgame2)
     valorantTeams = "OG vs " + nameOfEnemy
     valorantTeamTime = dateOfGame + " - " + UTCTime + " UTC"
+    matchlink = 'https://www.vlr.gg/team/2965/og/'
 
 
     return(valorantTeams, valorantTeamTime, c, dayofgame2, matchlink)
