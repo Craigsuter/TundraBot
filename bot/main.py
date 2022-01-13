@@ -308,7 +308,7 @@ async def on_message(message):
         }
 
         if(url == "none"):
-          message.channel.send("No link found")
+          await message.channel.send("No link found")
         else:
           with youtube_dl.YoutubeDL(ydl_opts) as ydl:
               ydl.download([url])
@@ -576,6 +576,7 @@ async def on_message(message):
       #Gets the info for the next dota game
       if ((messagereceived =="!nextdota") or (messagereceived =="!nextdoto") or (messagereceived =="!nextdota2")):
         embed = DotaCheck(channelDataID)
+        print(embed)
         embed=embed[0]
         if((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
           userID = message.author.id
@@ -597,32 +598,21 @@ async def on_message(message):
 
       #Gets the info for the next Valo game
       if((messagereceived == "!nextvalo") or (messagereceived == "!nextvalorant") or (messagereceived == "!nextval")):
-        Valogame = ValoCheck(channelDataID)
-        valorantTeams = Valogame[0]
-        valorantTeamTime = Valogame[1]
-        timeremaining = Valogame[2]
-        try:
-          gamelink = Valogame[4]
-        except:
-          gamelink = "Not found"
+       
+        embed = ValoCheck(channelDataID)
+      
 
-        if(valorantTeams == "No games planned"):
+        if(embed == "No games planned"):
           embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
           embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
           embed.add_field(name="No games planned", value="No games planned", inline=True)
           embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG / " , inline=False)
           await message.channel.send(embed=embed)
         else:
-          embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
-          embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-          embed.add_field(name=valorantTeams, value=valorantTeamTime, inline=True)
-          embed.add_field(name="Time remaining", value= timeremaining, inline = False)
-          embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-          try:
-            embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG\nMatchlink - " + str(gamelink), inline=False)
-          except:
-            embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
-          await message.channel.send(embed=embed)
+          if((channelDataID == 810939258222936094) or (channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
+            await message.channel.send("<@" + userID + ">" + embed)
+          else:
+           await message.channel.send(embed=embed)
 
        #Used for checking the next game in Dota Tourni
       if (messagereceived=="!nextdt" or messagereceived=="!nextdteuw"):   

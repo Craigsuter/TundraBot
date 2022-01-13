@@ -340,11 +340,12 @@ def CSGOCheck(channelDataID):
 def ValoCheck(channelDataID):
   try:
     #Loads OG VLR page
-    testv = "https://www.vlr.gg/team/2965/og"
+    testv = "https://www.vlr.gg/team/7037/nexplay-esports"
     uClient = uReq(testv)
     page_html = uClient.read()
     uClient.close()
     page_soup = soup(page_html, "html.parser")
+
 
     now = datetime.datetime.now()
     #Gets current time for later comparisons
@@ -451,24 +452,43 @@ def ValoCheck(channelDataID):
     
     b = datetime.datetime(int(dt_string_year), int(dt_string_month), int(dt_string_day), int(dt_string_hour), int(dt_string_minute), int(dt_string_second))
 
+
+    epochtest = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), int(hourofvalo), int(minuteofgame), 0).timestamp()
+    print(str(epochtest))
+    lenofepoch = len(str(epochtest))
+    epoch = str(epochtest)[:lenofepoch - 2]
+    print(epoch)
+
     print(a)
     print(b)
     c = a-b
     print(c) 
     #Will check if the game has already begun
-    if (c.days < 0):
-      c = "The game is meant to have begun!"
-    
-
-
- 
     valorantTeams = "OG vs " + nameOfEnemy
     valorantTeamTime = dateOfGame + " - " + UTCTime + " UTC"
-   
+    if (c.days < 0):
+      c = "The game is meant to have begun!"
+
+    if(channelDataID == 810939258222936094 or channelDataID == 690952309827698749 or channelDataID == 689903856095723569):
+      embed = valorantTeams + " - Starts in: " + c + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextdota in <#721391448812945480>"
 
 
-    return(valorantTeams, valorantTeamTime, c, dayofgame2, matchlink)
+
+      
+    else:
+      print("Im here")
+      embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
+      embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
+      embed.add_field(name=valorantTeams, value= "In your local timezone - <t:" + str(epoch) + ">", inline=True)
+      embed.add_field(name="Time remaining", value= c , inline = False)
+      embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
+      try:
+        embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG\nMatchlink - " + str(matchlink), inline=False)
+      except:
+        embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
+      
+    return(embed)
 
   except:
-    return("No games planned", "No games planned", "No games planned")
+    return("No games planned")
    
