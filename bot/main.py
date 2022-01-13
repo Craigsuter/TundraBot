@@ -603,8 +603,10 @@ async def on_message(message):
       
 
         if(embed == "No games planned"):
-          if((channelDataID == 810939258222936094) or (channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
-            await message.channel.send("<@" + userID + ">" + " - There are no games currently planned")
+          if((channelDataID == 810939258222936094) or (channelDataID == 690952309827698749) or (channelDataID == 689903856095723569) or channelDataID==926214194280419368):
+            userID = message.author.id
+            userID = str(userID)
+            await message.channel.send("<@" + userID + "> - No games planned currently - For more information use !nextdota in <#721391448812945480>")
           else:
             embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
             embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")

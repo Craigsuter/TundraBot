@@ -340,7 +340,7 @@ def CSGOCheck(channelDataID):
 def ValoCheck(channelDataID):
   try:
     #Loads OG VLR page
-    testv = "https://www.vlr.gg/team/7037/nexplay-esports"
+    testv = "https://www.vlr.gg/team/2965/og/"
     uClient = uReq(testv)
     page_html = uClient.read()
     uClient.close()
