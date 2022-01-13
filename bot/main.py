@@ -603,16 +603,21 @@ async def on_message(message):
       
 
         if(embed == "No games planned"):
-          embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
-          embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
-          embed.add_field(name="No games planned", value="No games planned", inline=True)
-          embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG / " , inline=False)
-          await message.channel.send(embed=embed)
-        else:
           if((channelDataID == 810939258222936094) or (channelDataID == 690952309827698749) or (channelDataID == 689903856095723569)):
-            await message.channel.send("<@" + userID + ">" + embed)
+            await message.channel.send("<@" + userID + ">" + " - There are no games currently planned")
           else:
-           await message.channel.send(embed=embed)
+            embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
+            embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
+            embed.add_field(name="No games planned", value="No games planned", inline=True)
+            embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG / " , inline=False)
+            await message.channel.send(embed=embed)
+        else:
+          if((channelDataID == 810939258222936094) or (channelDataID == 690952309827698749) or (channelDataID == 689903856095723569) or (channelDataID==926214194280419368)):
+            userID = message.author.id
+            userID = str(userID)
+            await message.channel.send("<@" + userID + "> " + embed)
+          else:
+            await message.channel.send(embed=embed)
 
        #Used for checking the next game in Dota Tourni
       if (messagereceived=="!nextdt" or messagereceived=="!nextdteuw"):   

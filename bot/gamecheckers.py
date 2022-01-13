@@ -468,15 +468,19 @@ def ValoCheck(channelDataID):
     valorantTeamTime = dateOfGame + " - " + UTCTime + " UTC"
     if (c.days < 0):
       c = "The game is meant to have begun!"
+    
+    
 
-    if(channelDataID == 810939258222936094 or channelDataID == 690952309827698749 or channelDataID == 689903856095723569):
-      embed = valorantTeams + " - Starts in: " + c + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextdota in <#721391448812945480>"
+    if(channelDataID == 810939258222936094 or channelDataID == 690952309827698749 or channelDataID == 689903856095723569 or channelDataID == 926214194280419368):
+      print("test")
+      c= str(c)
+      embed = valorantTeams + " - Starts in: " + c  + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextdota in <#721391448812945480>"
+      print("test2")
 
 
 
       
     else:
-      print("Im here")
       embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
       embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
       embed.add_field(name=valorantTeams, value= "In your local timezone - <t:" + str(epoch) + ">", inline=True)
@@ -489,6 +493,7 @@ def ValoCheck(channelDataID):
       
     return(embed)
 
-  except:
+  except Exception as e:
+    print(e)
     return("No games planned")
    
