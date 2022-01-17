@@ -179,7 +179,7 @@ async def on_member_update(before, after):
             except:
               i=i+1
               
-        channel = client.get_channel(847601410891841561)
+        channel = client.get_channel(932613038505336883)
         await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
 
 
