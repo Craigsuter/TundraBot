@@ -229,27 +229,33 @@ def CSGOCheck(channelDataID):
     
     #Time till game count down via HLTV value
     test4 = page_soup.findAll("div", {"class":"countdown"})
+    print("hi")
     time1 = test4[0].text
     time2 = time1.replace(" ","")
 
     
     try:
       x= time2.split(":")
+      print(x)
       timetoadd = 0
       while len(x) > 1:
         ValueCheck = x[0]
         timevalue = ValueCheck[-1]
         if(timevalue == "s"):
-          timetoadd = timetoadd + int(ValueCheck[:-1])
+          if (int(ValueCheck) != 0):
+            timetoadd = timetoadd + int(ValueCheck[:-1])
           x.pop(0)
         if(timevalue =="m"):
-          timetoadd = timetoadd + (int(ValueCheck[:-1])*60)
+          if (int(ValueCheck) != 0):
+            timetoadd = timetoadd + (int(ValueCheck[:-1])*60)
           x.pop(0)
         if(timevalue =="h"):
-          timetoadd = timetoadd + (int(ValueCheck[:-1])*60*60)
+          if (int(ValueCheck) != 0):
+            timetoadd = timetoadd + (int(ValueCheck[:-1])*60*60)
           x.pop(0)
         if(timevalue =="d"):
-          timetoadd = timetoadd + (int(ValueCheck[:-1])*60*60*24)
+          if (int(ValueCheck) != 0):
+            timetoadd = timetoadd + (int(ValueCheck[:-1])*60*60*24)
           x.pop(0)
       if len(x) == 1:
 
@@ -279,7 +285,7 @@ def CSGOCheck(channelDataID):
     
     
     
-    
+    print("hi2")
     #Link to the tournament page
     link4tourni = page_soup.findAll("div", {"class":"event text-ellipsis"})
 
@@ -295,10 +301,14 @@ def CSGOCheck(channelDataID):
     #change datep2 on the -1 to fit timezone, since scan is based off UK timezone, once UK is behind UTC make -2
     datep2 = int(datep1[0]) - 1
     if(datep2 < 10):
+      print("help")
       datep3 = "0" + str(datep2) + ":" + datep1[1]
+      
 
     else:
+      print("hello")
       datep3 = str(datep2) + ":" + datep1[1]
+      
 
     #Prints based on pro-match channel - will give a more chat friendly version
     if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
