@@ -242,19 +242,19 @@ def CSGOCheck(channelDataID):
         ValueCheck = x[0]
         timevalue = ValueCheck[-1]
         if(timevalue == "s"):
-          if (int(ValueCheck) != 0):
+          if (int(ValueCheck[:-1]) != 0):
             timetoadd = timetoadd + int(ValueCheck[:-1])
           x.pop(0)
         if(timevalue =="m"):
-          if (int(ValueCheck) != 0):
+          if (int(ValueCheck[:-1]) != 0):
             timetoadd = timetoadd + (int(ValueCheck[:-1])*60)
           x.pop(0)
         if(timevalue =="h"):
-          if (int(ValueCheck) != 0):
+          if (int(ValueCheck[:-1]) != 0):
             timetoadd = timetoadd + (int(ValueCheck[:-1])*60*60)
           x.pop(0)
         if(timevalue =="d"):
-          if (int(ValueCheck) != 0):
+          if (int(ValueCheck[:-1]) != 0):
             timetoadd = timetoadd + (int(ValueCheck[:-1])*60*60*24)
           x.pop(0)
       if len(x) == 1:
@@ -263,19 +263,19 @@ def CSGOCheck(channelDataID):
         timevalue = ValueCheck[-1]
 
         if(timevalue == "s"):
-          timetoadd = timetoadd + int(ValueCheck[:-1])
+          if (int(ValueCheck[:-1]) != 0):
+            timetoadd = timetoadd + int(ValueCheck[:-1])
           x.pop(0)
        
         else:
           
           del x[:]
 
-    except:
-      print("error")
+    except Exception as e: print(e)
   
     if(timetoadd > 0):
       
-      timeforstuff = datetime.now() + timedelta(seconds = int(timetoadd))
+      timeforstuff = datetime.datetime.now() + timedelta(seconds = int(timetoadd))
       test = int(timeforstuff.timestamp())
  
       
@@ -332,7 +332,8 @@ def CSGOCheck(channelDataID):
 
 
 
-  except:
+  except Exception as e: 
+    print(e)
     if((channelDataID == 690952309827698749) or (channelDataID == 689903856095723569) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
       embed= "There is currently no games planned for OG, for more information use !nextcsgo in <#721391448812945480>"
     else:
