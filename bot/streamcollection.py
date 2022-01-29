@@ -290,9 +290,11 @@ def CSGOStreams():
         m=m+1
       #print(flags2)
       j=0
-      while(j<len(headings)):
+      z=0
+      while(j<len(headings) and z < 10):
         links=links + ":flag_"+flags2[j]+": " "<" + headings[j] + ">" +"\n"
         j = j+1
+        z= z+1
     except:
       links = "No streams were found"
       
