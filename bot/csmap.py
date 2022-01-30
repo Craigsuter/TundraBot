@@ -41,6 +41,7 @@ def csgomap():
       linkinfo.append(a['href'])
 
     matchlink = "https://www.hltv.org" + linkinfo[0]
+    matchlink = "https://www.hltv.org/matches/2353977/og-vs-astralis-blast-premier-spring-groups-2022"
 
 
    
