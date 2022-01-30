@@ -170,6 +170,8 @@ async def on_member_update(before, after):
                 if user == after.id and i < 1:
                   #channelID , messageid 
                   try:
+                    channelofdel = client.get_channel(channel.id)
+                    msgtodelete = await channelofdel.fetch_message(message.id)
                     await client.http.delete_message(channel.id, message.id)
                     counter=counter+1
                     i=i+1
@@ -186,6 +188,11 @@ async def on_member_update(before, after):
           member = guildofdel.get_member(after.id)
           await member.ban(reason="Spam bot")
           await channel.send(str(info) + " - user got banned in the main server after deleting 0 messages")
+        elif guild == 689865753662455829 and counter ==1:
+          
+            await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
+            await channel.send("Message that was deleted\n```" + msgtodelete.content + "```")
+
         else:
           await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
 
@@ -1633,7 +1640,10 @@ async def on_message(message):
               await message.channel.send("You currently have no saved reminders")
 
 
-          
+          if(messagereceived == "!messagetest"):
+            channel =client.get_channel(839466348970639391)
+            msg = await channel.fetch_message(937024428125093910)
+            print(msg.content)
 
 
           if(messagereceived=="!reminder"):
