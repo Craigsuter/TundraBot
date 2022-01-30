@@ -41,6 +41,7 @@ def csgomap():
       linkinfo.append(a['href'])
 
     matchlink = "https://www.hltv.org" + linkinfo[0]
+    matchlink = "https://www.hltv.org/matches/2351985/heroic-vs-og-blast-premier-fall-showdown-2021"
     
 
 
@@ -54,16 +55,65 @@ def csgomap():
     
     #Link to the tournament page
     test2 =  page_soup.find("div", {"class":"flexbox-column"})
+    test5 = test2.findAll("div", {"class":"results-teamname text-ellipsis"})
+    test4 = test2.findAll("div", {"class":"results-team-score"})
     test3 = test2.findAll("div", {"class":"mapname"})
     i=0
+    j=0
+    k=0
+    z=0
+    messagetosend= ""
+    teamnames =[]
+    scoresteam1=[]
+    scoresteam2=[]
     maps=[]
+    #collecting maps
     while(i < len(test3)):
       linkdata = test3[i].text
       maps.append(linkdata)   
       i+=1
+    #collecting scores
+    while(j < len(test4)):
+      scoredata = test4[j].text
+      if(j % 2) == 0:
+        scoresteam1.append(scoredata)
+      else:
+        scoresteam2.append(scoredata)
+      j=j+1
+    
+    while(z < 2):
+      team = test5[z].text
+      teamnames.append(team)
+      z=z+1
+    print(teamnames)
+    print(scoresteam1)
+    print(scoresteam2)
+
+    for counter, n in enumerate(scoresteam1):
+      if n == "-":
+        scoresteam1[counter] = "0"
+    for counter, n in enumerate(scoresteam2):
+      if n == "-":
+        scoresteam2[counter] = "0"
+
+    while(k < len(maps)):
+      if k == 0:
+        messagetosend = "The maps for the game: " + maps[k] + " (||" + teamnames[0] + " " + scoresteam1[k] + " - " + scoresteam2[k] + " " + teamnames[1] + "||)"
+      else:
+        messagetosend = messagetosend + ", " + maps[k] + " (||" + teamnames[0] + " " + scoresteam1[k] + " - " + scoresteam2[k] + " " + teamnames[1] + "||)"
+      k=k+1
+      
+    
+
+
+
+      
+    
+    
+
 
     
-    return(maps)
+    return(messagetosend)
 
 
 

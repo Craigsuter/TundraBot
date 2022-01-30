@@ -363,20 +363,8 @@ async def on_message(message):
 
       if(messagereceived=="!csmaps"):
         maps = csgomap()
-        linetosend=""
-        try:
-          
 
-          i=0
-          while(i < len(maps)):
-            if(i < len(maps)- 1):
-              linetosend = linetosend + maps[i] + ", "
-            else:
-              linetosend = linetosend + maps[i]
-            i+=1
-          await message.channel.send("The maps for the game: " + linetosend)
-        except:
-          await message.channel.send("No maps were found")
+        await message.channel.send(maps)
         
       if(messagereceived=="!SecretSanta"):
         try:
