@@ -41,12 +41,7 @@ def csgomap():
       linkinfo.append(a['href'])
 
     matchlink = "https://www.hltv.org" + linkinfo[0]
-    #matchlink = "https://www.hltv.org/matches/2351985/heroic-vs-og-blast-premier-fall-showdown-2021"
-    
-
-
    
-    
     r = requests.get(matchlink , headers=headers)
     
     #Load the page of the match
@@ -87,9 +82,7 @@ def csgomap():
         team = test5[z].text
         teamnames.append(team)
         z=z+1
-      print(teamnames)
-      print(scoresteam1)
-      print(scoresteam2)
+      
 
       for counter, n in enumerate(scoresteam1):
         if n == "-":
