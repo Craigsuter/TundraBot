@@ -41,7 +41,7 @@ def csgomap():
       linkinfo.append(a['href'])
 
     matchlink = "https://www.hltv.org" + linkinfo[0]
-    matchlink = "https://www.hltv.org/matches/2351985/heroic-vs-og-blast-premier-fall-showdown-2021"
+    #matchlink = "https://www.hltv.org/matches/2351985/heroic-vs-og-blast-premier-fall-showdown-2021"
     
 
 
@@ -62,7 +62,7 @@ def csgomap():
     j=0
     k=0
     z=0
-    messagetosend= ""
+    messagetosend= "The maps for the game: "
     teamnames =[]
     scoresteam1=[]
     scoresteam2=[]
@@ -72,36 +72,46 @@ def csgomap():
       linkdata = test3[i].text
       maps.append(linkdata)   
       i+=1
-    #collecting scores
-    while(j < len(test4)):
-      scoredata = test4[j].text
-      if(j % 2) == 0:
-        scoresteam1.append(scoredata)
-      else:
-        scoresteam2.append(scoredata)
-      j=j+1
     
-    while(z < 2):
-      team = test5[z].text
-      teamnames.append(team)
-      z=z+1
-    print(teamnames)
-    print(scoresteam1)
-    print(scoresteam2)
+    if(maps[0] != "TBA"):
+      #collecting scores
+      while(j < len(test4)):
+        scoredata = test4[j].text
+        if(j % 2) == 0:
+          scoresteam1.append(scoredata)
+        else:
+          scoresteam2.append(scoredata)
+        j=j+1
+      
+      while(z < 2):
+        team = test5[z].text
+        teamnames.append(team)
+        z=z+1
+      print(teamnames)
+      print(scoresteam1)
+      print(scoresteam2)
 
-    for counter, n in enumerate(scoresteam1):
-      if n == "-":
-        scoresteam1[counter] = "0"
-    for counter, n in enumerate(scoresteam2):
-      if n == "-":
-        scoresteam2[counter] = "0"
+      for counter, n in enumerate(scoresteam1):
+        if n == "-":
+          scoresteam1[counter] = "0"
+      for counter, n in enumerate(scoresteam2):
+        if n == "-":
+          scoresteam2[counter] = "0"
 
-    while(k < len(maps)):
-      if k == 0:
-        messagetosend = "The maps for the game: " + maps[k] + " (||" + teamnames[0] + " " + scoresteam1[k] + " - " + scoresteam2[k] + " " + teamnames[1] + "||)"
-      else:
-        messagetosend = messagetosend + ", " + maps[k] + " (||" + teamnames[0] + " " + scoresteam1[k] + " - " + scoresteam2[k] + " " + teamnames[1] + "||)"
-      k=k+1
+      while(k < len(maps)):
+        if k == 0:
+          messagetosend =  maps[k] + " (||" + teamnames[0] + " " + scoresteam1[k] + " - " + scoresteam2[k] + " " + teamnames[1] + "||)"
+        else:
+          messagetosend = messagetosend + ", " + maps[k] + " (||" + teamnames[0] + " " + scoresteam1[k] + " - " + scoresteam2[k] + " " + teamnames[1] + "||)"
+        k=k+1
+    else:
+      i=0
+      while i < len(maps):
+        if i == 0:
+          messagetosend = messagetosend + maps[i]
+        else:
+          messagetosend = messagetosend + ", " + maps[i]
+        i = i+1
       
     
 
