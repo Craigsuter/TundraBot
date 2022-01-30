@@ -180,7 +180,7 @@ async def on_member_update(before, after):
               i=i+1
               
         channel = client.get_channel(932613038505336883)
-        await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
+        
         if guild == 689865753662455829 and counter == 0:
           guildofdel = client.get_guild(689865753662455829)
           member = guildofdel.get_member(after.id)
