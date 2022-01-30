@@ -140,7 +140,7 @@ async def on_member_update(before, after):
   #Only checks this guild
 
 
-  if(guild == 689865753662455829):
+  if(guild == 689865753662455829 or guild == 731631689826041878):
 
     #If user gets given a new role
     if len(before.roles) < len(after.roles):
@@ -181,6 +181,11 @@ async def on_member_update(before, after):
               
         channel = client.get_channel(932613038505336883)
         await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
+        if guild == 689865753662455829:
+          guildofdel = client.get_guild(689865753662455829)
+          member = guildofdel.get_member(after.id)
+          await member.ban(reason="Spam bot")
+
 
 
 
