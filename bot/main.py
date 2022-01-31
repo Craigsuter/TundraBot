@@ -196,9 +196,9 @@ async def on_member_update(before, after):
           
         elif guild == 689865753662455829 and counter ==1:
 
-          #await channel.send("Message that was deleted\n```" + msgtodelete.content + "```")
+          mutelist= ['https://cdn.discordapp.com/emojis/754439381703589958.gif?size=96&quality=lossless', 'https://cdn.discordapp.com/emojis/734030265248382986.webp?size=96&quality=lossless', 'https://cdn.discordapp.com/emojis/827576073382264862.webp?size=96&quality=lossless', 'https://cdn.discordapp.com/emojis/517470041856540685.webp?size=96&quality=lossless']
           embed=discord.Embed(title="User was Muted: " + str(info) ,color=0xff8800)
-          embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/754439381703589958.gif?size=96&quality=lossless')
+          embed.set_thumbnail(url=random.choice(mutelist))
           embed.add_field(name="The action that happened", value="**Muted**", inline=False)
           embed.add_field(name="We have removed - " + str(counter) + " message[s] - with the following text", value = msgtodelete.content, inline=False )
           await channel.send(embed=embed)
