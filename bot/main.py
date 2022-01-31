@@ -187,11 +187,20 @@ async def on_member_update(before, after):
           guildofdel = client.get_guild(689865753662455829)
           member = guildofdel.get_member(after.id)
           await member.ban(reason="Spam bot")
-          await channel.send(str(info) + " - user got banned in the main server after deleting 0 messages")
-        elif guild == 689865753662455829 and counter ==1:
+          embed=discord.Embed(title="User was banned: " + str(info) ,color=0xff8800)
+          embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/704664998307168297.gif?size=96&quality=lossless')
+          embed.add_field(name="The action that happened: **Banned**" , inline=False)
+          await channel.send(embed=embed)
+         
           
-            await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
-            await channel.send("Message that was deleted\n```" + msgtodelete.content + "```")
+        elif guild == 689865753662455829 and counter ==1:
+
+          #await channel.send("Message that was deleted\n```" + msgtodelete.content + "```")
+          embed=discord.Embed(title="User was banned: " + str(info) ,color=0xff8800)
+          embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/754439381703589958.gif?size=96&quality=lossless')
+          embed.add_field(name="The action that happened: **Muted** ", inline=False)
+          embed.add_field("We have removed - " + str(counter) + " messages", value = msgtodelete.content, inline=False )
+          await channel.send(embed=embed)
 
         else:
           await channel.send(str(info) + " - user got muted in the main server, messages removed: " + str(counter))
@@ -1629,9 +1638,17 @@ async def on_message(message):
 
 
           if(messagereceived == "!messagetest"):
-            channel =client.get_channel(839466348970639391)
-            msg = await channel.fetch_message(937024428125093910)
-            print(msg.content)
+            test="oh my lord spammy spam"
+            action = "**Banned**"
+
+            embed=discord.Embed(title="User was banned:" + test ,color=0xff8800)
+            embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/754439381703589958.gif?size=96&quality=lossless')
+            embed.add_field(name="The action that happened: **Muted** - with the following message", value =  test, inline=False)
+            
+            await message.channel.send(embed=embed)
+            #channel =client.get_channel(839466348970639391)
+            #msg = await channel.fetch_message(937024428125093910)
+            #print(msg.content)
 
 
           if(messagereceived=="!reminder"):
