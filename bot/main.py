@@ -199,7 +199,7 @@ async def on_member_update(before, after):
           embed=discord.Embed(title="User was banned: " + str(info) ,color=0xff8800)
           embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/754439381703589958.gif?size=96&quality=lossless')
           embed.add_field(name="The action that happened", value="**Muted**", inline=False)
-          embed.add_field("We have removed - " + str(counter) + " messages", value = msgtodelete.content, inline=False )
+          embed.add_field(name="We have removed - " + str(counter) + " messages", value = msgtodelete.content, inline=False )
           await channel.send(embed=embed)
 
         else:
