@@ -187,8 +187,9 @@ async def on_member_update(before, after):
           guildofdel = client.get_guild(689865753662455829)
           member = guildofdel.get_member(after.id)
           await member.ban(reason="Spam bot")
+          bannedlist = ['https://cdn.discordapp.com/emojis/704664998307168297.gif?size=96&quality=lossless', 'https://cdn.discordapp.com/emojis/853134498631647262.webp?size=96&quality=lossless', 'https://cdn.discordapp.com/emojis/666320711266205717.gif?size=96&quality=lossless', 'https://cdn.discordapp.com/emojis/760839234243395595.gif?size=96&quality=lossless']
           embed=discord.Embed(title="User was banned: " + str(info) ,color=0xff8800)
-          embed.set_thumbnail(url='https://cdn.discordapp.com/emojis/704664998307168297.gif?size=96&quality=lossless')
+          embed.set_thumbnail(url=random.choice(bannedlist))
           embed.add_field(name="The action that happened", value= "**Banned**", inline=False)
           await channel.send(embed=embed)
          
