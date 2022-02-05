@@ -376,7 +376,7 @@ async def on_message(message):
 
         await message.reply(maps)
       
-      if(messagereceived=="!lastcsgo"):
+      if(messagereceived=="!lastcsgo" or messagereceived == "!lastcs"):
         last = lastcsgo()
         await message.reply(last)
         
