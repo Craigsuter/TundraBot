@@ -49,10 +49,14 @@ def csgomap():
 
     
     #Link to the tournament page
+    
     test2 =  page_soup.find("div", {"class":"flexbox-column"})
     test5 = test2.findAll("div", {"class":"results-teamname text-ellipsis"})
     test4 = test2.findAll("div", {"class":"results-team-score"})
     test3 = test2.findAll("div", {"class":"mapname"})
+    
+
+   
 
     #creating variables
     i=0
@@ -97,7 +101,7 @@ def csgomap():
       #generating the message
       while(k < len(maps)):
         if k == 0:
-          messagetosend =  maps[k] + " (||" + teamnames[0] + " " + scoresteam1[k] + " - " + scoresteam2[k] + " " + teamnames[1] + "||)"
+          messagetosend =  messagetosend + maps[k] + " (||" + teamnames[0] + " " + scoresteam1[k] + " - " + scoresteam2[k] + " " + teamnames[1] + "||)"
         else:
           messagetosend = messagetosend + ", " + maps[k] + " (||" + teamnames[0] + " " + scoresteam1[k] + " - " + scoresteam2[k] + " " + teamnames[1] + "||)"
         k=k+1
@@ -116,7 +120,7 @@ def csgomap():
 
 
 
-  except:
-
+  except Exception as e:
+    print(e)
     
     return("No maps found")
