@@ -30,7 +30,6 @@ from streamcollection import DotaStreams
 from streamcollection import CSGOStreams
 from streamcollection import ValoStreams
 from lastgames import LastDota
-from lastgames import LastCSGO
 from tournamentcheckers import DotaCheckTourni 
 from tournamentchecker2 import DotaCheckTourni2
 from dropboxUploader import upload_file
@@ -40,6 +39,7 @@ from stream2 import DotaStreams2
 from dtStreams import dtStreams
 import random
 from csmap import csgomap
+from lastcs import lastcsgo
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -375,6 +375,10 @@ async def on_message(message):
         maps = csgomap()
 
         await message.reply(maps)
+      
+      if(messagereceived=="!lastcsgo"):
+        last = lastcsgo()
+        await message.reply(last)
         
       if(messagereceived=="!SecretSanta"):
         try:
@@ -675,23 +679,7 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
       #Gets the info for the last CSGO game
-      if ((messagereceived =="!lastcsgo")):
-        lastinfo = LastCSGO()
-        Dateandtime1 = lastinfo[0]
-        Dateandtime2 = lastinfo[1]
-        Dateandtime3 = lastinfo[2]
-        LastGameScore1 = lastinfo[3]
-        LastGameEnemy1 = lastinfo[6]
-        LastGameScore2 = lastinfo[4]
-        LastGameEnemy2 = lastinfo[7]
-        LastGameScore3 = lastinfo[5]
-        LastGameEnemy3 = lastinfo[8]
-
-
-        embed=discord.Embed(title="The last OG CSGO games played",url='https://liquipedia.net/counterstrike/OG/Matches', color=0xff8800)
-        embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
-        embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +("OG " + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
-        await message.channel.send(embed=embed)
+      
 
 
       #Gets the info for the last valo game
