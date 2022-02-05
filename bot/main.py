@@ -374,7 +374,7 @@ async def on_message(message):
       if(messagereceived=="!csmaps"):
         maps = csgomap()
 
-        await message.channel.send(maps)
+        await message.reply(maps)
         
       if(messagereceived=="!SecretSanta"):
         try:
