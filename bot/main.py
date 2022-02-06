@@ -461,7 +461,7 @@ async def on_message(message):
 
 
 
-      if((messagereceived=="!csgoevents")):
+      if((messagereceived=="!csgoevents") or (messagereceived=="!csgoevent") or (messagereceived=="!csevents") or (messagereceived=="!csevent")):
         test=csgoevents()
         await message.channel.send(embed=test)
       
