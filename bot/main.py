@@ -1041,7 +1041,7 @@ async def on_message(message):
       #All gardener commands  
       else:
 
-          if((messagereceived=="!csgoevents")):
+          if((messagereceived=="!testing")):
             test=csgoevents()
             await message.channel.send(embed=test)
 
