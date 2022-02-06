@@ -40,6 +40,7 @@ from dtStreams import dtStreams
 import random
 from csmap import csgomap
 from lastcs import lastcsgo
+from CSEvents import csgoevents
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -459,6 +460,10 @@ async def on_message(message):
         await message.channel.send(embed=embed)
 
 
+
+      if((messagereceived=="!csgoevents")):
+        test=csgoevents()
+        await message.channel.send(embed=test)
       
       
       if((messagereceived == "!teaminfo")):
@@ -1036,26 +1041,9 @@ async def on_message(message):
       #All gardener commands  
       else:
 
-          if((messagereceived=="!testing") and (message.mentions.__len__()>0)):
-            for user in message.mentions:
-              createdon = user.created_at
-              joinedon = user.joined_at
-              cyear = createdon.year
-              cmonth=createdon.month
-              cday=createdon.day
-              chour=createdon.hour
-              cminute=createdon.minute
-              csecond=createdon.second
-              timecreation = str(cday) + "/" + str(cmonth) + "/" + str(cyear) + " - " + str(chour) + ":" + str(cminute) + ":" + str(csecond)
-
-
-              jyear = joinedon.year
-              jmonth= joinedon.month
-              jday= joinedon.day
-              jhour= joinedon.hour
-              jminute= joinedon.minute
-              jsecond= joinedon.second
-              print(user)
+          if((messagereceived=="!csgoevents")):
+            test=csgoevents()
+            await message.channel.send(embed=test)
 
 
           if(messagereceived=="!getuserlist"):
