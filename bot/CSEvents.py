@@ -41,19 +41,19 @@ def csgoevents():
     tournidates=[]
     i=0
     j=0
-    print(len(tournidatesdata))
+    
     while(i < len(tourninamedata)):
       tourninaming = tourninamedata[i].text
       #tourninaming = tourninaming[2:]
       #tourninaming= tourninaming[:(len(tourninaming)-2)]
       tourninames.append(tourninaming)
       i += 1
-    print(tourninames)
+    
 
     while(j < len(tournidatesdata)):
       tournidates.append(tournidatesdata[j].text)
       j += 1
-    print(tournidates)
+    
 
 
     
@@ -70,7 +70,7 @@ def csgoevents():
         text = text + "" + str([tourninames[z]]) + "("+  str((linkinfo[z])) + ") - " + str(tournidates[z]) + "\n"
 
         z+=1
-      print(text)
+      
       embed=discord.Embed(title="Upcoming CSGO events for OG",color=0x55a7f7)
       embed.add_field(name='Events found' ,value=text, inline=True)
     else:
