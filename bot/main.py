@@ -41,6 +41,7 @@ import random
 from csmap import csgomap
 from lastcs import lastcsgo
 from CSEvents import csgoevents
+from dota_events import dotaevents
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -459,7 +460,9 @@ async def on_message(message):
         embed.add_field(name="Where I found the streams", value=urloftourni, inline=False)
         await message.channel.send(embed=embed)
 
-
+      if((messagereceived=="!dotaevents") or (messagereceived=="!dotaevent") or (messagereceived=="!dotoevents") or (messagereceived=="!dotoevent")):
+        test=dotaevents()
+        await message.channel.send(embed=test)
 
       if((messagereceived=="!csgoevents") or (messagereceived=="!csgoevent") or (messagereceived=="!csevents") or (messagereceived=="!csevent")):
         test=csgoevents()
@@ -1042,7 +1045,7 @@ async def on_message(message):
       else:
 
           if((messagereceived=="!testing")):
-            test=csgoevents()
+            test=dotaevents()
             await message.channel.send(embed=test)
 
 
