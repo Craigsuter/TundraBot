@@ -100,7 +100,7 @@ def lastcsgo():
 
       
       while(scoregenerator < len(scoresteam2)):
-        if(scoresteam1[scoregenerator] < scoresteam2[scoregenerator]):
+        if(scoresteam1[scoregenerator] > scoresteam2[scoregenerator]):
           team1scorer = team1scorer + 1
         else:
           team2scorer= team2scorer + 1
