@@ -99,12 +99,19 @@ def lastcsgo():
       team2scorer=0
 
       
+      
       while(scoregenerator < len(scoresteam2)):
-        if(scoresteam1[scoregenerator] > scoresteam2[scoregenerator]):
+        
+        value1 = scoresteam1[scoregenerator]
+        value2= scoresteam2[scoregenerator]
+        if(int(value1) > int(value2)):
           team1scorer = team1scorer + 1
+          
         else:
           team2scorer= team2scorer + 1
+          
         scoregenerator = scoregenerator + 1
+        
 
         messagetosend = "The results for: " + str(teamnames[0]) + " vs " + str(teamnames[1]) + " - ||" + str(teamnames[0]) + " " + str(team1scorer) + " vs " + str(team2scorer) + " " + str(teamnames[1]) + "||,  results on maps were: " 
         
