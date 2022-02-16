@@ -1100,7 +1100,9 @@ async def on_message(message):
                 await message.channel.send(test)
 
           if((messagereceived=="!dotaadd")):
+            
             if(len(sectionsofmessage) > 1):
+              await messsage.channel.send("Starting adding results this might take a while")
               try:
                 server = message.guild
                 role_name = sectionsofmessage[1]
@@ -1135,7 +1137,9 @@ async def on_message(message):
 
                 
           if((messagereceived=="!csgoadd")):
+
             if(len(sectionsofmessage) > 1):
+              await messsage.channel.send("Starting adding results this might take a while")
               try:
                 server = message.guild
                 role_name = sectionsofmessage[1]
@@ -1171,6 +1175,7 @@ async def on_message(message):
 
           if((messagereceived=="!valoadd")):
             if(len(sectionsofmessage) > 1):
+              await messsage.channel.send("Starting adding results this might take a while")
               try:
                 server = message.guild
                 role_name = sectionsofmessage[1]
@@ -1205,6 +1210,7 @@ async def on_message(message):
             
           if((messagereceived=="!csgoremove")):
             if(len(sectionsofmessage) > 1):
+              await messsage.channel.send("Starting adding results this might take a while")
               try:
                 server = message.guild
                 role_name = sectionsofmessage[1]
@@ -1239,6 +1245,7 @@ async def on_message(message):
 
           if((messagereceived=="!dotaremove")):
             if(len(sectionsofmessage) > 1):
+              await messsage.channel.send("Starting adding results this might take a while")
               try:
                 server = message.guild
                 role_name = sectionsofmessage[1]
@@ -1273,6 +1280,7 @@ async def on_message(message):
 
           if((messagereceived=="!valoremove")):
             if(len(sectionsofmessage) > 1):
+              await messsage.channel.send("Starting adding results this might take a while")
               try:
                 server = message.guild
                 role_name = sectionsofmessage[1]
