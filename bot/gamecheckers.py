@@ -485,7 +485,7 @@ def ValoCheck(channelDataID):
     if(channelDataID == 810939258222936094 or channelDataID == 690952309827698749 or channelDataID == 689903856095723569 or channelDataID == 926214194280419368):
       print("test")
       c= str(c)
-      embed = valorantTeams + " - Starts in: " + c  + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextdota in <#721391448812945480>"
+      embed = valorantTeams + " - Starts in: " + c  + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextvalo in <#721391448812945480>"
       print("test2")
 
 
