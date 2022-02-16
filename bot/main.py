@@ -2259,11 +2259,11 @@ async def on_message(message):
                   await message.channel.send("V2-0 not found")
 
               try:
-                  role_object = discord.utils.get(guild.roles, name="v1-1")
+                  role_object = discord.utils.get(guild.roles, name="V1-1")
                   await role_object.delete()
-                  await message.channel.send("1-1 deleted")
+                  await message.channel.send("V1-1 deleted")
               except:
-                  await message.channel.send("v1-1 not found")
+                  await message.channel.send("V1-1 not found")
              
 
               try:
