@@ -16,4 +16,3 @@ liquipediapy
 youtube_dl
 ffmpeg
 fake_useragent
-csv
