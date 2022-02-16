@@ -2307,7 +2307,7 @@ async def on_message(message):
               await guild.create_role(name="V2-0")
               await message.channel.send("V2-0 created")
               await guild.create_role(name="V1-1")
-              await guild.channel.send("V1-1 created")
+              await message.channel.send("V1-1 created")
               await guild.create_role(name="V0-2")
               await message.channel.send("V0-2 created")
           
