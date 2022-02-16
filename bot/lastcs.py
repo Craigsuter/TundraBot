@@ -104,11 +104,12 @@ def lastcsgo():
         
         value1 = scoresteam1[scoregenerator]
         value2= scoresteam2[scoregenerator]
-        if(int(value1) > int(value2)):
-          team1scorer = team1scorer + 1
-          
-        else:
-          team2scorer= team2scorer + 1
+        if ((int(value1) > 0) or int(value2) > 0):
+          if(int(value1) > int(value2)):
+            team1scorer = team1scorer + 1
+            
+          else:
+            team2scorer= team2scorer + 1
           
         scoregenerator = scoregenerator + 1
         
