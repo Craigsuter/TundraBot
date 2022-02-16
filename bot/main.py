@@ -42,6 +42,18 @@ from csmap import csgomap
 from lastcs import lastcsgo
 from CSEvents import csgoevents
 from dota_events import dotaevents
+from csgoscoreboarding import scoreboarding
+from csgoscoreboarding import scoreboardreader
+from csgoscoreboarding import scoreboardadder
+from csgoscoreboarding import scoreboardsingle
+from dotascoreboarding import dotascoreboarding
+from dotascoreboarding import dotascoreboardreader
+from dotascoreboarding import dotascoreboardadder
+from dotascoreboarding import dotascoreboardsingle
+from valoscoreboarding import valoscoreboarding
+from valoscoreboarding import valoscoreboardreader
+from valoscoreboarding import valoscoreboardadder
+from valoscoreboarding import valoscoreboardsingle
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -1050,9 +1062,287 @@ async def on_message(message):
       #All gardener commands  
       else:
 
-          if((messagereceived=="!testing")):
-            test=dotaevents()
-            await message.channel.send(embed=test)
+          if(messagereceived=="!show" and str(secondPartOfMessage).lower() == "csgo" and message.mentions.__len__()==0 ):
+            test = scoreboardreader()
+            embed=discord.Embed(title="CSGO prediction leaderboard",color=0x55a7f7)
+            embed.add_field(name="CSGO Prediction top 10", value="```\n" + test + "\n```", inline=True)
+            embed.add_field(name="Can't see yourself?", value = "Can't see yourself on the table? use !show dota @*yourself* to see where you stand!", inline=False)
+            await message.channel.send(embed=embed)
+
+          if(messagereceived=="!show" and str(secondPartOfMessage).lower() == "valo" and message.mentions.__len__()==0 ):
+            test = valoscoreboardreader()
+            embed=discord.Embed(title="Valorant prediction leaderboard",color=0x55a7f7)
+            embed.add_field(name="Valorant prediction top 10", value="```\n" + test + "\n```", inline=True)
+            embed.add_field(name="Can't see yourself?", value = "Can't see yourself on the table? use !show dota @*yourself* to see where you stand!", inline=False)
+            await message.channel.send(embed=embed)
+
+          if ((messagereceived == "!show") and str(secondPartOfMessage).lower() == "csgo"and (message.mentions.__len__()>0)):
+            for user in message.mentions:
+                test = scoreboardsingle(user.id)
+                await message.channel.send(test)
+
+          if ((messagereceived == "!show") and str(secondPartOfMessage).lower() == "valo"and (message.mentions.__len__()>0)):
+            for user in message.mentions:
+                test = valoscoreboardsingle(user.id)
+                await message.channel.send(test)
+
+
+          if(messagereceived=="!show" and (str(secondPartOfMessage).lower() == "dota" or str(secondPartOfMessage).lower() == "dota2") and message.mentions.__len__()==0 ):
+            test = dotascoreboardreader()
+            embed=discord.Embed(title="Dota 2 prediction leaderboard",color=0x55a7f7)
+            embed.add_field(name="Dota 2 Prediction top 10", value="```\n" + test + "\n```", inline=True)
+            embed.add_field(name="Can't see yourself?", value = "Can't see yourself on the table? use !show dota @*yourself* to see where you stand!", inline=False)
+            await message.channel.send(embed=embed)
+
+          if ((messagereceived == "!show") and (str(secondPartOfMessage).lower() == "dota" or str(secondPartOfMessage).lower() == "dota2") and (message.mentions.__len__()>0)):
+            for user in message.mentions:
+                test = dotascoreboardsingle(user.id)
+                await message.channel.send(test)
+
+          if((messagereceived=="!dotaadd")):
+            if(len(sectionsofmessage) > 1):
+              try:
+                server = message.guild
+                role_name = sectionsofmessage[1]
+                role_name = role_name[3:-1]
+                role_name = discord.utils.get(guild.roles, id=int(role_name))
+                role_name = str(role_name)
+                
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                file = open("filetosend.txt", "w")
+                file.close()
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+                for member in server.members:
+                    if role_id in member.roles:
+                      dotascoreboardadder(member.display_name, member.id, 1)
+                      display_names.append(member.display_name)
+                      member_ids.append(member.id)
+                
+                await message.channel.send("I have added the results!")
+              except:
+                await message.channel.send("You need to tag the winning role: example !dotaadd @D9-0")
+            else:
+              await message.channel.send("You need to tag the winning role: example !dotaadd @D9-0")
+
+                
+          if((messagereceived=="!csgoadd")):
+            if(len(sectionsofmessage) > 1):
+              try:
+                server = message.guild
+                role_name = sectionsofmessage[1]
+                role_name = role_name[3:-1]
+                role_name = discord.utils.get(guild.roles, id=int(role_name))
+                role_name = str(role_name)
+                
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                file = open("filetosend.txt", "w")
+                file.close()
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+                for member in server.members:
+                    if role_id in member.roles:
+                      scoreboardadder(member.display_name, member.id, 1)
+                      display_names.append(member.display_name)
+                      member_ids.append(member.id)
+                
+                await message.channel.send("I have added the results!")
+              except:
+                await message.channel.send("You need to tag the winning role: example !csgoadd @cs9-0")
+            else:
+              await message.channel.send("You need to tag the winning role: example !csgoadd @cs9-0")
+
+
+          if((messagereceived=="!valoadd")):
+            if(len(sectionsofmessage) > 1):
+              try:
+                server = message.guild
+                role_name = sectionsofmessage[1]
+                role_name = role_name[3:-1]
+                role_name = discord.utils.get(guild.roles, id=int(role_name))
+                role_name = str(role_name)
+                
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                file = open("filetosend.txt", "w")
+                file.close()
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+                for member in server.members:
+                    if role_id in member.roles:
+                      valoscoreboardadder(member.display_name, member.id, 1)
+                      display_names.append(member.display_name)
+                      member_ids.append(member.id)
+                
+                await message.channel.send("I have added the results!")
+              except:
+                await message.channel.send("You need to tag the winning role: example !valoadd @v9-0")
+            else:
+              await message.channel.send("You need to tag the winning role: example !valoadd @v9-0")
+            
+          if((messagereceived=="!csgoremove")):
+            if(len(sectionsofmessage) > 1):
+              try:
+                server = message.guild
+                role_name = sectionsofmessage[1]
+                role_name = role_name[3:-1]
+                role_name = discord.utils.get(guild.roles, id=int(role_name))
+                role_name = str(role_name)
+                
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                file = open("filetosend.txt", "w")
+                file.close()
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+                for member in server.members:
+                    if role_id in member.roles:
+                      scoreboardadder(member.display_name, member.id, -1)
+                      display_names.append(member.display_name)
+                      member_ids.append(member.id)
+                
+                await message.channel.send("I have added the results!")
+              except:
+                await message.channel.send("You need to tag the winning role: example !csgoremove @cs9-0")
+            else:
+              await message.channel.send("You need to tag the winning role: example !csgoremove @cs9-0")
+
+          if((messagereceived=="!dotaremove")):
+            if(len(sectionsofmessage) > 1):
+              try:
+                server = message.guild
+                role_name = sectionsofmessage[1]
+                role_name = role_name[3:-1]
+                role_name = discord.utils.get(guild.roles, id=int(role_name))
+                role_name = str(role_name)
+                
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                file = open("filetosend.txt", "w")
+                file.close()
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+                for member in server.members:
+                    if role_id in member.roles:
+                      dotascoreboardadder(member.display_name, member.id, -1)
+                      display_names.append(member.display_name)
+                      member_ids.append(member.id)
+                
+                await message.channel.send("I have added the results!")
+              except:
+                await message.channel.send("You need to tag the winning role: example !dotaremove @D9-0")
+            else:
+              await message.channel.send("You need to tag the winning role: example !dotaremove @D9-0")
+
+          if((messagereceived=="!valoremove")):
+            if(len(sectionsofmessage) > 1):
+              try:
+                server = message.guild
+                role_name = sectionsofmessage[1]
+                role_name = role_name[3:-1]
+                role_name = discord.utils.get(guild.roles, id=int(role_name))
+                role_name = str(role_name)
+                
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                file = open("filetosend.txt", "w")
+                file.close()
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+                for member in server.members:
+                    if role_id in member.roles:
+                      valoscoreboardadder(member.display_name, member.id, -1)
+                      display_names.append(member.display_name)
+                      member_ids.append(member.id)
+                
+                await message.channel.send("I have added the results!")
+              except:
+                await message.channel.send("You need to tag the winning role: example !valoremove @V9-0")
+            else:
+              await message.channel.send("You need to tag the winning role: example !valoremove @V9-0")
+
+          if(messagereceived=="!clearcsgoboard"):
+            scoreboarding()
+            await message.channel.send("The CSGO Leaderboard is reset")
+
+          if(messagereceived=="!cleardotaboard"):
+            dotascoreboarding()
+            await message.channel.send("The Dota Leaderboard is reset")
+          
+          if(messagereceived=="!clearvaloboard"):
+            valoscoreboarding()
+            await message.channel.send("The Valo Leaderboard is reset")
+          
+          
+          if((messagereceived == "!gettingrolelist")):
+            if(len(sectionsofmessage) > 1):
+              try:
+                server = message.guild
+                role_name = sectionsofmessage[1]
+                role_name = role_name[3:-1]
+                role_name = discord.utils.get(guild.roles, id=int(role_name))
+                role_name = str(role_name)
+                
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                file = open("filetosend.txt", "w")
+                file.close()
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+                for member in server.members:
+                    if role_id in member.roles:
+                      display_names.append(member.display_name)
+                      member_ids.append(member.id)
+                
+                print(member_ids)
+              except:
+                print("lol")
+
+
 
 
           if(messagereceived=="!getuserlist"):
