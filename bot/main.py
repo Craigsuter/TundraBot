@@ -1107,7 +1107,7 @@ async def on_message(message):
                 role_name = role_name[3:-1]
                 role_name = discord.utils.get(guild.roles, id=int(role_name))
                 role_name = str(role_name)
-                
+                i=0
                 role_id = server.roles[0]
                 display_names = []
                 member_ids = []
@@ -1122,11 +1122,12 @@ async def on_message(message):
                     return
                 for member in server.members:
                     if role_id in member.roles:
+                      i=i+1
                       dotascoreboardadder(member.display_name, member.id, 1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
                 
-                await message.channel.send("I have added the results!")
+                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !dotaadd @D9-0")
             else:
@@ -1141,7 +1142,7 @@ async def on_message(message):
                 role_name = role_name[3:-1]
                 role_name = discord.utils.get(guild.roles, id=int(role_name))
                 role_name = str(role_name)
-                
+                i=0
                 role_id = server.roles[0]
                 display_names = []
                 member_ids = []
@@ -1156,11 +1157,12 @@ async def on_message(message):
                     return
                 for member in server.members:
                     if role_id in member.roles:
+                      i=i+1
                       scoreboardadder(member.display_name, member.id, 1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
                 
-                await message.channel.send("I have added the results!")
+                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !csgoadd @cs9-0")
             else:
@@ -1175,7 +1177,7 @@ async def on_message(message):
                 role_name = role_name[3:-1]
                 role_name = discord.utils.get(guild.roles, id=int(role_name))
                 role_name = str(role_name)
-                
+                i=0
                 role_id = server.roles[0]
                 display_names = []
                 member_ids = []
@@ -1190,11 +1192,12 @@ async def on_message(message):
                     return
                 for member in server.members:
                     if role_id in member.roles:
+                      i=i+1
                       valoscoreboardadder(member.display_name, member.id, 1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
                 
-                await message.channel.send("I have added the results!")
+                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !valoadd @v9-0")
             else:
@@ -1208,7 +1211,7 @@ async def on_message(message):
                 role_name = role_name[3:-1]
                 role_name = discord.utils.get(guild.roles, id=int(role_name))
                 role_name = str(role_name)
-                
+                i=0
                 role_id = server.roles[0]
                 display_names = []
                 member_ids = []
@@ -1223,11 +1226,12 @@ async def on_message(message):
                     return
                 for member in server.members:
                     if role_id in member.roles:
+                      i=i+1
                       scoreboardadder(member.display_name, member.id, -1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
                 
-                await message.channel.send("I have added the results!")
+                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !csgoremove @cs9-0")
             else:
@@ -1241,7 +1245,7 @@ async def on_message(message):
                 role_name = role_name[3:-1]
                 role_name = discord.utils.get(guild.roles, id=int(role_name))
                 role_name = str(role_name)
-                
+                i=0
                 role_id = server.roles[0]
                 display_names = []
                 member_ids = []
@@ -1256,11 +1260,12 @@ async def on_message(message):
                     return
                 for member in server.members:
                     if role_id in member.roles:
+                      i=i+1
                       dotascoreboardadder(member.display_name, member.id, -1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
                 
-                await message.channel.send("I have added the results!")
+                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !dotaremove @D9-0")
             else:
@@ -1274,7 +1279,7 @@ async def on_message(message):
                 role_name = role_name[3:-1]
                 role_name = discord.utils.get(guild.roles, id=int(role_name))
                 role_name = str(role_name)
-                
+                i=0
                 role_id = server.roles[0]
                 display_names = []
                 member_ids = []
@@ -1289,11 +1294,12 @@ async def on_message(message):
                     return
                 for member in server.members:
                     if role_id in member.roles:
+                      i=i+1
                       valoscoreboardadder(member.display_name, member.id, -1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
                 
-                await message.channel.send("I have added the results!")
+                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !valoremove @V9-0")
             else:
