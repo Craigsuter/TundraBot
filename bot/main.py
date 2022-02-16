@@ -1066,14 +1066,14 @@ async def on_message(message):
             test = scoreboardreader()
             embed=discord.Embed(title="CSGO prediction leaderboard",color=0x55a7f7)
             embed.add_field(name="CSGO Prediction top 10", value="```\n" + test + "\n```", inline=True)
-            embed.add_field(name="Can't see yourself?", value = "Can't see yourself on the table? use !show dota @*yourself* to see where you stand!", inline=False)
+            embed.add_field(name="Can't see yourself?", value = "Can't see yourself on the table? use !show csgo @*yourself* to see where you stand!", inline=False)
             await message.channel.send(embed=embed)
 
           if(messagereceived=="!show" and (str(secondPartOfMessage).lower() == "valo"or str(secondPartOfMessage).lower() == "valorant") and message.mentions.__len__()==0 ):
             test = valoscoreboardreader()
             embed=discord.Embed(title="Valorant prediction leaderboard",color=0x55a7f7)
             embed.add_field(name="Valorant prediction top 10", value="```\n" + test + "\n```", inline=True)
-            embed.add_field(name="Can't see yourself?", value = "Can't see yourself on the table? use !show dota @*yourself* to see where you stand!", inline=False)
+            embed.add_field(name="Can't see yourself?", value = "Can't see yourself on the table? use !show valo @*yourself* to see where you stand!", inline=False)
             await message.channel.send(embed=embed)
 
           if ((messagereceived == "!show") and (str(secondPartOfMessage).lower() == "csgo" or str(secondPartOfMessage).lower() == "cs") and (message.mentions.__len__()>0)):
