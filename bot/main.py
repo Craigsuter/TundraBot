@@ -1128,8 +1128,10 @@ async def on_message(message):
                       dotascoreboardadder(member.display_name, member.id, 1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
-                
-                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
+                if(i==0):
+                  await message.channel.send("No one was found in that role!")
+                else:
+                  await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !dotaadd @D9-0")
             else:
@@ -1165,8 +1167,10 @@ async def on_message(message):
                       scoreboardadder(member.display_name, member.id, 1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
-                
-                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
+                if(i==0):
+                  await message.channel.send("No one was found in that role!")
+                else:
+                  await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !csgoadd @cs9-0")
             else:
@@ -1201,8 +1205,10 @@ async def on_message(message):
                       valoscoreboardadder(member.display_name, member.id, 1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
-                
-                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
+                if(i==0):
+                  await message.channel.send("No one was found in that role!")
+                else:
+                  await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !valoadd @v9-0")
             else:
@@ -1236,8 +1242,10 @@ async def on_message(message):
                       scoreboardadder(member.display_name, member.id, -1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
-                
-                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
+                if(i==0):
+                  await message.channel.send("No one was found in that role!")
+                else:
+                  await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !csgoremove @cs9-0")
             else:
@@ -1271,8 +1279,10 @@ async def on_message(message):
                       dotascoreboardadder(member.display_name, member.id, -1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
-                
-                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
+                if(i==0):
+                  await message.channel.send("No one was found in that role!")
+                else:
+                  await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !dotaremove @D9-0")
             else:
@@ -1306,8 +1316,10 @@ async def on_message(message):
                       valoscoreboardadder(member.display_name, member.id, -1)
                       display_names.append(member.display_name)
                       member_ids.append(member.id)
-                
-                await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
+                if(i==0):
+                  await message.channel.send("No one was found in that role!")
+                else:
+                  await message.channel.send("I have added the results! This affected: " + str(i) + " users" )
               except:
                 await message.channel.send("You need to tag the winning role: example !valoremove @V9-0")
             else:
