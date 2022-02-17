@@ -22,7 +22,7 @@ def valomaps():
   try:
     headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
     base_url = 'https://www.vlr.gg'
-    og_url = base_url + 'team/matches/2965/og/?group=upcoming'
+    og_url = base_url + '/team/matches/2965/og/?group=upcoming'
     og_page = requests.get(og_url, headers=headers)
 
     # Get the last match link
