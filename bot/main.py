@@ -54,6 +54,7 @@ from valoscoreboarding import valoscoreboarding
 from valoscoreboarding import valoscoreboardreader
 from valoscoreboarding import valoscoreboardadder
 from valoscoreboarding import valoscoreboardsingle
+from lastvalo import lastvalo
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -430,7 +431,8 @@ async def on_message(message):
 
 
 
-
+      if(messagereceived == "!testing"):
+        return
 
 
 
@@ -704,79 +706,9 @@ async def on_message(message):
         embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +("OG " + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
         await message.channel.send(embed=embed)
 
-      #Gets the info for the last CSGO game
-      
-
-
-      #Gets the info for the last valo game
-      if((messagereceived=="!lastvalo") or (messagereceived == "!lastvalorant")):
-        testurl = "https://liquipedia.net/valorant/OG/Matches"
-        uClient = uReq(testurl)
-        page_html = uClient.read()
-        uClient.close()
-        page_soup = soup(page_html,"html.parser")
-
-        tabledata = page_soup.find("div", attrs ={"class": "table-responsive recent-matches"})
-        #print(tabledata)
-        tabledata2 = tabledata.tbody.find_all("tr")
-        tabledata3 = tabledata2[1].find_all("td")
-        try:
-          LastGameOG1 = "OG "
-          LastgameDate1 = tabledata3[0].text
-          LastGameTime1 = tabledata3[1].text
-          LastGameTier1 = tabledata3[2].text
-          LastGameTourni1 = tabledata3[3].text
-          LastGameScore1 = tabledata3[5].text
-          LastGameEnemy1 = tabledata3[6].text             
-          Dateandtime1 = LastgameDate1 +  " - " + LastGameTourni1
-          
-          
-          
-        except:
-          print("kek")
-          
-        
-        
-        try:
-          tabledata4 = tabledata2[2].find_all("td")
-          LastGameOG1 ="OG "
-          LastgameDate2 = tabledata4[0].text
-          LastGameTime2 = tabledata4[1].text
-          LastGameTier2 = tabledata4[2].text
-          LastGameTourni2 = tabledata4[3].text
-          LastGameScore2 = tabledata4[5].text
-          LastGameEnemy2 = tabledata4[6].text
-          Dateandtime2 = LastgameDate2 +  " - " + LastGameTourni2
-        except:
-          print("kek2")
-          
-        try:
-          tabledata5 = tabledata2[3].find_all("td")
-          LastGameOG1 = "OG "
-          LastgameDate3 = tabledata5[0].text
-          LastGameTime3 = tabledata5[1].text
-          LastGameTier3 = tabledata5[2].text
-          LastGameTourni3 = tabledata5[3].text
-          LastGameScore3 = tabledata5[5].text
-          LastGameEnemy3 = tabledata5[6].text
-          Dateandtime3 = LastgameDate3 +  " - " + LastGameTourni3
-        except:
-          LastGameOG3 = " "
-          LastgameDate3 = " "
-          LastGameTime3 = " "
-          LastGameTier3 =" "
-          LastGameType3 = " "
-          LastGameTourni3 = " "
-          LastGameScore3 =" "
-          LastGameEnemy3 =" "
-          Dateandtime3 = " "
-          print("kek3")
-
-        embed=discord.Embed(title="The last OG Valo games played",url='https://liquipedia.net/dota2/OG/Played_Matches', color=0xd57280)
-        embed.add_field(name="Date / tournament",value=(Dateandtime1 + "\n" + Dateandtime2 + "\n" + Dateandtime3), inline=True)
-        embed.add_field(name="Score", value=(("OG " + LastGameScore1 + " " + LastGameEnemy1) +"\n"+("OG " + LastGameScore2 + " " + LastGameEnemy2) + "\n" +(LastGameOG3 + LastGameScore3 + " " + LastGameEnemy3)), inline=True)
-        await message.channel.send(embed=embed)
-
+      if(messagereceived=="!lastvalo" or messagereceived=="!lastvalorant"):
+        last_valo = lastvalo();
+        await message.reply(last_valo)
 
 
       if(messagereceived=="!playerinfo"):
