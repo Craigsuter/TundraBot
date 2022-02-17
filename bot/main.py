@@ -39,7 +39,9 @@ from stream2 import DotaStreams2
 from dtStreams import dtStreams
 import random
 from csmap import csgomap
+from valomaps import valomaps
 from lastcs import lastcsgo
+from lastvalo import lastvalo
 from CSEvents import csgoevents
 from dota_events import dotaevents
 from csgoscoreboarding import scoreboarding
@@ -54,7 +56,6 @@ from valoscoreboarding import valoscoreboarding
 from valoscoreboarding import valoscoreboardreader
 from valoscoreboarding import valoscoreboardadder
 from valoscoreboarding import valoscoreboardsingle
-from lastvalo import lastvalo
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -394,8 +395,13 @@ async def on_message(message):
 
       if(messagereceived=="!csmaps"):
         maps = csgomap()
-
         await message.reply(maps)
+        
+
+      if(messagereceived=="!valomaps"):
+        valo_maps = valomaps()
+        await message.reply(valo_maps)
+
       
       if(messagereceived=="!lastcsgo" or messagereceived == "!lastcs"):
         last = lastcsgo()
