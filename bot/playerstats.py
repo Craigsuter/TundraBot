@@ -22,9 +22,9 @@ def playerstats(name, url):
             pick_name = pick_container.find("div", {"class": "meta-pick-title"}).text
             pick_matchcount = pick_info[0].next_element.strip()
             pick_winrate = pick_info[1].next_element.strip()
-            top5_picks_info = top5_picks_info + f'{pick_name}: {pick_matchcount} ({pick_winrate} Winrate) \n'
+            top5_picks_info = top5_picks_info + f'{pick_name}: {pick_matchcount} matches ({pick_winrate} Winrate) \n'
 
-        top5_picks_info = top5_picks_info + f'{pick_name}: {pick_matchcount} ({pick_winrate} Winrate)'
+        top5_picks_info = top5_picks_info + f'{pick_name}: {pick_matchcount} matches ({pick_winrate} Winrate)'
         player_stats = discord.Embed(title=f'{name} stats', url=url, color=0x55a7f7)
         player_stats.add_field(name="Win Lose", value=wl_record, inline=False)
         player_stats.add_field(name="Top 5 picks", value=top5_picks_info, inline=False)
