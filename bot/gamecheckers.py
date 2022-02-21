@@ -437,7 +437,8 @@ def ValoCheck(channelDataID):
     UTCTime = timeOfGame.rsplit(":")
     UTCTime2 = timeOfGame.rsplit(":")
     UTCBC = int(UTCTime[0])
-
+    print(UTCBC)
+    print(prefixOfTime)
     if UTCBC > 12:
       if prefixOfTime == "am":
         prefixOfTime = "pm"
@@ -452,10 +453,12 @@ def ValoCheck(channelDataID):
       UTCTime = str(UTCBC) + ":" + UTCTime[1] + prefixOfTime
     
     #date/time comparisions to get a countdown
+    
 
-   
-    if prefixOfTime == "pm":
+    print(prefixOfTime)
+    if prefixOfTime == "pm" and hourofvalo != 12:
       hourofvalo = int(hourofvalo) + 12
+      print(hourofvalo)
       
     minuteofgame = UTCTime2[1]
     dt_string_year = "20" + str(dt_string_year)
@@ -503,6 +506,7 @@ def ValoCheck(channelDataID):
         embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
       
     return(embed)
+    #return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2)
 
   except Exception as e:
     print(e)

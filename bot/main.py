@@ -739,6 +739,7 @@ async def on_message(message):
                 or (messagereceived == "!nextval")):
 
             embed = ValoCheck(channelDataID)
+            #embed = embed[
 
             if (embed == "No games planned"):
                 if ((channelDataID == 810939258222936094)
@@ -3639,11 +3640,12 @@ async def testingspam():
 #Valo daily
     try:
         ValoGame = ValoCheck(720263155460079767)
-        valorantTeams = ValoGame[0]
-        valorantTeamTime = ValoGame[1]
-        c = ValoGame[2]
-        dayofgame2 = ValoGame[3]
+
+        valorantTeams = ValoGame[1]
+        valorantTeamTime = ValoGame[2]
+        c = ValoGame[3]
         matchlink = ValoGame[4]
+        dayofgame2 = ValoGame[5]
 
         if ((currentd[0] == "0")):
             currentd = currentd[1]
