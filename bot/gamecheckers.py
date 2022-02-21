@@ -505,8 +505,8 @@ def ValoCheck(channelDataID):
       except:
         embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
       
-    return(embed)
-    #return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2)
+    #return(embed)
+    return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2)
 
   except Exception as e:
     print(e)

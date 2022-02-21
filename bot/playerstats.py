@@ -3,7 +3,7 @@ import discord
 import requests
 from bs4 import BeautifulSoup as soup
 from datetime import date
-from dateutil.relativedelta import relativedelta
+#from dateutil.relativedelta import relativedelta
 from dotenv import load_dotenv
 
 load_dotenv()

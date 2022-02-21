@@ -739,6 +739,7 @@ async def on_message(message):
                 or (messagereceived == "!nextval")):
 
             embed = ValoCheck(channelDataID)
+            embed=embed[0]
             #embed = embed[
 
             if (embed == "No games planned"):
