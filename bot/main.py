@@ -45,7 +45,7 @@ from lastcs import lastcsgo
 from lastvalo import lastvalo
 from CSEvents import csgoevents
 from dota_events import dotaevents
-from playerstats import playerstats
+from playerstats import dotastats, csstats
 from csgoscoreboarding import scoreboarding
 from csgoscoreboarding import scoreboardreader
 from csgoscoreboarding import scoreboardadder
@@ -525,16 +525,35 @@ async def on_message(message):
 
         if messagereceived == "!playerstats":
             if str(secondPartOfMessage).lower() == "yuragi":
-                player_stats = playerstats("Yuragi", "https://dota2protracker.com/player/Yuragi")
+                player_stats = dotastats(
+                    "Yuragi", "https://dota2protracker.com/player/Yuragi")
             if str(secondPartOfMessage).lower() == "bzm":
-                player_stats = playerstats("bzm", "https://dota2protracker.com/player/bzm")
-            if str(secondPartOfMessage).lower() == "ammar" or str(
-                    secondPartOfMessage).lower() == "atf":
-                player_stats = playerstats("AMMAR_THE_F", "https://dota2protracker.com/player/ATF")
+                player_stats = dotastats(
+                    "bzm", "https://dota2protracker.com/player/bzm")
+            if str(secondPartOfMessage).lower() == "ammar" or str(secondPartOfMessage).lower() == "atf":
+                player_stats = dotastats(
+                    "AMMAR_THE_F", "https://dota2protracker.com/player/ATF")
             if str(secondPartOfMessage).lower() == "taiga":
-                player_stats = playerstats("Taiga", "https://dota2protracker.com/player/Taiga")
+                player_stats = dotastats(
+                    "Taiga", "https://dota2protracker.com/player/Taiga")
             if str(secondPartOfMessage).lower() == "misha":
-                player_stats = playerstats("Misha", "https://dota2protracker.com/player/Misha")
+                player_stats = dotastats(
+                    "Misha", "https://dota2protracker.com/player/Misha")
+            if str(secondPartOfMessage).lower() == "valde":
+                player_stats = csstats(
+                    "valde", "https://www.hltv.org/stats/players/9031/valde")
+            if str(secondPartOfMessage).lower() == "nexa":
+                player_stats = csstats(
+                    "nexa", "https://www.hltv.org/stats/players/9618/nexa")
+            if str(secondPartOfMessage).lower() == "niko":
+                player_stats = csstats(
+                    "niko", "https://www.hltv.org/stats/players/10264/niko")
+            if str(secondPartOfMessage).lower() == "mantuu" or str(secondPartOfMessage).lower() == "mantu":
+                player_stats = csstats(
+                    "mantuu", "https://www.hltv.org/stats/players/10981/mantuu")
+            if str(secondPartOfMessage).lower() == "flamez":
+                player_stats = csstats(
+                    "flameZ", "https://www.hltv.org/stats/players/16693/flamez")
             await message.channel.send(embed=player_stats)
 
         if ((messagereceived == "!csgoevents")
