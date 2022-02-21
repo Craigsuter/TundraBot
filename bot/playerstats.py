@@ -32,8 +32,6 @@ def dotastats(name, url):
             top5_picks_info = top5_picks_info + \
                 f'{pick_name}: {pick_matchcount} matches ({pick_winrate} Winrate) \n'
 
-        top5_picks_info = top5_picks_info + \
-            f'{pick_name}: {pick_matchcount} matches ({pick_winrate} Winrate)'
         player_stats = discord.Embed(
             title=f'{name} stats', url=url, color=0x55a7f7)
         player_stats.add_field(name="Win Lose", value=wl_record, inline=False)
