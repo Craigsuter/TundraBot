@@ -56,7 +56,7 @@ def csstats(name, url):
         page_html = soup(player_page.text, "html.parser")
         rating_kast_row = page_html.find_all(
             "div", {"class": "summaryStatBreakdownRow"})[0]
-        adr_kpr_row = page_html.find_all(
+        adr_kpr_impact_row = page_html.find_all(
             "div", {"class": "summaryStatBreakdownRow"})[1]
 
         # Get the Rating 2.0
@@ -71,14 +71,20 @@ def csstats(name, url):
         player_kast = kast_container.find(
             "div", {"class": "summaryStatBreakdownDataValue"}).text
 
+        # Get the impact
+        impact_container = adr_kpr_impact_row.find_all(
+            "div", {"class":"summaryStatBreakdown"})[0]
+        player_impact = impact_container.find(
+            "div", {"class": "summaryStatBreakdownDataValue"}).text
+      
         # Get the ADR
-        adr_container = adr_kpr_row.find_all(
+        adr_container = adr_kpr_impact_row.find_all(
             "div", {"class": "summaryStatBreakdown"})[1]
         player_adr = adr_container.find(
             "div", {"class": "summaryStatBreakdownDataValue"}).text
 
         # Get the KPR
-        kpr_container = adr_kpr_row.find_all(
+        kpr_container = adr_kpr_impact_row.find_all(
             "div", {"class": "summaryStatBreakdown"})[2]
         player_kpr = kpr_container.find(
             "div", {"class": "summaryStatBreakdownDataValue"}).text
@@ -99,8 +105,9 @@ def csstats(name, url):
         player_stats.set_thumbnail(url=player_image)
         player_stats.add_field(
             name="Rating 2.0", value=player_rating, inline=False)
-        player_stats.add_field(name="ADR", value=player_adr, inline=True)
-        player_stats.add_field(name="KAST", value=player_kast, inline=False)
+        player_stats.add_field(name="Impact", value=player_impact, inline=False)
+        player_stats.add_field(name="ADR", value=player_adr, inline=False)
+        player_stats.add_field(name="KAST", value=player_kast)
         player_stats.add_field(name="KPR", value=player_kpr)
         player_stats.add_field(name="KDR", value=player_kdr)
 

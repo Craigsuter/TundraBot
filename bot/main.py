@@ -558,7 +558,7 @@ async def on_message(message):
             await message.channel.send(embed=player_stats)
           except:
               embed = discord.Embed(title="Incorrect usage of !playerstats",color=0x55a7f7)
-              embed.add_field(name="Players available", value="yuragi / bzm / ammar / taiga / misha / valde / nexa / niko / mantuu / flamez\nE.G - !playerstats misha", inline=True)
+              embed.add_field(name="Players available", value="Dota - yuragi / bzm / ammar / taiga / misha\nCSGO - valde / nexa / niko / mantuu / flamez\nE.G - !playerstats misha", inline=True)
               await message.channel.send(embed=embed)
 
         if ((messagereceived == "!csgoevents")
