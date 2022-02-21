@@ -22,7 +22,7 @@ def dotastats(name, url):
 
         top5_picks_info = ""
 
-        for pick_container in top5_picks_container[:-1]:
+        for pick_container in top5_picks_container:
             pick_info = pick_container.find_all(
                 "div", {"class": "meta-pick-info-block"})
             pick_name = pick_container.find(
