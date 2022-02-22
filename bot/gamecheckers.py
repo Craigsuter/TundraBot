@@ -3,7 +3,6 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import discord
 import os
-from cleardota import cleardota
 from discord.ext import commands
 from dotenv import load_dotenv
 load_dotenv()
