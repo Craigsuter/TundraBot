@@ -219,3 +219,107 @@ def dotaplayerstats(name):
     embed.add_field(name="Error searching", value= "I was unable to find any players under that name, please try again!\nE.G: !dotastats atf", inline=True)
     return embed
     
+
+def valoplayerstats(name):
+  headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+  chrome_options = webdriver.ChromeOptions()
+  chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+  #chrome_options.add_argument("--headless") 
+  chrome_options.add_argument("--disable-dev-shm-usage")
+  chrome_options.add_argument("--no-sandbox")
+  chrome_options.add_argument("--window-size=2560,1440")
+  user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
+  chrome_options.add_argument(f'user-agent={user_agent}')
+
+  # you need executable path for heroku (aka production) - but remove it for using replit 
+  #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+  
+  # Use this for testing
+  driver = webdriver.Chrome(chrome_options=chrome_options)
+  name2 = name.lower()
+
+  driver.get("https://www.vlr.gg/")
+  
+  try:
+    button = driver.find_element_by_name("q")
+    button.click()
+    
+    button.send_keys(name)
+    time.sleep(2)
+    data = soup(driver.page_source, "html.parser")
+
+    container = data.findAll("a", {"class": "auto-item"})
+    
+    i=0
+    for a in container:
+      if i == 0:
+        link = a['href']
+        i = 1
+    driver.close()
+    
+    link = "https://www.vlr.gg" + link + "/?timespan=60d"
+
+    headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+    player_page = requests.get(link, headers=headers)
+    page_html = soup(player_page.text, "html.parser")
+    image_container = page_html.find("div", {"class": "wf-avatar mod-player"})
+    stats_table = page_html.find("table", {"class": "wf-table"})
+    stats_per_agent = stats_table.find("tbody").find_all("tr")
+
+    player_image = image_container.find("img")['src']
+    if player_image == "/img/base/ph/sil.png":
+        player_image = "https://vlr.gg" + player_image
+    else:
+        player_image = "https:" + player_image
+
+    count = 0
+    player_agents = ""
+    player_acs = 0
+    player_kdr = 0
+    player_adr = 0
+    player_kast = 0
+    player_kpr = 0
+    # Get the stats involved
+    for agent_stats in stats_per_agent:
+        if count == 0:
+            player_agents += agent_stats.find("img")['src'].split("agents/", 1)[1].split(".", 1)[0].capitalize()
+        else:
+            player_agents += ", " + agent_stats.find("img")['src'].split("agents/", 1)[1].split(".", 1)[0].capitalize()
+        player_acs += float(agent_stats.find_all("td")[3].text.strip())
+        player_kdr += float(agent_stats.find_all("td")[4].text.strip())
+        player_adr += float(agent_stats.find_all("td")[5].text.strip())
+        player_kast += float(agent_stats.find_all("td")[6].text.strip().rstrip("%"))
+        player_kpr += float(agent_stats.find_all("td")[7].text.strip())
+        count += 1
+
+    player_acs /= count
+    player_kdr /= count
+    player_adr /= count
+    player_kast /= count
+    player_kpr /= count
+    
+    if len(str(player_kpr)) > 4:
+      player_kpr = str(player_kpr)
+      player_kpr = player_kpr[0:5]
+    if(len(str(player_kdr))) > 4:
+      player_kdr = str(player_kdr)
+      player_kdr = player_kdr[0:5]
+
+    player_stats = discord.Embed(title=f'{name} stats', url=link, color=0xd57280)
+    player_stats.set_thumbnail(url=player_image)
+    player_stats.add_field(name="Top agents", value=player_agents, inline=False)
+    player_stats.add_field(name="ACS", value=player_acs, inline=False)
+    player_stats.add_field(name="ADR", value=player_adr, inline=False)
+    player_stats.add_field(name="KAST", value=player_kast)
+    player_stats.add_field(name="KPR", value=player_kpr)
+    player_stats.add_field(name="KDR", value=player_kdr)
+
+    return player_stats
+
+      
+    
+  except Exception as e:
+    print(e)
+    embed = discord.Embed(title= "Error searching")
+    embed.add_field(name="Error searching", value= "I was unable to find any players under that name, please try again!\nE.G: !valostats laaw", inline=True)
+    return embed
