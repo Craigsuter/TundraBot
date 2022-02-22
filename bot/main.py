@@ -9,7 +9,7 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import discord
 import os
-from cleardota import csgoplayerstat
+from cleardota import csgoplayerstat, dotaplayerstats
 import ffmpeg
 from discord.ext import commands
 from discord.ext.commands import Bot, has_permissions, CheckFailure
@@ -464,7 +464,7 @@ async def on_message(message):
                 print(e)
 
         if messagereceived == "!testing":
-            return
+            dotaplayerstats(secondPartOfMessage)
 
         if (messagereceived == "!spreadthegoose"):
             await message.channel.send(
@@ -571,7 +571,7 @@ async def on_message(message):
             await message.channel.send(embed=player_stats)
           except:
               embed = discord.Embed(title="Incorrect usage of !playerstats",color=0x55a7f7)
-              embed.add_field(name="Players available", value="Dota - yuragi / bzm / ammar / taiga / misha\nCSGO - valde / nexa / niko / mantuu / flamez\nE.G - !playerstats misha", inline=True)
+              embed.add_field(name="Players available", value="Dota - yuragi / bzm / ammar / taiga / misha\nCSGO - valde / nexa / niko / mantuu / flamez\nValo - LeeeeeeN / unkoe / oniby / fxy0 / laaw\nE.G - !playerstats misha", inline=True)
               await message.channel.send(embed=embed)
 
         if ((messagereceived == "!csgoevents")

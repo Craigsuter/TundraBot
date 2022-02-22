@@ -49,7 +49,7 @@ def csgoplayerstat(name):
     
     
     time.sleep(2)
-    data = soup(driver.page_source)
+    data = soup(driver.page_source, "html.parser")
 
     # Use this is if the search uses the photo
     container = data.findAll("div", {"class":"box player expanded hoverable"})
@@ -148,4 +148,62 @@ def csgoplayerstat(name):
     
     return(embed)
 
+
+def dotaplayerstats(name):
+  headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
+  chrome_options = webdriver.ChromeOptions()
+  chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
+  #chrome_options.add_argument("--headless") 
+  chrome_options.add_argument("--disable-dev-shm-usage")
+  chrome_options.add_argument("--no-sandbox")
+  chrome_options.add_argument("--window-size=1920,1080")
+
+  # you need executable path for heroku (aka production) - but remove it for using replit 
+  # driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
   
+  # Use this for testing
+  driver = webdriver.Chrome(chrome_options=chrome_options)
+  name2 = name.lower()
+
+  driver.get("https://dota2protracker.com/")
+  #time.sleep(2)
+  try:
+    button = driver.find_element_by_id("autocomplete")
+    button.click()
+    button.send_keys(name)
+
+
+    time.sleep(2)
+    data = soup(driver.page_source, "html.parser")
+    container = data.findAll("ul", {"class": "players"})
+    link = container[0].find("a")['href']
+    link = "https://dota2protracker.com" + link
+    button.close()
+    print(link)
+    player_page = requests.get(link, headers=headers)
+    print(player_page)
+    page_html = soup(player_page.text, "html.parser")
+    print("3")
+    wl_record = page_html.find("div", {"class": "player_stats"}).find("span").text
+    print("2")
+    player_picks = page_html.find_all("div", {"class": "meta-hero-card"})
+    print("1")
+    top5_picks_container = player_picks[:5]
+
+    top5_picks_info = ""
+
+    for pick_container in top5_picks_container:
+        pick_info = pick_container.find_all("div", {"class": "meta-pick-info-block"})
+        pick_name = pick_container.find("div", {"class": "meta-pick-title"}).text
+        pick_matchcount = pick_info[0].next_element.strip()
+        pick_winrate = pick_info[1].next_element.strip()
+        top5_picks_info = top5_picks_info + \
+            f'{pick_name}: {pick_matchcount} matches ({pick_winrate} Winrate) \n'
+
+    player_stats = discord.Embed(title=f'{name} stats', url=url, color=0x55a7f7)
+    player_stats.add_field(name="Win Lose", value=wl_record, inline=False)
+    player_stats.add_field(name="Top 5 picks", value=top5_picks_info, inline=False)
+    
+    return player_stats
+  except Exception as e:
+    print(e)
