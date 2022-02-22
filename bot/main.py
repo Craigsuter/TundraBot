@@ -857,7 +857,7 @@ async def on_message(message):
             last_valo = lastvalo()
             await message.reply(last_valo)
 
-        if messagereceived == !dotastats:
+        if messagereceived == "!dotastats":
           embed = dotaplayerstats(secondPartOfMessage)
           await message.reply(embed=embed)
           
