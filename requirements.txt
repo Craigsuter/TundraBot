@@ -17,3 +17,4 @@ youtube_dl
 ffmpeg
 fake_useragent
 python-dateutil
+BeautifulTable

@@ -22,6 +22,7 @@ from dropboxUploader import upload_file
 from dropboxUploader import download_file
 import random
 import operator
+from beautifultable import BeautifulTable
 
 #resetting the boards
 def scoreboarding():
@@ -44,6 +45,11 @@ def scoreboardreader():
   f = open('scoreboard2.csv', 'r') 
   f2 = open('scoreboard3.csv', 'w') 
 
+  table = BeautifulTable()
+  table.set_style(BeautifulTable.STYLE_MARKDOWN)
+  table.rows.append(["Rank", "Name", "Score"])
+  
+
   #reads in the current scoreboard and then sorts it
   reader = csv.reader(f, delimiter=',')
   sortedList = sorted(reader, key=lambda row: int(row[2]), reverse = True)
@@ -65,6 +71,7 @@ def scoreboardreader():
   j=1
   for line2 in csv_reader2:
     if (i < 11):
+      table.rows.append([str(i), line2[0], line2[2]]) 
       messagetosend= messagetosend + str(i) + " - " + line2[0] +  " - " + line2[2] + "\n"
       i = i+1
     
@@ -73,7 +80,7 @@ def scoreboardreader():
     
   
   
-  return(messagetosend)
+  return(str(table))
     
   
 def scoreboardsingle(userID):
