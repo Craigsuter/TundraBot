@@ -35,7 +35,7 @@ def cleardota(name):
   #driver = webdriver.Firefox(options=options)
   
   driver.get("https://www.hltv.org/")
-  
+  print("pushit")
   time.sleep(2)
   #Finds the username box and types the username in
   try:
