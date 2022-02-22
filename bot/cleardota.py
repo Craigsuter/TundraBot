@@ -40,7 +40,7 @@ def csgoplayerstat(name):
   
   driver.get("https://www.hltv.org/")
   
-  time.sleep(2)
+  #time.sleep(2)
   #Finds the username box and types the username in
   try:
     button = driver.find_element_by_name("query")
