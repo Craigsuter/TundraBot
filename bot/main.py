@@ -844,6 +844,10 @@ async def on_message(message):
             last_valo = lastvalo()
             await message.reply(last_valo)
 
+        if (messagereceived == "!csgostats"):
+          embed = cleardota(str(secondPartOfMessage))
+          await message.channel.send(embed=embed)
+
         if (messagereceived == "!playerinfo"):
             try:
                 lenofmessage = len(sectionsofmessage) - 1
@@ -2638,10 +2642,7 @@ async def on_message(message):
                 icon_url = message.guild.icon_url
                 await message.channel.send(icon_url)
 
-            if (messagereceived == "!cleardotatest2"):
-
-              embed = cleardota(str(secondPartOfMessage))
-              await message.channel.send(embed=embed)
+            
 
 
             if ((messagereceived == "!nextgame")

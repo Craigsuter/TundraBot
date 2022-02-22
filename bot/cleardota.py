@@ -135,7 +135,7 @@ def cleardota(name):
     
   except Exception as e:
     embed = discord.Embed(title= "Error searching")
-    embed.add_field(name="Error searching", value= "I was unable to find any players under that name, please try again!", inline=True)
+    embed.add_field(name="Error searching", value= "I was unable to find any players under that name, please try again!\nE.G: !csgostats flamez", inline=True)
     print(e)
     
     return(embed)
