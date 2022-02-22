@@ -846,7 +846,7 @@ async def on_message(message):
 
         if (messagereceived == "!csgostats"):
           embed = csgoplayerstat(str(secondPartOfMessage))
-          await message.channel.send(embed=embed)
+          await message.reply(embed=embed)
 
         if (messagereceived == "!playerinfo"):
             try:

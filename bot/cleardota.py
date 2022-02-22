@@ -27,6 +27,7 @@ def csgoplayerstat(name):
   chrome_options.add_argument("--disable-dev-shm-usage")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--window-size=1920,1080")
+  #you need executable path for heroku - but remove it for using replit
   driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
   name2 = name.lower()
 
@@ -35,7 +36,7 @@ def csgoplayerstat(name):
   #driver = webdriver.Firefox(options=options)
   
   driver.get("https://www.hltv.org/")
-  print("pushit")
+  
   time.sleep(2)
   #Finds the username box and types the username in
   try:
