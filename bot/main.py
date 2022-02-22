@@ -9,7 +9,7 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import discord
 import os
-from cleardota import cleardota
+from cleardota import csgoplayerstat
 import ffmpeg
 from discord.ext import commands
 from discord.ext.commands import Bot, has_permissions, CheckFailure
@@ -845,7 +845,7 @@ async def on_message(message):
             await message.reply(last_valo)
 
         if (messagereceived == "!csgostats"):
-          embed = cleardota(str(secondPartOfMessage))
+          embed = csgoplayerstat(str(secondPartOfMessage))
           await message.channel.send(embed=embed)
 
         if (messagereceived == "!playerinfo"):
