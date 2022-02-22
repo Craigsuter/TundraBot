@@ -156,13 +156,15 @@ def dotaplayerstats(name):
   chrome_options.add_argument("--headless") 
   chrome_options.add_argument("--disable-dev-shm-usage")
   chrome_options.add_argument("--no-sandbox")
-  chrome_options.add_argument("--window-size=1920,1080")
+  chrome_options.add_argument("--window-size=2560,1440")
+  user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
+  chrome_options.add_argument(f'user-agent={user_agent}')
 
   # you need executable path for heroku (aka production) - but remove it for using replit 
-  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+  #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
   
   # Use this for testing
-  #driver = webdriver.Chrome(chrome_options=chrome_options)
+  driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
 
   driver.get("https://dota2protracker.com/")
@@ -178,7 +180,7 @@ def dotaplayerstats(name):
     container = data.findAll("ul", {"class": "players"})
     link = container[0].find("a")['href']
     link = "https://dota2protracker.com" + link
-    button.close()
+    driver.close()
     print(link)
     player_page = requests.get(link, headers=headers)
     print(player_page)
