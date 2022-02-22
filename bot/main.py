@@ -525,6 +525,7 @@ async def on_message(message):
             await message.channel.send(embed=test)
 
 
+
         if ((messagereceived == "!csgoevents")
                 or (messagereceived == "!csgoevent")
                 or (messagereceived == "!csevents")

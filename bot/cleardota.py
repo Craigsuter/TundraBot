@@ -224,7 +224,7 @@ def valoplayerstats(name):
   headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
   chrome_options = webdriver.ChromeOptions()
   chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
-  #chrome_options.add_argument("--headless") 
+  chrome_options.add_argument("--headless") 
   chrome_options.add_argument("--disable-dev-shm-usage")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--window-size=2560,1440")
@@ -232,10 +232,10 @@ def valoplayerstats(name):
   chrome_options.add_argument(f'user-agent={user_agent}')
 
   # you need executable path for heroku (aka production) - but remove it for using replit 
-  #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
   
   # Use this for testing
-  driver = webdriver.Chrome(chrome_options=chrome_options)
+  #driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
 
 
