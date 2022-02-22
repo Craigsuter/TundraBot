@@ -48,7 +48,7 @@ def csstats(name, url):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
         today = date.today()
-        three_months_ago = today - relativedelta(months=3)
+        three_months_ago = today - relativedelta(months=1)
         url = url + f'?startDate={three_months_ago}&endDate={today}'
         player_page = requests.get(url, headers=headers)
         page_html = soup(player_page.text, "html.parser")

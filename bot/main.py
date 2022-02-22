@@ -2638,33 +2638,11 @@ async def on_message(message):
                 icon_url = message.guild.icon_url
                 await message.channel.send(icon_url)
 
-            if (messagereceived == "!cleardotatest"):
-                embed1 = discord.Embed(title="Clearing of cache has begun")
-                embed1.add_field(name="This can take roughly 20s",
-                                 value="This will update once complete",
-                                 inline=True)
-                message = await message.channel.send(embed=embed1)
-                try:
-                    cleardota()
-                    embed = discord.Embed(
-                        title="Clearing the dota page cache complete")
-                    embed.add_field(
-                        name="Clearing of liquipedia complete!",
-                        value="This usually takes 5 minutes to take effect!",
-                        inline=True)
-                    embed.add_field(name="Where to check",
-                                    value="https://liquipedia.net/dota2/OG",
-                                    inline=False)
-                    await message.edit(embed=embed)
-                except:
-                    embed = discord.Embed(title="Clearing hit an error")
-                    embed.add_field(
-                        name="Help",
-                        value=
-                        "You're able to visit - https://liquipedia.net/dota2/OG or you're able to try using the command again",
-                        inline=True)
-                    await message.edit(embed=embed)
-                    pass
+            if (messagereceived == "!cleardotatest2"):
+
+              embed = cleardota(str(secondPartOfMessage))
+              await message.channel.send(embed=embed)
+
 
             if ((messagereceived == "!nextgame")
                     or (messagereceived == "!game")
