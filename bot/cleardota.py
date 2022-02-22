@@ -166,6 +166,8 @@ def dotaplayerstats(name):
   # Use this for testing
   #driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
+  if(name2 == "ammar" or name2 = "ammar_the_fucker"):
+    name = "atf"
 
   driver.get("https://dota2protracker.com/")
   #time.sleep(2)
@@ -202,10 +204,14 @@ def dotaplayerstats(name):
         top5_picks_info = top5_picks_info + \
             f'{pick_name}: {pick_matchcount} matches ({pick_winrate} Winrate) \n'
 
-    player_stats = discord.Embed(title=f'{name} stats', url=url, color=0x55a7f7)
+    player_stats = discord.Embed(title=f'{name} stats', url=link, color=0x55a7f7)
     player_stats.add_field(name="Win Lose", value=wl_record, inline=False)
     player_stats.add_field(name="Top 5 picks", value=top5_picks_info, inline=False)
     
     return player_stats
   except Exception as e:
     print(e)
+    embed = discord.Embed(title= "Error searching")
+    embed.add_field(name="Error searching", value= "I was unable to find any players under that name, please try again!\nE.G: !dotastats atf", inline=True)
+    return embed
+    

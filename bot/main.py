@@ -464,8 +464,8 @@ async def on_message(message):
                 print(e)
 
         if messagereceived == "!testing":
-            dotaplayerstats(secondPartOfMessage)
-
+            return 
+          
         if (messagereceived == "!spreadthegoose"):
             await message.channel.send(
                 " <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> <a:OGDuckoWiggle:745372475109408808> "
@@ -857,6 +857,10 @@ async def on_message(message):
             last_valo = lastvalo()
             await message.reply(last_valo)
 
+        if messagereceived == !dotastats:
+          embed = dotaplayerstats(secondPartOfMessage)
+          await message.reply(embed=embed)
+          
         if (messagereceived == "!csgostats"):
           embed = csgoplayerstat(str(secondPartOfMessage))
           await message.reply(embed=embed)
