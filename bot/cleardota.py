@@ -27,8 +27,11 @@ def csgoplayerstat(name):
   chrome_options.add_argument("--disable-dev-shm-usage")
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--window-size=1920,1080")
-  #you need executable path for heroku - but remove it for using replit
-  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+  # you need executable path for heroku (aka production) - but remove it for using replit 
+  # driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+  
+  # Use this for testing
+  driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
 
 
@@ -47,8 +50,12 @@ def csgoplayerstat(name):
     
     time.sleep(2)
     data = soup(driver.page_source)
-    
+
+    # Use this is if the search uses the photo
     container = data.findAll("div", {"class":"box player expanded hoverable"})
+    if not container:
+      container = data.findAll("div", {"class": "box compact player hoverable"})
+    print(container)
     driver.close()
    
     tablestorage = container[0].find_all('a', href=True)
