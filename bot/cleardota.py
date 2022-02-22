@@ -161,10 +161,10 @@ def dotaplayerstats(name):
   chrome_options.add_argument(f'user-agent={user_agent}')
 
   # you need executable path for heroku (aka production) - but remove it for using replit 
-  #driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
   
   # Use this for testing
-  driver = webdriver.Chrome(chrome_options=chrome_options)
+  #driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
 
   driver.get("https://dota2protracker.com/")
