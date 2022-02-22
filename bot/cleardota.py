@@ -238,6 +238,7 @@ def valoplayerstats(name):
   driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
 
+
   driver.get("https://www.vlr.gg/")
   
   try:
@@ -258,6 +259,8 @@ def valoplayerstats(name):
     driver.close()
     
     link = "https://www.vlr.gg" + link + "/?timespan=60d"
+    if (str(name2).lower() == "leeeeeen" or str(name2).lower() == "leeeeen" or str(name2).lower() == "leeeen" or str(name2).lower() == "leeen"):   
+      link = "https://www.vlr.gg/player/14607/leeeeeen/?timespan=60d"
 
     headers = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
     player_page = requests.get(link, headers=headers)

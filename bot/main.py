@@ -524,7 +524,56 @@ async def on_message(message):
             test = dotaevents()
             await message.channel.send(embed=test)
 
-        
+        if messagereceived == "!playerstats":
+          try:
+            # Dota Players
+            if str(secondPartOfMessage).lower() == "yuragi":
+                player_stats = dotastats(
+                    "Yuragi", "https://dota2protracker.com/player/Yuragi")
+            if str(secondPartOfMessage).lower() == "bzm":
+                player_stats = dotastats(
+                    "bzm", "https://dota2protracker.com/player/bzm")
+            if str(secondPartOfMessage).lower() == "ammar" or str(secondPartOfMessage).lower() == "atf":
+                player_stats = dotastats(
+                    "AMMAR_THE_F", "https://dota2protracker.com/player/ATF")
+            if str(secondPartOfMessage).lower() == "taiga":
+                player_stats = dotastats(
+                    "Taiga", "https://dota2protracker.com/player/Taiga")
+            if str(secondPartOfMessage).lower() == "misha":
+                player_stats = dotastats(
+                    "Misha", "https://dota2protracker.com/player/Misha")
+            # CSGO Players
+            if str(secondPartOfMessage).lower() == "valde":
+                player_stats = csstats(
+                    "valde", "https://www.hltv.org/stats/players/9031/valde")
+            if str(secondPartOfMessage).lower() == "nexa":
+                player_stats = csstats(
+                    "nexa", "https://www.hltv.org/stats/players/9618/nexa")
+            if str(secondPartOfMessage).lower() == "niko":
+                player_stats = csstats(
+                    "niko", "https://www.hltv.org/stats/players/10264/niko")
+            if str(secondPartOfMessage).lower() == "mantuu" or str(secondPartOfMessage).lower() == "mantu":
+                player_stats = csstats(
+                    "mantuu", "https://www.hltv.org/stats/players/10981/mantuu")
+            if str(secondPartOfMessage).lower() == "flamez":
+                player_stats = csstats(
+                    "flameZ", "https://www.hltv.org/stats/players/16693/flamez")
+            # Valorant players
+            if str(secondPartOfMessage).lower() == "leeeeeen" or str(secondPartOfMessage).lower() == "leeeeen" or str(secondPartOfMessage).lower() == "leeeen" or str(secondPartOfMessage).lower() == "leeen":
+                player_stats = valostats("LeeeeeeN", "https://www.vlr.gg/player/14607/leeeeeen/?timespan=60d")
+            if str(secondPartOfMessage).lower() == "unkoe":
+                player_stats = valostats("uNKOE", "https://www.vlr.gg/player/4691/unkoe/?timespan=60d")
+            if str(secondPartOfMessage).lower() == "oniby":
+                player_stats = valostats("OniBy", "https://www.vlr.gg/player/9135/oniby/?timespan=60d")
+            if str(secondPartOfMessage).lower() == "fxy0":
+                player_stats = valostats("fxy0", "https://www.vlr.gg/player/2088/fxy0/?timespan=60d")
+            if str(secondPartOfMessage).lower() == "laaw":
+                player_stats = valostats("LaAw", "https://www.vlr.gg/player/117/laaw/?timespan=60d")
+            await message.channel.send(embed=player_stats)
+          except:
+              embed = discord.Embed(title="Incorrect usage of !playerstats",color=0x55a7f7)
+              embed.add_field(name="Players available", value="Dota - yuragi / bzm / ammar / taiga / misha\nCSGO - valde / nexa / niko / mantuu / flamez\nValo - LeeeeeeN / unkoe / oniby / fxy0 / laaw\nE.G - !playerstats misha", inline=True)
+              await message.channel.send(embed=embed)
 
         if ((messagereceived == "!csgoevents")
                 or (messagereceived == "!csgoevent")
