@@ -180,7 +180,20 @@ def dotaplayerstats(name):
     time.sleep(2)
     data = soup(driver.page_source, "html.parser")
     container = data.findAll("ul", {"class": "players"})
-    link = container[0].find("a")['href']
+    list_of_names = container.find_all("li")
+    i = 0
+    found = False
+    for search_name in list_of_names:
+      possible_name = search_name.text
+      if name2 == possible_name.lower():
+        found = True
+        break
+      i += 1
+
+    if not found:
+      i = 0
+
+    link = list_of_names[i].find("a")['href']
     link = "https://dota2protracker.com" + link
     driver.close()
     player_page = requests.get(link, headers=headers)
