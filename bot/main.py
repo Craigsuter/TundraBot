@@ -45,7 +45,7 @@ from lastcs import lastcsgo
 from lastvalo import lastvalo
 from CSEvents import csgoevents
 from dota_events import dotaevents
-from playerstats import dotastats, csstats
+from playerstats import dotastats, csstats, valostats
 from csgoscoreboarding import scoreboarding
 from csgoscoreboarding import scoreboardreader
 from csgoscoreboarding import scoreboardadder
@@ -525,6 +525,7 @@ async def on_message(message):
 
         if messagereceived == "!playerstats":
           try:
+            # Dota Players
             if str(secondPartOfMessage).lower() == "yuragi":
                 player_stats = dotastats(
                     "Yuragi", "https://dota2protracker.com/player/Yuragi")
@@ -540,6 +541,7 @@ async def on_message(message):
             if str(secondPartOfMessage).lower() == "misha":
                 player_stats = dotastats(
                     "Misha", "https://dota2protracker.com/player/Misha")
+            # CSGO Players
             if str(secondPartOfMessage).lower() == "valde":
                 player_stats = csstats(
                     "valde", "https://www.hltv.org/stats/players/9031/valde")
@@ -555,6 +557,17 @@ async def on_message(message):
             if str(secondPartOfMessage).lower() == "flamez":
                 player_stats = csstats(
                     "flameZ", "https://www.hltv.org/stats/players/16693/flamez")
+            # Valorant players
+            if str(secondPartOfMessage).lower() == "leeeeeen" or str(secondPartOfMessage).lower() == "leeeeen" or str(secondPartOfMessage).lower() == "leeeen" or str(secondPartOfMessage).lower() == "leeen":
+                player_stats = valostats("LeeeeeeN", "https://www.vlr.gg/player/14607/leeeeeen/?timespan=30d")
+            if str(secondPartOfMessage).lower() == "unkoe":
+                player_stats = valostats("uNKOE", "https://www.vlr.gg/player/4691/unkoe/?timespan=30d")
+            if str(secondPartOfMessage).lower() == "oniby":
+                player_stats = valostats("OniBy", "https://www.vlr.gg/player/9135/oniby/?timespan=30d")
+            if str(secondPartOfMessage).lower() == "fxy0":
+                player_stats = valostats("fxy0", "https://www.vlr.gg/player/2088/fxy0/?timespan=30d")
+            if str(secondPartOfMessage).lower() == "laaw":
+                player_stats = valostats("LaAw", "https://www.vlr.gg/player/117/laaw/?timespan=30d")
             await message.channel.send(embed=player_stats)
           except:
               embed = discord.Embed(title="Incorrect usage of !playerstats",color=0x55a7f7)
