@@ -237,7 +237,7 @@ async def on_member_update(before, after):
                                     inline=False)
                     embed.add_field(name="We have removed - " + str(counter) +
                                     " message[s] - with the following text",
-                                    value=msgtodelete.content,
+                                    value= "```" + msgtodelete.content + "```" ,
                                     inline=False)
                     await channel.send(embed=embed)
 
@@ -2638,7 +2638,7 @@ async def on_message(message):
                 icon_url = message.guild.icon_url
                 await message.channel.send(icon_url)
 
-            if (messagereceived == "!cleardota"):
+            if (messagereceived == "!cleardotatest"):
                 embed1 = discord.Embed(title="Clearing of cache has begun")
                 embed1.add_field(name="This can take roughly 20s",
                                  value="This will update once complete",
