@@ -166,7 +166,7 @@ def dotaplayerstats(name):
   # Use this for testing
   #driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
-  if(name2 == "ammar" or name2 = "ammar_the_fucker"):
+  if(name2 == "ammar" or name2 == "ammar_the_fucker"):
     name = "atf"
 
   driver.get("https://dota2protracker.com/")
