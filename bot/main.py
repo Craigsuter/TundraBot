@@ -9,7 +9,7 @@ from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import discord
 import os
-from cleardota import csgoplayerstat, dotaplayerstats
+from playerstats import csgoplayerstat, dotaplayerstats, valoplayerstats
 import ffmpeg
 from discord.ext import commands
 from discord.ext.commands import Bot, has_permissions, CheckFailure
@@ -45,7 +45,6 @@ from lastcs import lastcsgo
 from lastvalo import lastvalo
 from CSEvents import csgoevents
 from dota_events import dotaevents
-from playerstats import dotastats, csstats, valostats
 from csgoscoreboarding import scoreboarding
 from csgoscoreboarding import scoreboardreader
 from csgoscoreboarding import scoreboardadder
@@ -58,7 +57,6 @@ from valoscoreboarding import valoscoreboarding
 from valoscoreboarding import valoscoreboardreader
 from valoscoreboarding import valoscoreboardadder
 from valoscoreboarding import valoscoreboardsingle
-from cleardota import valoplayerstats
 
 #sets up command prefix
 intents = discord.Intents().all()
