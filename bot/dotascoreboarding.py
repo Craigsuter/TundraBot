@@ -66,7 +66,7 @@ def dotascoreboardreader():
   #reads in all lines from CSV - useful for generating the scoreboard
   i=1
   j=1
-  table.rows.append(["Rank", "Name", "Score"])
+  table.columns.header = ["Rank", "Name", "Score"]
   for line2 in csv_reader2:
     if (i < 11):
       table.rows.append([str(i), line2[0], line2[2]])

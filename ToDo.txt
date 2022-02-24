@@ -1,2 +1,4 @@
-add !lastvalo  - Requested by: 183707605032501248
 add page functionality to the prediction leaderboard  - Requested by: 183707605032501248
+prediction role awarder  - Requested by: 183707605032501248
+add checker if csv is empty, if so tell user that leaderboard is empty  - Requested by: 183707605032501248
+make the leaderboards look nicer  - Requested by: 183707605032501248

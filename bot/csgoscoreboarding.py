@@ -47,7 +47,7 @@ def scoreboardreader():
 
   table = BeautifulTable()
   table.set_style(BeautifulTable.STYLE_MARKDOWN)
-  table.rows.append(["Rank", "Name", "Score"])
+  table.columns.header = ["Rank", "Name", "Score"]
   
 
   #reads in the current scoreboard and then sorts it

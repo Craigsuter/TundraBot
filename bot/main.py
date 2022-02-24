@@ -5,6 +5,7 @@ import os
 import server
 from discord.ext import commands
 #imports
+import csv
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
 import discord
@@ -14,7 +15,7 @@ import ffmpeg
 from discord.ext import commands
 from discord.ext.commands import Bot, has_permissions, CheckFailure
 from dotenv import load_dotenv
-
+from discord.utils import get
 load_dotenv()
 import datetime
 from time import strptime
@@ -57,6 +58,10 @@ from valoscoreboarding import valoscoreboarding
 from valoscoreboarding import valoscoreboardreader
 from valoscoreboarding import valoscoreboardadder
 from valoscoreboarding import valoscoreboardsingle
+from testscoreboarding import testscoreboarding
+from testscoreboarding import testscoreboardreader
+from testscoreboarding import testscoreboardsingle
+from testscoreboarding import testscoreboardadder
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -462,8 +467,7 @@ async def on_message(message):
             except Exception as e:
                 print(e)
 
-        if messagereceived == "!testing":
-            return
+        
           
         if (messagereceived == "!spreadthegoose"):
             await message.channel.send(
@@ -1177,6 +1181,261 @@ async def on_message(message):
         #All gardener commands
         else:
 
+            if (messagereceived == "!testing"):
+              try:
+                server = message.guild
+                role_name = "winner role"
+                
+                i = 0
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+
+                for member in server.members:
+                    if role_id in member.roles:
+                        i = i + 1
+                        display_names.append(member.display_name)
+                        member_ids.append(member.id)
+                
+                j=0
+                for id in member_ids:
+                  user = message.guild.get_member(id)
+                  role = discord.utils.get(user.guild.roles, id=946398231116525589)
+                  await user.remove_roles(role)
+                  j=j+1
+                print(j)
+                await message.channel.send("I have removed the test role from - " + str(j) + " people")
+              except Exception as e:
+                
+                print(e)
+
+              try:
+                download_file('/testscoreboard.csv', 'scoreboard13.csv')
+                f = open('scoreboard13.csv', 'r')
+                reader = csv.reader(f, delimiter=',')
+                scorecheck = int(secondPartOfMessage)
+                i=0
+                for lines in reader:
+                  if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
+                    
+                    try:
+                      
+                      i=i+1
+                      user = message.guild.get_member(int(lines[1]))
+                      role = discord.utils.get(user.guild.roles, id = 946398231116525589)
+                      await user.add_roles(role)
+                    except:
+                      print("User no longer in server")
+                  
+                await message.channel.send("I have added the test prediction winner role to - " + str(i) + " people")
+              except Exception as e: 
+                print(e)
+                await message.channel.send("There was an error in command usage, to use command use !testing X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
+
+
+            if (messagereceived == "!dotawinners"):
+              try:
+                server = message.guild
+                role_name = "Dota 2 Oracle"
+                i = 0
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+
+                for member in server.members:
+                    if role_id in member.roles:
+                        i = i + 1
+                        display_names.append(member.display_name)
+                        member_ids.append(member.id)
+                
+                j=0
+                for id in member_ids:
+                  user = message.guild.get_member(id)
+                  role = discord.utils.get(user.guild.roles, id=729106634437296148)
+                  await user.remove_roles(role)
+                  j=j+1
+                print(j)
+                await message.channel.send("I have removed the Dota Oracle role from - " + str(j) + " people")
+              except Exception as e:
+                
+                print(e)
+
+              try:
+                download_file('/dotascoreboard.csv', 'scoreboard14.csv')
+                f = open('scoreboard14.csv', 'r')
+                reader = csv.reader(f, delimiter=',')
+                scorecheck = int(secondPartOfMessage)
+                i=0
+                for lines in reader:
+                  if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
+                    
+                    try:
+                      
+                      i=i+1
+                      user = message.guild.get_member(int(lines[1]))
+                      role = discord.utils.get(user.guild.roles, id=729106634437296148)
+                      await user.add_roles(role)
+                    except:
+                      print("User no longer in server")
+                  
+                await message.channel.send("I have added the Dota Oracle role to - " + str(i) + " people - you can use !getuserlist @ dota 2 oracle, to get a list of users with the role")
+              except Exception as e: 
+                print(e)
+                await message.channel.send("There was an error in command usage, to use command use !dotawinners X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
+
+
+
+            if (messagereceived == "!csgowinners"):
+              try:
+                server = message.guild
+                role_name = "CS:GO AWPacle"
+                i = 0
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+
+                for member in server.members:
+                    if role_id in member.roles:
+                        i = i + 1
+                        display_names.append(member.display_name)
+                        member_ids.append(member.id)
+                
+                j=0
+                for id in member_ids:
+                  user = message.guild.get_member(id)
+                  role = discord.utils.get(user.guild.roles, id=729106753085636688)
+                  await user.remove_roles(role)
+                  j=j+1
+                print(j)
+                await message.channel.send("I have removed the CSGO AWPacle role from - " + str(j) + " people")
+              except Exception as e:
+                
+                print(e)
+
+              try:
+                download_file('/csgoscoreboard.csv', 'scoreboard15.csv')
+                f = open('scoreboard15.csv', 'r')
+                reader = csv.reader(f, delimiter=',')
+                scorecheck = int(secondPartOfMessage)
+                i=0
+                for lines in reader:
+                  if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
+                    
+                    try:
+                      
+                      i=i+1
+                      user = message.guild.get_member(int(lines[1]))
+                      role = discord.utils.get(user.guild.roles, id = 729106753085636688)
+                      await user.add_roles(role)
+                    except:
+                      print("User no longer in server")
+                  
+                await message.channel.send("I have added the CSGO AWPacle role to - " + str(i) + " people - you can use !getuserlist @ CSGO AWPacle, to get a list of users with the role")
+              except Exception as e: 
+                print(e)
+                await message.channel.send("There was an error in command usage, to use command use !csgowinners X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
+              
+              
+              
+
+            if (messagereceived == "!valowinners"):
+              try:
+                server = message.guild
+                role_name = "Operation Predict"
+                i = 0
+                role_id = server.roles[0]
+                display_names = []
+                member_ids = []
+                for role in server.roles:
+                    if role_name == role.name:
+                        role_id = role
+                        break
+                else:
+                    await message.channel.send("Role doesn't exist")
+                    return
+
+                for member in server.members:
+                    if role_id in member.roles:
+                        i = i + 1
+                        display_names.append(member.display_name)
+                        member_ids.append(member.id)
+                
+                j=0
+                for id in member_ids:
+                  user = message.guild.get_member(id)
+                  role = discord.utils.get(user.guild.roles, id=946423736054218762)
+                  await user.remove_roles(role)
+                  j=j+1
+                print(j)
+                await message.channel.send("I have removed the CSGO AWPacle role from - " + str(j) + " people")
+              except Exception as e:
+                
+                print(e)
+
+              try:
+                download_file('/valoscoreboard.csv', 'scoreboard16.csv')
+                f = open('scoreboard16.csv', 'r')
+                reader = csv.reader(f, delimiter=',')
+                scorecheck = int(secondPartOfMessage)
+                i=0
+                for lines in reader:
+                  if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
+                    
+                    try:
+                      
+                      i=i+1
+                      user = message.guild.get_member(int(lines[1]))
+                      role = discord.utils.get(user.guild.roles, id = 946423736054218762)
+                      await user.add_roles(role)
+                    except:
+                      print("User no longer in server")
+                  
+                await message.channel.send("I have added the Operation Predict role to - " + str(i) + " people - you can use !getuserlist @ Operation Predict, to get a list of users with the role")
+              except Exception as e: 
+                print(e)
+                await message.channel.send("There was an error in command usage, to use command use !valowinners X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
+
+                
+
+          
+            if (messagereceived == "!show"
+                    and (str(secondPartOfMessage).lower() == "test"
+                         or str(secondPartOfMessage).lower() == "test")
+                    and message.mentions.__len__() == 0):
+                test = testscoreboardreader()
+                embed = discord.Embed(title="test prediction leaderboard",
+                                      color=0x55a7f7)
+                embed.add_field(name="test Prediction top 10",
+                                value="```\n" + test + "\n```",
+                                inline=True)
+                embed.add_field(
+                    name="Can't see yourself?",
+                    value=
+                    "Can't see yourself on the table? use !show csgo @*yourself* to see where you stand!",
+                    inline=False)
+                await message.channel.send(embed=embed)
+
             if (messagereceived == "!show"
                     and (str(secondPartOfMessage).lower() == "csgo"
                          or str(secondPartOfMessage).lower() == "cs")
@@ -1217,6 +1476,14 @@ async def on_message(message):
                     and (message.mentions.__len__() > 0)):
                 for user in message.mentions:
                     test = scoreboardsingle(user.id)
+                    await message.channel.send(test)
+
+            if ((messagereceived == "!show")
+                    and (str(secondPartOfMessage).lower() == "test"
+                         or str(secondPartOfMessage).lower() == "test")
+                    and (message.mentions.__len__() > 0)):
+                for user in message.mentions:
+                    test = testscoreboardsingle(user.id)
                     await message.channel.send(test)
 
             if ((messagereceived == "!show")
@@ -1281,6 +1548,54 @@ async def on_message(message):
                             if role_id in member.roles:
                                 i = i + 1
                                 dotascoreboardadder(member.display_name,
+                                                    member.id, 1)
+                                display_names.append(member.display_name)
+                                member_ids.append(member.id)
+                        if (i == 0):
+                            await message.channel.send(
+                                "No one was found in that role!")
+                        else:
+                            await message.channel.send(
+                                "I have added the results! This affected: " +
+                                str(i) + " users")
+                    except:
+                        await message.channel.send(
+                            "You need to tag the winning role: example !dotaadd @D9-0"
+                        )
+                else:
+                    await message.channel.send(
+                        "You need to tag the winning role: example !dotaadd @D9-0"
+                    )
+
+            if ((messagereceived == "!testadd")):
+
+                if (len(sectionsofmessage) > 1):
+                    await message.channel.send(
+                        "Starting adding results this might take a while")
+                    try:
+                        server = message.guild
+                        role_name = sectionsofmessage[1]
+                        role_name = role_name[3:-1]
+                        role_name = discord.utils.get(guild.roles,
+                                                      id=int(role_name))
+                        role_name = str(role_name)
+                        i = 0
+                        role_id = server.roles[0]
+                        display_names = []
+                        member_ids = []
+                        file = open("filetosend.txt", "w")
+                        file.close()
+                        for role in server.roles:
+                            if role_name == role.name:
+                                role_id = role
+                                break
+                        else:
+                            await message.channel.send("Role doesn't exist")
+                            return
+                        for member in server.members:
+                            if role_id in member.roles:
+                                i = i + 1
+                                testscoreboardadder(member.display_name,
                                                     member.id, 1)
                                 display_names.append(member.display_name)
                                 member_ids.append(member.id)
@@ -1442,6 +1757,53 @@ async def on_message(message):
                         "You need to tag the winning role: example !csgoremove @cs9-0"
                     )
 
+            if ((messagereceived == "!testremove")):
+                if (len(sectionsofmessage) > 1):
+                    await message.channel.send(
+                        "Starting adding results this might take a while")
+                    try:
+                        server = message.guild
+                        role_name = sectionsofmessage[1]
+                        role_name = role_name[3:-1]
+                        role_name = discord.utils.get(guild.roles,
+                                                      id=int(role_name))
+                        role_name = str(role_name)
+                        i = 0
+                        role_id = server.roles[0]
+                        display_names = []
+                        member_ids = []
+                        file = open("filetosend.txt", "w")
+                        file.close()
+                        for role in server.roles:
+                            if role_name == role.name:
+                                role_id = role
+                                break
+                        else:
+                            await message.channel.send("Role doesn't exist")
+                            return
+                        for member in server.members:
+                            if role_id in member.roles:
+                                i = i + 1
+                                testscoreboardadder(member.display_name, member.id,
+                                                -1)
+                                display_names.append(member.display_name)
+                                member_ids.append(member.id)
+                        if (i == 0):
+                            await message.channel.send(
+                                "No one was found in that role!")
+                        else:
+                            await message.channel.send(
+                                "I have added the results! This affected: " +
+                                str(i) + " users")
+                    except:
+                        await message.channel.send(
+                            "You need to tag the winning role: example !csgoremove @cs9-0"
+                        )
+                else:
+                    await message.channel.send(
+                        "You need to tag the winning role: example !csgoremove @cs9-0"
+                    )  
+
             if ((messagereceived == "!dotaremove")):
                 if (len(sectionsofmessage) > 1):
                     await message.channel.send(
@@ -1540,6 +1902,9 @@ async def on_message(message):
                 scoreboarding()
                 await message.channel.send("The CSGO Leaderboard is reset")
 
+            if (messagereceived == "!cleartestboard"):
+                testscoreboarding()
+                await message.channel.send("The Test Leaderboard is reset")
             if (messagereceived == "!cleardotaboard"):
                 dotascoreboarding()
                 await message.channel.send("The Dota Leaderboard is reset")
