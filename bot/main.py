@@ -1182,6 +1182,7 @@ async def on_message(message):
         else:
 
             if (messagereceived == "!testing"):
+              return
               try:
                 server = message.guild
                 role_name = "winner role"
@@ -1217,6 +1218,7 @@ async def on_message(message):
                 print(e)
 
               try:
+                additionalmessage=""
                 download_file('/testscoreboard.csv', 'scoreboard13.csv')
                 f = open('scoreboard13.csv', 'r')
                 reader = csv.reader(f, delimiter=',')
@@ -1227,14 +1229,19 @@ async def on_message(message):
                     
                     try:
                       
+                      
                       i=i+1
                       user = message.guild.get_member(int(lines[1]))
+                      additionalmessage = additionalmessage + "<@" + str(lines[1]) + "> / "
                       role = discord.utils.get(user.guild.roles, id = 946398231116525589)
                       await user.add_roles(role)
                     except:
                       print("User no longer in server")
+
+               
                   
                 await message.channel.send("I have added the test prediction winner role to - " + str(i) + " people")
+                await message.channel.send("This includes:\n```" + additionalmessage + "```")
               except Exception as e: 
                 print(e)
                 await message.channel.send("There was an error in command usage, to use command use !testing X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
@@ -1280,6 +1287,7 @@ async def on_message(message):
                 reader = csv.reader(f, delimiter=',')
                 scorecheck = int(secondPartOfMessage)
                 i=0
+                additionalmessage=""
                 for lines in reader:
                   if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
                     
@@ -1287,12 +1295,14 @@ async def on_message(message):
                       
                       i=i+1
                       user = message.guild.get_member(int(lines[1]))
+                      additionalmessage = additionalmessage + "<@" + str(lines[1]) + "> / "
                       role = discord.utils.get(user.guild.roles, id=729106634437296148)
                       await user.add_roles(role)
                     except:
                       print("User no longer in server")
                   
                 await message.channel.send("I have added the Dota Oracle role to - " + str(i) + " people - you can use !getuserlist @ dota 2 oracle, to get a list of users with the role")
+                await message.channel.send("This includes:\n```" + additionalmessage + "```")
               except Exception as e: 
                 print(e)
                 await message.channel.send("There was an error in command usage, to use command use !dotawinners X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
@@ -1339,6 +1349,7 @@ async def on_message(message):
                 reader = csv.reader(f, delimiter=',')
                 scorecheck = int(secondPartOfMessage)
                 i=0
+                additionalmessage=""
                 for lines in reader:
                   if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
                     
@@ -1346,12 +1357,14 @@ async def on_message(message):
                       
                       i=i+1
                       user = message.guild.get_member(int(lines[1]))
+                      additionalmessage = additionalmessage + "<@" + str(lines[1]) + "> / "
                       role = discord.utils.get(user.guild.roles, id = 729106753085636688)
                       await user.add_roles(role)
                     except:
                       print("User no longer in server")
                   
                 await message.channel.send("I have added the CSGO AWPacle role to - " + str(i) + " people - you can use !getuserlist @ CSGO AWPacle, to get a list of users with the role")
+                await message.channel.send("This includes:\n```" + additionalmessage + "```")
               except Exception as e: 
                 print(e)
                 await message.channel.send("There was an error in command usage, to use command use !csgowinners X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
@@ -1399,6 +1412,7 @@ async def on_message(message):
                 reader = csv.reader(f, delimiter=',')
                 scorecheck = int(secondPartOfMessage)
                 i=0
+                additionalmessage =""
                 for lines in reader:
                   if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
                     
@@ -1406,12 +1420,14 @@ async def on_message(message):
                       
                       i=i+1
                       user = message.guild.get_member(int(lines[1]))
+                      additionalmessage = additionalmessage + "<@" + str(lines[1]) + "> / "
                       role = discord.utils.get(user.guild.roles, id = 946423736054218762)
                       await user.add_roles(role)
                     except:
                       print("User no longer in server")
                   
                 await message.channel.send("I have added the Operation Predict role to - " + str(i) + " people - you can use !getuserlist @ Operation Predict, to get a list of users with the role")
+                await message.channel.send("This includes:\n```" + additionalmessage + "```")
               except Exception as e: 
                 print(e)
                 await message.channel.send("There was an error in command usage, to use command use !valowinners X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
