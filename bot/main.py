@@ -1439,6 +1439,7 @@ async def on_message(message):
                     and (str(secondPartOfMessage).lower() == "test"
                          or str(secondPartOfMessage).lower() == "test")
                     and message.mentions.__len__() == 0):
+                return
                 test = testscoreboardreader()
                 embed = discord.Embed(title="test prediction leaderboard",
                                       color=0x55a7f7)
@@ -1498,6 +1499,7 @@ async def on_message(message):
                     and (str(secondPartOfMessage).lower() == "test"
                          or str(secondPartOfMessage).lower() == "test")
                     and (message.mentions.__len__() > 0)):
+                return
                 for user in message.mentions:
                     test = testscoreboardsingle(user.id)
                     await message.channel.send(test)
@@ -1584,7 +1586,7 @@ async def on_message(message):
                     )
 
             if ((messagereceived == "!testadd")):
-
+                return
                 if (len(sectionsofmessage) > 1):
                     await message.channel.send(
                         "Starting adding results this might take a while")
@@ -1774,6 +1776,7 @@ async def on_message(message):
                     )
 
             if ((messagereceived == "!testremove")):
+                return
                 if (len(sectionsofmessage) > 1):
                     await message.channel.send(
                         "Starting adding results this might take a while")
@@ -1919,6 +1922,7 @@ async def on_message(message):
                 await message.channel.send("The CSGO Leaderboard is reset")
 
             if (messagereceived == "!cleartestboard"):
+                return
                 testscoreboarding()
                 await message.channel.send("The Test Leaderboard is reset")
             if (messagereceived == "!cleardotaboard"):
