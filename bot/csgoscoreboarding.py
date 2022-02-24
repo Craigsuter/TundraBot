@@ -52,6 +52,8 @@ def scoreboardreader():
 
   #reads in the current scoreboard and then sorts it
   reader = csv.reader(f, delimiter=',')
+  lines=len(list(reader))
+
   sortedList = sorted(reader, key=lambda row: int(row[2]), reverse = True)
 
   #starts write for sorted list
@@ -77,7 +79,8 @@ def scoreboardreader():
     
  
   f3.close()
-    
+  if(lines==0):
+    table= "There are currently no users on the table!"
   
   
   return(str(table))
