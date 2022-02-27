@@ -1545,7 +1545,7 @@ async def on_message(message):
                     await message.channel.send(test)
 
             if ((messagereceived == "!dotaadd")):
-
+                download_file('/dotascoreboard.csv', 'scoreboard5.csv')
                 if (len(sectionsofmessage) > 1):
                     await message.channel.send(
                         "Starting adding results this might take a while")
@@ -1580,6 +1580,7 @@ async def on_message(message):
                             await message.channel.send(
                                 "No one was found in that role!")
                         else:
+                            upload_file('/dotascoreboard.csv', 'scoreboard6.csv')
                             await message.channel.send(
                                 "I have added the results! This affected: " +
                                 str(i) + " users")
@@ -1593,7 +1594,6 @@ async def on_message(message):
                     )
 
             if ((messagereceived == "!testadd")):
-              
               download_file('/testscoreboard.csv', 'scoreboard11.csv')
               if (len(sectionsofmessage) > 1):
                   await message.channel.send(
@@ -1645,6 +1645,7 @@ async def on_message(message):
             if ((messagereceived == "!csgoadd")):
 
                 if (len(sectionsofmessage) > 1):
+                    download_file('/csgoscoreboard.csv', 'scoreboard2.csv')
                     await message.channel.send(
                         "Starting adding results this might take a while")
                     try:
@@ -1671,13 +1672,14 @@ async def on_message(message):
                             if role_id in member.roles:
                                 i = i + 1
                                 scoreboardadder(member.display_name, member.id,
-                                                1)
+                                                1, i)
                                 display_names.append(member.display_name)
                                 member_ids.append(member.id)
                         if (i == 0):
                             await message.channel.send(
                                 "No one was found in that role!")
                         else:
+                            upload_file('/csgoscoreboard.csv', 'scoreboard3.csv')
                             await message.channel.send(
                                 "I have added the results! This affected: " +
                                 str(i) + " users")
@@ -1741,6 +1743,7 @@ async def on_message(message):
 
             if ((messagereceived == "!csgoremove")):
                 if (len(sectionsofmessage) > 1):
+                    download_file('/csgoscoreboard.csv', 'scoreboard2.csv')
                     await message.channel.send(
                         "Starting adding results this might take a while")
                     try:
@@ -1767,13 +1770,14 @@ async def on_message(message):
                             if role_id in member.roles:
                                 i = i + 1
                                 scoreboardadder(member.display_name, member.id,
-                                                -1)
+                                                -1, i)
                                 display_names.append(member.display_name)
                                 member_ids.append(member.id)
                         if (i == 0):
                             await message.channel.send(
                                 "No one was found in that role!")
                         else:
+                            upload_file('/csgoscoreboard.csv', 'scoreboard3.csv')
                             await message.channel.send(
                                 "I have added the results! This affected: " +
                                 str(i) + " users")
@@ -1787,7 +1791,7 @@ async def on_message(message):
                     )
 
             if ((messagereceived == "!testremove")):
-                return
+                download_file('/testscoreboard.csv', 'scoreboard11.csv')
                 if (len(sectionsofmessage) > 1):
                     await message.channel.send(
                         "Starting adding results this might take a while")
@@ -1815,13 +1819,14 @@ async def on_message(message):
                             if role_id in member.roles:
                                 i = i + 1
                                 testscoreboardadder(member.display_name, member.id,
-                                                -1)
+                                                -1, i)
                                 display_names.append(member.display_name)
                                 member_ids.append(member.id)
                         if (i == 0):
                             await message.channel.send(
                                 "No one was found in that role!")
                         else:
+                            upload_file('/testscoreboard.csv', 'scoreboard12.csv')
                             await message.channel.send(
                                 "I have added the results! This affected: " +
                                 str(i) + " users")
@@ -1836,6 +1841,7 @@ async def on_message(message):
 
             if ((messagereceived == "!dotaremove")):
                 if (len(sectionsofmessage) > 1):
+                    download_file('/dotascoreboard.csv', 'scoreboard5.csv')
                     await message.channel.send(
                         "Starting adding results this might take a while")
                     try:
@@ -1862,13 +1868,14 @@ async def on_message(message):
                             if role_id in member.roles:
                                 i = i + 1
                                 dotascoreboardadder(member.display_name,
-                                                    member.id, -1)
+                                                    member.id, -1, i)
                                 display_names.append(member.display_name)
                                 member_ids.append(member.id)
                         if (i == 0):
                             await message.channel.send(
                                 "No one was found in that role!")
                         else:
+                            upload_file('/dotascoreboard.csv', 'scoreboard6.csv')
                             await message.channel.send(
                                 "I have added the results! This affected: " +
                                 str(i) + " users")
@@ -1883,6 +1890,7 @@ async def on_message(message):
 
             if ((messagereceived == "!valoremove")):
                 if (len(sectionsofmessage) > 1):
+                    download_file('/valoscoreboard.csv', 'scoreboard8.csv')
                     await message.channel.send(
                         "Starting adding results this might take a while")
                     try:
@@ -1909,13 +1917,14 @@ async def on_message(message):
                             if role_id in member.roles:
                                 i = i + 1
                                 valoscoreboardadder(member.display_name,
-                                                    member.id, -1)
+                                                    member.id, -1, i)
                                 display_names.append(member.display_name)
                                 member_ids.append(member.id)
                         if (i == 0):
                             await message.channel.send(
                                 "No one was found in that role!")
                         else:
+                            upload_file('/valoscoreboard.csv', 'scoreboard9.csv')
                             await message.channel.send(
                                 "I have added the results! This affected: " +
                                 str(i) + " users")
