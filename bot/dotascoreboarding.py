@@ -137,11 +137,11 @@ def dotascoreboardadder(usersname, userID, scoretoadd, counter):
 
   
   arrayofusers = list(table.columns[1])
-  print(arrayofusers)
+  
   z=0
   try:
     for i, item in enumerate(arrayofusers):
-      print(i)
+      
       if item == str(userID):
         table.rows[i] = [usersname, userID, int(table.rows[i][2]) + int(scoretoadd)]
         z=z+1
