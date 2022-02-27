@@ -24,6 +24,7 @@ import random
 import operator
 from beautifultable import BeautifulTable
 
+
 #resetting the boards
 def testscoreboarding():
   #This is purely for creating a CSV file that is empty
@@ -135,44 +136,42 @@ def testscoreboardsingle(userID):
   
   
     
-def testscoreboardadder(usersname, userID, scoretoadd):
+def testscoreboardadder(usersname, userID, scoretoadd, counter):
   i=0
   filenames = ["accountname", "userIDs", "score"]
-  
-  #downloads CSV file from dropbox 
-  #download_file('/testscoreboard.csv', 'scoreboard11.csv')
 
-  #opening files
-  f=open('scoreboard11.csv', 'r')
-  f2=open('scoreboard12.csv', "w")
-  
-  reader = csv.DictReader(f, fieldnames=filenames)
-  writer = csv.writer(f2)
-  
-  #updating values if finding matching adding the new score to it
-  for row in reader:
-    if(str(row['userIDs']) == str(userID)):
-      score = int(row['score']) + int(scoretoadd)
-      i= 1
-      values=[row['accountname'], row['userIDs'], str(score)]
-      writer.writerow(values)
+  try:
+    if(counter == 1):
+      table = BeautifulTable().from_csv('scoreboard11.csv', header=False)
     else:
-      values=[row['accountname'], row['userIDs'], row['score']]
-      writer.writerow(values)
-  
-  f2.close()
-  #if a new member is being added then it appends to end
-  if (i == 0):
-    f3 =open('scoreboard12.csv', "a")
-    writer2 = csv.writer(f3)
-    addingscore = [usersname, userID, scoretoadd]
-    writer2.writerow(addingscore)
-    f3.close()
-  
- 
-  #reuploads the file
-  #upload_file('/testscoreboard.csv', 'scoreboard12.csv')
+      table = BeautifulTable().from_csv('scoreboard12.csv', header=False)
+      
+  except Exception as e:
+    print(e)
 
-    
-   
+  
+  arrayofusers = list(table.columns[1])
+  print(arrayofusers)
+  z=0
+  try:
+    for i, item in enumerate(arrayofusers):
+      print(i)
+      if item == str(userID):
+        table.rows[i] = [usersname, userID, int(table.rows[i][2]) + 1]
+        z=z+1
+
+    if(z == 0):
+      table.rows.append([usersname, userID, 1])
+  except Exception as e:
+    print(e)
+      
+ 
+  
+  try:
+    table.to_csv('scoreboard12.csv')
+  except Exception as e:
+    print(e)
+
+ 
+  
 

@@ -1446,7 +1446,7 @@ async def on_message(message):
                     and (str(secondPartOfMessage).lower() == "test"
                          or str(secondPartOfMessage).lower() == "test")
                     and message.mentions.__len__() == 0):
-                return
+                
                 test = testscoreboardreader(thirdPartOfMessage)
                 embed = discord.Embed(title="test prediction leaderboard",
                                       color=0x55a7f7)
@@ -1593,54 +1593,54 @@ async def on_message(message):
                     )
 
             if ((messagereceived == "!testadd")):
-              return
-                download_file('/testscoreboard.csv', 'scoreboard11.csv')
-                if (len(sectionsofmessage) > 1):
-                    await message.channel.send(
-                        "Starting adding results this might take a while")
-                    try:
-                        server = message.guild
-                        role_name = sectionsofmessage[1]
-                        role_name = role_name[3:-1]
-                        role_name = discord.utils.get(guild.roles,
-                                                      id=int(role_name))
-                        role_name = str(role_name)
-                        i = 0
-                        role_id = server.roles[0]
-                        display_names = []
-                        member_ids = []
-                        file = open("filetosend.txt", "w")
-                        file.close()
-                        for role in server.roles:
-                            if role_name == role.name:
-                                role_id = role
-                                break
-                        else:
-                            await message.channel.send("Role doesn't exist")
-                            return
-                        for member in server.members:
-                            if role_id in member.roles:
-                                i = i + 1
-                                testscoreboardadder(member.display_name,
-                                                    member.id, 1)
-                                display_names.append(member.display_name)
-                                member_ids.append(member.id)
-                        if (i == 0):
-                            await message.channel.send(
-                                "No one was found in that role!")
-                        else:
-                          upload_file('/testscoreboard.csv', 'scoreboard12.csv')
+              
+              download_file('/testscoreboard.csv', 'scoreboard11.csv')
+              if (len(sectionsofmessage) > 1):
+                  await message.channel.send(
+                      "Starting adding results this might take a while")
+                  try:
+                      server = message.guild
+                      role_name = sectionsofmessage[1]
+                      role_name = role_name[3:-1]
+                      role_name = discord.utils.get(guild.roles,
+                                                    id=int(role_name))
+                      role_name = str(role_name)
+                      i = 0
+                      role_id = server.roles[0]
+                      display_names = []
+                      member_ids = []
+                      file = open("filetosend.txt", "w")
+                      file.close()
+                      for role in server.roles:
+                          if role_name == role.name:
+                              role_id = role
+                              break
+                      else:
+                          await message.channel.send("Role doesn't exist")
+                          return
+                      for member in server.members:
+                          if role_id in member.roles:
+                              i = i + 1
+                              testscoreboardadder(member.display_name,
+                                                  member.id, 1, i)
+                              display_names.append(member.display_name)
+                              member_ids.append(member.id)
+                      if (i == 0):
                           await message.channel.send(
-                                "I have added the results! This affected: " +
-                                str(i) + " users")
-                    except:
+                              "No one was found in that role!")
+                      else:
+                        upload_file('/testscoreboard.csv', 'scoreboard12.csv')
                         await message.channel.send(
-                            "You need to tag the winning role: example !dotaadd @D9-0"
-                        )
-                else:
-                    await message.channel.send(
-                        "You need to tag the winning role: example !dotaadd @D9-0"
-                    )
+                              "I have added the results! This affected: " +
+                              str(i) + " users")
+                  except:
+                      await message.channel.send(
+                          "You need to tag the winning role: example !dotaadd @D9-0"
+                      )
+              else:
+                  await message.channel.send(
+                      "You need to tag the winning role: example !dotaadd @D9-0"
+                  )
 
             if ((messagereceived == "!csgoadd")):
 
@@ -1691,6 +1691,7 @@ async def on_message(message):
                     )
 
             if ((messagereceived == "!valoadd")):
+                download_file('/valoscoreboard.csv', 'scoreboard8.csv')
                 if (len(sectionsofmessage) > 1):
                     await message.channel.send(
                         "Starting adding results this might take a while")
@@ -1718,13 +1719,14 @@ async def on_message(message):
                             if role_id in member.roles:
                                 i = i + 1
                                 valoscoreboardadder(member.display_name,
-                                                    member.id, 1)
+                                                    member.id, 1, i)
                                 display_names.append(member.display_name)
                                 member_ids.append(member.id)
                         if (i == 0):
                             await message.channel.send(
                                 "No one was found in that role!")
                         else:
+                            upload_file('/valoscoreboard.csv', 'scoreboard9.csv')
                             await message.channel.send(
                                 "I have added the results! This affected: " +
                                 str(i) + " users")
@@ -1931,7 +1933,7 @@ async def on_message(message):
                 await message.channel.send("The CSGO Leaderboard is reset")
 
             if (messagereceived == "!cleartestboard"):
-                return
+                
                 testscoreboarding()
                 await message.channel.send("The Test Leaderboard is reset")
             if (messagereceived == "!cleardotaboard"):
