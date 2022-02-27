@@ -39,7 +39,7 @@ def dotascoreboarding():
 
 
 
-def dotascoreboardreader():
+def dotascoreboardreader(pagenumber):
   #opens the scoreboard file + generates a file to store a sorted list for leaderboard
   download_file('/dotascoreboard.csv', 'scoreboard5.csv')
   f = open('scoreboard5.csv', 'r') 
@@ -63,18 +63,34 @@ def dotascoreboardreader():
 
   messagetosend=""
   csv_reader2 = csv.reader(f3)
+
+  print(pagenumber)
+
+  try:
+    if(str(pagenumber) == "none"):
+      k=11
+      pagenumber=1
+    if(int(pagenumber) < 2):
+      k=11
+    else: 
+      k = 11*int(pagenumber)
+  except:
+     k=11
   #reads in all lines from CSV - useful for generating the scoreboard
   i=1
   j=1
+  print(k)
   table.columns.header = ["Rank", "Name", "Score"]
-  for line2 in csv_reader2:
-    if (i < 11):
-      table.rows.append([str(i), line2[0], line2[2]])
-      messagetosend= messagetosend + str(i) + " - " + line2[0] +  " - " + line2[2] + "\n"
-      i = i+1
-
-  
- 
+  for line2 in csv_reader2:  
+    if (i < int(k)):
+      
+      if(int(pagenumber)>1):
+        if(i < (int(k)-(int(pagenumber)) + 1) and i > 10 * ((int(pagenumber)-1))):
+          table.rows.append([str(i), line2[0], line2[2]])
+      else:
+        if(i < int(k) and i > int(k) - (11*(int(pagenumber)))):
+          table.rows.append([str(i), line2[0], line2[2]])
+    i=i+1
   f3.close()
   
   if(i==1):

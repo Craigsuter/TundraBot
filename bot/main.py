@@ -329,6 +329,13 @@ async def on_message(message):
         url = "none"
         secondPartOfMessage = "none"
 
+    try:
+        thirdPartOfMessage = sectionsofmessage[2]
+        
+    except:
+        thirdPartOfMessage = "none"
+        
+
     messagetolower = introtomessage
     messagereceived = messagetolower.lower()
     mention = f'<@!{client.user.id}>'
@@ -1439,8 +1446,7 @@ async def on_message(message):
                     and (str(secondPartOfMessage).lower() == "test"
                          or str(secondPartOfMessage).lower() == "test")
                     and message.mentions.__len__() == 0):
-                return
-                test = testscoreboardreader()
+                test = testscoreboardreader(thirdPartOfMessage)
                 embed = discord.Embed(title="test prediction leaderboard",
                                       color=0x55a7f7)
                 embed.add_field(name="test Prediction top 10",
@@ -1457,7 +1463,7 @@ async def on_message(message):
                     and (str(secondPartOfMessage).lower() == "csgo"
                          or str(secondPartOfMessage).lower() == "cs")
                     and message.mentions.__len__() == 0):
-                test = scoreboardreader()
+                test = scoreboardreader(thirdPartOfMessage)
                 embed = discord.Embed(title="CSGO prediction leaderboard",
                                       color=0x55a7f7)
                 embed.add_field(name="CSGO Prediction top 10",
@@ -1474,7 +1480,7 @@ async def on_message(message):
                     and (str(secondPartOfMessage).lower() == "valo"
                          or str(secondPartOfMessage).lower() == "valorant")
                     and message.mentions.__len__() == 0):
-                test = valoscoreboardreader()
+                test = valoscoreboardreader(thirdPartOfMessage)
                 embed = discord.Embed(title="Valorant prediction leaderboard",
                                       color=0x55a7f7)
                 embed.add_field(name="Valorant prediction top 10",
@@ -1516,7 +1522,7 @@ async def on_message(message):
                     and (str(secondPartOfMessage).lower() == "dota"
                          or str(secondPartOfMessage).lower() == "dota2")
                     and message.mentions.__len__() == 0):
-                test = dotascoreboardreader()
+                test = dotascoreboardreader(thirdPartOfMessage)
                 embed = discord.Embed(title="Dota 2 prediction leaderboard",
                                       color=0x55a7f7)
                 embed.add_field(name="Dota 2 Prediction top 10",
@@ -1586,7 +1592,7 @@ async def on_message(message):
                     )
 
             if ((messagereceived == "!testadd")):
-                return
+                
                 if (len(sectionsofmessage) > 1):
                     await message.channel.send(
                         "Starting adding results this might take a while")
