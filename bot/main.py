@@ -1573,17 +1573,17 @@ async def on_message(message):
                             if role_id in member.roles:
                                 i = i + 1
                                 dotascoreboardadder(member.display_name,
-                                                    member.id, 1)
+                                                    member.id, 1, i)
                                 display_names.append(member.display_name)
                                 member_ids.append(member.id)
                         if (i == 0):
                             await message.channel.send(
                                 "No one was found in that role!")
                         else:
-                            upload_file('/dotascoreboard.csv', 'scoreboard6.csv')
-                            await message.channel.send(
-                                "I have added the results! This affected: " +
-                                str(i) + " users")
+                          upload_file('/dotascoreboard.csv', 'scoreboard6.csv')
+                          await message.channel.send(
+                              "I have added the results! This affected: " +
+                              str(i) + " users")
                     except:
                         await message.channel.send(
                             "You need to tag the winning role: example !dotaadd @D9-0"
