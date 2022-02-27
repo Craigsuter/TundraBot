@@ -140,7 +140,7 @@ def testscoreboardadder(usersname, userID, scoretoadd):
   filenames = ["accountname", "userIDs", "score"]
   
   #downloads CSV file from dropbox 
-  download_file('/testscoreboard.csv', 'scoreboard11.csv')
+  #download_file('/testscoreboard.csv', 'scoreboard11.csv')
 
   #opening files
   f=open('scoreboard11.csv', 'r')
@@ -171,7 +171,7 @@ def testscoreboardadder(usersname, userID, scoretoadd):
   
  
   #reuploads the file
-  upload_file('/testscoreboard.csv', 'scoreboard12.csv')
+  #upload_file('/testscoreboard.csv', 'scoreboard12.csv')
 
     
    
