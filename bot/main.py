@@ -1446,7 +1446,7 @@ async def on_message(message):
                     and (str(secondPartOfMessage).lower() == "test"
                          or str(secondPartOfMessage).lower() == "test")
                     and message.mentions.__len__() == 0):
-                
+                return
                 test = testscoreboardreader(thirdPartOfMessage)
                 embed = discord.Embed(title="test prediction leaderboard",
                                       color=0x55a7f7)
@@ -1594,6 +1594,7 @@ async def on_message(message):
                     )
 
             if ((messagereceived == "!testadd")):
+              return
               download_file('/testscoreboard.csv', 'scoreboard11.csv')
               if (len(sectionsofmessage) > 1):
                   await message.channel.send(
@@ -1791,6 +1792,7 @@ async def on_message(message):
                     )
 
             if ((messagereceived == "!testremove")):
+                return
                 download_file('/testscoreboard.csv', 'scoreboard11.csv')
                 if (len(sectionsofmessage) > 1):
                     await message.channel.send(
