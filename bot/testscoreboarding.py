@@ -149,7 +149,7 @@ def testscoreboardadder(usersname, userID, scoretoadd, counter):
   except Exception as e:
     print(e)
 
-  
+  table.maxwidth(40)
   arrayofusers = list(table.columns[1])
   
   z=0

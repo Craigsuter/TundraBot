@@ -46,6 +46,8 @@ def dotascoreboardreader(pagenumber):
   f2 = open('scoreboard6.csv', 'w') 
   table = BeautifulTable()
   table.set_style(BeautifulTable.STYLE_MARKDOWN)
+  table.maxwidth = 40
+  table.width_exceed_policy = BeautifulTable.WEP_ELLIPSIS
 
   #reads in the current scoreboard and then sorts it
   reader = csv.reader(f, delimiter=',')
@@ -83,7 +85,6 @@ def dotascoreboardreader(pagenumber):
   table.columns.header = ["Rank", "Name", "Score"]
   for line2 in csv_reader2:  
     if (i < int(k)):
-      
       if(int(pagenumber)>1):
         if(i < (int(k)-(int(pagenumber)) + 1) and i > 10 * ((int(pagenumber)-1))):
           table.rows.append([str(i), line2[0], line2[2]])

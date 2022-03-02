@@ -47,6 +47,8 @@ def scoreboardreader(pagenumber):
 
   table = BeautifulTable()
   table.set_style(BeautifulTable.STYLE_MARKDOWN)
+  table.maxwidth = 40
+  table.width_exceed_policy = BeautifulTable.WEP_ELLIPSIS
   table.columns.header = ["Rank", "Name", "Score"]
   
 
