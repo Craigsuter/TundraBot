@@ -46,7 +46,7 @@ def dotascoreboardreader(pagenumber):
   f2 = open('scoreboard6.csv', 'w') 
   table = BeautifulTable()
   table.set_style(BeautifulTable.STYLE_MARKDOWN)
-  table.maxwidth = 40
+  table.maxwidth = 30
   table.width_exceed_policy = BeautifulTable.WEP_ELLIPSIS
 
   #reads in the current scoreboard and then sorts it
