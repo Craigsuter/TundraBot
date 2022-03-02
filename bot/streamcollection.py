@@ -46,10 +46,22 @@ def DotaStreams():
     containers2 = page_soup10.findAll(
         "span", {"class": "team-template-team-short"})
 
+    container3 = page_soup10.findAll("span", {"class": "timer-object timer-object-countdown-only"})
+    
+    #finds twitch stream
+    try:
+      twitch = container3[0].get('data-stream-twitch')
+      twitch = "https://www.twitch.tv/" + twitch
+      
+     
+    except:
+      twitch="None"
+      pass
                   #Adds game to containers - dota
     try:
         team1 = containers[0]
         team2 = containers2[0]
+      
     except:
         pass
 
@@ -80,97 +92,113 @@ def DotaStreams():
 
   
     
-
-
+    
+    bigcount=0
+    foundstream = False
     #Opens the new page, and checks for the stream table
     page=extendedURL
     r3 = requests.get(page,headers=headers)
     try:
       page_soup2 = soup(r3.text,"html.parser")
-      streamtable = page_soup2.find("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
-      table_body = streamtable.find('tbody')
+      #streamtable = page_soup2.find("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
+      #table_body = streamtable.find('tbody')
+
+      streamtable = page_soup2.findAll("table",{"style": "text-align:center;margin:0;margin-bottom:1em"})
       
 
 
-      test=[]
-      for tr in streamtable.findAll('tr'):
-        for td in tr.findAll('td'):
-          #print(td)
-          test.append(td)
-          
-      #appends flags / links to their array to match up
-      i=0
-      streamlinks=[]
-      flags=[]
-      while (i < len(test)):
-        if (i < (len(test) / 2)):
-          test2 = test[i].find_all(href=True)
-          flag = test2[0].get('href')
-          flag2 = flag.rsplit(":")
-          flags.append(flag2[(len(flag2)-1)])
-        else:
-          test2 = test[i].find_all(href=True)
-          streamlinks.append(test2[0].get('href'))
+      while(bigcount < len(streamtable) and foundstream==False):
+        test=[]
+        testingtable = streamtable[bigcount]
         
-        i=i+1
-      
-      #Creates the flags into versions that Discord can use
-      flagsToSend=[]
-      counter3=0
-      if (len(streamlinks) == len(flags)):
-        while counter3 < (len(flags)):
-          if (flags[counter3] == "Indonesia"):
-            flagsToSend.append(':flag_id:')
-          elif(flags[counter3] == "Philippines"):
-            flagsToSend.append(':flag_ph:')
-          elif(flags[counter3]=="DeAt_hd.png"):
-            flagsToSend.append(':flag_de:')
-          elif (flags[counter3] == "UsGb_hd.png"):
-            flagsToSend.append(':flag_gb:')
-          elif (flags[counter3] == 'Russia'):
-            flagsToSend.append(':flag_ru:')
-          elif (flags[counter3] == 'Spain'):
-            flagsToSend.append(':flag_es:')
-          elif (flags[counter3] == 'France'):
-            flagsToSend.append(':flag_fr:')
-          elif (flags[counter3]=='Pl_hd.png'):
-            flagsToSend.append(':flag_pl:')
-          elif(flags[counter3]=='Cn_hd.png'):
-            flagsToSend.append(':flag_cn:')
-          elif(flags[counter3]=='China'):
-            flagsToSend.append(':flag_cn:')
-          elif(flags[counter3]=='EsMx_hd.png'):
-            flagsToSend.append(':flag_es:')
-          elif(flags[counter3]=='PtBr_hd.png'):
-            flagsToSend.append(':flag_br:')
-          elif(flags[counter3]=='Ph_hd.png'):
-            flagsToSend.append(':flag_ph:')
-          elif(flags[counter3]=='Germany'):
-            flagsToSend.append(':flag_de:')
-          elif(flags[counter3]=='Thailand'):
-            flagsToSend.append(':flag_th:')
-          elif(flags[counter3]=='Serbia'):
-            flagsToSend.append(':flag_rs:')
-          elif(flags[counter3]=='Vietnam'):
-            flagsToSend.append(':flag_vn:')
+        for tr in testingtable.findAll('tr'):
+          #print("hi")
+          for td in tr.findAll('td'):
+            #print(td)
+            test.append(td)
+            
+        #appends flags / links to their array to match up
+        i=0
+        streamlinks=[]
+        flags=[]
+        while (i < len(test)):
+          if (i < (len(test) / 2)):
+            test2 = test[i].find_all(href=True)
+            flag = test2[0].get('href')
+            flag2 = flag.rsplit(":")
+            flags.append(flag2[(len(flag2)-1)])
           else:
-            flagsToSend.append(':pirate_flag:')
-          counter3 += 1
-
-        #Creates the text that goes into the message attached the flags + streams together 
-        counter4=0
-        flagMessage=""
-        while counter4 < (len(flagsToSend)):
-          flagadd = str(flagsToSend[counter4])
-          streamsAdd = str(streamlinks[counter4])
-          flagMessage = flagMessage + flagadd + " <" + streamsAdd + ">\n"
-          counter4 += 1  
-
+            test2 = test[i].find_all(href=True)
+            streamlinks.append(test2[0].get('href'))
+            
+            
+              
+          
+          i=i+1
+        
+        #Creates the flags into versions that Discord can use
+        flagsToSend=[]
+        counter3=0
+        if (len(streamlinks) == len(flags)):
+          while counter3 < (len(flags)):
+            if (flags[counter3] == "Indonesia"):
+              flagsToSend.append(':flag_id:')
+            elif(flags[counter3] == "Philippines"):
+              flagsToSend.append(':flag_ph:')
+            elif(flags[counter3]=="DeAt_hd.png"):
+              flagsToSend.append(':flag_de:')
+            elif (flags[counter3] == "UsGb_hd.png"):
+              flagsToSend.append(':flag_gb:')
+            elif (flags[counter3] == 'Russia'):
+              flagsToSend.append(':flag_ru:')
+            elif (flags[counter3] == 'Spain'):
+              flagsToSend.append(':flag_es:')
+            elif (flags[counter3] == 'France'):
+              flagsToSend.append(':flag_fr:')
+            elif (flags[counter3]=='Pl_hd.png'):
+              flagsToSend.append(':flag_pl:')
+            elif(flags[counter3]=='Cn_hd.png'):
+              flagsToSend.append(':flag_cn:')
+            elif(flags[counter3]=='China'):
+              flagsToSend.append(':flag_cn:')
+            elif(flags[counter3]=='EsMx_hd.png'):
+              flagsToSend.append(':flag_es:')
+            elif(flags[counter3]=='PtBr_hd.png'):
+              flagsToSend.append(':flag_br:')
+            elif(flags[counter3]=='Ph_hd.png'):
+              flagsToSend.append(':flag_ph:')
+            elif(flags[counter3]=='Germany'):
+              flagsToSend.append(':flag_de:')
+            elif(flags[counter3]=='Thailand'):
+              flagsToSend.append(':flag_th:')
+            elif(flags[counter3]=='Serbia'):
+              flagsToSend.append(':flag_rs:')
+            elif(flags[counter3]=='Vietnam'):
+              flagsToSend.append(':flag_vn:')
+            else:
+              flagsToSend.append(':pirate_flag:')
+            counter3 += 1
+  
+          #Creates the text that goes into the message attached the flags + streams together 
+          counter4=0
+          flagMessage=""
+          while counter4 < (len(flagsToSend)):
+            flagadd = str(flagsToSend[counter4])
+            streamsAdd = str(streamlinks[counter4])
+            flagMessage = flagMessage + flagadd + " <" + streamsAdd + ">\n"
+            counter4 += 1  
+          for item in streamlinks:
+            if item == twitch:
+              foundstream = True
+          bigcount = bigcount + 1
+  
     except:
         flagMessage="No streams were found for this game"
-      
+    
+        
     convertedURL = "<" + extendedURL + ">"
 
+    
 
     return(Teams1, Teams2, flagMessage, convertedURL)
     #embed=discord.Embed(title="Dota streams found!", color=0xf10909)

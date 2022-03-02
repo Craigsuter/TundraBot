@@ -1044,7 +1044,7 @@ async def on_message(message):
                     embed.add_field(name="Game page info",
                                     value=matchlink,
                                     inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.channel.send(embed=embed)  
 
             if (messagereceived == "!dotastreams"):
                 streaminfo = DotaStreams()
@@ -3589,9 +3589,10 @@ async def on_message(message):
                     embed.add_field(name="The game found",
                                     value=Teams1 + " vs " + Teams2,
                                     inline=True)
-                    embed.add_field(name="Streams / Flags",
-                                    value="```" + flagMessage + "```",
-                                    inline=False)
+                    if(message.channel.id != 689903856095723569 and message.channel.id != 926214194280419368):
+                      embed.add_field(name="Streams / Flags",
+                                      value="```" + flagMessage + "```",
+                                      inline=False)
                     embed.add_field(name="Streams available",
                                     value=flagMessage,
                                     inline=False)
