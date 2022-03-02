@@ -47,7 +47,7 @@ def valoscoreboardreader(pagenumber):
 
   table = BeautifulTable()
   table.set_style(BeautifulTable.STYLE_MARKDOWN)
-  table.maxwidth = 34
+  table.maxwidth = 30
   table.width_exceed_policy = BeautifulTable.WEP_ELLIPSIS
   table.columns.header = ["Rank", "Name", "Score"]
   
