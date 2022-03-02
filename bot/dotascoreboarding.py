@@ -66,7 +66,7 @@ def dotascoreboardreader(pagenumber):
   messagetosend=""
   csv_reader2 = csv.reader(f3)
 
-  print(pagenumber)
+  
 
   try:
     if(str(pagenumber) == "none"):
@@ -81,7 +81,7 @@ def dotascoreboardreader(pagenumber):
   #reads in all lines from CSV - useful for generating the scoreboard
   i=1
   j=1
-  print(k)
+  
   table.columns.header = ["Rank", "Name", "Score"]
   for line2 in csv_reader2:  
     if (i < int(k)):
