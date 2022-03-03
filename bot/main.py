@@ -3063,7 +3063,8 @@ async def on_message(message):
                     embed.add_field(name="The game found",
                                     value=team1 + " vs " + team2,
                                     inline=True)
-                    embed.add_field(name="Streams",
+                    if(message.channel.id !=690952309827698749 and message.channel.id != 926214194280419368):
+                      embed.add_field(name="Streams",
                                     value="```" + links + "```",
                                     inline=False)
                     embed.add_field(name="Streams available",
@@ -3630,7 +3631,8 @@ async def on_message(message):
                     embed.add_field(name="The game found",
                                     value="OG vs " + valoenemyteam,
                                     inline=True)
-                    embed.add_field(name="Streams for copying",
+                    if(message.channel.id != 810939258222936094 and message.channel.id != 926214194280419368):
+                      embed.add_field(name="Streams for copying",
                                     value="```" + streams + "```",
                                     inline=False)
                     embed.add_field(name="Streams with flags",
