@@ -1106,9 +1106,6 @@ async def on_message(message):
                     embed.add_field(name="The game found",
                                     value="OG vs " + valoenemyteam,
                                     inline=True)
-                    embed.add_field(name="Streams for copying",
-                                    value="```" + streams + "```",
-                                    inline=False)
                     embed.add_field(name="Streams with flags",
                                     value=streams,
                                     inline=False)
