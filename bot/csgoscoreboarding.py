@@ -23,6 +23,7 @@ from dropboxUploader import download_file
 import random
 import operator
 from beautifultable import BeautifulTable
+import math
 
 #resetting the boards
 def scoreboarding():
@@ -93,12 +94,23 @@ def scoreboardreader(pagenumber):
           table.rows.append([str(i), line2[0], line2[2]])
       i = i+1
   
- 
+  
   f3.close()
+  playercount = i-1
+  checker=str(playercount/10)
+
+  if(len(checker) == 3 and checker[2] == "0"):
+    pagecount= str(checker[0])
+  else:
+    pagecount = (math.ceil(i/10))
+  if pagecount==0:
+    pagecount = 1
+  if(int(pagenumber) > int(pagecount)):
+    table="No users on this page"
   if(i==1):
     table= "There are currently no users on the table!"
   
-  return(str(table))
+  return(str(table), pagecount, pagenumber)
     
   
 def scoreboardsingle(userID):

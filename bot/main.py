@@ -540,8 +540,8 @@ async def on_message(message):
                 test = scoreboardreader(thirdPartOfMessage)
                 embed = discord.Embed(title="CSGO prediction leaderboard",
                                       color=0x55a7f7)
-                embed.add_field(name="CSGO Prediction top 10",
-                                value="```\n" + test + "\n```",
+                embed.add_field(name="CSGO Prediction - page: " + str(test[2]) + "/" + str(test[1]),
+                                value="```\n" + test[0] + "\n```",
                                 inline=True)
                 embed.add_field(
                     name="Can't see yourself?",
@@ -554,8 +554,8 @@ async def on_message(message):
               test = valoscoreboardreader(thirdPartOfMessage)
               embed = discord.Embed(title="Valorant prediction leaderboard",
                                     color=0x55a7f7)
-              embed.add_field(name="Valorant prediction top 10",
-                              value="```\n" + test + "\n```",
+              embed.add_field(name="Valorant prediction - page: " + str(test[2]) + "/" + str(test[1]),
+                              value="```\n" + test[0] + "\n```",
                               inline=True)
               embed.add_field(
                   name="Can't see yourself?",
@@ -586,8 +586,8 @@ async def on_message(message):
               test = dotascoreboardreader(thirdPartOfMessage)
               embed = discord.Embed(title="Dota 2 prediction leaderboard",
                                     color=0x55a7f7)
-              embed.add_field(name="Dota 2 Prediction top 10",
-                              value="```\n" + test + "\n```",
+              embed.add_field(name="Dota 2 Prediction - page: " + str(test[2]) + "/" + str(test[1]),
+                              value="```\n" + test[0] + "\n```",
                               inline=True)
               embed.add_field(
                   name="Can't see yourself?",
