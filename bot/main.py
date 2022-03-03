@@ -533,6 +533,77 @@ async def on_message(message):
             test = dotaevents()
             await message.channel.send(embed=test)
 
+        if (messagereceived == "!show"
+                    and (str(secondPartOfMessage).lower() == "csgo"
+                         or str(secondPartOfMessage).lower() == "cs")
+                    and message.mentions.__len__() == 0):
+                test = scoreboardreader(thirdPartOfMessage)
+                embed = discord.Embed(title="CSGO prediction leaderboard",
+                                      color=0x55a7f7)
+                embed.add_field(name="CSGO Prediction top 10",
+                                value="```\n" + test + "\n```",
+                                inline=True)
+                embed.add_field(
+                    name="Can't see yourself?",
+                    value=
+                    "Can't see yourself on the table? use !show csgo @*yourself* to see where you stand!",
+                    inline=False)
+                await message.channel.send(embed=embed)
+
+        if (messagereceived == "!show" and (str(secondPartOfMessage).lower() == "valo" or str(secondPartOfMessage).lower() == "valorant") and message.mentions.__len__() == 0):
+              test = valoscoreboardreader(thirdPartOfMessage)
+              embed = discord.Embed(title="Valorant prediction leaderboard",
+                                    color=0x55a7f7)
+              embed.add_field(name="Valorant prediction top 10",
+                              value="```\n" + test + "\n```",
+                              inline=True)
+              embed.add_field(
+                  name="Can't see yourself?",
+                  value=
+                  "Can't see yourself on the table? use !show valo @*yourself* to see where you stand!",
+                  inline=False)
+              await message.channel.send(embed=embed)
+
+        if ((messagereceived == "!show")
+                  and (str(secondPartOfMessage).lower() == "csgo"
+                       or str(secondPartOfMessage).lower() == "cs")
+                  and (message.mentions.__len__() > 0)):
+              for user in message.mentions:
+                  test = scoreboardsingle(user.id)
+                  await message.channel.send(test)
+        if ((messagereceived == "!show")
+                  and (str(secondPartOfMessage).lower() == "valo"
+                       or str(secondPartOfMessage).lower() == "valorant")
+                  and (message.mentions.__len__() > 0)):
+              for user in message.mentions:
+                  test = valoscoreboardsingle(user.id)
+                  await message.channel.send(test)
+
+        if (messagereceived == "!show"
+                  and (str(secondPartOfMessage).lower() == "dota"
+                       or str(secondPartOfMessage).lower() == "dota2")
+                  and message.mentions.__len__() == 0):
+              test = dotascoreboardreader(thirdPartOfMessage)
+              embed = discord.Embed(title="Dota 2 prediction leaderboard",
+                                    color=0x55a7f7)
+              embed.add_field(name="Dota 2 Prediction top 10",
+                              value="```\n" + test + "\n```",
+                              inline=True)
+              embed.add_field(
+                  name="Can't see yourself?",
+                  value=
+                  "Can't see yourself on the table? use !show dota @*yourself* to see where you stand!",
+                  inline=False)
+              await message.channel.send(embed=embed)
+
+        if ((messagereceived == "!show")
+                  and (str(secondPartOfMessage).lower() == "dota"
+                       or str(secondPartOfMessage).lower() == "dota2")
+                  and (message.mentions.__len__() > 0)):
+              for user in message.mentions:
+                  test = dotascoreboardsingle(user.id)
+                  await message.channel.send(test)
+
 
 
         if ((messagereceived == "!csgoevents")
@@ -1460,47 +1531,7 @@ async def on_message(message):
                     inline=False)
                 await message.channel.send(embed=embed)
 
-            if (messagereceived == "!show"
-                    and (str(secondPartOfMessage).lower() == "csgo"
-                         or str(secondPartOfMessage).lower() == "cs")
-                    and message.mentions.__len__() == 0):
-                test = scoreboardreader(thirdPartOfMessage)
-                embed = discord.Embed(title="CSGO prediction leaderboard",
-                                      color=0x55a7f7)
-                embed.add_field(name="CSGO Prediction top 10",
-                                value="```\n" + test + "\n```",
-                                inline=True)
-                embed.add_field(
-                    name="Can't see yourself?",
-                    value=
-                    "Can't see yourself on the table? use !show csgo @*yourself* to see where you stand!",
-                    inline=False)
-                await message.channel.send(embed=embed)
-
-            if (messagereceived == "!show"
-                    and (str(secondPartOfMessage).lower() == "valo"
-                         or str(secondPartOfMessage).lower() == "valorant")
-                    and message.mentions.__len__() == 0):
-                test = valoscoreboardreader(thirdPartOfMessage)
-                embed = discord.Embed(title="Valorant prediction leaderboard",
-                                      color=0x55a7f7)
-                embed.add_field(name="Valorant prediction top 10",
-                                value="```\n" + test + "\n```",
-                                inline=True)
-                embed.add_field(
-                    name="Can't see yourself?",
-                    value=
-                    "Can't see yourself on the table? use !show valo @*yourself* to see where you stand!",
-                    inline=False)
-                await message.channel.send(embed=embed)
-
-            if ((messagereceived == "!show")
-                    and (str(secondPartOfMessage).lower() == "csgo"
-                         or str(secondPartOfMessage).lower() == "cs")
-                    and (message.mentions.__len__() > 0)):
-                for user in message.mentions:
-                    test = scoreboardsingle(user.id)
-                    await message.channel.send(test)
+            
 
             if ((messagereceived == "!show")
                     and (str(secondPartOfMessage).lower() == "test"
@@ -1511,38 +1542,7 @@ async def on_message(message):
                     test = testscoreboardsingle(user.id)
                     await message.channel.send(test)
 
-            if ((messagereceived == "!show")
-                    and (str(secondPartOfMessage).lower() == "valo"
-                         or str(secondPartOfMessage).lower() == "valorant")
-                    and (message.mentions.__len__() > 0)):
-                for user in message.mentions:
-                    test = valoscoreboardsingle(user.id)
-                    await message.channel.send(test)
-
-            if (messagereceived == "!show"
-                    and (str(secondPartOfMessage).lower() == "dota"
-                         or str(secondPartOfMessage).lower() == "dota2")
-                    and message.mentions.__len__() == 0):
-                test = dotascoreboardreader(thirdPartOfMessage)
-                embed = discord.Embed(title="Dota 2 prediction leaderboard",
-                                      color=0x55a7f7)
-                embed.add_field(name="Dota 2 Prediction top 10",
-                                value="```\n" + test + "\n```",
-                                inline=True)
-                embed.add_field(
-                    name="Can't see yourself?",
-                    value=
-                    "Can't see yourself on the table? use !show dota @*yourself* to see where you stand!",
-                    inline=False)
-                await message.channel.send(embed=embed)
-
-            if ((messagereceived == "!show")
-                    and (str(secondPartOfMessage).lower() == "dota"
-                         or str(secondPartOfMessage).lower() == "dota2")
-                    and (message.mentions.__len__() > 0)):
-                for user in message.mentions:
-                    test = dotascoreboardsingle(user.id)
-                    await message.channel.send(test)
+            
 
             if ((messagereceived == "!dotaadd")):
                 download_file('/dotascoreboard.csv', 'scoreboard5.csv')
