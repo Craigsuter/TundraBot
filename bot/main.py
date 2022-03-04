@@ -764,9 +764,9 @@ async def on_message(message):
                     or (channelDataID == 818793950965006357)):
                 userID = message.author.id
                 userID = str(userID)
-                await message.channel.send("<@" + userID + "> " + embed)
+                await message.reply("<@" + userID + "> " + embed)
             else:
-                await message.channel.send(embed=embed)
+                await message.reply(embed=embed)
 
         #Gets the info for the next CSGO game
         if ((messagereceived == "!nextcsgo")
@@ -779,9 +779,9 @@ async def on_message(message):
                     or (channelDataID == 818793950965006357)):
                 userID = message.author.id
                 userID = str(userID)
-                await message.channel.send("<@" + userID + "> " + embed)
+                await message.reply("<@" + userID + "> " + embed)
             else:
-                await message.channel.send(embed=embed)
+                await message.reply(embed=embed)
 
         #Gets the info for the next Valo game
         if ((messagereceived == "!nextvalo")
@@ -799,7 +799,7 @@ async def on_message(message):
                         or channelDataID == 926214194280419368):
                     userID = message.author.id
                     userID = str(userID)
-                    await message.channel.send(
+                    await message.reply(
                         "<@" + userID +
                         "> - No games planned currently - For more information use !nextvalo in <#721391448812945480>"
                     )
@@ -820,7 +820,7 @@ async def on_message(message):
                         value=
                         "https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG / ",
                         inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
             else:
                 if ((channelDataID == 810939258222936094)
                         or (channelDataID == 690952309827698749)
