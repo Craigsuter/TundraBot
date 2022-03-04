@@ -125,7 +125,7 @@ def scoreboardsingle(userID):
   for row in reader:
     j=j+1
     if(str(row['userIDs']) == str(userID)):
-      score = "The CSGO Prediction score for : " + str(row['accountname']) + "  -  " + str(row['score']) + ", giving them rank - " + str(j)
+      score = "The CSGO Prediction score for : " + str(row['accountname']) + "  :  " + str(row['score']) + ", giving them rank - " + str(j)
       i=1
 
 

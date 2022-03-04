@@ -129,7 +129,7 @@ def valoscoreboardsingle(userID):
   for row in reader:
     j = j+1
     if(str(row['userIDs']) == str(userID)):
-      score = "The Valorant Prediction score for : " + str(row['accountname']) + "  -  " + str(row['score']) + ", giving them rank - " + str(j)
+      score = "The Valorant Prediction score for : " + str(row['accountname']) + "  :  " + str(row['score']) + ", giving them rank - " + str(j)
       i=1
   if(i==0):
     score = "The user is not currently on the leaderboard"
