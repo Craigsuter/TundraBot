@@ -828,9 +828,9 @@ async def on_message(message):
                         or (channelDataID == 926214194280419368)):
                     userID = message.author.id
                     userID = str(userID)
-                    await message.channel.send("<@" + userID + "> " + embed)
+                    await message.reply("<@" + userID + "> " + embed)
                 else:
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
 
         #Used for checking the next game in Dota Tourni
         if (messagereceived == "!nextdt" or messagereceived == "!nextdteuw"):
@@ -840,9 +840,9 @@ async def on_message(message):
                     or (channelDataID == 690952309827698749)):
                 userID = message.author.id
                 userID = str(userID)
-                await message.channel.send("<@" + userID + "> " + embed)
+                await message.reply("<@" + userID + "> " + embed)
             else:
-                await message.channel.send(embed=embed)
+                await message.reply(embed=embed)
 
         if (messagereceived == "!nextdt2" or messagereceived == "!nextdtcn"):
             embed = DotaCheckTourni2(channelDataID)
@@ -851,9 +851,9 @@ async def on_message(message):
                     or (channelDataID == 690952309827698749)):
                 userID = message.author.id
                 userID = str(userID)
-                await message.channel.send("<@" + userID + "> " + embed)
+                await message.reply("<@" + userID + "> " + embed)
             else:
-                await message.channel.send(embed=embed)
+                await message.reply(embed=embed)
 
         #Gets the info for the last dota game
         if (messagereceived == "!lastdota"):
@@ -1060,7 +1060,7 @@ async def on_message(message):
             if (messagereceived == "!csgostreams"):
                 embed = CSGOStreams()
                 embed = embed[0]
-                await message.channel.send(embed=embed)
+                await message.reply(embed=embed)
 
             #Checks if user tries using !nextmatch incorrectly
             if ((messagereceived == "!nextgame")
@@ -1098,7 +1098,7 @@ async def on_message(message):
                         value=
                         "https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG",
                         inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
 
                 else:
                     embed = discord.Embed(title="Valorant streams coming up!",
@@ -1112,7 +1112,7 @@ async def on_message(message):
                     embed.add_field(name="Game page info",
                                     value=matchlink,
                                     inline=False)
-                    await message.channel.send(embed=embed)  
+                    await message.reply(embed=embed)  
 
             if (messagereceived == "!dotastreams"):
                 streaminfo = DotaStreams()
@@ -1133,7 +1133,7 @@ async def on_message(message):
                     embed.add_field(name="Links",
                                     value="https://liquipedia.net/dota2/OG",
                                     inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
 
                 else:
                     embed = discord.Embed(title="Dota streams found!",
@@ -1147,7 +1147,7 @@ async def on_message(message):
                     embed.add_field(name="Where I found the streams",
                                     value=convertedURL,
                                     inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
 
             if (messagereceived == "!dotastreams2"):
 
@@ -3053,7 +3053,7 @@ async def on_message(message):
                         value=
                         "OG Liquipedia:  https://liquipedia.net/counterstrike/OG\nOG HLTV: https://www.hltv.org/team/10503/og#tab-matchesBox",
                         inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
                 else:
                     embed = discord.Embed(title="CSGO Stream links",
                                           color=0xff8800)
@@ -3070,7 +3070,7 @@ async def on_message(message):
                     embed.add_field(name="Game page info",
                                     value=matchlink,
                                     inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
 
             if ((messagereceived == "!avatar")
                     and (message.mentions.__len__() > 0)):
@@ -3579,7 +3579,7 @@ async def on_message(message):
                     embed.add_field(name="Links",
                                     value="https://liquipedia.net/dota2/OG",
                                     inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
 
                 else:
                     embed = discord.Embed(title="Dota streams found!",
@@ -3597,7 +3597,7 @@ async def on_message(message):
                     embed.add_field(name="Where I found the streams",
                                     value=convertedURL,
                                     inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
 
             if ((messagereceived == "!valostreams")
                     or (messagereceived == "!valorantstreams")):
@@ -3620,7 +3620,7 @@ async def on_message(message):
                         value=
                         "https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG",
                         inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
 
                 else:
                     embed = discord.Embed(title="Valorant streams coming up!",
@@ -3638,7 +3638,7 @@ async def on_message(message):
                     embed.add_field(name="Game page info",
                                     value=matchlink,
                                     inline=False)
-                    await message.channel.send(embed=embed)
+                    await message.reply(embed=embed)
 
             if (messagereceived == "!goosehelp"):
                 willshelp1 = "!nextdota - This will tell you the next OG Dota 2 game coming up \n !nextcsgo - This will tell you the next OG CSGO game coming up \n !nextvalo - This will tell you the next OG Valorant  game coming up"
