@@ -1,3 +1,1 @@
-create CSGO tourni tracking using HLTV  - Requested by: 183707605032501248
 create valo tourni tracking using vlr  - Requested by: 183707605032501248
-add !dotastreams checker for if its on the right table for the stream by pulling the stream URL from the OG page then verifying its in the array of streams  - Requested by: 183707605032501248

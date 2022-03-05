@@ -62,6 +62,9 @@ from testscoreboarding import testscoreboarding
 from testscoreboarding import testscoreboardreader
 from testscoreboarding import testscoreboardsingle
 from testscoreboarding import testscoreboardadder
+from cstour import next_cst
+from cstour import change_cst
+from cstour import getcs_url
 
 #sets up command prefix
 intents = discord.Intents().all()
@@ -612,6 +615,13 @@ async def on_message(message):
                 or (messagereceived == "!csevent")):
             test = csgoevents()
             await message.channel.send(embed=test)
+
+        if (messagereceived == "!nextcst"):
+          embed = next_cst(channelDataID)
+          if channelDataID != 926214194280419368 and channelDataID != 690952309827698749:
+            await message.reply(embed=embed)
+          else:
+            await message.reply(embed)
 
         if ((messagereceived == "!teaminfo")):
             try:
@@ -1253,74 +1263,21 @@ async def on_message(message):
 
             return
 
-        #All gardener commands
+        # All gardener commands
         else:
 
-            if (messagereceived == "!testing"):
-              return
-              try:
-                server = message.guild
-                role_name = "winner role"
-                
-                i = 0
-                role_id = server.roles[0]
-                display_names = []
-                member_ids = []
-                for role in server.roles:
-                    if role_name == role.name:
-                        role_id = role
-                        break
-                else:
-                    await message.channel.send("Role doesn't exist")
-                    return
+            if (messagereceived == "!changecst"):
+              
+              change_cst(str(secondPartOfMessage))
+              await message.reply("I have updated the CST to:<" + secondPartOfMessage + ">\nPlease verify this is correct")
 
-                for member in server.members:
-                    if role_id in member.roles:
-                        i = i + 1
-                        display_names.append(member.display_name)
-                        member_ids.append(member.id)
-                
-                j=0
-                for id in member_ids:
-                  user = message.guild.get_member(id)
-                  role = discord.utils.get(user.guild.roles, id=946398231116525589)
-                  await user.remove_roles(role)
-                  j=j+1
-                print(j)
-                await message.channel.send("I have removed the test role from - " + str(j) + " people")
-              except Exception as e:
-                
-                print(e)
+            if(messagereceived== "!resetcst"):
+              change_cst("none")
+              await message.reply("I have gone and reset the CST tracked")
 
-              try:
-                additionalmessage=""
-                download_file('/testscoreboard.csv', 'scoreboard13.csv')
-                f = open('scoreboard13.csv', 'r')
-                reader = csv.reader(f, delimiter=',')
-                scorecheck = int(secondPartOfMessage)
-                i=0
-                for lines in reader:
-                  if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
-                    
-                    try:
-                      
-                      
-                      i=i+1
-                      user = message.guild.get_member(int(lines[1]))
-                      additionalmessage = additionalmessage + "<@" + str(lines[1]) + "> / "
-                      role = discord.utils.get(user.guild.roles, id = 946398231116525589)
-                      await user.add_roles(role)
-                    except:
-                      print("User no longer in server")
-
-               
-                  
-                await message.channel.send("I have added the test prediction winner role to - " + str(i) + " people")
-                await message.channel.send("This includes:\n```" + additionalmessage + "```")
-              except Exception as e: 
-                print(e)
-                await message.channel.send("There was an error in command usage, to use command use !testing X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
-
+            if(messagereceived== "!verifycst"):
+              url = getcs_url()
+              await message.reply("The tournament currently being tracked is: <" + str(url) + ">")
 
             if (messagereceived == "!dotawinners"):
               try:
