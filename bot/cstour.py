@@ -62,9 +62,10 @@ def next_cst(channelDataID):
   
   except Exception as e:
     if channelDataID != 926214194280419368 and channelDataID != 690952309827698749:
-      error_message = "No tournament is currently being tracked"
-    else:
       error_message = discord.Embed(title="No tournament is currently being tracked")
+      
+    else:
+      error_message = "No tournament is currently being tracked"
     return error_message
 
 
