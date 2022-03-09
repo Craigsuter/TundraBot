@@ -549,7 +549,7 @@ async def on_message(message):
           if channelDataID != 926214194280419368 and channelDataID != 690952309827698749:
             await message.reply(embed=embed)
           else:
-            await message.reply(embed=embed)
+            await message.reply(embed)
 
         if ((messagereceived == "!teaminfo")):
             try:

@@ -48,7 +48,7 @@ def next_cst(channelDataID):
     team2 = team2_html.find("div", {"class": "matchTeamName text-ellipsis"}).string
 
     # Build the embed
-    if channelDataID != 926214194280419368 and channelDataID != 690952309827698749:
+    if int(channelDataID) != 926214194280419368 and int(channelDataID) != 690952309827698749:
       notice = "Please check HLTV by clicking the title of this embed for more information as the time might not be accurate"
       nextcst = discord.Embed(title=f'Next game in {tournament_name}', url=tournament_url, color=0xff8800)
       nextcst.add_field(name=f'{team1} vs {team2}', value=f'<t:{match_time_second}:F> - {time_note}', inline=False)
