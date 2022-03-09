@@ -1197,7 +1197,7 @@ async def on_message(message):
             if (messagereceived == "!changecst"):
               
               change_cst(str(secondPartOfMessage))
-              await message.reply("I have updated the CST to:<" + secondPartOfMessage + ">\nPlease verify this is correct")
+              await message.reply("I have updated the CST to: <" + secondPartOfMessage + ">\nPlease verify this is correct")
 
             if(messagereceived== "!resetcst"):
               change_cst("none")
