@@ -46,7 +46,7 @@ def next_cst(channelDataID):
       time_now = datetime.datetime.now()
       time_note = "This is local to your timezone"
     
-    print(match_info_container)
+   
     
     # Get the teams
     try:
@@ -58,7 +58,7 @@ def next_cst(channelDataID):
       teamdata = match_info_container.findAll("div", {"class":"matchTeamName text-ellipsis"})
       team1 = teamdata[0].text
       team2 = teamdata[1].text
-      print(team1)
+      
 
     # Build the embed
     if int(channelDataID) != 926214194280419368 and int(channelDataID) != 690952309827698749:
