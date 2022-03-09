@@ -1,5 +1,4 @@
 import datetime
-
 # imports
 import discord
 import requests
@@ -34,25 +33,42 @@ def next_cst(channelDataID):
 
     # Next match in the tourney
     match_info_container = tournament_html.find("a", {"class": "match a-reset"})
-    match_time_mili = match_info_container.find("div", {"class": "matchTime"})['data-unix']
-    match_time_second = int(int(match_time_mili) / 1000)
-    match_time = datetime.datetime.fromtimestamp(match_time_second)
-    time_now = datetime.datetime.now()
-    time_remaining = match_time - time_now
-    time_note = "This is local to your timezone"
-
+    try:
+      match_time_mili = match_info_container.find("div", {"class": "matchTime"})['data-unix']
+      print(match_time_mili)
+      match_time_second = int(int(match_time_mili) / 1000)
+      match_time = datetime.datetime.fromtimestamp(match_time_second)
+      time_now = datetime.datetime.now()
+      time_remaining = match_time - time_now
+      time_note = "This is local to your timezone"
+    except: 
+      time_remaining="Now"
+      time_now = datetime.datetime.now()
+      time_note = "This is local to your timezone"
+    
+    print(match_info_container)
+    
     # Get the teams
-    team1_html = match_info_container.find("div", {"class": "matchTeam team1"})
-    team2_html = match_info_container.find("div", {"class": "matchTeam team2"})
-    team1 = team1_html.find("div", {"class": "matchTeamName text-ellipsis"}).string
-    team2 = team2_html.find("div", {"class": "matchTeamName text-ellipsis"}).string
+    try:
+      team1_html = match_info_container.find("div", {"class": "matchTeam team1"})
+      team2_html = match_info_container.find("div", {"class": "matchTeam team2"})
+      team1 = team1_html.find("div", {"class": "matchTeamName text-ellipsis"}).string
+      team2 = team2_html.find("div", {"class": "matchTeamName text-ellipsis"}).string
+    except:
+      teamdata = match_info_container.findAll("div", {"class":"matchTeamName text-ellipsis"})
+      team1 = teamdata[0].text
+      team2 = teamdata[1].text
+      print(team1)
 
     # Build the embed
     if int(channelDataID) != 926214194280419368 and int(channelDataID) != 690952309827698749:
       notice = "Please check HLTV by clicking the title of this embed for more information as the time might not be accurate"
       nextcst = discord.Embed(title=f'Next game in {tournament_name}', url=tournament_url, color=0xff8800)
-      nextcst.add_field(name=f'{team1} vs {team2}', value=f'<t:{match_time_second}:F> - {time_note}', inline=False)
-      nextcst.add_field(name="Time remaining", value=f'{str(time_remaining)[:-7]}', inline=False)
+      if(time_remaining != "Now"):
+        nextcst.add_field(name=f'{team1} vs {team2}', value=f'<t:{match_time_second}:F> - {time_note}', inline=False)
+        nextcst.add_field(name="Time remaining", value=f'{str(time_remaining)[:-7]}', inline=False)
+      else:
+        nextcst.add_field(name=f'{team1} vs {team2}', value="The game has begun!", inline=False)
       nextcst.add_field(name="Notice", value=notice, inline=False)
       nextcst.add_field(name="Links", value=tournament_url)
     else:

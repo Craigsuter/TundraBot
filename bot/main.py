@@ -277,8 +277,8 @@ async def on_message(message):
     if message.author.bot:
         if message.channel.id == 892880084111855620:
             dictionary = message.embeds[0].to_dict()
-            dict2 = dictionary.get('author').get('name')
-            print(dict2)
+            #dict2 = dictionary.get('author').get('name')
+            #print(dict2)
             return
         else:
             return
