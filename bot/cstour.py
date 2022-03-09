@@ -35,7 +35,6 @@ def next_cst(channelDataID):
     match_info_container = tournament_html.find("a", {"class": "match a-reset"})
     try:
       match_time_mili = match_info_container.find("div", {"class": "matchTime"})['data-unix']
-      print(match_time_mili)
       match_time_second = int(int(match_time_mili) / 1000)
       match_time = datetime.datetime.fromtimestamp(match_time_second)
       time_now = datetime.datetime.now()
