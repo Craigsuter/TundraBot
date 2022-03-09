@@ -72,8 +72,10 @@ def next_cst(channelDataID):
       nextcst.add_field(name="Notice", value=notice, inline=False)
       nextcst.add_field(name="Links", value=tournament_url)
     else:
-      nextcst = f'{team1} vs {team2} - Starts in {str(time_remaining)[:-7]} / In your local time: <t:{match_time_second}:F> - For more information use !nextcst in <#721391448812945480>'
-      
+      try:
+        nextcst = f'{team1} vs {team2} - Starts in {str(time_remaining)[:-7]} / In your local time: <t:{match_time_second}:F> - For more information use !nextcst in <#721391448812945480>'
+      except:
+        nextcst = f'{team1} vs {team2} - Has already begun! For more info use !nextcst in <#721391448812945480>'
     return nextcst
   
   except Exception as e:
