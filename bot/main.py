@@ -730,7 +730,7 @@ async def on_message(message):
             embed=embed[0]
             #embed = embed[
 
-            if (embed == "No games planned"):
+            if (embed == "N"):
                 if ((channelDataID == 810939258222936094)
                         or (channelDataID == 690952309827698749)
                         or (channelDataID == 689903856095723569)
