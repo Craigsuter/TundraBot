@@ -7,7 +7,7 @@ from discord.ext import commands
 #imports
 import csv
 from urllib.request import urlopen as uReq
-from bs4 import BeautifulSoup as soup
+#from bs4 import BeautifulSoup as soup
 import os
 from playerstats import csgoplayerstat, dotaplayerstats, valoplayerstats
 import ffmpeg
@@ -1192,7 +1192,7 @@ async def on_message(message):
 
         # All gardener commands
         else:
-            if(messagereceived =="!testguild"):
+            if(messagereceived =="!valorantevent" or messagereceived=="!valoevent"):
               value = ValoCheck(0)
               teams = value[1]
               time = datetime.datetime.now().astimezone() + value[3]
