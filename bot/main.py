@@ -1193,13 +1193,20 @@ async def on_message(message):
         # All gardener commands
         else:
             if(messagereceived =="!testguild"):
-              guild = message.guild
-              time=datetime.datetime.now().astimezone()
-              time=time +datetime.timedelta(hours=1)
-              time2=time+datetime.timedelta(hours=2)
-              print(time)
-              await guild.create_scheduled_event(name="Test", start_time=time, end_time=time2, entity_type=discord.enums.EntityType(3), location="https://twitter.com/home")
+              value = ValoCheck(0)
+              teams = value[1]
+              time = datetime.datetime.now().astimezone() + value[3]
               
+              guild = message.guild
+              linktogame = value[4]
+              #time=datetime.datetime.now().astimezone()
+              #time=time +datetime.timedelta(hours=1)
+              time2=time+datetime.timedelta(hours=2)
+              
+              try:
+                await guild.create_scheduled_event(name="Valorant game -" + teams, description =linktogame, start_time=time, end_time=time+datetime.timedelta(minutes=10), entity_type=discord.enums.EntityType(3), location="https://twitter.com/home")
+              except Exception as e:
+                print(e)
 
           
             if (messagereceived == "!changecst"):
