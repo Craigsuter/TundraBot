@@ -326,8 +326,11 @@ def CSGOCheck(channelDataID):
       embed.add_field(name="Notice", value="Please check HLTV by clicking the title of this embed for more information as the time might not be accurate", inline=False)
       embed.add_field(name="Links", value="OG Liquipedia: https://liquipedia.net/counterstrike/OG\nOG HLTV: https://www.hltv.org/team/10503/og#tab-matchesBox\nGame page: " + matchlink +"\nTournament: " + link4tourni, inline=False)
 
-
-    return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed)
+    if timetoadd >0:
+      return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed, timetoadd)
+    else:
+      timetoadd=0
+      return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed, timetoadd)
 
 
 
@@ -379,7 +382,7 @@ def ValoCheck(channelDataID):
     if random2 == "None":
       carrot = carrot  + 1
       print(carrot)
-      print("test")
+      
 
     nameOfEnemy = valoenemyteam.strip() 
 
@@ -411,7 +414,6 @@ def ValoCheck(channelDataID):
     datep2 = datesections[1]
     datep3 = datesections[2]
     dateOfGame = datep3 + "/" + datep2 + "/" + datep1
-    print(dateOfGame)
     #Splitting out the date vlaues
     yearofgame = datep1
     monthnumber = datep2
@@ -427,17 +429,46 @@ def ValoCheck(channelDataID):
         #print(tag['href'])
 
       matchlink = 'https://www.vlr.gg' + games[0]
-      print(matchlink)
+      
     except:
       pass
 
+    try:
+      testlink = matchlink
+      uClient = uReq(testlink)
+      page_html2 = uClient.read()
+      uClient.close()
+      page_soup2 = soup(page_html2, "html.parser")
+
+      tabledata2 = page_soup2.findAll("div", {"class":"match-header-event-series"})
+      gameposition = tabledata2[0].text.strip()
+      gameposition = gameposition.replace("\t", "").replace("\n","")
+      
+      
+    except:
+      gameposition="No game found"
+      pass
+
+    try:
+      testlink = matchlink
+      uClient = uReq(testlink)
+      page_html3 = uClient.read()
+      uClient.close()
+      page_soup3 = soup(page_html3, "html.parser")
+
+      tabledata3 = page_soup2.findAll("div", {"style":"font-weight: 700;"})
+      tourniname = tabledata3[0].text.replace("\n","").replace("\t","")
+         
+    except:
+      
+      tourniname = "No game found"
+      pass
     
 
     UTCTime = timeOfGame.rsplit(":")
     UTCTime2 = timeOfGame.rsplit(":")
     UTCBC = int(UTCTime[0])
-    print(UTCBC)
-    print(prefixOfTime)
+    
     if UTCBC > 12:
       if prefixOfTime == "am":
         prefixOfTime = "pm"
@@ -454,10 +485,10 @@ def ValoCheck(channelDataID):
     #date/time comparisions to get a countdown
     
 
-    print(prefixOfTime)
+    
     if prefixOfTime == "pm" and hourofvalo != 12:
       hourofvalo = int(hourofvalo) + 12
-      print(hourofvalo)
+      
       
     minuteofgame = UTCTime2[1]
     dt_string_year = "20" + str(dt_string_year)
@@ -467,15 +498,14 @@ def ValoCheck(channelDataID):
 
 
     epochtest = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), int(hourofvalo), int(minuteofgame), 0).timestamp()
-    print(str(epochtest))
+    
     lenofepoch = len(str(epochtest))
     epoch = str(epochtest)[:lenofepoch - 2]
-    print(epoch)
+    
 
-    print(a)
-    print(b)
+    
     c = a-b
-    print(c) 
+    
     #Will check if the game has already begun
     valorantTeams = "OG vs " + nameOfEnemy
     valorantTeamTime = dateOfGame + " - " + UTCTime + " UTC"
@@ -485,10 +515,10 @@ def ValoCheck(channelDataID):
     
 
     if(channelDataID == 810939258222936094 or channelDataID == 690952309827698749 or channelDataID == 689903856095723569 or channelDataID == 926214194280419368):
-      print("test")
+      
       c= str(c)
       embed = valorantTeams + " - Starts in: " + c  + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextvalo in <#721391448812945480>"
-      print("test2")
+      
 
 
 
@@ -505,7 +535,7 @@ def ValoCheck(channelDataID):
         embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
       
     #return(embed)
-    return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2)
+    return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2, gameposition, tourniname)
 
   except Exception as e:
     print(e)

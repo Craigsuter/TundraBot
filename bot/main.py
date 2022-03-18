@@ -1196,15 +1196,19 @@ async def on_message(message):
               value = ValoCheck(0)
               teams = value[1]
               time = datetime.datetime.now().astimezone() + value[3]
-              
+              streaminfo = ValoStreams()
+              print(streaminfo)
               guild = message.guild
               linktogame = value[4]
-              #time=datetime.datetime.now().astimezone()
-              #time=time +datetime.timedelta(hours=1)
-              time2=time+datetime.timedelta(hours=2)
+              gamepos = value[6]
+              name= "Valorant game: " + teams
+              tourniname = value[7]
+              description = tourniname + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
+              end_time=time+datetime.timedelta(minutes=10)
+              
               
               try:
-                await guild.create_scheduled_event(name="Valorant game -" + teams, description =linktogame, start_time=time, end_time=time+datetime.timedelta(minutes=10), entity_type=discord.enums.EntityType(3), location="https://twitter.com/home")
+                await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
               except Exception as e:
                 print(e)
 
