@@ -69,10 +69,28 @@ def DotaCheck(channelDataID):
       except:
         pass
 
+
+
+      try:
+        testlink = extendedURL
+        uClient = uReq(testlink)
+        page_html2 = uClient.read()
+        uClient.close()
+        page_soup2 = soup(page_html2, "html.parser")
+  
+        tabledata2 = page_soup2.findAll("div", {"class":"infobox-header wiki-backgroundcolor-light"})
+        tourniname = tabledata2[0].text.strip().replace("[e]","").replace("[h]","")
+        
+        
+      
+      except:
+        tourniname="No tourni found"
+        pass
+      
       #This finds the next match time - Dota
       try:
           nextgametime = containers3[0].text
-          print(nextgametime)
+          
       except:
           pass
 
@@ -137,13 +155,13 @@ def DotaCheck(channelDataID):
           b = datetime.datetime(int(dt_string_year), int(dt_string_month), int(dt_string_day), int(dt_string_hour), int(dt_string_minute), int(dt_string_second))
 
           epochtest = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), int(hourofgame), int(minuteofgame), 0).timestamp()
-          print(str(epochtest))
+          
           lenofepoch = len(str(epochtest))
           epoch = str(epochtest)[:lenofepoch - 2]
-          print(epoch)
+          
 
           c = a-b
-          print(c)       
+               
           #Verifies if the game has begun
           if (c.days < 0):
             
@@ -182,7 +200,7 @@ def DotaCheck(channelDataID):
         embed.add_field(name="Notice",value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
         embed.add_field(name="Links", value=links, inline=False)
 
-      return(embed, Teams,nextgametime, c, links,dayofgame2)
+      return(embed, Teams,nextgametime, c, links,dayofgame2, tourniname, extendedURL)
 
 
 

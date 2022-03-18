@@ -1192,7 +1192,7 @@ async def on_message(message):
 
         # All gardener commands
         else:
-            if(messagereceived =="!valorantevent" or messagereceived=="!valoevent"):
+            if(messagereceived =="!valorantdiscordevent" or messagereceived=="!valodiscordevent"):
               value = ValoCheck(0)
               teams = value[1]
               time = datetime.datetime.now().astimezone() + value[3]
@@ -1211,6 +1211,23 @@ async def on_message(message):
               except Exception as e:
                 print(e)
 
+
+            if(messagereceived=="!dotadiscordevent"):
+              value = DotaCheck(0)
+              Teams = value[1]
+              name = "Dota 2 game: " + Teams
+              time=datetime.datetime.now().astimezone() + value[3]
+              end_time=time+datetime.timedelta(minutes=10)
+              linktogame = value[7]
+              tourniname = value[6]
+              streaminfo = DotaStreams()
+              
+              flagMessage = streaminfo[2]
+              description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
+              try:
+                await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+              except Exception as e:
+                print(e)
           
             if (messagereceived == "!changecst"):
               
