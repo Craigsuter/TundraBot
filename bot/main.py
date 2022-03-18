@@ -1197,7 +1197,6 @@ async def on_message(message):
               teams = value[1]
               time = datetime.datetime.now().astimezone() + value[3]
               streaminfo = ValoStreams()
-              print(streaminfo)
               guild = message.guild
               linktogame = value[4]
               gamepos = value[6]
