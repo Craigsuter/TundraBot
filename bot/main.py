@@ -8,7 +8,6 @@ from discord.ext import commands
 import csv
 from urllib.request import urlopen as uReq
 from bs4 import BeautifulSoup as soup
-import discord
 import os
 from playerstats import csgoplayerstat, dotaplayerstats, valoplayerstats
 import ffmpeg
@@ -1194,8 +1193,13 @@ async def on_message(message):
         # All gardener commands
         else:
             if(messagereceived =="!testguild"):
-              guild = client.get_guild(892880084111855616)
-              await guild.create_scheduled_event(name= "test") 
+              guild = message.guild
+              time=datetime.datetime.now().astimezone()
+              time=time +datetime.timedelta(hours=1)
+              time2=time+datetime.timedelta(hours=2)
+              print(time)
+              await guild.create_scheduled_event(name="Test", start_time=time, end_time=time2, entity_type=discord.enums.EntityType(3), location="https://twitter.com/home")
+              
 
           
             if (messagereceived == "!changecst"):
