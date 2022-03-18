@@ -1193,7 +1193,11 @@ async def on_message(message):
 
         # All gardener commands
         else:
+            if(messagereceived =="!testguild"):
+              guild = client.get_guild(892880084111855616)
+              await guild.create_scheduled_event(name= "test") 
 
+          
             if (messagereceived == "!changecst"):
               
               change_cst(str(secondPartOfMessage))
