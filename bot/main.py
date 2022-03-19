@@ -1209,7 +1209,7 @@ async def on_message(message):
               try:
                 await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
               except Exception as e:
-                await message.channel.send("No event was created")
+                await message.channel.send("An error was hit during this process")
                 print(e)
 
 
@@ -1228,7 +1228,7 @@ async def on_message(message):
               try:
                 await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
               except Exception as e:
-                await message.channel.send("No event was created")
+                await message.channel.send("An error was hit during this process")
                 print(e)
 
 
@@ -1247,7 +1247,7 @@ async def on_message(message):
               try:
                 await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
               except Exception as e:
-                await message.channel.send("No event was created")
+                await message.channel.send("An error was hit during this process")
                 print(e)
               
             if (messagereceived == "!changecst"):
