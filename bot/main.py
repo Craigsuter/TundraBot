@@ -1240,6 +1240,13 @@ async def on_message(message):
                 print(e)
 
 
+            if(messagereceived=="!clearvaloevent" or messagereceived=="!clearvalorantevent"):
+              f = open("valoevent.txt", "w")
+              f.write("empty")
+              f.close()
+              upload_file('/valoevent.txt', 'valoevent.txt')
+
+            
             if(messagereceived=="!dotadiscordevent"):
               try:
                 value = DotaCheck(0)
