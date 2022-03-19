@@ -1193,20 +1193,21 @@ async def on_message(message):
         # All gardener commands
         else:
             if(messagereceived =="!valorantdiscordevent" or messagereceived=="!valodiscordevent"):
-              value = ValoCheck(0)
-              teams = value[1]
-              time = datetime.datetime.now().astimezone() + value[3]
-              streaminfo = ValoStreams()
-              guild = message.guild
-              linktogame = value[4]
-              gamepos = value[6]
-              name= "Valorant game: " + teams
-              tourniname = value[7]
-              description = tourniname + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
-              end_time=time+datetime.timedelta(minutes=10)
-              
-              
               try:
+                value = ValoCheck(0)
+                teams = value[1]
+                time = datetime.datetime.now().astimezone() + value[3]
+                streaminfo = ValoStreams()
+                guild = message.guild
+                linktogame = value[4]
+                gamepos = value[6]
+                name= "Valorant game: " + teams
+                tourniname = value[7]
+                description = tourniname + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
+                end_time=time+datetime.timedelta(minutes=10)
+                
+              
+              
                 await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
               except Exception as e:
                 await message.channel.send("An error was hit during this process")
@@ -1214,18 +1215,19 @@ async def on_message(message):
 
 
             if(messagereceived=="!dotadiscordevent"):
-              value = DotaCheck(0)
-              Teams = value[1]
-              name = "Dota 2 game: " + Teams
-              time=datetime.datetime.now().astimezone() + value[3]
-              end_time=time+datetime.timedelta(minutes=10)
-              linktogame = value[7]
-              tourniname = value[6]
-              streaminfo = DotaStreams()
-              
-              flagMessage = streaminfo[2]
-              description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
               try:
+                value = DotaCheck(0)
+                Teams = value[1]
+                name = "Dota 2 game: " + Teams
+                time=datetime.datetime.now().astimezone() + value[3]
+                end_time=time+datetime.timedelta(minutes=10)
+                linktogame = value[7]
+                tourniname = value[6]
+                streaminfo = DotaStreams()
+                
+                flagMessage = streaminfo[2]
+                description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
+              
                 await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
               except Exception as e:
                 await message.channel.send("An error was hit during this process")
@@ -1234,17 +1236,18 @@ async def on_message(message):
 
 
             if(messagereceived=="!csgodiscordevent"):
-              value = CSGOCheck(0)
-              teams = value[0]
-              gamepage = value[4]
-              tourniname = value[8]
-              name = "CSGO game: " + teams
-              time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
-              end_time = time+datetime.timedelta(minutes=10)
-              streaminfo = CSGOStreams()
-              streamdata = streaminfo[3]
-              description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
               try:
+                value = CSGOCheck(0)
+                teams = value[0]
+                gamepage = value[4]
+                tourniname = value[8]
+                name = "CSGO game: " + teams
+                time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
+                end_time = time+datetime.timedelta(minutes=10)
+                streaminfo = CSGOStreams()
+                streamdata = streaminfo[3]
+                description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
+              
                 await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
               except Exception as e:
                 await message.channel.send("An error was hit during this process")
