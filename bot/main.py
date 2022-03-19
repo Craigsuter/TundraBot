@@ -1225,6 +1225,7 @@ async def on_message(message):
                     f.write(linetocheck)
                     f.close()
                     upload_file('/valoevent.txt', 'valoevent.txt')
+                    await message.channel.send("Event made")
                     
                 except:
                   await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
@@ -1232,8 +1233,9 @@ async def on_message(message):
                   f.write(linetocheck)
                   f.close()
                   upload_file('/valoevent.txt', 'valoevent.txt')
+                  await message.channel.send("Event made")
                   pass
-                await message.channel.send("Event made")
+                
               
                 
               except Exception as e:
@@ -1297,6 +1299,7 @@ async def on_message(message):
                     f.write(linetocheck)
                     f.close()
                     upload_file('/dotaevent.txt', 'dotaevent.txt')
+                    await message.channel.send("Event made")
                     
                 except:
                   await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
@@ -1304,8 +1307,9 @@ async def on_message(message):
                   f.write(linetocheck)
                   f.close()
                   upload_file('/dotaevent.txt', 'dotaevent.txt')
+                  await message.channel.send("Event made")
                   pass
-                await message.channel.send("Event made")
+                
               
                 
               except Exception as e:
@@ -1347,6 +1351,7 @@ async def on_message(message):
                     f.write(linetocheck)
                     f.close()
                     upload_file('/csgoevent.txt', 'csgoevent.txt')
+                    await message.channel.send("Event made")
                     
                 except:
                   await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
@@ -1354,8 +1359,9 @@ async def on_message(message):
                   f.write(linetocheck)
                   f.close()
                   upload_file('/csgoevent.txt', 'csgoevent.txt')
+                  await message.channel.send("Event made")
                   pass
-                await message.channel.send("Event made")
+               
               
                
               except Exception as e:
