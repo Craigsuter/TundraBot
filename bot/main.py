@@ -1205,10 +1205,37 @@ async def on_message(message):
                 tourniname = value[7]
                 description = tourniname + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
                 end_time=time+datetime.timedelta(minutes=10)
+
+                linetocheck = teams + "," + gamepos +"," +tourniname
+                try:
+                  download_file('/valoevent.txt', 'valoevent.txt')
+                  
+                  f=open('valoevent.txt', 'r')
+                  lines=f.readlines()
+                  f.close()
+                except:
+                  lines="empty"
                 
+                try:
+                  if lines[0] == linetocheck:
+                    print("Event already exists")
+                    pass
+                  else:
+                    await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+                    f = open("valoevent.txt", "w")
+                    f.write(linetocheck)
+                    f.close()
+                    upload_file('/valoevent.txt', 'valoevent.txt')
+                    
+                except:
+                  await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+                  f = open("valoevent.txt", "w")
+                  f.write(linetocheck)
+                  f.close()
+                  upload_file('/valoevent.txt', 'valoevent.txt')
+                  pass
               
-              
-                await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+                
               except Exception as e:
                 await message.channel.send("An error was hit during this process")
                 print(e)
