@@ -1233,6 +1233,7 @@ async def on_message(message):
                   f.close()
                   upload_file('/valoevent.txt', 'valoevent.txt')
                   pass
+                await message.channel.send("Event made")
               
                 
               except Exception as e:
@@ -1304,6 +1305,7 @@ async def on_message(message):
                   f.close()
                   upload_file('/dotaevent.txt', 'dotaevent.txt')
                   pass
+                await message.channel.send("Event made")
               
                 
               except Exception as e:
@@ -1353,6 +1355,7 @@ async def on_message(message):
                   f.close()
                   upload_file('/csgoevent.txt', 'csgoevent.txt')
                   pass
+                await message.channel.send("Event made")
               
                
               except Exception as e:
