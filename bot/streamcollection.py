@@ -221,6 +221,7 @@ def CSGOStreams():
 
     OGpage = 'https://www.hltv.org/team/10503/og#tab-matchesBox'
     
+    
     r2 = requests.get(OGpage, headers=headers)
 
     page_soup2 = soup(r2.text, "html.parser")
