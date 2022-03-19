@@ -1205,7 +1205,7 @@ async def on_message(message):
                 tourniname = value[7]
                 description = tourniname + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
                 end_time=time+datetime.timedelta(minutes=10)
-
+                
                 linetocheck = teams + "," + gamepos +"," +tourniname
                 try:
                   download_file('/valoevent.txt', 'valoevent.txt')
@@ -1272,7 +1272,7 @@ async def on_message(message):
                 
                 flagMessage = streaminfo[2]
                 description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
-
+                
                 linetocheck = Teams+","+linktogame
 
                 try:
@@ -1321,7 +1321,7 @@ async def on_message(message):
                 streaminfo = CSGOStreams()
                 streamdata = streaminfo[3]
                 description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
-
+                
                 linetocheck= teams+","+gamepage
                 try:
                   download_file('/csgoevent.txt', 'csgoevent.txt')
@@ -4005,108 +4005,142 @@ async def testingspam():
     await c.send(message)
     #Dota daily
     try:
-        DotaGame = DotaCheck(720263155460079767)
-        Teams = DotaGame[1]
-        nextgametime = DotaGame[2]
-        c = DotaGame[3]
-        links = DotaGame[4]
-        dayofgame2 = DotaGame[5]
+      value = DotaCheck(0)
+      Teams = value[1]
+      name = "Dota 2 game: " + Teams
+      time=datetime.datetime.now().astimezone() + value[3]
+      end_time=time+datetime.timedelta(minutes=10)
+      linktogame = value[7]
+      tourniname = value[6]
+      streaminfo = DotaStreams()
+      
+      flagMessage = streaminfo[2]
+      description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
+      guild = client.get_guild(689865753662455829)
+      linetocheck = Teams+","+linktogame
 
-        if ((currentd[0] == "0")):
-            currentd = currentd[1]
+      try:
+        download_file('/dotaevent.txt', 'dotaevent.txt')
+        f=open('dotaevent.txt', 'r')
+        lines=f.readlines()
+        f.close()
+      except:
+        lines="empty"
 
-        if (dayofgame2 == currentd):
-            embed = discord.Embed(title="There is an OG Dota game today!",
-                                  url="https://liquipedia.net/dota2/OG",
-                                  color=0xf10909)
-            embed.set_thumbnail(
-                url=
-                "https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png"
-            )
-            embed.add_field(name=Teams, value=nextgametime, inline=True)
-            embed.add_field(name="Time remaining", value=c, inline=False)
-            embed.add_field(
-                name="Notice",
-                value=
-                "Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate",
-                inline=False)
-            embed.add_field(
-                name="Links",
-                value=
-                "OG Liquipedia: https://liquipedia.net/dota2/OG\nTournament: "
-                + links,
-                inline=False)
-            #await message.channel.send(embed=embed)
-            print("e")
-            channel = client.get_channel(720263155460079767)
-            print("e2")
-            channel2 = client.get_channel(847601411340501019)
-            await channel2.send(embed=embed)
-            await channel.send(embed=embed)
-    except:
-        print("no dota games today")
+      try:
+        if lines[0] == linetocheck:
+          
+          pass
+        else:
+          await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+          f = open("dotaevent.txt", "w")
+          f.write(linetocheck)
+          f.close()
+          upload_file('/dotaevent.txt', 'dotaevent.txt')
+          
+      except:
+        await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+        f = open("dotaevent.txt", "w")
+        f.write(linetocheck)
+        f.close()
+        upload_file('/dotaevent.txt', 'dotaevent.txt')
+        pass
+    
+      
+    except Exception as e:
+      print(e)
 
-#Valo daily
+    #Valo daily
     try:
-        ValoGame = ValoCheck(720263155460079767)
-
-        valorantTeams = ValoGame[1]
-        valorantTeamTime = ValoGame[2]
-        c = ValoGame[3]
-        matchlink = ValoGame[4]
-        dayofgame2 = ValoGame[5]
-
-        if ((currentd[0] == "0")):
-            currentd = currentd[1]
-
-        if (dayofgame2 == currentd):
-            embed = discord.Embed(title="There is an OG Valo game today!",
-                                  url="https://www.vlr.gg/team/2965/og",
-                                  color=0xd57280)
-            embed.set_thumbnail(
-                url=
-                "https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png"
-            )
-            embed.add_field(name=valorantTeams,
-                            value=valorantTeamTime,
-                            inline=True)
-            embed.add_field(name="Time remaining", value=c, inline=False)
-            embed.add_field(
-                name="Notice",
-                value=
-                "Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate",
-                inline=False)
-            embed.add_field(
-                name="Links",
-                value=
-                "https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG\nMatchlink - "
-                + str(matchlink),
-                inline=False)
-            channel = client.get_channel(720263155460079767)
-            channel2 = client.get_channel(847601411340501019)
-            await channel2.send(embed=embed)
-            await channel.send(embed=embed)
-    except:
-        print("No valo games today")
+      value = ValoCheck(0)
+      teams = value[1]
+      time = datetime.datetime.now().astimezone() + value[3]
+      streaminfo = ValoStreams()
+      guild = message.guild
+      linktogame = value[4]
+      gamepos = value[6]
+      name= "Valorant game: " + teams
+      tourniname = value[7]
+      description = tourniname + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
+      end_time=time+datetime.timedelta(minutes=10)
+      guild = client.get_guild(689865753662455829)
+      linetocheck = teams + "," + gamepos +"," +tourniname
+      try:
+        download_file('/valoevent.txt', 'valoevent.txt')
+        f=open('valoevent.txt', 'r')
+        lines=f.readlines()
+        f.close()
+      except:
+        lines="empty"
+      
+      try:
+        if lines[0] == linetocheck:
+          
+          pass
+        else:
+          await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+          f = open("valoevent.txt", "w")
+          f.write(linetocheck)
+          f.close()
+          upload_file('/valoevent.txt', 'valoevent.txt')
+          
+      except:
+        await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+        f = open("valoevent.txt", "w")
+        f.write(linetocheck)
+        f.close()
+        upload_file('/valoevent.txt', 'valoevent.txt')
+        pass
+    
+      
+    except Exception as e:
+      print(e)
 
 
 #CSGO daily
     try:
-        csgodata = CSGOCheck(720263155460079767)
-        #return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed)
-        timeToGame = csgodata[3]
-        try:
-            timeToGame = timeToGame.rsplit(":")
-            timeToGame = timeToGame[0]
-            if (timeToGame[-1] != "d"):
-                embed = csgodata[6]
-                channel2 = client.get_channel(847601411340501019)
-                await channel2.send(embed=embed)
+      value = CSGOCheck(0)
+      teams = value[0]
+      gamepage = value[4]
+      tourniname = value[8]
+      name = "CSGO game: " + teams
+      time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
+      end_time = time+datetime.timedelta(minutes=10)
+      streaminfo = CSGOStreams()
+      streamdata = streaminfo[3]
+      description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
+      guild = client.get_guild(689865753662455829)
+      linetocheck= teams+","+gamepage
+      try:
+        download_file('/csgoevent.txt', 'csgoevent.txt')
+        f=open('csgoevent.txt', 'r')
+        lines=f.readlines()
+        f.close()
+      except:
+        lines= "empty"
 
-        except:
-            print("No CSGO game")
-    except:
-        test = "test"
+      try:
+      
+        if lines[0] == linetocheck:
+          pass
+        else:
+          await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+          f = open("csgoevent.txt", "w")
+          f.write(linetocheck)
+          f.close()
+          upload_file('/csgoevent.txt', 'csgoevent.txt')
+          
+      except:
+        await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+        f = open("csgoevent.txt", "w")
+        f.write(linetocheck)
+        f.close()
+        upload_file('/csgoevent.txt', 'csgoevent.txt')
+        pass
+    
+     
+    except Exception as e:
+      print(e)
 
 client.run(os.getenv('TOKEN'))
 server.server()
