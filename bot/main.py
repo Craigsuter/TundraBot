@@ -1246,6 +1246,12 @@ async def on_message(message):
               f.close()
               upload_file('/valoevent.txt', 'valoevent.txt')
 
+            if(messagereceived=="!cleardotaevent"):
+              f = open("dotaevent.txt", "w")
+              f.write("empty")
+              f.close()
+              upload_file('/dotaevent.txt', 'dotaevent.txt')
+
             
             if(messagereceived=="!dotadiscordevent"):
               try:
@@ -1260,8 +1266,37 @@ async def on_message(message):
                 
                 flagMessage = streaminfo[2]
                 description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
+
+                linetocheck = Teams+","+linktogame
+
+                try:
+                  download_file('/dotaevent.txt', 'dotaevent.txt')
+                  f=open('dotaevent.txt', 'r')
+                  lines=f.readlines()
+                  f.close()
+                except:
+                  lines="empty"
+
+                try:
+                  if lines[0] == linetocheck:
+                    await message.channel.send("Event has already been added")
+                    pass
+                  else:
+                    await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+                    f = open("dotaevent.txt", "w")
+                    f.write(linetocheck)
+                    f.close()
+                    upload_file('/dotaevent.txt', 'dotaevent.txt')
+                    
+                except:
+                  await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+                  f = open("dotaevent.txt", "w")
+                  f.write(linetocheck)
+                  f.close()
+                  upload_file('/dotaevent.txt', 'dotaevent.txt')
+                  pass
               
-                await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+                
               except Exception as e:
                 await message.channel.send("An error was hit during this process")
                 print(e)
