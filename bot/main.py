@@ -1192,7 +1192,7 @@ async def on_message(message):
 
         # All gardener commands
         else:
-            if(messagereceived =="!valorantdiscordevent" or messagereceived=="!valodiscordevent"):
+            if(messagereceived =="!valorantdiscordevent2" or messagereceived=="!valodiscordevent"):
               try:
                 value = ValoCheck(0)
                 teams = value[1]
@@ -1209,7 +1209,6 @@ async def on_message(message):
                 linetocheck = teams + "," + gamepos +"," +tourniname
                 try:
                   download_file('/valoevent.txt', 'valoevent.txt')
-                  
                   f=open('valoevent.txt', 'r')
                   lines=f.readlines()
                   f.close()
@@ -1218,7 +1217,7 @@ async def on_message(message):
                 
                 try:
                   if lines[0] == linetocheck:
-                    print("Event already exists")
+                    await message.channel.send("Event has already been added")
                     pass
                   else:
                     await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
