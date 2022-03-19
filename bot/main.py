@@ -1192,7 +1192,7 @@ async def on_message(message):
 
         # All gardener commands
         else:
-            if(messagereceived =="!valorantdiscordevent2" or messagereceived=="!valodiscordevent"):
+            if(messagereceived =="!valorantdiscordevent" or messagereceived=="!valodiscordevent"):
               try:
                 value = ValoCheck(0)
                 teams = value[1]
