@@ -214,6 +214,7 @@ def CSGOCheck(channelDataID):
 
     #change url
     OGpage = 'https://www.hltv.org/team/10503/og#tab-matchesBox'
+    
     r2 = requests.get(OGpage, headers=headers)
 
     page_soup2 = soup(r2.text, "html.parser")
@@ -228,7 +229,7 @@ def CSGOCheck(channelDataID):
 
     matchlink = "https://www.hltv.org" + linkinfo[0]
 
-
+  
    
     
     r = requests.get(matchlink , headers=headers)
@@ -250,10 +251,26 @@ def CSGOCheck(channelDataID):
     time1 = test4[0].text
     time2 = time1.replace(" ","")
 
+    try:
+      testlink = matchlink
+      r3 = requests.get(testlink, headers=headers)
+  
+      page_soup2 = soup(r3.text, "html.parser")
+
+      tabledata2 = page_soup2.findAll("div", {"class":"event text-ellipsis"})
+      tourniname= tabledata2[0].text
+      
+      
+    
+    except Exception as e:
+      print(e)
+      tourniname="No tourni found"
+      pass
+
     
     try:
       x= time2.split(":")
-      print(x)
+    
       timetoadd = 0
       while len(x) > 1:
         ValueCheck = x[0]
@@ -345,10 +362,10 @@ def CSGOCheck(channelDataID):
       embed.add_field(name="Links", value="OG Liquipedia: https://liquipedia.net/counterstrike/OG\nOG HLTV: https://www.hltv.org/team/10503/og#tab-matchesBox\nGame page: " + matchlink +"\nTournament: " + link4tourni, inline=False)
 
     if timetoadd >0:
-      return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed, timetoadd)
+      return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed, timetoadd, tourniname)
     else:
       timetoadd=0
-      return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed, timetoadd)
+      return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed, timetoadd, tourniname)
 
 
 

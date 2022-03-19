@@ -220,6 +220,7 @@ def CSGOStreams():
     headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 
     OGpage = 'https://www.hltv.org/team/10503/og#tab-matchesBox'
+    
     r2 = requests.get(OGpage, headers=headers)
 
     page_soup2 = soup(r2.text, "html.parser")
@@ -248,7 +249,7 @@ def CSGOStreams():
       #for note - we need to use a i / i++ loop to get all the links out of tabledata using an array catch of len-1
       lenrot = len(tabledata)
       i=0
-      print(lenrot)
+      
       while(i < (lenrot)):
         for a in tabledata[i].findAll('a', href=True):
           headings.append(a['href'])
@@ -277,8 +278,7 @@ def CSGOStreams():
         print(":(")
         pass
       
-      print(headings)
-      print(len(headings))
+      
 
       
 
@@ -328,11 +328,7 @@ def CSGOStreams():
       
 
     
-    print(len(flags2))
-    print(team1)
-    print(team2)
-    print(links)
-    print(matchlink)
+    
     if links=="":
       links = "No streams were found"
 
