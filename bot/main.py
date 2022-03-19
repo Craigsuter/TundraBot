@@ -1245,18 +1245,21 @@ async def on_message(message):
               f.write("empty")
               f.close()
               upload_file('/valoevent.txt', 'valoevent.txt')
+              await message.channel.send("Event cleared")
 
             if(messagereceived=="!cleardotaevent"):
               f = open("dotaevent.txt", "w")
               f.write("empty")
               f.close()
               upload_file('/dotaevent.txt', 'dotaevent.txt')
+              await message.channel.send("Event cleared")
 
             if(messagereceived=="!clearcsgoevent"):
               f = open("csgoevent.txt", "w")
               f.write("empty")
               f.close()
               upload_file('/csgoevent.txt', 'csgoevent.txt')
+              await message.channel.send("Event cleared")
 
             
             if(messagereceived=="!dotadiscordevent"):
