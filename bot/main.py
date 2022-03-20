@@ -102,7 +102,7 @@ async def on_ready():
     scheduler = AsyncIOScheduler()
     #Post on the day of a game
     try:
-        scheduler.add_job(testingspam, CronTrigger(minute="30"))
+        scheduler.add_job(testingspam, CronTrigger(minute="35"))
         print("Daily announcement success")
     except:
         print("Daily announced schedule failed")
@@ -4009,12 +4009,10 @@ async def openingfile():
 
 #Daily posts
 async def testingspam():
-    global currentd
-    print("testing: " + currentd)
+    
     c = client.get_channel(839466348970639391)
     currenttime = datetime.datetime.now()
-    message = "its working" + str(currenttime)
-    #await c.send(message)
+   
     #Dota daily
     try:
       value = DotaCheck(0)
