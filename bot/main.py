@@ -102,7 +102,7 @@ async def on_ready():
     scheduler = AsyncIOScheduler()
     #Post on the day of a game
     try:
-        scheduler.add_job(testingspam, CronTrigger(hour="1,2,3,4,5,6,7,8,9,10,11, 12,13,14,15,16, 17, 18, 19, 20, 21, 22, 23, 24"))
+        scheduler.add_job(testingspam, CronTrigger(minute="30"))
         print("Daily announcement success")
     except:
         print("Daily announced schedule failed")
