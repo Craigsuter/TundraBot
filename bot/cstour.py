@@ -88,7 +88,7 @@ def next_cst(channelDataID):
 
 def change_cst(url):
   try:
-    download_file('/dropcsgotournament.txt', 'csgotournament.txt')
+    #download_file('/dropcsgotournament.txt', 'csgotournament.txt')
     f = open('csgotournament.txt', 'w')
     f.write(url)
     f.close()

@@ -692,18 +692,33 @@ async def on_message(message):
         if ((messagereceived == "!nextdota")
                 or (messagereceived == "!nextdoto")
                 or (messagereceived == "!nextdota2")):
-            embed = DotaCheck(channelDataID)
-            print(embed)
-            embed = embed[0]
-            if ((channelDataID == 689903856095723569)
-                    or (channelDataID == 690952309827698749)
-                    or (channelDataID == 697447277647626297)
-                    or (channelDataID == 818793950965006357)):
-                userID = message.author.id
-                userID = str(userID)
-                await message.reply("<@" + userID + "> " + embed)
-            else:
+            try:
+              embed = DotaCheck(channelDataID)
+              print(embed)
+              embed = embed[0]
+              if ((channelDataID == 689903856095723569)
+                      or (channelDataID == 690952309827698749)
+                      or (channelDataID == 697447277647626297)
+                      or (channelDataID == 818793950965006357)):
+                  userID = message.author.id
+                  userID = str(userID)
+                  await message.reply("<@" + userID + "> " + embed)
+              else:
+                  await message.reply(embed=embed)
+            except:
+              if ((channelDataID == 689903856095723569)
+                      or (channelDataID == 690952309827698749)
+                      or (channelDataID == 697447277647626297)
+                      or (channelDataID == 818793950965006357)):
+                await message.reply("No games planned currently - For more information use !nextdota in <#721391448812945480>")
+              else:
+                embed=discord.Embed(title="OG Dota's next game", url="https://liquipedia.net/dota2/OG", color=0xf10909)
+                embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
+                embed.add_field(name="Time remaining", value = "No games currently planned" , inline=False)
+                embed.add_field(name="Notice",value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
+                embed.add_field(name="Links", value="OG Liquipedia: https://liquipedia.net/dota2/OG", inline=False)
                 await message.reply(embed=embed)
+              
 
         #Gets the info for the next CSGO game
         if ((messagereceived == "!nextcsgo")
@@ -3029,8 +3044,8 @@ async def on_message(message):
                                            link + ">")
 
             if (messagereceived == "!changedt"):
-                data = download_file('/dropdotatournament.txt',
-                                     'dotatournament.txt')
+                #data = download_file('/dropdotatournament.txt',
+                                     #'dotatournament.txt')
                 newlink = secondPartOfMessage
                 f = open("dotatournament.txt", "w")
                 f.write(newlink)
