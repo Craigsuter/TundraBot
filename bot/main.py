@@ -694,7 +694,6 @@ async def on_message(message):
                 or (messagereceived == "!nextdota2")):
             try:
               embed = DotaCheck(channelDataID)
-              print(embed)
               embed = embed[0]
               if ((channelDataID == 689903856095723569)
                       or (channelDataID == 690952309827698749)
