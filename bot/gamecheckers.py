@@ -36,7 +36,7 @@ def DotaCheck(channelDataID):
 
 
       
-      links = 'OG Liquipedia: https://liquipedia.net/dota2/OG'
+      links = '[OG Liquipedia Page](https://liquipedia.net/dota2/OG)'
 
       now = datetime.datetime.now()
       #Getting current date / time values
@@ -65,7 +65,7 @@ def DotaCheck(channelDataID):
         tablestorage = tabledata[1].find_all('a', href=True)
         URL = tablestorage[0]['href']
         extendedURL = "https://liquipedia.net" + URL
-        links = links + "\n Tournament: " + extendedURL
+        links = links + "\n [Tournament](" + extendedURL +")"
       except:
         pass
 
@@ -360,7 +360,7 @@ def CSGOCheck(channelDataID):
         embed.add_field(name=teams, value= "Game should be live now" , inline=True)
       embed.add_field(name="Time till game", value=time2, inline=False)
       embed.add_field(name="Notice", value="Please check HLTV by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-      embed.add_field(name="Links", value="OG Liquipedia: https://liquipedia.net/counterstrike/OG\nOG HLTV: https://www.hltv.org/team/10503/og#tab-matchesBox\nGame page: " + matchlink +"\nTournament: " + link4tourni, inline=False)
+      embed.add_field(name="Links", value="[OG Liquipedia](https://liquipedia.net/counterstrike/OG)\n[OG HLTV](https://www.hltv.org/team/10503/og#tab-matchesBox)\n[Game page](" + matchlink +")\n[Tournament](" + link4tourni+")", inline=False)
 
     if timetoadd >0:
       return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed, timetoadd, tourniname)
@@ -378,7 +378,7 @@ def CSGOCheck(channelDataID):
       embed=discord.Embed(title="OG CSGO's next game", url="https://www.hltv.org/team/10503/og#tab-matchesBox",color=0xff8800)
       embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
       embed.add_field(name="No games planned", value="No games planned", inline=True)
-      embed.add_field(name="Links", value="https://www.hltv.org/team/10503/og#tab-matchesBox/ https://liquipedia.net/counterstrike/OG", inline=False)
+      embed.add_field(name="Links", value="[OG HLTV](https://www.hltv.org/team/10503/og#tab-matchesBox/) \n [OG CSGO Liquipedia](https://liquipedia.net/counterstrike/OG)", inline=False)
     
     return("No games planned","No games planned","No games planned","No games planned","No games planned","No games planned", embed)
     
@@ -566,9 +566,9 @@ def ValoCheck(channelDataID):
       embed.add_field(name="Time remaining", value= c , inline = False)
       embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
       try:
-        embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG\nMatchlink - " + str(matchlink), inline=False)
+        embed.add_field(name="Links", value="[OG VLR](https://www.vlr.gg/team/2965/og) / [OG Valrant Liquipedia](https://liquipedia.net/valorant/OG)\n[Matchlink](" + str(matchlink) + ")", inline=False)
       except:
-        embed.add_field(name="Links", value="https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG", inline=False)
+        embed.add_field(name="Links", value="[OG VLR](https://www.vlr.gg/team/2965/og) / [OG Valrant Liquipedia](https://liquipedia.net/valorant/OG)", inline=False)
       
     #return(embed)
     return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2, gameposition, tourniname)

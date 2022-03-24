@@ -719,7 +719,7 @@ async def on_message(message):
                 await message.reply(embed=embed)
               
 
-        #Gets the info for the next CSGO game
+        #Gets the info for the next CSGO gamee
         if ((messagereceived == "!nextcsgo")
                 or (messagereceived == "!nextcs")):
             CSGOGame = CSGOCheck(channelDataID)
@@ -769,7 +769,7 @@ async def on_message(message):
                     embed.add_field(
                         name="Links",
                         value=
-                        "https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG / ",
+                        "[OG VLR](https://www.vlr.gg/team/2965/og) / [OG Valrant Liquipedia](https://liquipedia.net/valorant/OG)",
                         inline=False)
                     await message.reply(embed=embed)
             else:
