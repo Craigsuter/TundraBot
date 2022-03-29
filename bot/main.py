@@ -178,7 +178,7 @@ async def on_member_update(before, after):
                     for channel in guild2.text_channels:
                         try:
                             c = client.get_channel(channel.id)
-                            messages = await c.history(limit=100).flatten()
+                            messages = [messhis async for messhis in c.history(limit=100)]
                             i = 0
 
                             #Will delete the latest message from the user
@@ -256,7 +256,7 @@ async def on_member_update(before, after):
             #Deletes messages when user gets Seeds role
             if (newRole.name == "Seeds"):
                 c = client.get_channel(736505679354921092)
-                messages = await c.history(limit=25).flatten()
+                messages = [messhis async for messhis in c.history(limit=30)]
                 i = 0
                 #creates a collection of messahes
                 for message in messages:
@@ -1206,6 +1206,45 @@ async def on_message(message):
 
         # All gardener commands
         else:
+            
+
+            if (messagereceived=="!testingstuff"):
+              #channel to get messages from [so will be General in main server]
+                c = client.get_channel(689865754354384996)
+                guild2 = client.get_guild(892880084111855616)
+                i = 0
+                counter = 0
+                if (i < 1):
+                    for channel in guild2.text_channels:
+                        try:
+                            c = client.get_channel(channel.id)
+                            #messages = await c.history(limit=100).flatten()
+                            messages = [messhis async for messhis in c.history(limit=100)]
+                            
+                            i = 0
+
+                            #Will delete the latest message from the user
+                            for message in messages:
+                                user = message.author.id
+
+                                if user == 183707605032501248 and i < 1:
+                                    #channelID , messageid
+                                    try:
+                                        channelofdel = client.get_channel(
+                                            channel.id)
+                                        msgtodelete = await channelofdel.fetch_message(
+                                            message.id)
+                                        await client.http.delete_message(
+                                            channel.id, message.id)
+                                        counter = counter + 1
+                                        i = i + 1
+                                    except:
+                                        i = i + 1
+                                        print("No access to channel")
+                        except Exception as e:
+                            print(e)
+                            i = i + 1
+                    print(i)
             if(messagereceived =="!valorantdiscordevent" or messagereceived=="!valodiscordevent"):
               try:
                 value = ValoCheck(0)
@@ -3063,7 +3102,7 @@ async def on_message(message):
                     #channel to copy from
                     channeltosendtoo = int(secondPartOfMessage)
                     c = client.get_channel(channeltosendtoo)
-                    messages = await c.history(limit=100).flatten()
+                    messages = [messhis async for messhis in c.history(limit=100)]
                     messages.reverse()
 
                     for message in messages:
