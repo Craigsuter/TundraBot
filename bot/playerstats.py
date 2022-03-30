@@ -48,7 +48,7 @@ def csgoplayerstat(name):
     container = data.findAll("div", {"class":"box player expanded hoverable"})
     if not container:
       container = data.findAll("div", {"class": "box compact player hoverable"})
-    print(container)
+    #print(container)
     driver.close()
    
     tablestorage = container[0].find_all('a', href=True)
