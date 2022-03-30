@@ -17,9 +17,6 @@ def csgoplayerstat(name):
   #Loading username / password for Liquipedia
   headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36(KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
-  
- 
-
 
   chrome_options = webdriver.ChromeOptions()
   chrome_options.binary_location=os.environ.get("GOOGLE_CHROME_BIN")
@@ -28,16 +25,13 @@ def csgoplayerstat(name):
   chrome_options.add_argument("--no-sandbox")
   chrome_options.add_argument("--window-size=1920,1080")
   # you need executable path for heroku (aka production) - but remove it for using replit 
-  # driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
+  driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
   
   # Use this for testing
-  driver = webdriver.Chrome(chrome_options=chrome_options)
+  # driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
-
-
   
   #driver = webdriver.Firefox(options=options)
-  
   driver.get("https://www.hltv.org/")
   
   #time.sleep(2)
@@ -46,7 +40,6 @@ def csgoplayerstat(name):
     button = driver.find_element_by_name("query")
     button.click()
     button.send_keys(name)
-    
     
     time.sleep(2)
     data = soup(driver.page_source, "html.parser")
@@ -125,8 +118,6 @@ def csgoplayerstat(name):
     player_image = image_container.find(
         "img", {"class": "summaryBodyshot"})['src']
 
-   
-
     player_stats = discord.Embed(
         title=f'{name} stats', url=url, color=0xff8800)
     player_stats.set_thumbnail(url=player_image)
@@ -137,7 +128,6 @@ def csgoplayerstat(name):
     player_stats.add_field(name="KAST", value=player_kast)
     player_stats.add_field(name="KPR", value=player_kpr)
     player_stats.add_field(name="KDR", value=player_kdr)
-    
 
     return player_stats
     
@@ -145,7 +135,6 @@ def csgoplayerstat(name):
     embed = discord.Embed(title= "Error searching")
     embed.add_field(name="Error searching", value= "I was unable to find any players under that name, please try again!\nE.G: !csgostats flamez", inline=True)
     print(e)
-    
     return(embed)
 
 
@@ -164,7 +153,7 @@ def dotaplayerstats(name):
   driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), chrome_options=chrome_options)
   
   # Use this for testing
-  #driver = webdriver.Chrome(chrome_options=chrome_options)
+  # driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
   if(name2 == "ammar" or name2 == "ammar_the_fucker"):
     name = "atf"
@@ -172,10 +161,9 @@ def dotaplayerstats(name):
   driver.get("https://dota2protracker.com/")
   #time.sleep(2)
   try:
-    button = driver.find_element_by_id("autocomplete")
+    button = driver.find_element_by_name("search")
     button.click()
     button.send_keys(name)
-
 
     time.sleep(2)
     data = soup(driver.page_source, "html.parser")
@@ -189,18 +177,22 @@ def dotaplayerstats(name):
     page_html = soup(player_page.text, "html.parser")
 
 
-    wl_record = page_html.find("div", {"class": "player_stats"}).find("span").text
-    if(int(wl_record[0]) > 0):
-      player_picks = page_html.find_all("div", {"class": "meta-hero-card"})
+    wl_record_container = page_html.find("div", {"class": "hero-header-stats-detailed"})
+    matches_played = wl_record_container.contents[1].text
+    win_rate = wl_record_container.contents[3].text
+    wl_record = f'{matches_played} Matches last 8 days, {win_rate} Win Rate'
+    
+    if(int(matches_played) > 0):
+      player_picks = page_html.find_all("div", {"class": "played-box"})
       top5_picks_container = player_picks[:5]
 
       top5_picks_info = ""
 
       for pick_container in top5_picks_container:
-          pick_info = pick_container.find_all("div", {"class": "meta-pick-info-block"})
-          pick_name = pick_container.find("div", {"class": "meta-pick-title"}).text
-          pick_matchcount = pick_info[0].next_element.strip()
-          pick_winrate = pick_info[1].next_element.strip()
+          pick_info = pick_container.find("div", {"class": "played-hero-stats"})
+          pick_name = pick_container['data']
+          pick_matchcount = pick_info.find("div", {"class": "bottom-row"}).contents[1].text
+          pick_winrate = pick_info.find("div", {"class": "top-row"}).contents[1].text
           top5_picks_info = top5_picks_info + \
               f'{pick_name}: {pick_matchcount} matches ({pick_winrate} Winrate) \n'
 
@@ -237,7 +229,6 @@ def valoplayerstats(name):
   # Use this for testing
   #driver = webdriver.Chrome(chrome_options=chrome_options)
   name2 = name.lower()
-
 
   driver.get("https://www.vlr.gg/")
   
@@ -318,8 +309,6 @@ def valoplayerstats(name):
     player_stats.add_field(name="KDR", value=player_kdr)
 
     return player_stats
-
-      
     
   except Exception as e:
     print(e)
