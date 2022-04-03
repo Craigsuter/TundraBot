@@ -1208,43 +1208,62 @@ async def on_message(message):
         else:
             
 
-            if (messagereceived=="!testingstuff"):
-              #channel to get messages from [so will be General in main server]
-                c = client.get_channel(689865754354384996)
-                guild2 = client.get_guild(892880084111855616)
-                i = 0
-                counter = 0
-                if (i < 1):
-                    for channel in guild2.text_channels:
-                        try:
-                            c = client.get_channel(channel.id)
-                            #messages = await c.history(limit=100).flatten()
-                            messages = [messhis async for messhis in c.history(limit=100)]
-                            
-                            i = 0
+            if(messagereceived =="!test"):
+              try:
+                value = DotaCheck(0)
+                Teams = value[1]
+                name = "Dota 2 game: " + Teams
+                time=datetime.datetime.now().astimezone() + value[3]
+                end_time=time+datetime.timedelta(minutes=10)
+                linktogame = value[7]
+                tourniname = value[6]
+                guild = message.guild
+                streaminfo = DotaStreams()
+                
+                flagMessage = streaminfo[2]
+                description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
+                
+                linetocheck = Teams+","+linktogame
 
-                            #Will delete the latest message from the user
-                            for message in messages:
-                                user = message.author.id
+                try:
+                  download_file('/dotaevent.txt', 'dotaevent.txt')
+                  f=open('dotaevent.txt', 'r')
+                  lines=f.readlines()
+                  f.close()
+                except:
+                  lines="empty"
 
-                                if user == 183707605032501248 and i < 1:
-                                    #channelID , messageid
-                                    try:
-                                        channelofdel = client.get_channel(
-                                            channel.id)
-                                        msgtodelete = await channelofdel.fetch_message(
-                                            message.id)
-                                        await client.http.delete_message(
-                                            channel.id, message.id)
-                                        counter = counter + 1
-                                        i = i + 1
-                                    except:
-                                        i = i + 1
-                                        print("No access to channel")
-                        except Exception as e:
-                            print(e)
-                            i = i + 1
-                    print(i)
+                lines="empty"
+                try:
+                  if lines[0] == linetocheck:
+                    await message.channel.send("Event has already been added")
+                    pass
+                  else:
+                    eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+                    f = open("dotaevent.txt", "w")
+                    f.write(linetocheck)
+                    f.close()
+                    #upload_file('/dotaevent.txt', 'dotaevent.txt')
+                    await message.channel.send("Event made")
+                    
+                except:
+                  eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+                  f = open("dotaevent.txt", "w")
+                  f.write(linetocheck)
+                  f.close()
+                  #upload_file('/dotaevent.txt', 'dotaevent.txt')
+                  await message.channel.send("Event made")
+                  pass
+                
+                print(eventdata.id)
+                data2= await guild.fetch_scheduled_event(eventdata.id)
+                await message.channel.send(data2.url)
+                
+              except Exception as e:
+                await message.channel.send("An error was hit during this process")
+                print(e)
+
+                
             if(messagereceived =="!valorantdiscordevent" or messagereceived=="!valodiscordevent"):
               try:
                 value = ValoCheck(0)
@@ -4068,6 +4087,7 @@ async def testingspam():
    
     #Dota daily
     try:
+      channel = client.get_channel(810939258222936094)
       value = DotaCheck(0)
       Teams = value[1]
       name = "Dota 2 game: " + Teams
@@ -4095,19 +4115,25 @@ async def testingspam():
           
           pass
         else:
-          await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
           f = open("dotaevent.txt", "w")
           f.write(linetocheck)
           f.close()
           upload_file('/dotaevent.txt', 'dotaevent.txt')
+          data2= await guild.fetch_scheduled_event(eventdata.id)
+          await channel.send(data2.url)
           
       except:
-        await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
         f = open("dotaevent.txt", "w")
         f.write(linetocheck)
         f.close()
         upload_file('/dotaevent.txt', 'dotaevent.txt')
+        data2= await guild.fetch_scheduled_event(eventdata.id)
+        await channel.send(data2.url)
         pass
+
+      
     
       
     except Exception as e:
@@ -4115,6 +4141,7 @@ async def testingspam():
 
     #Valo daily
     try:
+      channel = client.get_channel(810939258222936094)
       value = ValoCheck(0)
       teams = value[1]
       time = datetime.datetime.now().astimezone() + value[3]
@@ -4141,20 +4168,25 @@ async def testingspam():
           
           pass
         else:
-          await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
           f = open("valoevent.txt", "w")
           f.write(linetocheck)
           f.close()
           upload_file('/valoevent.txt', 'valoevent.txt')
+          data2= await guild.fetch_scheduled_event(eventdata.id)
+          await channel.send(data2.url)
           
       except:
-        await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
         f = open("valoevent.txt", "w")
         f.write(linetocheck)
         f.close()
         upload_file('/valoevent.txt', 'valoevent.txt')
+        data2= await guild.fetch_scheduled_event(eventdata.id)
+        await channel.send(data2.url)
         pass
-    
+
+      
       
     except Exception as e:
       print(e)
@@ -4162,6 +4194,7 @@ async def testingspam():
 
 #CSGO daily
     try:
+      channel = client.get_channel(690952309827698749)
       value = CSGOCheck(0)
       teams = value[0]
       gamepage = value[4]
@@ -4187,19 +4220,26 @@ async def testingspam():
         if lines[0] == linetocheck:
           pass
         else:
-          await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
           f = open("csgoevent.txt", "w")
           f.write(linetocheck)
           f.close()
           upload_file('/csgoevent.txt', 'csgoevent.txt')
+          data2= await guild.fetch_scheduled_event(eventdata.id)
+          await channel.send(data2.url)
           
       except:
-        await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
         f = open("csgoevent.txt", "w")
         f.write(linetocheck)
         f.close()
         upload_file('/csgoevent.txt', 'csgoevent.txt')
+        data2= await guild.fetch_scheduled_event(eventdata.id)
+        await channel.send(data2.url)
         pass
+
+        
+        
     
      
     except Exception as e:
