@@ -4087,7 +4087,7 @@ async def testingspam():
    
     #Dota daily
     try:
-      channel = client.get_channel(810939258222936094)
+      channel = client.get_channel(689903856095723569)
       value = DotaCheck(0)
       Teams = value[1]
       name = "Dota 2 game: " + Teams
