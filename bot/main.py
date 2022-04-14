@@ -1244,7 +1244,7 @@ async def on_message(message):
                     f.write(linetocheck)
                     f.close()
                     #upload_file('/dotaevent.txt', 'dotaevent.txt')
-                    await message.channel.send("Event made")
+                    await message.channel.send("Event made - you will need to share this in the event channel")
                     
                 except:
                   eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
@@ -1252,7 +1252,7 @@ async def on_message(message):
                   f.write(linetocheck)
                   f.close()
                   #upload_file('/dotaevent.txt', 'dotaevent.txt')
-                  await message.channel.send("Event made")
+                  await message.channel.send("Event made - you will need to share this in the event channel")
                   pass
                 
                 print(eventdata.id)
@@ -1297,7 +1297,7 @@ async def on_message(message):
                     f.write(linetocheck)
                     f.close()
                     upload_file('/valoevent.txt', 'valoevent.txt')
-                    await message.channel.send("Event made")
+                    await message.channel.send("Event made - you will need to share this in the event channel")
                     
                 except:
                   await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
@@ -1305,7 +1305,7 @@ async def on_message(message):
                   f.write(linetocheck)
                   f.close()
                   upload_file('/valoevent.txt', 'valoevent.txt')
-                  await message.channel.send("Event made")
+                  await message.channel.send("Event made - you will need to share this in the event channel")
                   pass
                 
               
@@ -1371,7 +1371,7 @@ async def on_message(message):
                     f.write(linetocheck)
                     f.close()
                     upload_file('/dotaevent.txt', 'dotaevent.txt')
-                    await message.channel.send("Event made")
+                    await message.channel.send("Event made - you will need to share this in the event channel")
                     
                 except:
                   await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
@@ -1379,7 +1379,7 @@ async def on_message(message):
                   f.write(linetocheck)
                   f.close()
                   upload_file('/dotaevent.txt', 'dotaevent.txt')
-                  await message.channel.send("Event made")
+                  await message.channel.send("Event made - you will need to share this in the event channel")
                   pass
                 
               
@@ -1423,7 +1423,7 @@ async def on_message(message):
                     f.write(linetocheck)
                     f.close()
                     upload_file('/csgoevent.txt', 'csgoevent.txt')
-                    await message.channel.send("Event made")
+                    await message.channel.send("Event made - you will need to share this in the event channel")
                     
                 except:
                   await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
@@ -1431,7 +1431,7 @@ async def on_message(message):
                   f.write(linetocheck)
                   f.close()
                   upload_file('/csgoevent.txt', 'csgoevent.txt')
-                  await message.channel.send("Event made")
+                  await message.channel.send("Event made - you will need to share this in the event channel")
                   pass
                
               
