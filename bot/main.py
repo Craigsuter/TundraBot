@@ -4087,7 +4087,7 @@ async def testingspam():
    
     #Dota daily
     try:
-      channel = client.get_channel(689903856095723569)
+      channel = client.get_channel(964298402089275462)
       value = DotaCheck(0)
       Teams = value[1]
       name = "Dota 2 game: " + Teams
@@ -4141,7 +4141,7 @@ async def testingspam():
 
     #Valo daily
     try:
-      channel = client.get_channel(810939258222936094)
+      channel = client.get_channel(964298835453169664)
       value = ValoCheck(0)
       teams = value[1]
       time = datetime.datetime.now().astimezone() + value[3]
@@ -4194,7 +4194,7 @@ async def testingspam():
 
 #CSGO daily
     try:
-      channel = client.get_channel(690952309827698749)
+      channel = client.get_channel(964298754968649748)
       value = CSGOCheck(0)
       teams = value[0]
       gamepage = value[4]
