@@ -92,7 +92,7 @@ def scoreboardreader(pagenumber):
       else:
         if(i < int(k) and i > int(k) - (11*(int(pagenumber)))):
           table.rows.append([str(i), line2[0], line2[2]])
-      i = i+1
+    i = i+1
   
   
   f3.close()
@@ -103,6 +103,7 @@ def scoreboardreader(pagenumber):
     pagecount= str(checker[0])
   else:
     pagecount = (math.ceil(i/10))
+    
   if pagecount==0:
     pagecount = 1
   if(int(pagenumber) > int(pagecount)):
