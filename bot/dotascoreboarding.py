@@ -117,8 +117,18 @@ def dotascoreboardsingle(userID):
   
   #downloads CSV file from dropbox 
   download_file('/dotascoreboard.csv', 'scoreboard5.csv')
+  f2 = open('scoreboard6.csv', 'w') 
   f=open('scoreboard5.csv', 'r')
-  reader = csv.DictReader(f, fieldnames=filenames)
+
+  reader = csv.reader(f, delimiter=',')
+  sortedList = sorted(reader, key=lambda row: int(row[2]), reverse = True)
+  writer = csv.writer(f2)
+
+  for row in sortedList:
+    writer.writerow(row)
+  f2.close()
+  f3 = open('scoreboard6.csv', 'r')
+  reader = csv.DictReader(f3, fieldnames=filenames)
   i=0
   j=0
   for row in reader:

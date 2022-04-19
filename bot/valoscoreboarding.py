@@ -122,8 +122,20 @@ def valoscoreboardsingle(userID):
   
   #downloads CSV file from dropbox 
   download_file('/valoscoreboard.csv', 'scoreboard8.csv')
+  f2 = open('scoreboard9.csv', 'w')
   f=open('scoreboard8.csv', 'r')
-  reader = csv.DictReader(f, fieldnames=filenames)
+
+  reader = csv.reader(f, delimiter=',')
+  sortedList = sorted(reader, key=lambda row: int(row[2]), reverse = True)
+  writer = csv.writer(f2)
+
+  for row in sortedList:
+    writer.writerow(row)
+  f2.close()
+  
+  f3 = open('scoreboard9.csv', 'r')
+  
+  reader = csv.DictReader(f3, fieldnames=filenames)
   i=0
   j = 0
   for row in reader:
@@ -161,7 +173,7 @@ def valoscoreboardadder(usersname, userID, scoretoadd, counter):
     for i, item in enumerate(arrayofusers):
       
       if item == str(userID):
-        table.rows[i] = [usersname, userID, int(table.rows[i][2]) + 1]
+        table.rows[i] = [usersname, userID, int(table.rows[i][2]) + int(scoretoadd)]
         z=z+1
 
     if(z == 0):
