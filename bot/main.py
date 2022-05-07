@@ -1210,58 +1210,37 @@ async def on_message(message):
 
             if(messagereceived =="!test"):
               try:
-                value = DotaCheck(0)
-                Teams = value[1]
-                name = "Dota 2 game: " + Teams
-                time=datetime.datetime.now().astimezone() + value[3]
-                end_time=time+datetime.timedelta(minutes=10)
-                linktogame = value[7]
-                tourniname = value[6]
-                guild = message.guild
-                streaminfo = DotaStreams()
-                
-                flagMessage = streaminfo[2]
-                description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
-                
-                linetocheck = Teams+","+linktogame
+                SeriesLength = [1, 2, 3, 5]
+                hoursPaid = [2, 3, 4, 6]
+                string="apple"
+                if (str(secondPartOfMessage) != "none" and str(thirdPartOfMessage) != "none"):
+                  if message.author.id == 183707605032501248:
+                    if (int(secondPartOfMessage) in SeriesLength):
+                      hoursToAdd = hoursPaid[SeriesLength.index(int(secondPartOfMessage))]
+                      try:
+                        download_file('/willinfo.txt', 'willinfo.txt')
+                        f=open('willinfo.txt', 'r')
+                        lines=f.readlines()
+                        f.close()
+                      except:
+                        f = open("demofile2.txt", "w")
+                        f.write("0\n0\n0")
+                        f.close()
+                      with open("willinfo.txt") as f:
+                        lines = f.readlines()
 
-                try:
-                  download_file('/dotaevent.txt', 'dotaevent.txt')
-                  f=open('dotaevent.txt', 'r')
-                  lines=f.readlines()
-                  f.close()
-                except:
-                  lines="empty"
+                      value = lines[0]  
+                      print(value)
 
-                lines="empty"
-                try:
-                  if lines[0] == linetocheck:
-                    await message.channel.send("Event has already been added")
-                    pass
-                  else:
-                    eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-                    f = open("dotaevent.txt", "w")
-                    f.write(linetocheck)
-                    f.close()
-                    #upload_file('/dotaevent.txt', 'dotaevent.txt')
-                    await message.channel.send("Event made - you will need to share this in the event channel")
+                        
+                    else:
+                      z = string+1
                     
-                except:
-                  eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-                  f = open("dotaevent.txt", "w")
-                  f.write(linetocheck)
-                  f.close()
-                  #upload_file('/dotaevent.txt', 'dotaevent.txt')
-                  await message.channel.send("Event made - you will need to share this in the event channel")
-                  pass
+                else:
+                  await message.channel.send("Error in command usage")
+              except:
+                await message.channel.send("Error in command usage")
                 
-                print(eventdata.id)
-                data2= await guild.fetch_scheduled_event(eventdata.id)
-                await message.channel.send(data2.url)
-                
-              except Exception as e:
-                await message.channel.send("An error was hit during this process")
-                print(e)
 
                 
             if(messagereceived =="!valorantdiscordevent" or messagereceived=="!valodiscordevent"):
@@ -3115,6 +3094,36 @@ async def on_message(message):
                 )
 
             #copies 100 messages from 1 channel to another
+
+            if(messagereceived=="!pickem"):
+              channelofinfo = 971424541974863912
+              d=client.get_channel(int(message.channel.id))
+              c=client.get_channel(channelofinfo)
+              messages=[messhis async for messhis in c.history(limit=100)]
+              teams=[]
+              scores=[]
+              for message in messages:
+                usercount = 0
+                i=0
+                team = message.content
+                for reaction in message.reactions:
+                  async for user in reaction.users():
+                    usercount += 1
+                if(usercount > 0):
+                  teams.append(str(team[4:])) 
+                  scores.append(int(usercount))
+              scores, teams = zip(*sorted(zip(scores, teams)))
+              scores2 = scores[::-1]
+              teams2= teams[::-1]
+              j=0
+              linetosend=''
+              while j < len(scores2):
+                linetosend= linetosend + str(teams2[j])+  " - " + str(scores2[j]) +"\n"
+                j=j+1
+              
+              await d.send(linetosend)
+              
+                  
 
             if (messagereceived == "!copyover"):
                 try:
