@@ -18,4 +18,3 @@ ffmpeg
 fake_useragent
 python-dateutil
 BeautifulTable
-pydrive

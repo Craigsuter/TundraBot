@@ -3099,29 +3099,54 @@ async def on_message(message):
               channelofinfo = 971424541974863912
               d=client.get_channel(int(message.channel.id))
               c=client.get_channel(channelofinfo)
+              f = open("pickem.txt", "w")
+              f.write("")
+              f.close
               messages=[messhis async for messhis in c.history(limit=100)]
               teams=[]
               scores=[]
-              for message in messages:
-                usercount = 0
-                i=0
-                team = message.content
-                for reaction in message.reactions:
-                  async for user in reaction.users():
-                    usercount += 1
-                if(usercount > 0):
-                  teams.append(str(team[4:])) 
-                  scores.append(int(usercount))
-              scores, teams = zip(*sorted(zip(scores, teams)))
-              scores2 = scores[::-1]
-              teams2= teams[::-1]
-              j=0
-              linetosend=''
-              while j < len(scores2):
-                linetosend= linetosend + str(teams2[j])+  " - " + str(scores2[j]) +"\n"
-                j=j+1
-              
-              await d.send(linetosend)
+              testsending=''
+              try:
+                for message in messages:
+                  users=[]
+                  testsending=''
+                  usercount = 0
+                  i=0
+                  team = message.content
+                  for reaction in message.reactions:
+                    async for user in reaction.users():
+                      usercount += 1
+                      users.append(user.name)
+                  if(usercount > 0):
+                    z=0
+                    testsending=testsending + str(str(team[4:])) + " - " + str(usercount) + "\n"
+                    scores.append(int(usercount))
+                    teams.append(str(team[4:]))
+                    while z < len(users):
+                      testsending = testsending + str(users[z]) + "\n"
+                      z=z+1
+                    #teams.append(str(team[4:])) 
+                    #scores.append(int(usercount))
+                    testsending = testsending + "\n\n\n"
+                    f = open("pickem.txt", "a")
+                    f.write(testsending)
+                    f.close
+                scores, teams = zip(*sorted(zip(scores, teams)))
+                scores2 = scores[::-1]
+                teams2= teams[::-1]
+                j=0
+                linetosend=''
+                while j < len(scores2):
+                  linetosend= linetosend + str(teams2[j])+  " - " + str(scores2[j]) +"\n"
+                  j=j+1
+  
+                #f = open("pickem.txt", "w")
+                #f.write(testsending)
+                #f.close
+                await d.send("Results of pickem:", file=discord.File("pickem.txt"))
+                await d.send(linetosend)
+              except ZeroDivisionError:
+                print(traceback.format_exc())
               
                   
 
