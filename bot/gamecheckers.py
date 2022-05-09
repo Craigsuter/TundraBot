@@ -503,7 +503,7 @@ def ValoCheck(channelDataID):
 
     UTCTime = timeOfGame.rsplit(":")
     UTCTime2 = timeOfGame.rsplit(":")
-    UTCBC = int(UTCTime[0])
+    UTCBC = int(UTCTime[0]) - 1
     
     if UTCBC > 12:
       if prefixOfTime == "am":
@@ -528,7 +528,7 @@ def ValoCheck(channelDataID):
       
     minuteofgame = UTCTime2[1]
     dt_string_year = "20" + str(dt_string_year)
-    a = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), (int(hourofvalo) - 1) , int(minuteofgame), 0)
+    a = datetime.datetime(int(yearofgame), int(monthnumber), int(dayofgame2), (int(hourofvalo)) , int(minuteofgame), 0)
     
     b = datetime.datetime(int(dt_string_year), int(dt_string_month), int(dt_string_day), int(dt_string_hour), int(dt_string_minute), int(dt_string_second))
 
