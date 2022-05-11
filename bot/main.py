@@ -698,7 +698,9 @@ async def on_message(message):
               if ((channelDataID == 689903856095723569)
                       or (channelDataID == 690952309827698749)
                       or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)):
+                      or (channelDataID == 818793950965006357) (channelDataID == 972571026066141204)
+                      or (channelDataID == 972946124161835078)
+                      or (channelDataID == 972570634196512798)):
                   userID = message.author.id
                   userID = str(userID)
                   await message.reply("<@" + userID + "> " + embed)
@@ -708,7 +710,10 @@ async def on_message(message):
               if ((channelDataID == 689903856095723569)
                       or (channelDataID == 690952309827698749)
                       or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)):
+                      or (channelDataID == 818793950965006357)
+                      or (channelDataID == 972571026066141204)
+                      or (channelDataID == 972946124161835078)
+                      or (channelDataID == 972570634196512798)):
                 await message.reply("No games planned currently - For more information use !nextdota in <#721391448812945480>")
               else:
                 embed=discord.Embed(title="OG Dota's next game", url="https://liquipedia.net/dota2/OG", color=0xf10909)
@@ -724,10 +729,13 @@ async def on_message(message):
                 or (messagereceived == "!nextcs")):
             CSGOGame = CSGOCheck(channelDataID)
             embed = CSGOGame[6]
-            if ((channelDataID == 690952309827698749)
-                    or (channelDataID == 689903856095723569)
-                    or (channelDataID == 697447277647626297)
-                    or (channelDataID == 818793950965006357)):
+            if ((channelDataID == 689903856095723569)
+                      or (channelDataID == 690952309827698749)
+                      or (channelDataID == 697447277647626297)
+                      or (channelDataID == 818793950965006357)
+                      or (channelDataID == 972571026066141204)
+                      or (channelDataID == 972946124161835078)
+                      or (channelDataID == 972570634196512798)):
                 userID = message.author.id
                 userID = str(userID)
                 await message.reply("<@" + userID + "> " + embed)
@@ -744,10 +752,13 @@ async def on_message(message):
             #embed = embed[
 
             if (embed == "N"):
-                if ((channelDataID == 810939258222936094)
-                        or (channelDataID == 690952309827698749)
-                        or (channelDataID == 689903856095723569)
-                        or channelDataID == 926214194280419368):
+                if ((channelDataID == 689903856095723569)
+                      or (channelDataID == 690952309827698749)
+                      or (channelDataID == 697447277647626297)
+                      or (channelDataID == 818793950965006357)
+                      or (channelDataID == 972571026066141204)
+                      or (channelDataID == 972946124161835078)
+                      or (channelDataID == 972570634196512798)):
                     userID = message.author.id
                     userID = str(userID)
                     await message.reply(
@@ -773,10 +784,13 @@ async def on_message(message):
                         inline=False)
                     await message.reply(embed=embed)
             else:
-                if ((channelDataID == 810939258222936094)
-                        or (channelDataID == 690952309827698749)
-                        or (channelDataID == 689903856095723569)
-                        or (channelDataID == 926214194280419368)):
+                if ((channelDataID == 689903856095723569)
+                      or (channelDataID == 690952309827698749)
+                      or (channelDataID == 697447277647626297)
+                      or (channelDataID == 818793950965006357)
+                      or (channelDataID == 972571026066141204)
+                      or (channelDataID == 972946124161835078)
+                      or (channelDataID == 972570634196512798)):
                     userID = message.author.id
                     userID = str(userID)
                     await message.reply("<@" + userID + "> " + embed)
