@@ -1321,9 +1321,10 @@ async def on_message(message):
                 time = datetime.datetime.now().astimezone() + value[3]
                 streaminfo = ValoStreams()
                 guild = message.guild
-                linktogame = value[4]
+                linktogame = str(value[4])
+                linktogame = "https://www.vlr.gg/team/2965/og"
                 gamepos = value[6]
-                name= "Valorant game: " + teams
+                name= "Valorant game: " + str(teams)
                 tourniname = value[7]
                 description = tourniname + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
                 end_time=time+datetime.timedelta(minutes=10)
@@ -4253,6 +4254,7 @@ async def testingspam():
       streaminfo = ValoStreams()
       guild = message.guild
       linktogame = value[4]
+      linktogame = "https://www.vlr.gg/team/2965/og"
       gamepos = value[6]
       name= "Valorant game: " + teams
       tourniname = value[7]
