@@ -543,7 +543,10 @@ def ValoCheck(channelDataID, pageURL):
     c = a-b
     
     #Will check if the game has already begun
-    valorantTeams = "OG vs " + nameOfEnemy
+    if (str(pageURL) == "https://www.vlr.gg/team/2965/og"):
+        valorantTeams = "OG vs " + nameOfEnemy
+    else:
+        valorantTeams = "OG LDN UTD vs " + nameOfEnemy
     valorantTeamTime = dateOfGame + " - " + UTCTime + " UTC"
     if (c.days < 0):
       c = "The game is meant to have begun!"
