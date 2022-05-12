@@ -1360,9 +1360,9 @@ async def on_message(message):
                 
               
                 
-              except Exception as e:
+              except ZeroDivisionError:
                 await message.channel.send("An error was hit during this process")
-                print(e)
+                print(traceback.format_exc())
 
 
             if(messagereceived=="!clearvaloevent" or messagereceived=="!clearvalorantevent"):
