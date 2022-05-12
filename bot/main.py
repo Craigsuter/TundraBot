@@ -748,7 +748,7 @@ async def on_message(message):
                 or (messagereceived == "!nextvalorant")
                 or (messagereceived == "!nextval")):
 
-            embed = ValoCheck(channelDataID)
+            embed = ValoCheck(channelDataID, 'https://www.vlr.gg/team/2965/og')
             embed=embed[0]
             #embed = embed[
 
@@ -797,6 +797,62 @@ async def on_message(message):
                     await message.reply("<@" + userID + "> " + embed)
                 else:
                     await message.reply(embed=embed)
+
+
+        if ((messagereceived == "!nextldnvalo")
+                or (messagereceived == "!nextldnvalorant")
+                or (messagereceived == "!nextldnval")):
+
+            embed = ValoCheck(channelDataID, 'https://www.vlr.gg/team/8903/og-ldn-utd')
+            embed=embed[0]
+            #embed = embed[
+
+            if (embed == "N"):
+                if ((channelDataID == 689903856095723569)
+                      or (channelDataID == 690952309827698749)
+                      or (channelDataID == 697447277647626297)
+                      or (channelDataID == 818793950965006357)
+                      or (channelDataID == 972571026066141204)
+                      or (channelDataID == 972946124161835078)
+                      or (channelDataID == 972570634196512798)):
+                    userID = message.author.id
+                    userID = str(userID)
+                    await message.reply(
+                        "<@" + userID +
+                        "> - No games planned currently - For more information use !nextvalo in <#721391448812945480>"
+                    )
+                else:
+                    embed = discord.Embed(
+                        title="OG Valorant's next game",
+                        url="https://www.vlr.gg/team/2965/og",
+                        color=0xd57280)
+                    embed.set_thumbnail(
+                        url=
+                        "https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png"
+                    )
+                    embed.add_field(name="No games planned",
+                                    value="No games planned",
+                                    inline=True)
+                    embed.add_field(
+                        name="Links",
+                        value=
+                        "[OG VLR](https://www.vlr.gg/team/2965/og) / [OG Valrant Liquipedia](https://liquipedia.net/valorant/OG)",
+                        inline=False)
+                    await message.reply(embed=embed)
+            else:
+                if ((channelDataID == 689903856095723569)
+                      or (channelDataID == 690952309827698749)
+                      or (channelDataID == 697447277647626297)
+                      or (channelDataID == 818793950965006357)
+                      or (channelDataID == 972571026066141204)
+                      or (channelDataID == 972946124161835078)
+                      or (channelDataID == 972570634196512798)):
+                    userID = message.author.id
+                    userID = str(userID)
+                    await message.reply("<@" + userID + "> " + embed)
+                else:
+                    await message.reply(embed=embed)
+
 
         #Used for checking the next game in Dota Tourni
         if (messagereceived == "!nextdt" or messagereceived == "!nextdteuw"):
@@ -1260,7 +1316,7 @@ async def on_message(message):
                 
             if(messagereceived =="!valorantdiscordevent" or messagereceived=="!valodiscordevent"):
               try:
-                value = ValoCheck(0)
+                value = ValoCheck(0, 'https://www.vlr.gg/team/2965/og')
                 teams = value[1]
                 time = datetime.datetime.now().astimezone() + value[3]
                 streaminfo = ValoStreams()
@@ -4191,7 +4247,7 @@ async def testingspam():
     #Valo daily
     try:
       channel = client.get_channel(964298835453169664)
-      value = ValoCheck(0)
+      value = ValoCheck(0, 'https://www.vlr.gg/team/2965/og')
       teams = value[1]
       time = datetime.datetime.now().astimezone() + value[3]
       streaminfo = ValoStreams()

@@ -386,10 +386,10 @@ def CSGOCheck(channelDataID):
 
 
 
-def ValoCheck(channelDataID):
+def ValoCheck(channelDataID, pageURL):
   try:
     #Loads OG VLR page
-    testv = "https://www.vlr.gg/team/2965/og/"
+    testv = str(pageURL)
     uClient = uReq(testv)
     page_html = uClient.read()
     uClient.close()
