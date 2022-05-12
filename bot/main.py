@@ -1326,7 +1326,7 @@ async def on_message(message):
                 gamepos = value[6]
                 name= "Valorant game: " + str(teams)
                 tourniname = value[7]
-                description = tourniname + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
+                description = tourniname + "\n" + str(value[4]) + "\n"+ gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
                 end_time=time+datetime.timedelta(minutes=10)
                 
                 linetocheck = teams + "," + gamepos +"," +tourniname
@@ -4258,7 +4258,7 @@ async def testingspam():
       gamepos = value[6]
       name= "Valorant game: " + teams
       tourniname = value[7]
-      description = tourniname + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
+      description = tourniname + "\n" + str(value[4]) + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
       end_time=time+datetime.timedelta(minutes=10)
       guild = client.get_guild(689865753662455829)
       linetocheck = teams + "," + gamepos +"," +tourniname
