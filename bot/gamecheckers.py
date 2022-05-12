@@ -553,23 +553,29 @@ def ValoCheck(channelDataID, pageURL):
     if(channelDataID == 810939258222936094 or (channelDataID == 972571026066141204) or (channelDataID == 972946124161835078) or (channelDataID == 972570634196512798) or channelDataID == 690952309827698749 or channelDataID == 689903856095723569 or channelDataID == 926214194280419368):
       
       c= str(c)
-      embed = valorantTeams + " - Starts in: " + c  + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextvalo in <#721391448812945480>"
+      embed = valorantTeams + " - Starts in: " + c  + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextvalo / !nextldnvalo in <#721391448812945480>"
       
 
 
 
       
     else:
-      embed=discord.Embed(title="OG Valorant's next game", url="https://www.vlr.gg/team/2965/og",color=0xd57280)
+      embed=discord.Embed(title="OG Valorant's next game", url=str(pageURL),color=0xd57280)
       embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
       embed.add_field(name=valorantTeams, value= "In your local timezone - <t:" + str(epoch) + ">", inline=True)
       embed.add_field(name="Time remaining", value= c , inline = False)
       embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-      try:
-        embed.add_field(name="Links", value="[OG VLR](https://www.vlr.gg/team/2965/og) / [OG Valrant Liquipedia](https://liquipedia.net/valorant/OG)\n[Matchlink](" + str(matchlink) + ")", inline=False)
-      except:
-        embed.add_field(name="Links", value="[OG VLR](https://www.vlr.gg/team/2965/og) / [OG Valrant Liquipedia](https://liquipedia.net/valorant/OG)", inline=False)
-      
+      if (str(pageURL) == "https://www.vlr.gg/team/2965/og"):
+          try:
+            embed.add_field(name="Links", value="[OG VLR](str(pageURL)) / [OG Valorant Liquipedia](https://liquipedia.net/valorant/OG)\n[Matchlink](" + str(matchlink) + ")", inline=False)
+          except:
+            embed.add_field(name="Links", value="[OG VLR](str(pageURL)) / [OG Valorant Liquipedia](https://liquipedia.net/valorant/OG)", inline=False)
+      else:
+        try:
+            embed.add_field(name="Links", value="[OG VLR](str(pageURL)) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD\n[Matchlink](" + str(matchlink) + ")", inline=False)
+        except:
+            embed.add_field(name="Links", value="[OG VLR](str(pageURL)) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD)", inline=False)
+        
     #return(embed)
     return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2, gameposition, tourniname)
 
