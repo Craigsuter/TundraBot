@@ -4252,7 +4252,6 @@ async def testingspam():
       teams = value[1]
       time = datetime.datetime.now().astimezone() + value[3]
       streaminfo = ValoStreams()
-      guild = message.guild
       linktogame = value[4]
       linktogame = "https://www.vlr.gg/team/2965/og"
       gamepos = value[6]
