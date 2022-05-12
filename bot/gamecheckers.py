@@ -560,7 +560,10 @@ def ValoCheck(channelDataID, pageURL):
 
       
     else:
-      embed=discord.Embed(title="OG Valorant's next game", url=str(pageURL),color=0xd57280)
+      if (str(pageURL) == "https://www.vlr.gg/team/2965/og"):
+        embed=discord.Embed(title="OG Valorant's next game", url=str(pageURL),color=0xd57280)
+      else:
+        embed=discord.Embed(title="OG LDN UTD Valorant's next game", url=str(pageURL),color=0xd57280)
       embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
       embed.add_field(name=valorantTeams, value= "In your local timezone - <t:" + str(epoch) + ">", inline=True)
       embed.add_field(name="Time remaining", value= c , inline = False)
