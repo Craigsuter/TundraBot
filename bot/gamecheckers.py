@@ -560,7 +560,7 @@ def ValoCheck(channelDataID, pageURL):
       
 
 
-
+    
       
     else:
       if (str(pageURL) == "https://www.vlr.gg/team/2965/og"):
@@ -573,14 +573,14 @@ def ValoCheck(channelDataID, pageURL):
       embed.add_field(name="Notice", value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
       if (str(pageURL) == "https://www.vlr.gg/team/2965/og"):
           try:
-            embed.add_field(name="Links", value="[OG VLR](str(pageURL)) / [OG Valorant Liquipedia](https://liquipedia.net/valorant/OG)\n[Matchlink](" + str(matchlink) + ")", inline=False)
+            embed.add_field(name="Links", value="[OG VLR](str(testv)) / [OG Valorant Liquipedia](https://liquipedia.net/valorant/OG)\n[Matchlink](" + str(matchlink) + ")", inline=False)
           except:
-            embed.add_field(name="Links", value="[OG VLR](str(pageURL)) / [OG Valorant Liquipedia](https://liquipedia.net/valorant/OG)", inline=False)
+            embed.add_field(name="Links", value="[OG VLR](str(testv)) / [OG Valorant Liquipedia](https://liquipedia.net/valorant/OG)", inline=False)
       else:
         try:
-            embed.add_field(name="Links", value="[OG VLR](str(pageURL)) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD\n[Matchlink](" + str(matchlink) + ")", inline=False)
+            embed.add_field(name="Links", value="[OG VLR](str(testv)) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD)\n[Matchlink](" + str(matchlink) + ")", inline=False)
         except:
-            embed.add_field(name="Links", value="[OG VLR](str(pageURL)) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD)", inline=False)
+            embed.add_field(name="Links", value="[OG VLR](str(testv)) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD)", inline=False)
         
     #return(embed)
     return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2, gameposition, tourniname)
