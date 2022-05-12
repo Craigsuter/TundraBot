@@ -4255,7 +4255,7 @@ async def testingspam():
       linktogame = value[4]
       linktogame = "https://www.vlr.gg/team/2965/og"
       gamepos = value[6]
-      name= "Valorant game: " + teams
+      name= "OG Valorant game: " + teams
       tourniname = value[7]
       description = tourniname + "\n" + str(value[4]) + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
       end_time=time+datetime.timedelta(minutes=10)
@@ -4296,6 +4296,52 @@ async def testingspam():
       
     except Exception as e:
       print(e)
+    #Valo OG LDN UTD
+    try:
+      channel = client.get_channel(964298835453169664)
+      value = ValoCheck(0, 'https://www.vlr.gg/team/8903/og-ldn-utd')
+      teams = value[1]
+      time = datetime.datetime.now().astimezone() + value[3]
+      streaminfo = ValoStreams()
+      linktogame = value[4]
+      linktogame = "https://www.vlr.gg/team/8903/og-ldn-utd"
+      gamepos = value[6]
+      name= "OG LDN UTD Valorant game: " + teams
+      tourniname = value[7]
+      description = tourniname + "\n" + str(value[4]) + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
+      end_time=time+datetime.timedelta(minutes=10)
+      guild = client.get_guild(689865753662455829)
+      linetocheck = teams + "," + gamepos +"," +tourniname
+      try:
+        download_file('/valoldnevent.txt', 'valoldnevent.txt')
+        f=open('valoldnevent.txt', 'r')
+        lines=f.readlines()
+        f.close()
+      except:
+        lines="empty"
+      
+      try:
+        if lines[0] == linetocheck:
+          
+          pass
+        else:
+          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+          f = open("valoldnevent.txt", "w")
+          f.write(linetocheck)
+          f.close()
+          upload_file('/valoldnevent.txt', 'valoldnevent.txt')
+          data2= await guild.fetch_scheduled_event(eventdata.id)
+          await channel.send(data2.url)
+          
+      except:
+        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+        f = open("valoldnevent.txt", "w")
+        f.write(linetocheck)
+        f.close()
+        upload_file('/valoldnevent.txt', 'valoldnevent.txt')
+        data2= await guild.fetch_scheduled_event(eventdata.id)
+        await channel.send(data2.url)
+        pass
 
 
 #CSGO daily
