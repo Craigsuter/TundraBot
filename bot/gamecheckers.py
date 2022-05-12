@@ -575,12 +575,12 @@ def ValoCheck(channelDataID, pageURL):
           try:
             embed.add_field(name="Links", value="[OG VLR](https://www.vlr.gg/team/2965/og) / [OG Valorant Liquipedia](https://liquipedia.net/valorant/OG)\n[Matchlink](" + str(matchlink) + ")", inline=False)
           except:
-            embed.add_field(name="Links", value="[OG VLR](https://www.vlr.gg/team/8903/og-ldn-utd) / [OG Valorant Liquipedia](https://liquipedia.net/valorant/OG)", inline=False)
+            embed.add_field(name="Links", value="[OG VLR](https://www.vlr.gg/team/2965/og) / [OG Valorant Liquipedia](https://liquipedia.net/valorant/OG)", inline=False)
       else:
         try:
-            embed.add_field(name="Links", value="[OG VLR](https://www.vlr.gg/team/2965/og) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD)\n[Matchlink](" + str(matchlink) + ")", inline=False)
+            embed.add_field(name="Links", value="[OG LDN UTD VLR](https://www.vlr.gg/team/8903/og-ldn-utd) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD)\n[Matchlink](" + str(matchlink) + ")", inline=False)
         except:
-            embed.add_field(name="Links", value="[OG VLR](https://www.vlr.gg/team/8903/og-ldn-utd) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD)", inline=False)
+            embed.add_field(name="Links", value="[OG LDN UTD VLR](https://www.vlr.gg/team/8903/og-ldn-utd) / [OG LDN UTD Valorant Liquipedia](https://liquipedia.net/valorant/OG_LDN_UTD)", inline=False)
         
     #return(embed)
     return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2, gameposition, tourniname)
