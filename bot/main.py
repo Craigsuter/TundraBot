@@ -4343,7 +4343,8 @@ async def testingspam():
         await channel.send(data2.url)
         pass
 
-
+    except Exception as e:
+      print(e)
 #CSGO daily
     try:
       channel = client.get_channel(964298754968649748)
