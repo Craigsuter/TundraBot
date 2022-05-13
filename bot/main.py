@@ -4043,7 +4043,7 @@ async def on_message(message):
 
             if ((messagereceived == "!valostreams")
                     or (messagereceived == "!valorantstreams")):
-                streaminfo = ValoStreams()
+                streaminfo = ValoStreams('https://www.vlr.gg/team/2965/og')
                 valoenemyteam = streaminfo[0]
                 streams = streaminfo[1]
                 matchlink = streaminfo[2]
@@ -4069,6 +4069,47 @@ async def on_message(message):
                                           color=0xd57280)
                     embed.add_field(name="The game found",
                                     value="OG vs " + valoenemyteam,
+                                    inline=True)
+                    if(message.channel.id != 810939258222936094 and message.channel.id != 926214194280419368):
+                      embed.add_field(name="Streams for copying",
+                                    value="```" + streams + "```",
+                                    inline=False)
+                    embed.add_field(name="Streams with flags",
+                                    value=streams,
+                                    inline=False)
+                    embed.add_field(name="Game page info",
+                                    value=matchlink,
+                                    inline=False)
+                    await message.reply(embed=embed)
+
+            if ((messagereceived == "!ldnvalostreams")
+                    or (messagereceived == "!ldnvalorantstreams")):
+                streaminfo = ValoStreams('https://www.vlr.gg/team/8903/og-ldn-utd')
+                valoenemyteam = streaminfo[0]
+                streams = streaminfo[1]
+                matchlink = streaminfo[2]
+
+                if (matchlink == "No games found"):
+                    embed = discord.Embed(
+                        title="No Valorant streams / games were found",
+                        color=0xd57280)
+                    embed.add_field(
+                        name="What you can try",
+                        value=
+                        "You can try using !nextldnvalo / !nextldnvalorant to see if there are any games coming up",
+                        inline=True)
+                    embed.add_field(
+                        name="Links",
+                        value=
+                        "https://www.vlr.gg/team/8903/og-ldn-utd / https://liquipedia.net/valorant/OG_LDN_UTD",
+                        inline=False)
+                    await message.reply(embed=embed)
+
+                else:
+                    embed = discord.Embed(title="Valorant streams coming up!",
+                                          color=0xd57280)
+                    embed.add_field(name="The game found",
+                                    value="OG LDN UTD vs " + valoenemyteam,
                                     inline=True)
                     if(message.channel.id != 810939258222936094 and message.channel.id != 926214194280419368):
                       embed.add_field(name="Streams for copying",
@@ -4456,7 +4497,7 @@ async def testingspam():
       value = ValoCheck(0, 'https://www.vlr.gg/team/2965/og')
       teams = value[1]
       time = datetime.datetime.now().astimezone() + value[3]
-      streaminfo = ValoStreams()
+      streaminfo = ValoStreams('https://www.vlr.gg/team/2965/og')
       guild = message.guild
       linktogame = value[4]
       linktogame = "https://www.vlr.gg/team/2965/og"
@@ -4494,6 +4535,59 @@ async def testingspam():
         f.write(linetocheck)
         f.close()
         upload_file('/valoevent.txt', 'valoevent.txt')
+        data2= await guild.fetch_scheduled_event(eventdata.id)
+        await channel.send(data2.url)
+        pass
+
+      
+      
+    except Exception as e:
+      print(e)
+
+
+    try:
+      channel = client.get_channel(964298835453169664)
+      value = ValoCheck(0, 'https://www.vlr.gg/team/8903/og-ldn-utd')
+      teams = value[1]
+      time = datetime.datetime.now().astimezone() + value[3]
+      streaminfo = ValoStreams('https://www.vlr.gg/team/8903/og-ldn-utd')
+      guild = message.guild
+      linktogame = value[4]
+      linktogame = "https://www.vlr.gg/team/8903/og-ldn-utd"
+      gamepos = value[6]
+      name= "OG LDN Valorant game: " + teams
+      tourniname = value[7]
+      description = tourniname + "\n" + str(value[4]) + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
+      end_time=time+datetime.timedelta(minutes=10)
+      guild = client.get_guild(689865753662455829)
+      linetocheck = teams + "," + gamepos +"," +tourniname
+      try:
+        download_file('/ldnvaloevent.txt', 'ldnvaloevent.txt')
+        f=open('ldnvaloevent.txt', 'r')
+        lines=f.readlines()
+        f.close()
+      except:
+        lines="empty"
+      
+      try:
+        if lines[0] == linetocheck:
+          
+          pass
+        else:
+          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+          f = open("ldnvaloevent.txt", "w")
+          f.write(linetocheck)
+          f.close()
+          upload_file('/ldnvaloevent.txt', 'ldnvaloevent.txt')
+          data2= await guild.fetch_scheduled_event(eventdata.id)
+          await channel.send(data2.url)
+          
+      except:
+        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
+        f = open("ldnvaloevent.txt", "w")
+        f.write(linetocheck)
+        f.close()
+        upload_file('/ldnvaloevent.txt', 'ldnvaloevent.txt')
         data2= await guild.fetch_scheduled_event(eventdata.id)
         await channel.send(data2.url)
         pass
