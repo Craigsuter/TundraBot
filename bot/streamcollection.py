@@ -358,10 +358,10 @@ def CSGOStreams():
 
 
 
-def ValoStreams():
+def ValoStreams(pageURL):
   headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 
-  page='https://www.vlr.gg/team/2965/og'
+  page=str(pageURL)
   r3 = requests.get(page,headers=headers)
 
   page_soup2 = soup(r3.text,"html.parser")

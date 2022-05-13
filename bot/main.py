@@ -1105,7 +1105,7 @@ async def on_message(message):
 
             if (messagereceived == "!valostreams"
                     or messagereceived == "!valorantstreams"):
-                streaminfo = ValoStreams()
+                streaminfo = ValoStreams('https://www.vlr.gg/team/2965/og')
                 valoenemyteam = streaminfo[0]
                 streams = streaminfo[1]
                 matchlink = streaminfo[2]
@@ -1139,6 +1139,44 @@ async def on_message(message):
                                     value=matchlink,
                                     inline=False)
                     await message.reply(embed=embed)  
+
+
+            if (messagereceived == "!ldnvalostreams"
+                    or messagereceived == "!ldnvalorantstreams"):
+                streaminfo = ValoStreams('https://www.vlr.gg/team/8903/og-ldn-utd')
+                valoenemyteam = streaminfo[0]
+                streams = streaminfo[1]
+                matchlink = streaminfo[2]
+
+                if (matchlink == "No games found"):
+                    embed = discord.Embed(
+                        title="No Valorant streams / games were found",
+                        color=0xd57280)
+                    embed.add_field(
+                        name="What you can try",
+                        value=
+                        "You can try using !nextldnvalo / !nextldnvalorant to see if there are any games coming up",
+                        inline=True)
+                    embed.add_field(
+                        name="Links",
+                        value=
+                        "https://www.vlr.gg/team/8903/og-ldn-utd / https://liquipedia.net/valorant/OG_LDN_UTD",
+                        inline=False)
+                    await message.reply(embed=embed)
+
+                else:
+                    embed = discord.Embed(title="Valorant streams coming up!",
+                                          color=0xd57280)
+                    embed.add_field(name="The game found",
+                                    value="OG LDN UTD vs " + valoenemyteam,
+                                    inline=True)
+                    embed.add_field(name="Streams with flags",
+                                    value=streams,
+                                    inline=False)
+                    embed.add_field(name="Game page info",
+                                    value=matchlink,
+                                    inline=False)
+                    await message.reply(embed=embed) 
 
             if (messagereceived == "!dotastreams"):
                 streaminfo = DotaStreams()
