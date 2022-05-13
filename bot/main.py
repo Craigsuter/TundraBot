@@ -753,13 +753,7 @@ async def on_message(message):
             #embed = embed[
 
             if (embed == "N"):
-                if ((channelDataID == 689903856095723569)
-                      or (channelDataID == 690952309827698749)
-                      or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)
-                      or (channelDataID == 972571026066141204)
-                      or (channelDataID == 972946124161835078)
-                      or (channelDataID == 972570634196512798)):
+                if ((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357) or (channelDataID == 972571026066141204) or (channelDataID == 972946124161835078) or (channelDataID == 972570634196512798)):
                     userID = message.author.id
                     userID = str(userID)
                     await message.reply(
@@ -785,13 +779,7 @@ async def on_message(message):
                         inline=False)
                     await message.reply(embed=embed)
             else:
-                if ((channelDataID == 689903856095723569)
-                      or (channelDataID == 690952309827698749)
-                      or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)
-                      or (channelDataID == 972571026066141204)
-                      or (channelDataID == 972946124161835078)
-                      or (channelDataID == 972570634196512798)):
+                if ((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749) or (channelDataID == 697447277647626297)  or (channelDataID == 818793950965006357) or (channelDataID == 972571026066141204) or (channelDataID == 972946124161835078) or (channelDataID == 972570634196512798)):
                     userID = message.author.id
                     userID = str(userID)
                     await message.reply("<@" + userID + "> " + embed)
@@ -808,13 +796,7 @@ async def on_message(message):
             #embed = embed[
 
             if (embed == "N"):
-                if ((channelDataID == 689903856095723569)
-                      or (channelDataID == 690952309827698749)
-                      or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)
-                      or (channelDataID == 972571026066141204)
-                      or (channelDataID == 972946124161835078)
-                      or (channelDataID == 972570634196512798)):
+                if ((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357) or (channelDataID == 972571026066141204) or (channelDataID == 972946124161835078) or (channelDataID == 972570634196512798)):
                     userID = message.author.id
                     userID = str(userID)
                     await message.reply(
@@ -840,13 +822,7 @@ async def on_message(message):
                         inline=False)
                     await message.reply(embed=embed)
             else:
-                if ((channelDataID == 689903856095723569)
-                      or (channelDataID == 690952309827698749)
-                      or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)
-                      or (channelDataID == 972571026066141204)
-                      or (channelDataID == 972946124161835078)
-                      or (channelDataID == 972570634196512798)):
+                if ((channelDataID == 689903856095723569) or (channelDataID == 690952309827698749) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357) or (channelDataID == 972571026066141204) or (channelDataID == 972946124161835078) or (channelDataID == 972570634196512798)):
                     userID = message.author.id
                     userID = str(userID)
                     await message.reply("<@" + userID + "> " + embed)
