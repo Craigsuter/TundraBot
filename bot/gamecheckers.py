@@ -555,6 +555,7 @@ def ValoCheck(channelDataID, pageURL):
 
     if ((channelDataID == 689903856095723569)
                       or (channelDataID == 690952309827698749)
+                      or (channelDataID == 810939258222936094)
                       or (channelDataID == 697447277647626297)
                       or (channelDataID == 818793950965006357)
                       or (channelDataID == 972571026066141204)
