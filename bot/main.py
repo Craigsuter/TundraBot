@@ -3370,6 +3370,23 @@ async def on_message(message):
                     await message.channel.send("V0-1 deleted")
                 except:
                     await message.channel.send("V0-1 not found")
+                  
+            if ((messagereceived == "!deleteldnvalobo1")
+                    or (messagereceived == "!deleteldnvalorantbo1")):
+                guild = message.guild
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV1-0")
+                    await role_object.delete()
+                    await message.channel.send("ldnV1-0 deleted")
+                except:
+                    await message.channel.send("ldnV1-0 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV0-1")
+                    await role_object.delete()
+                    await message.channel.send("ldnV0-1 deleted")
+                except:
+                    await message.channel.send("ldnV0-1 not found")
 
             if ((messagereceived == "!deletedotabo3")
                     or (messagereceived == "!deletedota2bo3")):
@@ -3463,6 +3480,38 @@ async def on_message(message):
                     await message.channel.send("V0-2 deleted")
                 except:
                     await message.channel.send("V0-2 not found")
+
+
+            if ((messagereceived == "!deleteldnvalobo3")
+                    or (messagereceived == "!deleteldnvalorantbo3")):
+                guild = message.guild
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV2-0")
+                    await role_object.delete()
+                    await message.channel.send("ldnV2-0 deleted")
+                except:
+                    await message.channel.send("ldnV2-0 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV2-1")
+                    await role_object.delete()
+                    await message.channel.send("ldnV2-1 deleted")
+                except:
+                    await message.channel.send("ldnV2-1 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV1-2")
+                    await role_object.delete()
+                    await message.channel.send("ldnV1-2 deleted")
+                except:
+                    await message.channel.send("ldnV1-2 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV0-2")
+                    await role_object.delete()
+                    await message.channel.send("ldnV0-2 deleted")
+                except:
+                    await message.channel.send("ldnV0-2 not found")
 
             if ((messagereceived == "!deletedotabo5")
                     or (messagereceived == "!deletedota2bo5")):
@@ -3598,6 +3647,53 @@ async def on_message(message):
                     await message.channel.send("V0-3 deleted")
                 except:
                     await message.channel.send("V0-3 not found")
+
+
+
+            if ((messagereceived == "!deleteldnvalobo5")
+                    or (messagereceived == "!deleteldnvalorantbo5")):
+                guild = message.guild
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV3-0")
+                    await role_object.delete()
+                    await message.channel.send("ldnV3-0 deleted")
+                except:
+                    await message.channel.send("ldnV3-0 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV3-1")
+                    await role_object.delete()
+                    await message.channel.send("ldnV3-1 deleted")
+                except:
+                    await message.channel.send("ldnV3-1 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV3-2")
+                    await role_object.delete()
+                    await message.channel.send("ldnV3-2 deleted")
+                except:
+                    await message.channel.send("ldnV3-2 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV2-3")
+                    await role_object.delete()
+                    await message.channel.send("ldnV2-3 deleted")
+                except:
+                    await message.channel.send("ldnV2-3 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV1-3")
+                    await role_object.delete()
+                    await message.channel.send("ldnV1-3 deleted")
+                except:
+                    await message.channel.send("ldnV1-3 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV0-3")
+                    await role_object.delete()
+                    await message.channel.send("ldnV0-3 deleted")
+                except:
+                    await message.channel.send("ldnV0-3 not found")
 
             if ((messagereceived == "!deletedotabo2")
                     or (messagereceived == "!deletedota2bo2")):
@@ -3796,6 +3892,39 @@ async def on_message(message):
                 await message.channel.send("V1-3 created")
                 await guild.create_role(name="V0-3")
                 await message.channel.send("V0-3 created")
+
+            if (messagereceived == "!ldnvalobo1"):
+                guild = message.guild
+                await guild.create_role(name="ldnV1-0")
+                await message.channel.send("ldnV1-0 created")
+                await guild.create_role(name="ldnV0-1")
+                await message.channel.send("ldnV0-1 created")
+
+            if (messagereceived == "!ldnvalobo3"):
+                guild = message.guild
+                await guild.create_role(name="ldnV2-0")
+                await message.channel.send("ldnV2-0 created")
+                await guild.create_role(name="ldnV2-1")
+                await message.channel.send("ldnV2-1 created")
+                await guild.create_role(name="ldnV1-2")
+                await message.channel.send("ldnV1-2 created")
+                await guild.create_role(name="ldnV0-2")
+                await message.channel.send("ldnV0-2 created")
+
+            if (messagereceived == "!ldnvalobo5"):
+                guild = message.guild
+                await guild.create_role(name="ldnV3-0")
+                await message.channel.send("ldnV3-0 created")
+                await guild.create_role(name="ldnV3-1")
+                await message.channel.send("ldnV3-1 created")
+                await guild.create_role(name="ldnV3-2")
+                await message.channel.send("ldnV3-2 created")
+                await guild.create_role(name="ldnV2-3")
+                await message.channel.send("ldnV2-3 created")
+                await guild.create_role(name="ldnV1-3")
+                await message.channel.send("ldnV1-3 created")
+                await guild.create_role(name="ldnV0-3")
+                await message.channel.send("ldnV0-3 created")
 
             if (messagereceived == "!dotastreams"):
                 streaminfo = DotaStreams()
@@ -4252,10 +4381,11 @@ async def testingspam():
       teams = value[1]
       time = datetime.datetime.now().astimezone() + value[3]
       streaminfo = ValoStreams()
+      guild = message.guild
       linktogame = value[4]
       linktogame = "https://www.vlr.gg/team/2965/og"
       gamepos = value[6]
-      name= "OG Valorant game: " + teams
+      name= "Valorant game: " + teams
       tourniname = value[7]
       description = tourniname + "\n" + str(value[4]) + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
       end_time=time+datetime.timedelta(minutes=10)
@@ -4296,55 +4426,8 @@ async def testingspam():
       
     except Exception as e:
       print(e)
-    #Valo OG LDN UTD
-    try:
-      channel = client.get_channel(964298835453169664)
-      value = ValoCheck(0, 'https://www.vlr.gg/team/8903/og-ldn-utd')
-      teams = value[1]
-      time = datetime.datetime.now().astimezone() + value[3]
-      streaminfo = ValoStreams()
-      linktogame = value[4]
-      linktogame = "https://www.vlr.gg/team/8903/og-ldn-utd"
-      gamepos = value[6]
-      name= "OG LDN UTD Valorant game: " + teams
-      tourniname = value[7]
-      description = tourniname + "\n" + str(value[4]) + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
-      end_time=time+datetime.timedelta(minutes=10)
-      guild = client.get_guild(689865753662455829)
-      linetocheck = teams + "," + gamepos +"," +tourniname
-      try:
-        download_file('/valoldnevent.txt', 'valoldnevent.txt')
-        f=open('valoldnevent.txt', 'r')
-        lines=f.readlines()
-        f.close()
-      except:
-        lines="empty"
-      
-      try:
-        if lines[0] == linetocheck:
-          
-          pass
-        else:
-          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-          f = open("valoldnevent.txt", "w")
-          f.write(linetocheck)
-          f.close()
-          upload_file('/valoldnevent.txt', 'valoldnevent.txt')
-          data2= await guild.fetch_scheduled_event(eventdata.id)
-          await channel.send(data2.url)
-          
-      except:
-        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-        f = open("valoldnevent.txt", "w")
-        f.write(linetocheck)
-        f.close()
-        upload_file('/valoldnevent.txt', 'valoldnevent.txt')
-        data2= await guild.fetch_scheduled_event(eventdata.id)
-        await channel.send(data2.url)
-        pass
 
-    except Exception as e:
-      print(e)
+
 #CSGO daily
     try:
       channel = client.get_channel(964298754968649748)
