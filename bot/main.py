@@ -3767,6 +3767,31 @@ async def on_message(message):
                 except:
                     await message.channel.send("V0-2 not found")
 
+                  
+            if ((messagereceived == "!deleteldnvalobo2")
+                    or (messagereceived == "!deleteldnvalorantbo2")):
+                guild = message.guild
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV2-0")
+                    await role_object.delete()
+                    await message.channel.send("ldnV2-0 deleted")
+                except:
+                    await message.channel.send("ldnV2-0 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV1-1")
+                    await role_object.delete()
+                    await message.channel.send("ldnV1-1 deleted")
+                except:
+                    await message.channel.send("ldnV1-1 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="ldnV0-2")
+                    await role_object.delete()
+                    await message.channel.send("ldnV0-2 deleted")
+                except:
+                    await message.channel.send("ldnV0-2 not found")
+
             if (messagereceived == "!dotabo1"):
                 guild = message.guild
                 await guild.create_role(name="D1-0")
@@ -3802,6 +3827,15 @@ async def on_message(message):
                 await message.channel.send("V1-1 created")
                 await guild.create_role(name="V0-2")
                 await message.channel.send("V0-2 created")
+
+            if (messagereceived == "!ldnvalobo2"):
+                guild = message.guild
+                await guild.create_role(name="ldnV2-0")
+                await message.channel.send("ldnV2-0 created")
+                await guild.create_role(name="ldnV1-1")
+                await message.channel.send("ldnV1-1 created")
+                await guild.create_role(name="ldnV0-2")
+                await message.channel.send("ldnV0-2 created")
 
             if (messagereceived == "!csgobo2"):
                 guild = message.guild
