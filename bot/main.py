@@ -4491,14 +4491,13 @@ async def testingspam():
     except Exception as e:
       print(e)
 
-    #Valo daily
+    #Valo daily - regular OG
     try:
       channel = client.get_channel(964298835453169664)
       value = ValoCheck(0, 'https://www.vlr.gg/team/2965/og')
       teams = value[1]
       time = datetime.datetime.now().astimezone() + value[3]
       streaminfo = ValoStreams('https://www.vlr.gg/team/2965/og')
-      guild = message.guild
       linktogame = value[4]
       linktogame = "https://www.vlr.gg/team/2965/og"
       gamepos = value[6]
@@ -4544,14 +4543,13 @@ async def testingspam():
     except Exception as e:
       print(e)
 
-
+    #Get events for ldn utd OG
     try:
       channel = client.get_channel(964298835453169664)
       value = ValoCheck(0, 'https://www.vlr.gg/team/8903/og-ldn-utd')
       teams = value[1]
       time = datetime.datetime.now().astimezone() + value[3]
       streaminfo = ValoStreams('https://www.vlr.gg/team/8903/og-ldn-utd')
-      guild = message.guild
       linktogame = value[4]
       linktogame = "https://www.vlr.gg/team/8903/og-ldn-utd"
       gamepos = value[6]
