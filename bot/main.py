@@ -4553,7 +4553,7 @@ async def testingspam():
       linktogame = value[4]
       linktogame = "https://www.vlr.gg/team/8903/og-ldn-utd"
       gamepos = value[6]
-      name= "OG LDN Valorant game: " + teams
+      name= "Valorant game: " + teams
       tourniname = value[7]
       description = tourniname + "\n" + str(value[4]) + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
       end_time=time+datetime.timedelta(minutes=10)
