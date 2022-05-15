@@ -51,7 +51,14 @@ def DotaStreams():
     #finds twitch stream
     try:
       twitch = container3[0].get('data-stream-twitch')
-      twitch = "https://www.twitch.tv/" + twitch
+      if(twitch == 'ESL_Dota_2_B'):
+        twitch = "https://www.twitch.tv/esl_dota2b"
+      elif(twitch == 'ESL_Dota_2'):
+        twitch = "https://www.twitch.tv/esl_dota2"
+      else:
+        twitch = "https://www.twitch.tv/" + twitch
+
+      
       
      
     except:
@@ -143,6 +150,8 @@ def DotaStreams():
           while counter3 < (len(flags)):
             if (flags[counter3] == "Indonesia"):
               flagsToSend.append(':flag_id:')
+            elif (flags[counter3] == "Ukraine"):
+              flagsToSend.append(':flag_ua:')
             elif(flags[counter3] == "Philippines"):
               flagsToSend.append(':flag_ph:')
             elif(flags[counter3]=="DeAt_hd.png"):
