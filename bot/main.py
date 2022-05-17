@@ -3210,7 +3210,7 @@ async def on_message(message):
             #copies 100 messages from 1 channel to another
 
             if(messagereceived=="!pickem"):
-              channelofinfo = 971424541974863912
+              channelofinfo = 972470281627107351
               d=client.get_channel(int(message.channel.id))
               c=client.get_channel(channelofinfo)
               f = open("pickem.txt", "w")
@@ -3227,13 +3227,30 @@ async def on_message(message):
                   usercount = 0
                   i=0
                   team = message.content
+                  
                   for reaction in message.reactions:
+                    emote1=0
+                    emote2=0
+                    emote1count=0
+                    emote2count=0
                     async for user in reaction.users():
                       usercount += 1
+                      
+                      value = reaction.emoji
+                      value = str(value).rsplit(":")
+                      value = value[1]
+                      print(value)
+                      if(emote1==0 or str(value) == emote1):
+                        emote1 = str(value)
+                        emote1count +=1
+                      else:
+                        emote2 = str(value)
+                        emote2count +=1
                       users.append(user.name)
                   if(usercount > 0):
                     z=0
                     testsending=testsending + str(str(team[4:])) + " - " + str(usercount) + "\n"
+                    testsending = testsending + "Team 1: " + str(emote1) + " - " + str(emote1count) + "    vs     Team 2: " + str(emote2) + " - " + str(emote2count) + "\n"
                     scores.append(int(usercount))
                     teams.append(str(team[4:]))
                     while z < len(users):
