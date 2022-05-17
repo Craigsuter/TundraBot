@@ -3246,7 +3246,7 @@ async def on_message(message):
                       else:
                         emote2 = str(value)
                         emote2count +=1
-                      users.append(user.name)
+                      users.append(str(user.name) + " - " + str(value))
                   if(usercount > 0):
                     z=0
                     testsending=testsending + str(str(team[4:])) + " - " + str(usercount) + "\n"
