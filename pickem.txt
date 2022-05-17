@@ -1,13 +1,16 @@
  - 4
-Team 1: cute - 1    vs     Team 2: 0 - 0WW
-LINA
-Will
-Will
+Team 1: < - 1    vs     Team 2: 0 - 0
+WW - <
+LINA - <
+Will - <
+Will - <
 
 
 
- - 1
-Team 1: Sad_Cat_shoot - 1    vs     Team 2: 0 - 0Will
+ - 2
+Team 1: 🇸🇪 - 1    vs     Team 2: 0 - 0
+Will - <a
+Will - 🇸🇪
 
 
 

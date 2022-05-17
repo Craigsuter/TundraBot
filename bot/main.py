@@ -3238,8 +3238,9 @@ async def on_message(message):
                       
                       value = reaction.emoji
                       value = str(value).rsplit(":")
-                      value = value[1]
                       print(value)
+                      value = value[0]
+                      
                       if(emote1==0 or str(value) == emote1):
                         emote1 = str(value)
                         emote1count +=1
