@@ -1,14 +1,12 @@
- - 4
-Team 1: < - 1    vs     Team 2: 0 - 0
-WW - <
-LINA - <
-Will - <
-Will - <
+ - 2
+Team 1: 🇧🇩 - 1    vs     Team 2: 🇨🇱 - 1
+Will - 🇧🇩
+Will - 🇨🇱
 
 
 
  - 2
-Team 1: 🇸🇪 - 1    vs     Team 2: 0 - 0
+Team 1: <a - 1    vs     Team 2: 🇸🇪 - 1
 Will - <a
 Will - 🇸🇪
 
