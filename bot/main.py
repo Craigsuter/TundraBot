@@ -3210,7 +3210,7 @@ async def on_message(message):
             #copies 100 messages from 1 channel to another
 
             if(messagereceived=="!pickem"):
-              channelofinfo = 972470281627107351
+              channelofinfo = 971424541974863912
               d=client.get_channel(int(message.channel.id))
               c=client.get_channel(channelofinfo)
               f = open("pickem.txt", "w")
