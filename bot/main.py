@@ -691,7 +691,7 @@ async def on_message(message):
         #Gets the info for the next dota game
         if ((messagereceived == "!nextdota")
                 or (messagereceived == "!nextdoto")
-                or (messagereceived == "!nextdota2")):
+                or (messagereceived == "!nextdota2") or (messagereceived == "!nextdotes")):
             try:
               embed = DotaCheck(channelDataID)
               embed = embed[0]
