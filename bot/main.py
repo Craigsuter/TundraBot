@@ -803,7 +803,7 @@ async def on_message(message):
 
         if ((messagereceived == "!nextldnvalo")
                 or (messagereceived == "!nextldnvalorant")
-                or (messagereceived == "!nextldnval")):
+                or (messagereceived == "!nextldnval") or (messagereceived == "!nextvaloldn") or (messagereceived == "!nextvaloldn") or (messagereceived == "!nextvalorantldn")):
 
             embed = ValoCheck(channelDataID, 'https://www.vlr.gg/team/8903/og-ldn-utd')
             embed=embed[0]
