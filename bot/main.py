@@ -1361,7 +1361,7 @@ async def on_message(message):
                 value = ValoCheck(0, 'https://www.vlr.gg/team/2965/og')
                 teams = value[1]
                 time = datetime.datetime.now().astimezone() + value[3]
-                streaminfo = ValoStreams()
+                streaminfo = ValoStreams('https://www.vlr.gg/team/2965/og')
                 guild = message.guild
                 linktogame = str(value[4])
                 linktogame = "https://www.vlr.gg/team/2965/og"
