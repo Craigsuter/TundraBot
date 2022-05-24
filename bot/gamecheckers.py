@@ -420,6 +420,9 @@ def ValoCheck(channelDataID, pageURL):
     valoenemyteam = valoenemyteam.text.strip()
 
     valoenemyteam = valoenemyteam.split('\n', 1)[0]
+    
+    valoenemyteam = valoenemyteam.strip().rstrip()
+    
 
     random = page_soup.find("span", {"class": "rm-item-score-eta"})
     random2 = str(random)
