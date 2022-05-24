@@ -3374,11 +3374,11 @@ async def on_message(message):
             if ((messagereceived == "!avatar")
                     and (message.mentions.__len__() > 0)):
                 for user in message.mentions:
-                    await message.channel.send(user.avatar_url)
+                    await message.channel.send(user.avatar)
 
             elif ((messagereceived == "!avatar")
                   and (message.mentions.__len__() == 0)):
-                await message.channel.send(message.author.avatar_url)
+                await message.channel.send(message.author.avatar)
 
             if ((messagereceived == "!deletedotabo1")
                     or (messagereceived == "!deletedota2bo1")):
