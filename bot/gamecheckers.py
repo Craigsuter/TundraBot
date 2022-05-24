@@ -408,10 +408,19 @@ def ValoCheck(channelDataID, pageURL):
 
     tabledata = page_soup.find("div", attrs = {"class":"wf-card "})
     tabledata2 = page_soup.findAll("div", {"class":"text-of"})
-    tabledata3 = page_soup.findAll("div", {"class":"rm-item-datze"})
+    tabledata3 = page_soup.findAll("div", {"class":"m-item-date"})
     carrot = "carrot"
     #Gets the enemy team's name
-    valoenemyteam  = page_soup.find("div", attrs={"style":"font-size: 11px; min-width: 0; font-weight: 700; width: 120px;"}).text
+    #valoenemyteam  = page_soup.find("div", attrs={"style":"font-size: 11px; min-width: 0; font-weight: 700; width: 120px;"}).text
+    
+    valoenemyteam = page_soup.findAll("div", {"class": "m-item-team text-of mod-right"})
+    #print(valoenemyteam[0])
+    valoenemyteam= valoenemyteam[0]
+
+    valoenemyteam = valoenemyteam.text.strip()
+
+    valoenemyteam = valoenemyteam.split('\n', 1)[0]
+
     random = page_soup.find("span", {"class": "rm-item-score-eta"})
     random2 = str(random)
     #This will error out of the check if the score value is null [catching if the game found has already happened / started]
@@ -420,7 +429,7 @@ def ValoCheck(channelDataID, pageURL):
       print(carrot)
       
 
-    nameOfEnemy = valoenemyteam.strip() 
+    nameOfEnemy = valoenemyteam
 
     valotimeofgame = tabledata3[0].text
     datebeforesplit = valotimeofgame.strip()
@@ -592,6 +601,6 @@ def ValoCheck(channelDataID, pageURL):
     return (embed, valorantTeams, valorantTeamTime, c, matchlink, dayofgame2, gameposition, tourniname)
 
   except Exception as e:
-    print(e)
+    print(exc_type, fname, exc_tb.tb_lineno)
     return("No games planned")
    
