@@ -4685,7 +4685,7 @@ async def testingspam():
       teams = value[0]
       gamepage = value[4]
       tourniname = value[8]
-      name = "CSGO game: " + teams
+      name = "OG CSGO Academy game: " + teams
       time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
       end_time = time+datetime.timedelta(minutes=10)
       streaminfo = CSGOStreams('https://www.hltv.org/team/11672/og-academy#tab-matchesBox')
