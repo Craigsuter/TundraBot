@@ -355,7 +355,10 @@ def CSGOCheck(channelDataID, page):
       else:
         embed=teams + " should be live now - For more information use !nextcsgo in <#721391448812945480>"
     else:
-      embed=discord.Embed(title="OG CSGO's next game", url="https://www.hltv.org/team/10503/og#tab-matchesBox",color=0xff8800)
+      if(OGpage == "https://www.hltv.org/team/10503/og#tab-matchesBox"):
+        embed=discord.Embed(title="OG CSGO's next game", url="https://www.hltv.org/team/10503/og#tab-matchesBox",color=0xff8800)
+      else:
+        embed=discord.Embed(title="OG CSGO Academy's next game", url="https://www.hltv.org/team/11672/og-academy#tab-matchesBox",color=0xff8800)
       embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
       if(timetoadd > 0 ):
         embed.add_field(name=teams, value= "<t:" + str(test) + "> - this is in local timezone to you" , inline=True)
@@ -363,8 +366,11 @@ def CSGOCheck(channelDataID, page):
         embed.add_field(name=teams, value= "Game should be live now" , inline=True)
       embed.add_field(name="Time till game", value=time2, inline=False)
       embed.add_field(name="Notice", value="Please check HLTV by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-      embed.add_field(name="Links", value="[OG Liquipedia](https://liquipedia.net/counterstrike/OG)\n[OG HLTV](https://www.hltv.org/team/10503/og#tab-matchesBox)\n[Game page](" + matchlink +")\n[Tournament](" + link4tourni+")", inline=False)
-
+      if(OGpage == "https://www.hltv.org/team/10503/og#tab-matchesBox"):
+        embed.add_field(name="Links", value="[OG Liquipedia](https://liquipedia.net/counterstrike/OG)\n[OG HLTV](https://www.hltv.org/team/10503/og#tab-matchesBox)\n[Game page](" + matchlink +")\n[Tournament](" + link4tourni+")", inline=False)
+      else:
+        embed.add_field(name="Links", value="[OG Academy Liquipedia](https://liquipedia.net/counterstrike/OG_Academy)\n[OG CSGO Academy HLTV](https://www.hltv.org/team/11672/og-academy#tab-matchesBox)\n[Game page](" + matchlink +")\n[Tournament](" + link4tourni+")", inline=False)
+        
     if timetoadd >0:
       return(teams, timeofgame, datep3, time2, matchlink, link4tourni, embed, timetoadd, tourniname)
     else:
@@ -378,10 +384,16 @@ def CSGOCheck(channelDataID, page):
     if((channelDataID == 690952309827698749) or (channelDataID == 972571026066141204) or (channelDataID == 972946124161835078) or (channelDataID == 972570634196512798) or (channelDataID == 689903856095723569) or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
       embed= "There is currently no games planned for OG, for more information use !nextcsgo in <#721391448812945480>"
     else:
-      embed=discord.Embed(title="OG CSGO's next game", url="https://www.hltv.org/team/10503/og#tab-matchesBox",color=0xff8800)
+      if(OGpage == "https://www.hltv.org/team/10503/og#tab-matchesBox"):
+        embed=discord.Embed(title="OG CSGO's next game", url="https://www.hltv.org/team/10503/og#tab-matchesBox",color=0xff8800)
+      else:
+        embed=discord.Embed(title="OG CSGO's next game", url="https://www.hltv.org/team/11672/og-academy#tab-matchesBox",color=0xff8800)
       embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
       embed.add_field(name="No games planned", value="No games planned", inline=True)
-      embed.add_field(name="Links", value="[OG HLTV](https://www.hltv.org/team/10503/og#tab-matchesBox/) \n [OG CSGO Liquipedia](https://liquipedia.net/counterstrike/OG)", inline=False)
+      if(OGpage == "https://www.hltv.org/team/10503/og#tab-matchesBox"):
+        embed.add_field(name="Links", value="[OG HLTV](https://www.hltv.org/team/10503/og#tab-matchesBox/) \n [OG CSGO Liquipedia](https://liquipedia.net/counterstrike/OG)", inline=False)
+      else:
+        embed.add_field(name="Links", value="[OG CSGO Academy HLTV](https://www.hltv.org/team/11672/og-academy#tab-matchesBox/) \n [OG CSGO Academy Liquipedia](https://liquipedia.net/counterstrike/OG_Academy)", inline=False)
     
     return("No games planned","No games planned","No games planned","No games planned","No games planned","No games planned", embed)
     

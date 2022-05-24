@@ -4706,7 +4706,10 @@ async def testingspam():
         if lines[0] == linetocheck:
           pass
         else:
-          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+          try:
+            eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+          except:
+            eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location="https://www.hltv.org/team/11672/og-academy")
           f = open("csgoaevent.txt", "w")
           f.write(linetocheck)
           f.close()
@@ -4715,7 +4718,10 @@ async def testingspam():
           await channel.send(data2.url)
           
       except:
-        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+        try:
+          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+        except:
+          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location="https://www.hltv.org/team/11672/og-academy")
         f = open("csgoaevent.txt", "w")
         f.write(linetocheck)
         f.close()
