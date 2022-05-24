@@ -728,7 +728,25 @@ async def on_message(message):
         #Gets the info for the next CSGO gamee
         if ((messagereceived == "!nextcsgo")
                 or (messagereceived == "!nextcs")):
-            CSGOGame = CSGOCheck(channelDataID)
+            CSGOGame = CSGOCheck(channelDataID, 'https://www.hltv.org/team/10503/og#tab-matchesBox')
+            embed = CSGOGame[6]
+            if ((channelDataID == 689903856095723569)
+                      or (channelDataID == 690952309827698749)
+                      or (channelDataID == 697447277647626297)
+                      or (channelDataID == 818793950965006357)
+                      or (channelDataID == 972571026066141204)
+                      or (channelDataID == 972946124161835078)
+                      or (channelDataID == 972570634196512798)):
+                userID = message.author.id
+                userID = str(userID)
+                await message.reply("<@" + userID + "> " + embed)
+            else:
+                await message.reply(embed=embed)
+
+        #Gets the info for the next CSGO gamee
+        if ((messagereceived == "!nextcsgoa")
+                or (messagereceived == "!nextcsa")):
+            CSGOGame = CSGOCheck(channelDataID, 'https://www.hltv.org/team/11672/og-academy#tab-matchesBox')
             embed = CSGOGame[6]
             if ((channelDataID == 689903856095723569)
                       or (channelDataID == 690952309827698749)
@@ -1084,7 +1102,11 @@ async def on_message(message):
 
             #Get CSGO streams list for next CS game
             if (messagereceived == "!csgostreams"):
-                embed = CSGOStreams()
+                embed = CSGOStreams('https://www.hltv.org/team/10503/og#tab-matchesBox')
+                embed = embed[0]
+                await message.reply(embed=embed)
+            if (messagereceived == "!csgoastreams"):
+                embed = CSGOStreams('https://www.hltv.org/team/11672/og-academy#tab-matchesBox')
                 embed = embed[0]
                 await message.reply(embed=embed)
 
@@ -1485,14 +1507,14 @@ async def on_message(message):
 
             if(messagereceived=="!csgodiscordevent"):
               try:
-                value = CSGOCheck(0)
+                value = CSGOCheck(0, 'https://www.hltv.org/team/10503/og#tab-matchesBox')
                 teams = value[0]
                 gamepage = value[4]
                 tourniname = value[8]
                 name = "CSGO game: " + teams
                 time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
                 end_time = time+datetime.timedelta(minutes=10)
-                streaminfo = CSGOStreams()
+                streaminfo = CSGOStreams('https://www.hltv.org/team/10503/og#tab-matchesBox')
                 streamdata = streaminfo[3]
                 description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
                 
@@ -3332,7 +3354,47 @@ async def on_message(message):
                 await message.channel.send(embed=embed)
 
             if (messagereceived == "!csgostreams"):
-                streaminfo = CSGOStreams()
+                streaminfo = CSGOStreams('https://www.hltv.org/team/10503/og#tab-matchesBox')
+                team1 = streaminfo[1]
+                team2 = streaminfo[2]
+                links = streaminfo[3]
+                matchlink = streaminfo[4]
+
+                if (team1 == "No games found"):
+                    embed = discord.Embed(
+                        title="No CSGO streams / games were found",
+                        color=0xff8800)
+                    embed.add_field(
+                        name="What you can try",
+                        value=
+                        "You can try using !nextcsgo to see if there are any games coming up",
+                        inline=True)
+                    embed.add_field(
+                        name="Links",
+                        value=
+                        "OG Liquipedia:  https://liquipedia.net/counterstrike/OG\nOG HLTV: https://www.hltv.org/team/10503/og#tab-matchesBox",
+                        inline=False)
+                    await message.reply(embed=embed)
+                else:
+                    embed = discord.Embed(title="CSGO Stream links",
+                                          color=0xff8800)
+                    embed.add_field(name="The game found",
+                                    value=team1 + " vs " + team2,
+                                    inline=True)
+                    if(message.channel.id !=690952309827698749 and message.channel.id != 926214194280419368):
+                      embed.add_field(name="Streams",
+                                    value="```" + links + "```",
+                                    inline=False)
+                    embed.add_field(name="Streams available",
+                                    value=links,
+                                    inline=False)
+                    embed.add_field(name="Game page info",
+                                    value=matchlink,
+                                    inline=False)
+                    await message.reply(embed=embed)
+
+            if (messagereceived == "!csgoastreams"):
+                streaminfo = CSGOStreams('https://www.hltv.org/team/11672/og-academy#tab-matchesBox')
                 team1 = streaminfo[1]
                 team2 = streaminfo[2]
                 links = streaminfo[3]
@@ -4616,17 +4678,71 @@ async def testingspam():
       print(e)
 
 
-#CSGO daily
+  #csgoacad
     try:
       channel = client.get_channel(964298754968649748)
-      value = CSGOCheck(0)
+      value = CSGOCheck(0, 'https://www.hltv.org/team/11672/og-academy#tab-matchesBox')
       teams = value[0]
       gamepage = value[4]
       tourniname = value[8]
       name = "CSGO game: " + teams
       time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
       end_time = time+datetime.timedelta(minutes=10)
-      streaminfo = CSGOStreams()
+      streaminfo = CSGOStreams('https://www.hltv.org/team/11672/og-academy#tab-matchesBox')
+      streamdata = streaminfo[3]
+      description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
+      guild = client.get_guild(689865753662455829)
+      linetocheck= teams+","+gamepage
+      try:
+        download_file('/csgoaevent.txt', 'csgoaevent.txt')
+        f=open('csgoaevent.txt', 'r')
+        lines=f.readlines()
+        f.close()
+      except:
+        lines= "empty"
+
+      try:
+      
+        if lines[0] == linetocheck:
+          pass
+        else:
+          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+          f = open("csgoaevent.txt", "w")
+          f.write(linetocheck)
+          f.close()
+          upload_file('/csgoaevent.txt', 'csgoaevent.txt')
+          data2= await guild.fetch_scheduled_event(eventdata.id)
+          await channel.send(data2.url)
+          
+      except:
+        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
+        f = open("csgoaevent.txt", "w")
+        f.write(linetocheck)
+        f.close()
+        upload_file('/csgoaevent.txt', 'csgoaevent.txt')
+        data2= await guild.fetch_scheduled_event(eventdata.id)
+        await channel.send(data2.url)
+        pass
+
+        
+        
+    
+     
+    except Exception as e:
+      print(e)
+
+
+#CSGO daily
+    try:
+      channel = client.get_channel(964298754968649748)
+      value = CSGOCheck(0, 'https://www.hltv.org/team/10503/og#tab-matchesBox')
+      teams = value[0]
+      gamepage = value[4]
+      tourniname = value[8]
+      name = "CSGO game: " + teams
+      time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
+      end_time = time+datetime.timedelta(minutes=10)
+      streaminfo = CSGOStreams('https://www.hltv.org/team/10503/og#tab-matchesBox')
       streamdata = streaminfo[3]
       description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
       guild = client.get_guild(689865753662455829)

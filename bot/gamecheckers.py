@@ -207,13 +207,16 @@ def DotaCheck(channelDataID):
 
 
 
-def CSGOCheck(channelDataID):
+def CSGOCheck(channelDataID, page):
   try:
     #Loading HLTV of OG
     headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 
     #change url
-    OGpage = 'https://www.hltv.org/team/10503/og#tab-matchesBox'
+    OGpage = str(page)
+    #'https://www.hltv.org/team/10503/og#tab-matchesBox'
+    #https://www.hltv.org/team/11672/og-academy#tab-matchesBox
+    
     
     
     r2 = requests.get(OGpage, headers=headers)
