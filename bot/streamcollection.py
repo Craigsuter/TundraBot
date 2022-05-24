@@ -380,8 +380,15 @@ def ValoStreams(pageURL):
   dataofpage =  page_soup2.findAll("a", {"class":"wf-module-item mod-flex rm-item mod-first mod-tbd"})
   
 
-  valoenemyteam  = page_soup2.find("div", attrs={"style":"font-size: 11px; min-width: 0; font-weight: 700; width: 120px;"}).text
-  valoenemyteam = valoenemyteam.strip()   
+  valoenemyteam = page_soup2.findAll("div", {"class": "m-item-team text-of mod-right"})
+  
+  valoenemyteam= valoenemyteam[0]
+
+  valoenemyteam = valoenemyteam.text.strip()
+
+  valoenemyteam = valoenemyteam.split('\n', 1)[0]
+  
+  valoenemyteam = valoenemyteam.strip().rstrip()
   tags = page_soup2.findAll("a", {"class":"wf-card fc-flex m-item", 'href':True })
   games=[]
   for tag in tags:
