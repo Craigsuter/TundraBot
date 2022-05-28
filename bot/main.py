@@ -1253,7 +1253,7 @@ async def on_message(message):
             "Do be sure to go through <#867689566572118036> to check out the rules of the server! Follow this up in <#935744075670360064> to get access to the rest of the server! See you in there!",
             inline=True)
         embed.set_image(url="https://i.imgur.com/uiNH28L.png")
-
+        
         data = download_file('/droplastmessage.txt', 'lastmessage.txt')
         g = open("lastmessage.txt", "r")
         g2 = g.read()

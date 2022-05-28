@@ -6,8 +6,7 @@ dbx = dropbox.Dropbox(os.getenv('DROPBOX_ACCESS_TOKEN'))
 def download_file(filename, savehere):
   filename= filename[1:]
   filename = "/tundra" + filename
-  print(filename)
-  print(savehere)
+  
   
   dbx.files_download_to_file(savehere, filename)
 
