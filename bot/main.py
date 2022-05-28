@@ -96,7 +96,7 @@ async def on_ready():
     print("We have logged in as {0.user}.format(client)")
     #Sets presence
     await client.change_presence(activity=discord.Game(
-        name="with ducks (use !goosehelp)"))
+        name="catching snowflakes on my tongue"))
 
     #Starts schedule
     scheduler = AsyncIOScheduler()
