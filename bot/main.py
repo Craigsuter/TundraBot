@@ -159,7 +159,7 @@ async def on_member_update(before, after):
     info = ("<@" + str(after.id) + ">")
     #Only checks this guild
 
-    if (guild == 689865753662455829 or guild == 731631689826041878):
+    if (guild == 798487245920141322 or guild == 731631689826041878):
 
         #If user gets given a new role
         if len(before.roles) < len(after.roles):
@@ -202,10 +202,10 @@ async def on_member_update(before, after):
                         except:
                             i = i + 1
 
-                channel = client.get_channel(932613038505336883)
+                channel = client.get_channel(867689528667144232)
 
-                if guild == 689865753662455829 and counter == 0:
-                    guildofdel = client.get_guild(689865753662455829)
+                if guild == 798487245920141322 and counter == 0:
+                    guildofdel = client.get_guild(798487245920141322)
                     member = guildofdel.get_member(after.id)
                     await member.ban(reason="Spam bot")
                     bannedlist = [
@@ -227,7 +227,7 @@ async def on_member_update(before, after):
                                     inline=False)
                     await channel.send(embed=embed)
 
-                elif guild == 689865753662455829 and counter == 1:
+                elif guild == 798487245920141322 and counter == 1:
 
                     mutelist = [
                         'https://cdn.discordapp.com/emojis/754439381703589958.gif?size=96&quality=lossless',
@@ -254,8 +254,8 @@ async def on_member_update(before, after):
                         + str(counter))
 
             #Deletes messages when user gets Seeds role
-            if (newRole.name == "Seeds"):
-                c = client.get_channel(736505679354921092)
+            if (newRole.name == "Tribe Gatherer"):
+                c = client.get_channel(980144504000626698)
                 messages = [messhis async for messhis in c.history(limit=30)]
                 i = 0
                 #creates a collection of messahes
@@ -264,7 +264,7 @@ async def on_member_update(before, after):
                     #checks if message and the person who got Seeds is the same person deleting the messages
                     if user == after.id:
                         await client.http.delete_message(
-                            736505679354921092, message.id)
+                            980144504000626698, message.id)
                         i = i + 1
 
 
@@ -374,70 +374,6 @@ async def on_message(message):
                             inline=False)
             await message.channel.send(embed=embed)
 
-        if (messagereceived == "!dtstreams2"):
-            data = download_file('/dropdotatournament2.txt',
-                                 'dotatournament2.txt')
-            f = open("dotatournament2.txt", "r")
-            my_url = f.read()
-            f.close()
-            dtstreaminfo = dtStreams(my_url)
-            streamlinks = dtstreaminfo[0]
-            urloftourni = dtstreaminfo[1]
-
-            embed = discord.Embed(title="Streams for the tournament",
-                                  color=0x55a7f7)
-            embed.add_field(name="Streams", value=streamlinks, inline=True)
-            embed.add_field(name="Where I found the streams",
-                            value=urloftourni,
-                            inline=False)
-            await message.channel.send(embed=embed)
-
-
-        if (messagereceived == "!show"
-                    and (str(secondPartOfMessage).lower() == "csgo"
-                         or str(secondPartOfMessage).lower() == "cs")
-                    and message.mentions.__len__() == 0):
-                test = scoreboardreader(thirdPartOfMessage)
-                embed = discord.Embed(title="CSGO prediction leaderboard",
-                                      color=0x55a7f7)
-                embed.add_field(name="CSGO Prediction - page: " + str(test[2]) + "/" + str(test[1]),
-                                value="```\n" + test[0] + "\n```",
-                                inline=True)
-                embed.add_field(
-                    name="Can't see yourself?",
-                    value=
-                    "Can't see yourself on the table? use !show csgo @*yourself* to see where you stand!",
-                    inline=False)
-                await message.channel.send(embed=embed)
-
-        if (messagereceived == "!show" and (str(secondPartOfMessage).lower() == "valo" or str(secondPartOfMessage).lower() == "valorant") and message.mentions.__len__() == 0):
-              test = valoscoreboardreader(thirdPartOfMessage)
-              embed = discord.Embed(title="Valorant prediction leaderboard",
-                                    color=0x55a7f7)
-              embed.add_field(name="Valorant prediction - page: " + str(test[2]) + "/" + str(test[1]),
-                              value="```\n" + test[0] + "\n```",
-                              inline=True)
-              embed.add_field(
-                  name="Can't see yourself?",
-                  value=
-                  "Can't see yourself on the table? use !show valo @*yourself* to see where you stand!",
-                  inline=False)
-              await message.channel.send(embed=embed)
-
-        if ((messagereceived == "!show")
-                  and (str(secondPartOfMessage).lower() == "csgo"
-                       or str(secondPartOfMessage).lower() == "cs")
-                  and (message.mentions.__len__() > 0)):
-              for user in message.mentions:
-                  test = scoreboardsingle(user.id)
-                  await message.channel.send(test)
-        if ((messagereceived == "!show")
-                  and (str(secondPartOfMessage).lower() == "valo"
-                       or str(secondPartOfMessage).lower() == "valorant")
-                  and (message.mentions.__len__() > 0)):
-              for user in message.mentions:
-                  test = valoscoreboardsingle(user.id)
-                  await message.channel.send(test)
 
         if (messagereceived == "!show"
                   and (str(secondPartOfMessage).lower() == "dota"
@@ -466,14 +402,6 @@ async def on_message(message):
 
 
 
-        if (messagereceived == "!nextcst"):
-          embed = next_cst(channelDataID)
-          if channelDataID != 926214194280419368 and channelDataID != 690952309827698749:
-            await message.reply(embed=embed)
-          else:
-            await message.reply(embed)
-
-
 
         #Gets the info for the next dota game
         if ((messagereceived == "!nextdota")
@@ -482,121 +410,31 @@ async def on_message(message):
             try:
               embed = DotaCheck(channelDataID)
               embed = embed[0]
-              if ((channelDataID == 689903856095723569)
-                      or (channelDataID == 690952309827698749)
-                      or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357) 
-                      or (channelDataID == 972571026066141204)
-                      or (channelDataID == 972946124161835078)
-                      or (channelDataID == 972570634196512798)):
+              if ((channelDataID ==867690069981003807)):
                   userID = message.author.id
                   userID = str(userID)
                   await message.reply("<@" + userID + "> " + embed)
               else:
                   await message.reply(embed=embed)
             except:
-              if ((channelDataID == 689903856095723569)
-                      or (channelDataID == 690952309827698749)
-                      or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)
-                      or (channelDataID == 972571026066141204)
-                      or (channelDataID == 972946124161835078)
-                      or (channelDataID == 972570634196512798)):
+              if ((channelDataID == 867690069981003807)):
                 await message.reply("No games planned currently - For more information use !nextdota in <#721391448812945480>")
               else:
-                embed=discord.Embed(title="OG Dota's next game", url="https://liquipedia.net/dota2/OG", color=0xf10909)
-                embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
+                embed=discord.Embed(title="Tundra Dota's next game", url="https://liquipedia.net/dota2/Tundra_Esports", color=0xf10909)
+                embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/7/7d/Tundra_Esports_2020_allmode_full.png/600px-Tundra_Esports_2020_allmode_full.png")
                 embed.add_field(name="Time remaining", value = "No games currently planned" , inline=False)
                 embed.add_field(name="Notice",value="Please check Liquipedia by clicking the title of this embed for more information as the time might not be accurate", inline=False)
-                embed.add_field(name="Links", value="OG Liquipedia: https://liquipedia.net/dota2/OG", inline=False)
+                embed.add_field(name="Links", value="Tundra Liquipedia: https://liquipedia.net/dota2/Tundra_Esports", inline=False)
                 await message.reply(embed=embed)
               
-
-        #Gets the info for the next CSGO gamee
-        if ((messagereceived == "!nextcsgo")
-                or (messagereceived == "!nextcs")):
-            CSGOGame = CSGOCheck(channelDataID, 'https://www.hltv.org/team/10503/og#tab-matchesBox')
-            embed = CSGOGame[6]
-            if ((channelDataID == 689903856095723569)
-                      or (channelDataID == 690952309827698749)
-                      or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)
-                      or (channelDataID == 972571026066141204)
-                      or (channelDataID == 972946124161835078)
-                      or (channelDataID == 972570634196512798)):
-                userID = message.author.id
-                userID = str(userID)
-                await message.reply("<@" + userID + "> " + embed)
-            else:
-                await message.reply(embed=embed)
-
-        
-
-        #Gets the info for the next Valo game
-        if ((messagereceived == "!nextvalo")
-                or (messagereceived == "!nextvalorant")
-                or (messagereceived == "!nextval")):
-
-            embed = ValoCheck(channelDataID, 'https://www.vlr.gg/team/2965/og')
-            embed=embed[0]
-            #embed = embed[
-
-            if (embed == "N"):
-                if ((channelDataID == 689903856095723569)
-                      or (channelDataID == 690952309827698749)
-                      or (channelDataID == 810939258222936094)
-                      or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)
-                      or (channelDataID == 972571026066141204)
-                      or (channelDataID == 972946124161835078)
-                      or (channelDataID == 972570634196512798)):
-                    userID = message.author.id
-                    userID = str(userID)
-                    await message.reply(
-                        "<@" + userID +
-                        "> - No games planned currently - For more information use !nextvalo in <#721391448812945480>"
-                    )
-                else:
-                    embed = discord.Embed(
-                        title="OG Valorant's next game",
-                        url="https://www.vlr.gg/team/2965/og",
-                        color=0xd57280)
-                    embed.set_thumbnail(
-                        url=
-                        "https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png"
-                    )
-                    embed.add_field(name="No games planned",
-                                    value="No games planned",
-                                    inline=True)
-                    embed.add_field(
-                        name="Links",
-                        value=
-                        "[OG VLR](https://www.vlr.gg/team/2965/og) / [OG Valrant Liquipedia](https://liquipedia.net/valorant/OG)",
-                        inline=False)
-                    await message.reply(embed=embed)
-            else:
-                if ((channelDataID == 689903856095723569)
-                      or (channelDataID == 690952309827698749)
-                      or (channelDataID == 810939258222936094)
-                      or (channelDataID == 697447277647626297)
-                      or (channelDataID == 818793950965006357)
-                      or (channelDataID == 972571026066141204)
-                      or (channelDataID == 972946124161835078)
-                      or (channelDataID == 972570634196512798)):
-                    userID = message.author.id
-                    userID = str(userID)
-                    await message.reply("<@" + userID + "> " + embed)
-                else:
-                    await message.reply(embed=embed)
-
 
 
         #Used for checking the next game in Dota Tourni
         if (messagereceived == "!nextdt" or messagereceived == "!nextdteuw"):
             embed = DotaCheckTourni(channelDataID)
             embed = embed[0]
-            if ((channelDataID == 689903856095723569)
-                    or (channelDataID == 690952309827698749)):
+            if ((channelDataID == 867690069981003807)
+                    or (channelDataID == 867690069981003807)):
                 userID = message.author.id
                 userID = str(userID)
                 await message.reply("<@" + userID + "> " + embed)
@@ -632,15 +470,7 @@ async def on_message(message):
             if (messagereceived in blockedcommands):
                 await message.channel.send("No role access")
 
-            #Get CSGO streams list for next CS game
-            if (messagereceived == "!csgostreams"):
-                embed = CSGOStreams('https://www.hltv.org/team/10503/og#tab-matchesBox')
-                embed = embed[0]
-                await message.reply(embed=embed)
-            if (messagereceived == "!csgoastreams"):
-                embed = CSGOStreams('https://www.hltv.org/team/11672/og-academy#tab-matchesBox')
-                embed = embed[0]
-                await message.reply(embed=embed)
+            
 
             #Checks if user tries using !nextmatch incorrectly
             if ((messagereceived == "!nextgame")
@@ -648,89 +478,19 @@ async def on_message(message):
                     or (messagereceived == "!nextmatch")
                     or (messagereceived == "!match")
                     or (messagereceived == "!next")):
-                embed = discord.Embed(title="OGoose bot help", color=0xd57280)
+                embed = discord.Embed(title="Tundra Snowflake", color=0xd57280)
                 embed.set_thumbnail(url="https://i.imgur.com/YJfbFth.png")
                 embed.add_field(
                     name="Asking for game information",
                     value=
-                    "To get game information do be sure to use !nextdota / !nextcsgo / !nextvalo, you can get additional help using !goosehelp",
+                    "To get game information do be sure to use !nextdota",
                     inline=True)
                 await message.channel.send(embed=embed)
 
-            if (messagereceived == "!valostreams"
-                    or messagereceived == "!valorantstreams"):
-                streaminfo = ValoStreams('https://www.vlr.gg/team/2965/og')
-                valoenemyteam = streaminfo[0]
-                streams = streaminfo[1]
-                matchlink = streaminfo[2]
-
-                if (matchlink == "No games found"):
-                    embed = discord.Embed(
-                        title="No Valorant streams / games were found",
-                        color=0xd57280)
-                    embed.add_field(
-                        name="What you can try",
-                        value=
-                        "You can try using !nextvalo / !nextvalorant to see if there are any games coming up",
-                        inline=True)
-                    embed.add_field(
-                        name="Links",
-                        value=
-                        "https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG",
-                        inline=False)
-                    await message.reply(embed=embed)
-
-                else:
-                    embed = discord.Embed(title="Valorant streams coming up!",
-                                          color=0xd57280)
-                    embed.add_field(name="The game found",
-                                    value="OG vs " + valoenemyteam,
-                                    inline=True)
-                    embed.add_field(name="Streams with flags",
-                                    value=streams,
-                                    inline=False)
-                    embed.add_field(name="Game page info",
-                                    value=matchlink,
-                                    inline=False)
-                    await message.reply(embed=embed)  
+            
 
 
-            if (messagereceived == "!ldnvalostreams"
-                    or messagereceived == "!ldnvalorantstreams"):
-                streaminfo = ValoStreams('https://www.vlr.gg/team/8903/og-ldn-utd')
-                valoenemyteam = streaminfo[0]
-                streams = streaminfo[1]
-                matchlink = streaminfo[2]
-
-                if (matchlink == "No games found"):
-                    embed = discord.Embed(
-                        title="No Valorant streams / games were found",
-                        color=0xd57280)
-                    embed.add_field(
-                        name="What you can try",
-                        value=
-                        "You can try using !nextldnvalo / !nextldnvalorant to see if there are any games coming up",
-                        inline=True)
-                    embed.add_field(
-                        name="Links",
-                        value=
-                        "https://www.vlr.gg/team/8903/og-ldn-utd / https://liquipedia.net/valorant/OG_LDN_UTD",
-                        inline=False)
-                    await message.reply(embed=embed)
-
-                else:
-                    embed = discord.Embed(title="Valorant streams coming up!",
-                                          color=0xd57280)
-                    embed.add_field(name="The game found",
-                                    value="OG LDN UTD vs " + valoenemyteam,
-                                    inline=True)
-                    embed.add_field(name="Streams with flags",
-                                    value=streams,
-                                    inline=False)
-                    embed.add_field(name="Game page info",
-                                    value=matchlink,
-                                    inline=False)
-                    await message.reply(embed=embed) 
+            
 
             if (messagereceived == "!dotastreams"):
                 streaminfo = DotaStreams()
@@ -749,7 +509,7 @@ async def on_message(message):
                         "You can try using !nextdota / !nextdota2 to see if there are any games coming up",
                         inline=True)
                     embed.add_field(name="Links",
-                                    value="https://liquipedia.net/dota2/OG",
+                                    value="https://liquipedia.net/dota2/Tundra_Esports",
                                     inline=False)
                     await message.reply(embed=embed)
 
@@ -766,42 +526,6 @@ async def on_message(message):
                                     value=convertedURL,
                                     inline=False)
                     await message.reply(embed=embed)
-
-            if (messagereceived == "!dotastreams2"):
-
-                streaminfo = DotaStreams2()
-                Teams1 = streaminfo[0]
-                Teams2 = streaminfo[1]
-                flagMessage = streaminfo[2]
-                convertedURL = streaminfo[3]
-
-                if (Teams1 == "No games found"):
-                    embed = discord.Embed(
-                        title="No Dota streams / games were found",
-                        color=0xf10909)
-                    embed.add_field(
-                        name="What you can try",
-                        value=
-                        "You can try using !nextdota / !nextdota2 to see if there are any games coming up",
-                        inline=True)
-                    embed.add_field(name="Links",
-                                    value="https://liquipedia.net/dota2/OG",
-                                    inline=False)
-                    await message.channel.send(embed=embed)
-
-                else:
-                    embed = discord.Embed(title="Dota streams found!",
-                                          color=0xf10909)
-                    embed.add_field(name="The game found",
-                                    value=Teams1 + " vs " + Teams2,
-                                    inline=True)
-                    embed.add_field(name="Streams available",
-                                    value=flagMessage,
-                                    inline=False)
-                    embed.add_field(name="Where I found the streams",
-                                    value=convertedURL,
-                                    inline=False)
-                    await message.channel.send(embed=embed)
 
             if ((messagereceived == "!discordstats")
                     and (message.mentions.__len__() == 0)):
@@ -842,32 +566,7 @@ async def on_message(message):
                                 inline=True)
                 await message.channel.send(embed=embed)
 
-            if (messagereceived == "!goosehelp"):
-                willshelp1 = "!nextdota - This will tell you the next OG Dota 2 game coming up \n!nextcsgo - This will tell you the next OG CSGO game coming up \n!nextvalo - This will tell you the next OG Valorant  game coming up \n \n"
-
-                willshelp2 = "!dotastreams / !dotastreams2 [B-Streams listed for our team] - This will tell you the streams available for the next / current series of dota happening!\n!csgostreams - This will tell you the next / current CSGO games streams\n!valostreams - This will tell you the streams for the current / next Valorant series"
-                willshelp3 = "!nextdt - This will tell you the next game coming up in the currently tracked tournament"
-                willshelp4 = "!teaminfo - Use this to get info on a dota team you're looking for\nE.G - !teaminfo EG, this will give the information on EG\n!playerinfo - Use this to get information on a player"
-                willshelp5 = "!dtstreams / !dtstreams2 - This will collect the streams listed on the page of the tournaments being tracked for !nextdt / !nextdt2"
-
-                embed = discord.Embed(title="The commands I work with",
-                                      color=0xff8800)
-                embed.add_field(name="The next OG games",
-                                value=willshelp1,
-                                inline=True)
-                embed.add_field(name="The streams for games",
-                                value=willshelp2,
-                                inline=False)
-                embed.add_field(name="The streams for tournament tracked",
-                                value=willshelp5,
-                                inline=False)
-                embed.add_field(name="Next game in tournament",
-                                value=willshelp3,
-                                inline=False)
-                embed.add_field(name="Team / player info",
-                                value=willshelp4,
-                                inline=False)
-                await message.channel.send(embed=embed)
+            
 
             return
 
@@ -875,80 +574,12 @@ async def on_message(message):
         else:
             
 
-            
-
-                
-            if(messagereceived =="!valorantdiscordevent" or messagereceived=="!valodiscordevent"):
-              try:
-                value = ValoCheck(0, 'https://www.vlr.gg/team/2965/og')
-                teams = value[1]
-                time = datetime.datetime.now().astimezone() + value[3]
-                streaminfo = ValoStreams('https://www.vlr.gg/team/2965/og')
-                guild = message.guild
-                linktogame = str(value[4])
-                linktogame = "https://www.vlr.gg/team/2965/og"
-                gamepos = value[6]
-                name= "Valorant game: " + str(teams)
-                tourniname = value[7]
-                description = tourniname + "\n" + str(value[4]) + "\n"+ gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
-                end_time=time+datetime.timedelta(minutes=10)
-                
-                linetocheck = teams + "," + gamepos +"," +tourniname
-                try:
-                  download_file('/valoevent.txt', 'valoevent.txt')
-                  f=open('valoevent.txt', 'r')
-                  lines=f.readlines()
-                  f.close()
-                except:
-                  lines="empty"
-                
-                try:
-                  if lines[0] == linetocheck:
-                    await message.channel.send("Event has already been added")
-                    pass
-                  else:
-                    await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-                    f = open("valoevent.txt", "w")
-                    f.write(linetocheck)
-                    f.close()
-                    upload_file('/valoevent.txt', 'valoevent.txt')
-                    await message.channel.send("Event made - you will need to share this in the event channel")
-                    
-                except:
-                  await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-                  f = open("valoevent.txt", "w")
-                  f.write(linetocheck)
-                  f.close()
-                  upload_file('/valoevent.txt', 'valoevent.txt')
-                  await message.channel.send("Event made - you will need to share this in the event channel")
-                  pass
-                
-              
-                
-              except ZeroDivisionError:
-                await message.channel.send("An error was hit during this process")
-                print(traceback.format_exc())
-
-
-            if(messagereceived=="!clearvaloevent" or messagereceived=="!clearvalorantevent"):
-              f = open("valoevent.txt", "w")
-              f.write("empty")
-              f.close()
-              upload_file('/valoevent.txt', 'valoevent.txt')
-              await message.channel.send("Event cleared")
 
             if(messagereceived=="!cleardotaevent"):
               f = open("dotaevent.txt", "w")
               f.write("empty")
               f.close()
               upload_file('/dotaevent.txt', 'dotaevent.txt')
-              await message.channel.send("Event cleared")
-
-            if(messagereceived=="!clearcsgoevent"):
-              f = open("csgoevent.txt", "w")
-              f.write("empty")
-              f.close()
-              upload_file('/csgoevent.txt', 'csgoevent.txt')
               await message.channel.send("Event cleared")
 
             
@@ -964,7 +595,7 @@ async def on_message(message):
                 streaminfo = DotaStreams()
                 
                 flagMessage = streaminfo[2]
-                description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
+                description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/TundraEsports\n"
                 
                 linetocheck = Teams+","+linktogame
 
@@ -1005,73 +636,10 @@ async def on_message(message):
 
 
 
-            if(messagereceived=="!csgodiscordevent"):
-              try:
-                value = CSGOCheck(0, 'https://www.hltv.org/team/10503/og#tab-matchesBox')
-                teams = value[0]
-                gamepage = value[4]
-                tourniname = value[8]
-                name = "CSGO game: " + teams
-                time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
-                end_time = time+datetime.timedelta(minutes=10)
-                streaminfo = CSGOStreams('https://www.hltv.org/team/10503/og#tab-matchesBox')
-                streamdata = streaminfo[3]
-                description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
-                
-                linetocheck= teams+","+gamepage
-                try:
-                  download_file('/csgoevent.txt', 'csgoevent.txt')
-                  f=open('csgoevent.txt', 'r')
-                  lines=f.readlines()
-                  f.close()
-                except:
-                  lines= "empty"
-
-                try:
-                
-                  if lines[0] == linetocheck:
-                    await message.channel.send("Event has already been added")
-                    pass
-                  else:
-                    await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
-                    f = open("csgoevent.txt", "w")
-                    f.write(linetocheck)
-                    f.close()
-                    upload_file('/csgoevent.txt', 'csgoevent.txt')
-                    await message.channel.send("Event made - you will need to share this in the event channel")
-                    
-                except:
-                  await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
-                  f = open("csgoevent.txt", "w")
-                  f.write(linetocheck)
-                  f.close()
-                  upload_file('/csgoevent.txt', 'csgoevent.txt')
-                  await message.channel.send("Event made - you will need to share this in the event channel")
-                  pass
-               
-              
-               
-              except Exception as e:
-                await message.channel.send("An error was hit during this process - there may be no game available")
-                print(e)
-              
-            if (messagereceived == "!changecst"):
-              
-              change_cst(str(secondPartOfMessage))
-              await message.reply("I have updated the CST to: <" + secondPartOfMessage + ">\nPlease verify this is correct")
-
-            if(messagereceived== "!resetcst"):
-              change_cst("none")
-              await message.reply("I have gone and reset the CST tracked")
-
-            if(messagereceived== "!verifycst"):
-              url = getcs_url()
-              await message.reply("The tournament currently being tracked is: <" + str(url) + ">")
-
             if (messagereceived == "!dotawinners"):
               try:
                 server = message.guild
-                role_name = "Dota 2 Oracle"
+                role_name = "Tribe Prophet"
                 i = 0
                 role_id = server.roles[0]
                 display_names = []
@@ -1093,11 +661,11 @@ async def on_message(message):
                 j=0
                 for id in member_ids:
                   user = message.guild.get_member(id)
-                  role = discord.utils.get(user.guild.roles, id=729106634437296148)
+                  role = discord.utils.get(user.guild.roles, id=966648883813965864)
                   await user.remove_roles(role)
                   j=j+1
                 print(j)
-                await message.channel.send("I have removed the Dota Oracle role from - " + str(j) + " people")
+                await message.channel.send("I have removed the Tribe Prophet role from - " + str(j) + " people")
               except Exception as e:
                 
                 print(e)
@@ -1117,12 +685,12 @@ async def on_message(message):
                       i=i+1
                       user = message.guild.get_member(int(lines[1]))
                       additionalmessage = additionalmessage + "<@" + str(lines[1]) + "> / "
-                      role = discord.utils.get(user.guild.roles, id=729106634437296148)
+                      role = discord.utils.get(user.guild.roles, id=966648883813965864)
                       await user.add_roles(role)
                     except:
                       print("User no longer in server")
                   
-                await message.channel.send("I have added the Dota Oracle role to - " + str(i) + " people - you can use !getuserlist @ dota 2 oracle, to get a list of users with the role")
+                await message.channel.send("I have added the Tribe Prophet role to - " + str(i) + " people - you can use !getuserlist @ Tribe Prophet, to get a list of users with the role")
                 await message.channel.send("This includes:\n```" + additionalmessage + "```")
               except Exception as e: 
                 print(e)
@@ -1130,161 +698,7 @@ async def on_message(message):
 
 
 
-            if (messagereceived == "!csgowinners"):
-              try:
-                server = message.guild
-                role_name = "CS:GO AWPacle"
-                i = 0
-                role_id = server.roles[0]
-                display_names = []
-                member_ids = []
-                for role in server.roles:
-                    if role_name == role.name:
-                        role_id = role
-                        break
-                else:
-                    await message.channel.send("Role doesn't exist")
-                    return
-
-                for member in server.members:
-                    if role_id in member.roles:
-                        i = i + 1
-                        display_names.append(member.display_name)
-                        member_ids.append(member.id)
-                
-                j=0
-                for id in member_ids:
-                  user = message.guild.get_member(id)
-                  role = discord.utils.get(user.guild.roles, id=729106753085636688)
-                  await user.remove_roles(role)
-                  j=j+1
-                print(j)
-                await message.channel.send("I have removed the CSGO AWPacle role from - " + str(j) + " people")
-              except Exception as e:
-                
-                print(e)
-
-              try:
-                download_file('/csgoscoreboard.csv', 'scoreboard15.csv')
-                f = open('scoreboard15.csv', 'r')
-                reader = csv.reader(f, delimiter=',')
-                scorecheck = int(secondPartOfMessage)
-                i=0
-                additionalmessage=""
-                for lines in reader:
-                  if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
-                    
-                    try:
-                      
-                      i=i+1
-                      user = message.guild.get_member(int(lines[1]))
-                      additionalmessage = additionalmessage + "<@" + str(lines[1]) + "> / "
-                      role = discord.utils.get(user.guild.roles, id = 729106753085636688)
-                      await user.add_roles(role)
-                    except:
-                      print("User no longer in server")
-                  
-                await message.channel.send("I have added the CSGO AWPacle role to - " + str(i) + " people - you can use !getuserlist @ CSGO AWPacle, to get a list of users with the role")
-                await message.channel.send("This includes:\n```" + additionalmessage + "```")
-              except Exception as e: 
-                print(e)
-                await message.channel.send("There was an error in command usage, to use command use !csgowinners X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
-              
-              
-              
-
-            if (messagereceived == "!valowinners"):
-              try:
-                server = message.guild
-                role_name = "Operation Predict"
-                i = 0
-                role_id = server.roles[0]
-                display_names = []
-                member_ids = []
-                for role in server.roles:
-                    if role_name == role.name:
-                        role_id = role
-                        break
-                else:
-                    await message.channel.send("Role doesn't exist")
-                    return
-
-                for member in server.members:
-                    if role_id in member.roles:
-                        i = i + 1
-                        display_names.append(member.display_name)
-                        member_ids.append(member.id)
-                
-                j=0
-                for id in member_ids:
-                  user = message.guild.get_member(id)
-                  role = discord.utils.get(user.guild.roles, id=946423736054218762)
-                  await user.remove_roles(role)
-                  j=j+1
-                print(j)
-                await message.channel.send("I have removed the CSGO AWPacle role from - " + str(j) + " people")
-              except Exception as e:
-                
-                print(e)
-
-              try:
-                download_file('/valoscoreboard.csv', 'scoreboard16.csv')
-                f = open('scoreboard16.csv', 'r')
-                reader = csv.reader(f, delimiter=',')
-                scorecheck = int(secondPartOfMessage)
-                i=0
-                additionalmessage =""
-                for lines in reader:
-                  if( int(lines[2]) == scorecheck or int(lines[2]) > scorecheck):
-                    
-                    try:
-                      
-                      i=i+1
-                      user = message.guild.get_member(int(lines[1]))
-                      additionalmessage = additionalmessage + "<@" + str(lines[1]) + "> / "
-                      role = discord.utils.get(user.guild.roles, id = 946423736054218762)
-                      await user.add_roles(role)
-                    except:
-                      print("User no longer in server")
-                  
-                await message.channel.send("I have added the Operation Predict role to - " + str(i) + " people - you can use !getuserlist @ Operation Predict, to get a list of users with the role")
-                await message.channel.send("This includes:\n```" + additionalmessage + "```")
-              except Exception as e: 
-                print(e)
-                await message.channel.send("There was an error in command usage, to use command use !valowinners X, replacing X with the score you want people to have minimum to be rewarded the role, using '5', would mean all people with 5 and more will get the role")
-
-                
-
           
-            if (messagereceived == "!show"
-                    and (str(secondPartOfMessage).lower() == "test"
-                         or str(secondPartOfMessage).lower() == "test")
-                    and message.mentions.__len__() == 0):
-                return
-                test = testscoreboardreader(thirdPartOfMessage)
-                embed = discord.Embed(title="test prediction leaderboard",
-                                      color=0x55a7f7)
-                embed.add_field(name="test Prediction top 10",
-                                value="```\n" + test + "\n```",
-                                inline=True)
-                embed.add_field(
-                    name="Can't see yourself?",
-                    value=
-                    "Can't see yourself on the table? use !show csgo @*yourself* to see where you stand!",
-                    inline=False)
-                await message.channel.send(embed=embed)
-
-            
-
-            if ((messagereceived == "!show")
-                    and (str(secondPartOfMessage).lower() == "test"
-                         or str(secondPartOfMessage).lower() == "test")
-                    and (message.mentions.__len__() > 0)):
-                return
-                for user in message.mentions:
-                    test = testscoreboardsingle(user.id)
-                    await message.channel.send(test)
-
             
 
             if ((messagereceived == "!dotaadd")):
@@ -1336,156 +750,7 @@ async def on_message(message):
                         "You need to tag the winning role: example !dotaadd @D9-0"
                     )
 
-            
-            if ((messagereceived == "!csgoadd")):
-
-                if (len(sectionsofmessage) > 1):
-                    download_file('/csgoscoreboard.csv', 'scoreboard2.csv')
-                    await message.channel.send(
-                        "Starting adding results this might take a while")
-                    try:
-                        server = message.guild
-                        role_name = sectionsofmessage[1]
-                        role_name = role_name[3:-1]
-                        role_name = discord.utils.get(guild.roles,
-                                                      id=int(role_name))
-                        role_name = str(role_name)
-                        i = 0
-                        role_id = server.roles[0]
-                        display_names = []
-                        member_ids = []
-                        file = open("filetosend.txt", "w")
-                        file.close()
-                        for role in server.roles:
-                            if role_name == role.name:
-                                role_id = role
-                                break
-                        else:
-                            await message.channel.send("Role doesn't exist")
-                            return
-                        for member in server.members:
-                            if role_id in member.roles:
-                                i = i + 1
-                                scoreboardadder(member.display_name, member.id,
-                                                1, i)
-                                display_names.append(member.display_name)
-                                member_ids.append(member.id)
-                        if (i == 0):
-                            await message.channel.send(
-                                "No one was found in that role!")
-                        else:
-                            upload_file('/csgoscoreboard.csv', 'scoreboard3.csv')
-                            await message.channel.send(
-                                "I have added the results! This affected: " +
-                                str(i) + " users")
-                    except:
-                        await message.channel.send(
-                            "You need to tag the winning role: example !csgoadd @cs9-0"
-                        )
-                else:
-                    await message.channel.send(
-                        "You need to tag the winning role: example !csgoadd @cs9-0"
-                    )
-
-            if ((messagereceived == "!valoadd")):
-                download_file('/valoscoreboard.csv', 'scoreboard8.csv')
-                if (len(sectionsofmessage) > 1):
-                    await message.channel.send(
-                        "Starting adding results this might take a while")
-                    try:
-                        server = message.guild
-                        role_name = sectionsofmessage[1]
-                        role_name = role_name[3:-1]
-                        role_name = discord.utils.get(guild.roles,
-                                                      id=int(role_name))
-                        role_name = str(role_name)
-                        i = 0
-                        role_id = server.roles[0]
-                        display_names = []
-                        member_ids = []
-                        file = open("filetosend.txt", "w")
-                        file.close()
-                        for role in server.roles:
-                            if role_name == role.name:
-                                role_id = role
-                                break
-                        else:
-                            await message.channel.send("Role doesn't exist")
-                            return
-                        for member in server.members:
-                            if role_id in member.roles:
-                                i = i + 1
-                                valoscoreboardadder(member.display_name,
-                                                    member.id, 1, i)
-                                display_names.append(member.display_name)
-                                member_ids.append(member.id)
-                        if (i == 0):
-                            await message.channel.send(
-                                "No one was found in that role!")
-                        else:
-                            upload_file('/valoscoreboard.csv', 'scoreboard9.csv')
-                            await message.channel.send(
-                                "I have added the results! This affected: " +
-                                str(i) + " users")
-                    except:
-                        await message.channel.send(
-                            "You need to tag the winning role: example !valoadd @v9-0"
-                        )
-                else:
-                    await message.channel.send(
-                        "You need to tag the winning role: example !valoadd @v9-0"
-                    )
-
-            if ((messagereceived == "!csgoremove")):
-                if (len(sectionsofmessage) > 1):
-                    download_file('/csgoscoreboard.csv', 'scoreboard2.csv')
-                    await message.channel.send(
-                        "Starting adding results this might take a while")
-                    try:
-                        server = message.guild
-                        role_name = sectionsofmessage[1]
-                        role_name = role_name[3:-1]
-                        role_name = discord.utils.get(guild.roles,
-                                                      id=int(role_name))
-                        role_name = str(role_name)
-                        i = 0
-                        role_id = server.roles[0]
-                        display_names = []
-                        member_ids = []
-                        file = open("filetosend.txt", "w")
-                        file.close()
-                        for role in server.roles:
-                            if role_name == role.name:
-                                role_id = role
-                                break
-                        else:
-                            await message.channel.send("Role doesn't exist")
-                            return
-                        for member in server.members:
-                            if role_id in member.roles:
-                                i = i + 1
-                                scoreboardadder(member.display_name, member.id,
-                                                -1, i)
-                                display_names.append(member.display_name)
-                                member_ids.append(member.id)
-                        if (i == 0):
-                            await message.channel.send(
-                                "No one was found in that role!")
-                        else:
-                            upload_file('/csgoscoreboard.csv', 'scoreboard3.csv')
-                            await message.channel.send(
-                                "I have added the results! This affected: " +
-                                str(i) + " users")
-                    except:
-                        await message.channel.send(
-                            "You need to tag the winning role: example !csgoremove @cs9-0"
-                        )
-                else:
-                    await message.channel.send(
-                        "You need to tag the winning role: example !csgoremove @cs9-0"
-                    )
-
-            
+           
             if ((messagereceived == "!dotaremove")):
                 if (len(sectionsofmessage) > 1):
                     download_file('/dotascoreboard.csv', 'scoreboard5.csv')
@@ -1535,67 +800,13 @@ async def on_message(message):
                         "You need to tag the winning role: example !dotaremove @D9-0"
                     )
 
-            if ((messagereceived == "!valoremove")):
-                if (len(sectionsofmessage) > 1):
-                    download_file('/valoscoreboard.csv', 'scoreboard8.csv')
-                    await message.channel.send(
-                        "Starting adding results this might take a while")
-                    try:
-                        server = message.guild
-                        role_name = sectionsofmessage[1]
-                        role_name = role_name[3:-1]
-                        role_name = discord.utils.get(guild.roles,
-                                                      id=int(role_name))
-                        role_name = str(role_name)
-                        i = 0
-                        role_id = server.roles[0]
-                        display_names = []
-                        member_ids = []
-                        file = open("filetosend.txt", "w")
-                        file.close()
-                        for role in server.roles:
-                            if role_name == role.name:
-                                role_id = role
-                                break
-                        else:
-                            await message.channel.send("Role doesn't exist")
-                            return
-                        for member in server.members:
-                            if role_id in member.roles:
-                                i = i + 1
-                                valoscoreboardadder(member.display_name,
-                                                    member.id, -1, i)
-                                display_names.append(member.display_name)
-                                member_ids.append(member.id)
-                        if (i == 0):
-                            await message.channel.send(
-                                "No one was found in that role!")
-                        else:
-                            upload_file('/valoscoreboard.csv', 'scoreboard9.csv')
-                            await message.channel.send(
-                                "I have added the results! This affected: " +
-                                str(i) + " users")
-                    except:
-                        await message.channel.send(
-                            "You need to tag the winning role: example !valoremove @V9-0"
-                        )
-                else:
-                    await message.channel.send(
-                        "You need to tag the winning role: example !valoremove @V9-0"
-                    )
-
-            if (messagereceived == "!clearcsgoboard"):
-                scoreboarding()
-                await message.channel.send("The CSGO Leaderboard is reset")
+            
 
   
             if (messagereceived == "!cleardotaboard"):
                 dotascoreboarding()
                 await message.channel.send("The Dota Leaderboard is reset")
 
-            if (messagereceived == "!clearvaloboard"):
-                valoscoreboarding()
-                await message.channel.send("The Valo Leaderboard is reset")
 
             if ((messagereceived == "!gettingrolelist")):
                 if (len(sectionsofmessage) > 1):
@@ -1761,45 +972,6 @@ async def on_message(message):
 
             
 
-            
-
-            
-
-            if (messagereceived == "!resetdt2"):
-                data = download_file('/dropdotatournament2.txt',
-                                     'dotatournament2.txt')
-                f = open("dotatournament2.txt", "w")
-                f.write("none")
-                f.close()
-                upload_file('/dropdotatournament2.txt', 'dotatournament2.txt')
-                await message.channel.send(
-                    "The tournament currently tracked has been removed")
-
-            if (messagereceived == "!verifydturl2"):
-                data = download_file('/dropdotatournament2.txt',
-                                     'dotatournament2.txt')
-                f = open("dotatournament2.txt", "r")
-                link = f.read()
-                await message.channel.send("The link currently stored is - <" +
-                                           link + ">")
-
-            if (messagereceived == "!changedt2"):
-                try:
-                    data = download_file('/dropdotatournament2.txt',
-                                         'dotatournament2.txt')
-                except:
-                    print("lol")
-                newlink = secondPartOfMessage
-                f = open("dotatournament2.txt", "w")
-                f.write(newlink)
-                f.close()
-                upload_file('/dropdotatournament2.txt', 'dotatournament2.txt')
-                await message.channel.send(
-                    "The tournament tracked has been updated to the link you have sent - <"
-                    + newlink +
-                    ">\n\nIf there is an error in your link, you are able to use !verifydturl to check the link or try changing again!"
-                )
-
             if (messagereceived == "!resetdt"):
                 data = download_file('/dropdotatournament.txt',
                                      'dotatournament.txt')
@@ -1832,14 +1004,14 @@ async def on_message(message):
                     ">\n\nIf there is an error in your link, you are able to use !verifydturl to check the link or try changing again!"
                 )
 
-            #copies 100 messages from 1 channel to another
+        
 
             
             if ((messagereceived == "!nextgame")
                     or (messagereceived == "!game")
                     or (messagereceived == "!nextmatch")
                     or (messagereceived == "!next")):
-                embed = discord.Embed(title="OGoose bot help", color=0xd57280)
+                embed = discord.Embed(title="Tundra Snowflake Help", color=0xd57280)
                 embed.set_thumbnail(url="https://i.imgur.com/YJfbFth.png")
                 embed.add_field(
                     name="Asking for game information",
@@ -1848,47 +1020,7 @@ async def on_message(message):
                     inline=True)
                 await message.channel.send(embed=embed)
 
-            if (messagereceived == "!csgostreams"):
-                streaminfo = CSGOStreams('https://www.hltv.org/team/10503/og#tab-matchesBox')
-                team1 = streaminfo[1]
-                team2 = streaminfo[2]
-                links = streaminfo[3]
-                matchlink = streaminfo[4]
 
-                if (team1 == "No games found"):
-                    embed = discord.Embed(
-                        title="No CSGO streams / games were found",
-                        color=0xff8800)
-                    embed.add_field(
-                        name="What you can try",
-                        value=
-                        "You can try using !nextcsgo to see if there are any games coming up",
-                        inline=True)
-                    embed.add_field(
-                        name="Links",
-                        value=
-                        "OG Liquipedia:  https://liquipedia.net/counterstrike/OG\nOG HLTV: https://www.hltv.org/team/10503/og#tab-matchesBox",
-                        inline=False)
-                    await message.reply(embed=embed)
-                else:
-                    embed = discord.Embed(title="CSGO Stream links",
-                                          color=0xff8800)
-                    embed.add_field(name="The game found",
-                                    value=team1 + " vs " + team2,
-                                    inline=True)
-                    if(message.channel.id !=690952309827698749 and message.channel.id != 926214194280419368):
-                      embed.add_field(name="Streams",
-                                    value="```" + links + "```",
-                                    inline=False)
-                    embed.add_field(name="Streams available",
-                                    value=links,
-                                    inline=False)
-                    embed.add_field(name="Game page info",
-                                    value=matchlink,
-                                    inline=False)
-                    await message.reply(embed=embed)
-
-            
             if ((messagereceived == "!avatar")
                     and (message.mentions.__len__() > 0)):
                 for user in message.mentions:
@@ -1917,56 +1049,7 @@ async def on_message(message):
                 except:
                     await message.channel.send("D0-1 not found")
 
-            if ((messagereceived == "!deletecsgobo1")
-                    or (messagereceived == "!deletecsgobo1")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS1-0")
-                    await role_object.delete()
-                    await message.channel.send("CS1-0 deleted")
-                except:
-                    await message.channel.send("CS1-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS0-1")
-                    await role_object.delete()
-                    await message.channel.send("CS0-1 deleted")
-                except:
-                    await message.channel.send("CS0-1 not found")
-
-            if ((messagereceived == "!deletevalobo1")
-                    or (messagereceived == "!deletevalorantbo1")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V1-0")
-                    await role_object.delete()
-                    await message.channel.send("V1-0 deleted")
-                except:
-                    await message.channel.send("V1-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V0-1")
-                    await role_object.delete()
-                    await message.channel.send("V0-1 deleted")
-                except:
-                    await message.channel.send("V0-1 not found")
-                  
-            if ((messagereceived == "!deleteldnvalobo1")
-                    or (messagereceived == "!deleteldnvalorantbo1")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV1-0")
-                    await role_object.delete()
-                    await message.channel.send("ldnV1-0 deleted")
-                except:
-                    await message.channel.send("ldnV1-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV0-1")
-                    await role_object.delete()
-                    await message.channel.send("ldnV0-1 deleted")
-                except:
-                    await message.channel.send("ldnV0-1 not found")
+            
 
             if ((messagereceived == "!deletedotabo3")
                     or (messagereceived == "!deletedota2bo3")):
@@ -1999,99 +1082,7 @@ async def on_message(message):
                 except:
                     await message.channel.send("D0-2 not found")
 
-            if ((messagereceived == "!deletecsgobo3")
-                    or (messagereceived == "!deletecsgobo3")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS2-0")
-                    await role_object.delete()
-                    await message.channel.send("CS2-0 deleted")
-                except:
-                    await message.channel.send("CS2-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS2-1")
-                    await role_object.delete()
-                    await message.channel.send("CS2-1 deleted")
-                except:
-                    await message.channel.send("CS2-1 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS1-2")
-                    await role_object.delete()
-                    await message.channel.send("CS1-2 deleted")
-                except:
-                    await message.channel.send("CS1-2 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS0-2")
-                    await role_object.delete()
-                    await message.channel.send("CS0-2 deleted")
-                except:
-                    await message.channel.send("CS0-2 not found")
-
-            if ((messagereceived == "!deletevalobo3")
-                    or (messagereceived == "!deletevalorantbo3")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V2-0")
-                    await role_object.delete()
-                    await message.channel.send("V2-0 deleted")
-                except:
-                    await message.channel.send("V2-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V2-1")
-                    await role_object.delete()
-                    await message.channel.send("V2-1 deleted")
-                except:
-                    await message.channel.send("V2-1 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V1-2")
-                    await role_object.delete()
-                    await message.channel.send("V1-2 deleted")
-                except:
-                    await message.channel.send("V1-2 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V0-2")
-                    await role_object.delete()
-                    await message.channel.send("V0-2 deleted")
-                except:
-                    await message.channel.send("V0-2 not found")
-
-
-            if ((messagereceived == "!deleteldnvalobo3")
-                    or (messagereceived == "!deleteldnvalorantbo3")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV2-0")
-                    await role_object.delete()
-                    await message.channel.send("ldnV2-0 deleted")
-                except:
-                    await message.channel.send("ldnV2-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV2-1")
-                    await role_object.delete()
-                    await message.channel.send("ldnV2-1 deleted")
-                except:
-                    await message.channel.send("ldnV2-1 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV1-2")
-                    await role_object.delete()
-                    await message.channel.send("ldnV1-2 deleted")
-                except:
-                    await message.channel.send("ldnV1-2 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV0-2")
-                    await role_object.delete()
-                    await message.channel.send("ldnV0-2 deleted")
-                except:
-                    await message.channel.send("ldnV0-2 not found")
+            
 
             if ((messagereceived == "!deletedotabo5")
                     or (messagereceived == "!deletedota2bo5")):
@@ -2138,142 +1129,7 @@ async def on_message(message):
                 except:
                     await message.channel.send("D0-3 not found")
 
-            if ((messagereceived == "!deletecsgobo5")
-                    or (messagereceived == "!deletecsgobo5")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS3-0")
-                    await role_object.delete()
-                    await message.channel.send("CS3-0 deleted")
-                except:
-                    await message.channel.send("CS3-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS3-1")
-                    await role_object.delete()
-                    await message.channel.send("CS3-1 deleted")
-                except:
-                    await message.channel.send("CS3-1 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS3-2")
-                    await role_object.delete()
-                    await message.channel.send("CS3-2 deleted")
-                except:
-                    await message.channel.send("CS3-2 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS2-3")
-                    await role_object.delete()
-                    await message.channel.send("CS2-3 deleted")
-                except:
-                    await message.channel.send("CS2-3 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS1-3")
-                    await role_object.delete()
-                    await message.channel.send("CS1-3 deleted")
-                except:
-                    await message.channel.send("CS1-3 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS0-3")
-                    await role_object.delete()
-                    await message.channel.send("CS0-3 deleted")
-                except:
-                    await message.channel.send("CS0-3 not found")
-
-            if ((messagereceived == "!deletevalobo5")
-                    or (messagereceived == "!deletevalorantbo5")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V3-0")
-                    await role_object.delete()
-                    await message.channel.send("V3-0 deleted")
-                except:
-                    await message.channel.send("V3-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V3-1")
-                    await role_object.delete()
-                    await message.channel.send("V3-1 deleted")
-                except:
-                    await message.channel.send("V3-1 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V3-2")
-                    await role_object.delete()
-                    await message.channel.send("V3-2 deleted")
-                except:
-                    await message.channel.send("V3-2 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V2-3")
-                    await role_object.delete()
-                    await message.channel.send("V2-3 deleted")
-                except:
-                    await message.channel.send("V2-3 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V1-3")
-                    await role_object.delete()
-                    await message.channel.send("V1-3 deleted")
-                except:
-                    await message.channel.send("V1-3 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V0-3")
-                    await role_object.delete()
-                    await message.channel.send("V0-3 deleted")
-                except:
-                    await message.channel.send("V0-3 not found")
-
-
-
-            if ((messagereceived == "!deleteldnvalobo5")
-                    or (messagereceived == "!deleteldnvalorantbo5")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV3-0")
-                    await role_object.delete()
-                    await message.channel.send("ldnV3-0 deleted")
-                except:
-                    await message.channel.send("ldnV3-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV3-1")
-                    await role_object.delete()
-                    await message.channel.send("ldnV3-1 deleted")
-                except:
-                    await message.channel.send("ldnV3-1 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV3-2")
-                    await role_object.delete()
-                    await message.channel.send("ldnV3-2 deleted")
-                except:
-                    await message.channel.send("ldnV3-2 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV2-3")
-                    await role_object.delete()
-                    await message.channel.send("ldnV2-3 deleted")
-                except:
-                    await message.channel.send("ldnV2-3 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV1-3")
-                    await role_object.delete()
-                    await message.channel.send("ldnV1-3 deleted")
-                except:
-                    await message.channel.send("ldnV1-3 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV0-3")
-                    await role_object.delete()
-                    await message.channel.send("ldnV0-3 deleted")
-                except:
-                    await message.channel.send("ldnV0-3 not found")
+            
 
             if ((messagereceived == "!deletedotabo2")
                     or (messagereceived == "!deletedota2bo2")):
@@ -2299,79 +1155,7 @@ async def on_message(message):
                 except:
                     await message.channel.send("D0-2 not found")
 
-            if ((messagereceived == "!deletecsgobo2")
-                    or (messagereceived == "!deletecsgobo2")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS2-0")
-                    await role_object.delete()
-                    await message.channel.send("CS2-0 deleted")
-                except:
-                    await message.channel.send("CS2-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS1-1")
-                    await role_object.delete()
-                    await message.channel.send("CS1-1 deleted")
-                except:
-                    await message.channel.send("CS1-1 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="CS0-2")
-                    await role_object.delete()
-                    await message.channel.send("CS0-2 deleted")
-                except:
-                    await message.channel.send("CS0-2 not found")
-
-            if ((messagereceived == "!deletevalobo2")
-                    or (messagereceived == "!deletevalorantbo2")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V2-0")
-                    await role_object.delete()
-                    await message.channel.send("V2-0 deleted")
-                except:
-                    await message.channel.send("V2-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V1-1")
-                    await role_object.delete()
-                    await message.channel.send("V1-1 deleted")
-                except:
-                    await message.channel.send("V1-1 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="V0-2")
-                    await role_object.delete()
-                    await message.channel.send("V0-2 deleted")
-                except:
-                    await message.channel.send("V0-2 not found")
-
-                  
-            if ((messagereceived == "!deleteldnvalobo2")
-                    or (messagereceived == "!deleteldnvalorantbo2")):
-                guild = message.guild
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV2-0")
-                    await role_object.delete()
-                    await message.channel.send("ldnV2-0 deleted")
-                except:
-                    await message.channel.send("ldnV2-0 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV1-1")
-                    await role_object.delete()
-                    await message.channel.send("ldnV1-1 deleted")
-                except:
-                    await message.channel.send("ldnV1-1 not found")
-
-                try:
-                    role_object = discord.utils.get(guild.roles, name="ldnV0-2")
-                    await role_object.delete()
-                    await message.channel.send("ldnV0-2 deleted")
-                except:
-                    await message.channel.send("ldnV0-2 not found")
-
+           
             if (messagereceived == "!dotabo1"):
                 guild = message.guild
                 await guild.create_role(name="D1-0")
@@ -2399,32 +1183,7 @@ async def on_message(message):
                 await guild.create_role(name="D0-2")
                 await message.channel.send("D0-2 created")
 
-            if (messagereceived == "!valobo2"):
-                guild = message.guild
-                await guild.create_role(name="V2-0")
-                await message.channel.send("V2-0 created")
-                await guild.create_role(name="V1-1")
-                await message.channel.send("V1-1 created")
-                await guild.create_role(name="V0-2")
-                await message.channel.send("V0-2 created")
-
-            if (messagereceived == "!ldnvalobo2"):
-                guild = message.guild
-                await guild.create_role(name="ldnV2-0")
-                await message.channel.send("ldnV2-0 created")
-                await guild.create_role(name="ldnV1-1")
-                await message.channel.send("ldnV1-1 created")
-                await guild.create_role(name="ldnV0-2")
-                await message.channel.send("ldnV0-2 created")
-
-            if (messagereceived == "!csgobo2"):
-                guild = message.guild
-                await guild.create_role(name="CS2-0")
-                await message.channel.send("CS2-0 created")
-                await guild.create_role(name="CS1-1")
-                await message.channel.send("CS1-1 created")
-                await guild.create_role(name="CS0-2")
-                await message.channel.send("CS0-2 created")
+            
 
             if (messagereceived == "!dotabo5"):
                 guild = message.guild
@@ -2441,105 +1200,7 @@ async def on_message(message):
                 await guild.create_role(name="D0-3")
                 await message.channel.send("D0-3 created")
 
-            if (messagereceived == "!csgobo1"):
-                guild = message.guild
-                await guild.create_role(name="CS1-0")
-                await message.channel.send("CS1-0 created")
-                await guild.create_role(name="CS0-1")
-                await message.channel.send("CS0-1 created")
-
-            if (messagereceived == "!csgobo3"):
-                guild = message.guild
-                await guild.create_role(name="CS2-0")
-                await message.channel.send("CS2-0 created")
-                await guild.create_role(name="CS2-1")
-                await message.channel.send("CS2-1created")
-                await guild.create_role(name="CS1-2")
-                await message.channel.send("CS1-2 created")
-                await guild.create_role(name="CS0-2")
-                await message.channel.send("CS0-2 created")
-
-            if (messagereceived == "!csgobo5"):
-                guild = message.guild
-                await guild.create_role(name="CS3-0")
-                await message.channel.send("CS3-0 created")
-                await guild.create_role(name="CS3-1")
-                await message.channel.send("CS3-1 created")
-                await guild.create_role(name="CS3-2")
-                await message.channel.send("CS3-2 created")
-                await guild.create_role(name="CS2-3")
-                await message.channel.send("CS2-3 created")
-                await guild.create_role(name="CS1-3")
-                await message.channel.send("CS1-3 created")
-                await guild.create_role(name="CS0-3")
-                await message.channel.send("CS0-3 created")
-
-            if (messagereceived == "!valobo1"):
-                guild = message.guild
-                await guild.create_role(name="V1-0")
-                await message.channel.send("V1-0 created")
-                await guild.create_role(name="V0-1")
-                await message.channel.send("V0-1 created")
-
-            if (messagereceived == "!valobo3"):
-                guild = message.guild
-                await guild.create_role(name="V2-0")
-                await message.channel.send("V2-0 created")
-                await guild.create_role(name="V2-1")
-                await message.channel.send("V2-1 created")
-                await guild.create_role(name="V1-2")
-                await message.channel.send("V1-2 created")
-                await guild.create_role(name="V0-2")
-                await message.channel.send("V0-2 created")
-
-            if (messagereceived == "!valobo5"):
-                guild = message.guild
-                await guild.create_role(name="V3-0")
-                await message.channel.send("V3-0 created")
-                await guild.create_role(name="V3-1")
-                await message.channel.send("V3-1 created")
-                await guild.create_role(name="V3-2")
-                await message.channel.send("V3-2 created")
-                await guild.create_role(name="V2-3")
-                await message.channel.send("V2-3 created")
-                await guild.create_role(name="V1-3")
-                await message.channel.send("V1-3 created")
-                await guild.create_role(name="V0-3")
-                await message.channel.send("V0-3 created")
-
-            if (messagereceived == "!ldnvalobo1"):
-                guild = message.guild
-                await guild.create_role(name="ldnV1-0")
-                await message.channel.send("ldnV1-0 created")
-                await guild.create_role(name="ldnV0-1")
-                await message.channel.send("ldnV0-1 created")
-
-            if (messagereceived == "!ldnvalobo3"):
-                guild = message.guild
-                await guild.create_role(name="ldnV2-0")
-                await message.channel.send("ldnV2-0 created")
-                await guild.create_role(name="ldnV2-1")
-                await message.channel.send("ldnV2-1 created")
-                await guild.create_role(name="ldnV1-2")
-                await message.channel.send("ldnV1-2 created")
-                await guild.create_role(name="ldnV0-2")
-                await message.channel.send("ldnV0-2 created")
-
-            if (messagereceived == "!ldnvalobo5"):
-                guild = message.guild
-                await guild.create_role(name="ldnV3-0")
-                await message.channel.send("ldnV3-0 created")
-                await guild.create_role(name="ldnV3-1")
-                await message.channel.send("ldnV3-1 created")
-                await guild.create_role(name="ldnV3-2")
-                await message.channel.send("ldnV3-2 created")
-                await guild.create_role(name="ldnV2-3")
-                await message.channel.send("ldnV2-3 created")
-                await guild.create_role(name="ldnV1-3")
-                await message.channel.send("ldnV1-3 created")
-                await guild.create_role(name="ldnV0-3")
-                await message.channel.send("ldnV0-3 created")
-
+            
             if (messagereceived == "!dotastreams"):
                 streaminfo = DotaStreams()
                 Teams1 = streaminfo[0]
@@ -2557,7 +1218,7 @@ async def on_message(message):
                         "You can try using !nextdota / !nextdota2 to see if there are any games coming up",
                         inline=True)
                     embed.add_field(name="Links",
-                                    value="https://liquipedia.net/dota2/OG",
+                                    value="https://liquipedia.net/dota2/Tundra_Esports",
                                     inline=False)
                     await message.reply(embed=embed)
 
@@ -2567,7 +1228,7 @@ async def on_message(message):
                     embed.add_field(name="The game found",
                                     value=Teams1 + " vs " + Teams2,
                                     inline=True)
-                    if(message.channel.id != 689903856095723569 and message.channel.id != 926214194280419368):
+                    if(message.channel.id != 867690069981003807):
                       embed.add_field(name="Streams / Flags",
                                       value="```" + flagMessage + "```",
                                       inline=False)
@@ -2579,99 +1240,19 @@ async def on_message(message):
                                     inline=False)
                     await message.reply(embed=embed)
 
-            if ((messagereceived == "!valostreams")
-                    or (messagereceived == "!valorantstreams")):
-                streaminfo = ValoStreams('https://www.vlr.gg/team/2965/og')
-                valoenemyteam = streaminfo[0]
-                streams = streaminfo[1]
-                matchlink = streaminfo[2]
-
-                if (matchlink == "No games found"):
-                    embed = discord.Embed(
-                        title="No Valorant streams / games were found",
-                        color=0xd57280)
-                    embed.add_field(
-                        name="What you can try",
-                        value=
-                        "You can try using !nextvalo / !nextvalorant to see if there are any games coming up",
-                        inline=True)
-                    embed.add_field(
-                        name="Links",
-                        value=
-                        "https://www.vlr.gg/team/2965/og / https://liquipedia.net/valorant/OG",
-                        inline=False)
-                    await message.reply(embed=embed)
-
-                else:
-                    embed = discord.Embed(title="Valorant streams coming up!",
-                                          color=0xd57280)
-                    embed.add_field(name="The game found",
-                                    value="OG vs " + valoenemyteam,
-                                    inline=True)
-                    if(message.channel.id != 810939258222936094 and message.channel.id != 926214194280419368):
-                      embed.add_field(name="Streams for copying",
-                                    value="```" + streams + "```",
-                                    inline=False)
-                    embed.add_field(name="Streams with flags",
-                                    value=streams,
-                                    inline=False)
-                    embed.add_field(name="Game page info",
-                                    value=matchlink,
-                                    inline=False)
-                    await message.reply(embed=embed)
-
-            if ((messagereceived == "!ldnvalostreams")
-                    or (messagereceived == "!ldnvalorantstreams")):
-                streaminfo = ValoStreams('https://www.vlr.gg/team/8903/og-ldn-utd')
-                valoenemyteam = streaminfo[0]
-                streams = streaminfo[1]
-                matchlink = streaminfo[2]
-
-                if (matchlink == "No games found"):
-                    embed = discord.Embed(
-                        title="No Valorant streams / games were found",
-                        color=0xd57280)
-                    embed.add_field(
-                        name="What you can try",
-                        value=
-                        "You can try using !nextldnvalo / !nextldnvalorant to see if there are any games coming up",
-                        inline=True)
-                    embed.add_field(
-                        name="Links",
-                        value=
-                        "https://www.vlr.gg/team/8903/og-ldn-utd / https://liquipedia.net/valorant/OG_LDN_UTD",
-                        inline=False)
-                    await message.reply(embed=embed)
-
-                else:
-                    embed = discord.Embed(title="Valorant streams coming up!",
-                                          color=0xd57280)
-                    embed.add_field(name="The game found",
-                                    value="OG LDN UTD vs " + valoenemyteam,
-                                    inline=True)
-                    if(message.channel.id != 810939258222936094 and message.channel.id != 926214194280419368):
-                      embed.add_field(name="Streams for copying",
-                                    value="```" + streams + "```",
-                                    inline=False)
-                    embed.add_field(name="Streams with flags",
-                                    value=streams,
-                                    inline=False)
-                    embed.add_field(name="Game page info",
-                                    value=matchlink,
-                                    inline=False)
-                    await message.reply(embed=embed)
+            
 
 
     #new-member-support OG Main Discord
-    if (channelDataID == 736505679354921092):
-        embed = discord.Embed(title="Welcome to the Flowerhouse!",
+    if (channelDataID == 980144504000626698):
+        embed = discord.Embed(title="Welcome to the Tundra Tribe!",
                               color=0xff8800)
         embed.add_field(
             name="You seem to be lost, let me help",
             value=
-            "Do be sure to go through <#829738571010277406> to check out the rules of the server! Follow this up in <#832198110204919848> to get access to the rest of the server! See you in there!",
+            "Do be sure to go through <#867689566572118036> to check out the rules of the server! Follow this up in <#935744075670360064> to get access to the rest of the server! See you in there!",
             inline=True)
-        embed.set_image(url="https://i.imgur.com/zr9Hp7C.png")
+        embed.set_image(url="https://i.imgur.com/uiNH28L.png")
 
         data = download_file('/droplastmessage.txt', 'lastmessage.txt')
         g = open("lastmessage.txt", "r")
@@ -2684,7 +1265,7 @@ async def on_message(message):
         except:
             print("Failed to delete any message")
         try:
-            await client.http.delete_message(736505679354921092, g2)
+            await client.http.delete_message(980144504000626698, g2)
         except:
             print("Failed to delete any message")
         message = await message.reply(embed=embed)
@@ -2715,7 +1296,7 @@ async def testingspam():
    
     #Dota daily
     try:
-      channel = client.get_channel(964298402089275462)
+      channel = client.get_channel(980148345030987806)
       value = DotaCheck(0)
       Teams = value[1]
       name = "Dota 2 game: " + Teams
@@ -2726,8 +1307,8 @@ async def testingspam():
       streaminfo = DotaStreams()
       
       flagMessage = streaminfo[2]
-      description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/OGesports\n"
-      guild = client.get_guild(689865753662455829)
+      description = tourniname +"\n" + flagMessage + "\n:mega: https://twitter.com/TundraEsports\n"
+      guild = client.get_guild(798487245920141322)
       linetocheck = Teams+","+linktogame
 
       try:
@@ -2767,223 +1348,11 @@ async def testingspam():
     except Exception as e:
       print(e)
 
-    #Valo daily - regular OG
-    try:
-      channel = client.get_channel(964298835453169664)
-      value = ValoCheck(0, 'https://www.vlr.gg/team/2965/og')
-      teams = value[1]
-      time = datetime.datetime.now().astimezone() + value[3]
-      streaminfo = ValoStreams('https://www.vlr.gg/team/2965/og')
-      linktogame = value[4]
-      linktogame = "https://www.vlr.gg/team/2965/og"
-      gamepos = value[6]
-      name= "Valorant game: " + teams
-      tourniname = value[7]
-      description = tourniname + "\n" + str(value[4]) + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
-      end_time=time+datetime.timedelta(minutes=10)
-      guild = client.get_guild(689865753662455829)
-      linetocheck = teams + "," + gamepos +"," +tourniname
-      try:
-        download_file('/valoevent.txt', 'valoevent.txt')
-        f=open('valoevent.txt', 'r')
-        lines=f.readlines()
-        f.close()
-      except:
-        lines="empty"
-      
-      try:
-        if lines[0] == linetocheck:
-          
-          pass
-        else:
-          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-          f = open("valoevent.txt", "w")
-          f.write(linetocheck)
-          f.close()
-          upload_file('/valoevent.txt', 'valoevent.txt')
-          data2= await guild.fetch_scheduled_event(eventdata.id)
-          await channel.send(data2.url)
-          
-      except:
-        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-        f = open("valoevent.txt", "w")
-        f.write(linetocheck)
-        f.close()
-        upload_file('/valoevent.txt', 'valoevent.txt')
-        data2= await guild.fetch_scheduled_event(eventdata.id)
-        await channel.send(data2.url)
-        pass
-
-      
-      
-    except Exception as e:
-      print(e)
-
-    #Get events for ldn utd OG
-    try:
-      channel = client.get_channel(964298835453169664)
-      value = ValoCheck(0, 'https://www.vlr.gg/team/8903/og-ldn-utd')
-      teams = value[1]
-      time = datetime.datetime.now().astimezone() + value[3]
-      streaminfo = ValoStreams('https://www.vlr.gg/team/8903/og-ldn-utd')
-      linktogame = value[4]
-      linktogame = "https://www.vlr.gg/team/8903/og-ldn-utd"
-      gamepos = value[6]
-      name= "Valorant game: " + teams
-      tourniname = value[7]
-      description = tourniname + "\n" + str(value[4]) + "\n" + gamepos + "\n" + streaminfo[1] + "\n:mega: https://twitter.com/OGvalorant\n" 
-      end_time=time+datetime.timedelta(minutes=10)
-      guild = client.get_guild(689865753662455829)
-      linetocheck = teams + "," + gamepos +"," +tourniname
-      try:
-        download_file('/ldnvaloevent.txt', 'ldnvaloevent.txt')
-        f=open('ldnvaloevent.txt', 'r')
-        lines=f.readlines()
-        f.close()
-      except:
-        lines="empty"
-      
-      try:
-        if lines[0] == linetocheck:
-          
-          pass
-        else:
-          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-          f = open("ldnvaloevent.txt", "w")
-          f.write(linetocheck)
-          f.close()
-          upload_file('/ldnvaloevent.txt', 'ldnvaloevent.txt')
-          data2= await guild.fetch_scheduled_event(eventdata.id)
-          await channel.send(data2.url)
-          
-      except:
-        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=linktogame)
-        f = open("ldnvaloevent.txt", "w")
-        f.write(linetocheck)
-        f.close()
-        upload_file('/ldnvaloevent.txt', 'ldnvaloevent.txt')
-        data2= await guild.fetch_scheduled_event(eventdata.id)
-        await channel.send(data2.url)
-        pass
-
-      
-      
-    except Exception as e:
-      print(e)
-
-
-  #csgoacad
-    try:
-      channel = client.get_channel(964298754968649748)
-      value = CSGOCheck(0, 'https://www.hltv.org/team/11672/og-academy#tab-matchesBox')
-      teams = value[0]
-      gamepage = value[4]
-      tourniname = value[8]
-      name = "OG CSGO Academy game: " + teams
-      time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
-      end_time = time+datetime.timedelta(minutes=10)
-      streaminfo = CSGOStreams('https://www.hltv.org/team/11672/og-academy#tab-matchesBox')
-      streamdata = streaminfo[3]
-      description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
-      guild = client.get_guild(689865753662455829)
-      linetocheck= teams+","+gamepage
-      try:
-        download_file('/csgoaevent.txt', 'csgoaevent.txt')
-        f=open('csgoaevent.txt', 'r')
-        lines=f.readlines()
-        f.close()
-      except:
-        lines= "empty"
-
-      try:
-      
-        if lines[0] == linetocheck:
-          pass
-        else:
-          try:
-            eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
-          except:
-            eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location="https://www.hltv.org/team/11672/og-academy")
-          f = open("csgoaevent.txt", "w")
-          f.write(linetocheck)
-          f.close()
-          upload_file('/csgoaevent.txt', 'csgoaevent.txt')
-          data2= await guild.fetch_scheduled_event(eventdata.id)
-          await channel.send(data2.url)
-          
-      except:
-        try:
-          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
-        except:
-          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location="https://www.hltv.org/team/11672/og-academy")
-        f = open("csgoaevent.txt", "w")
-        f.write(linetocheck)
-        f.close()
-        upload_file('/csgoaevent.txt', 'csgoaevent.txt')
-        data2= await guild.fetch_scheduled_event(eventdata.id)
-        await channel.send(data2.url)
-        pass
-
-        
-        
     
-     
-    except Exception as e:
-      print(e)
 
 
-#CSGO daily
-    try:
-      channel = client.get_channel(964298754968649748)
-      value = CSGOCheck(0, 'https://www.hltv.org/team/10503/og#tab-matchesBox')
-      teams = value[0]
-      gamepage = value[4]
-      tourniname = value[8]
-      name = "CSGO game: " + teams
-      time=datetime.datetime.now().astimezone() + datetime.timedelta(seconds=int(value[7]))
-      end_time = time+datetime.timedelta(minutes=10)
-      streaminfo = CSGOStreams('https://www.hltv.org/team/10503/og#tab-matchesBox')
-      streamdata = streaminfo[3]
-      description = tourniname + "\n" + streamdata + "\n:mega: https://twitter.com/OGcsgo\n"
-      guild = client.get_guild(689865753662455829)
-      linetocheck= teams+","+gamepage
-      try:
-        download_file('/csgoevent.txt', 'csgoevent.txt')
-        f=open('csgoevent.txt', 'r')
-        lines=f.readlines()
-        f.close()
-      except:
-        lines= "empty"
 
-      try:
-      
-        if lines[0] == linetocheck:
-          pass
-        else:
-          eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
-          f = open("csgoevent.txt", "w")
-          f.write(linetocheck)
-          f.close()
-          upload_file('/csgoevent.txt', 'csgoevent.txt')
-          data2= await guild.fetch_scheduled_event(eventdata.id)
-          await channel.send(data2.url)
-          
-      except:
-        eventdata = await guild.create_scheduled_event(name=name, description=description, start_time=time, end_time=end_time, entity_type=discord.enums.EntityType(3), location=gamepage)
-        f = open("csgoevent.txt", "w")
-        f.write(linetocheck)
-        f.close()
-        upload_file('/csgoevent.txt', 'csgoevent.txt')
-        data2= await guild.fetch_scheduled_event(eventdata.id)
-        await channel.send(data2.url)
-        pass
-
-        
-        
-    
-     
-    except Exception as e:
-      print(e)
+  
 
 client.run(os.getenv('TOKEN'))
 server.server()

@@ -27,7 +27,7 @@ def DotaCheck(channelDataID):
       headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
 
 
-      OGpage = 'https://liquipedia.net/dota2/OG'
+      OGpage = 'https://liquipedia.net/dota2/Tundra_Esports'
       my_url = OGpage
       r2 = requests.get(OGpage, headers=headers)
 
@@ -36,7 +36,7 @@ def DotaCheck(channelDataID):
 
 
       
-      links = '[OG Liquipedia Page](https://liquipedia.net/dota2/OG)'
+      links = '[Tundra Liquipedia Page](https://liquipedia.net/dota2/Tundra_Esports)'
 
       now = datetime.datetime.now()
       #Getting current date / time values
@@ -183,15 +183,15 @@ def DotaCheck(channelDataID):
       if((channelDataID == 689903856095723569) or (channelDataID == 972571026066141204) or (channelDataID == 972946124161835078) or (channelDataID == 972570634196512798) or (channelDataID == 690952309827698749)or (channelDataID == 697447277647626297) or (channelDataID == 818793950965006357)):
         c= str(c)
         if (c == "No games planned"):
-          embed = "No games planned currently - For more information use !nextdota in <#721391448812945480>"
+          embed = "No games planned currently - For more information use !nextdota in <#867689807214542899>"
         else:
-          embed= Teams + " - Starts in: " + c + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextdota in <#721391448812945480>"
+          embed= Teams + " - Starts in: " + c + " / In your local time: <t:" + str(epoch) + "> - For more information use !nextdota in <#867689807214542899>"
 
       #Creates the embed with all the details
       else:
         print(c)
-        embed=discord.Embed(title="OG Dota's next game", url="https://liquipedia.net/dota2/OG", color=0xf10909)
-        embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/0/00/OG_RB_Logo.png/600px-OG_RB_Logo.png")
+        embed=discord.Embed(title="Tundra Dota's next game", url="https://liquipedia.net/dota2/Tundra_Esports", color=0xf10909)
+        embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/7/7d/Tundra_Esports_2020_allmode_full.png/600px-Tundra_Esports_2020_allmode_full.png")
         if(str(epoch) != "No games planned"):
           embed.add_field(name=Teams, value="<t:" + str(epoch) + "> - this is local to your timezone", inline=True)
        

@@ -20,7 +20,7 @@ import time
 def DotaStreams():
   headers={'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/76.0.3809.100 Safari/537.36'}
   try:
-    my_url10 = "https://liquipedia.net/dota2/OG"
+    my_url10 = "https://liquipedia.net/dota2/Tundra_Esports"
 
     my_url10 = str(my_url10)
     uClient10 = uReq(my_url10)
