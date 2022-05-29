@@ -342,10 +342,8 @@ async def on_message(message):
     messagereceived = messagetolower.lower()
     mention = f'<@!{client.user.id}>'
     #Checks for a ping of the bot
-    if ((mention in message.content) and (messagereceived[0] != '!')):
-        await message.channel.send(
-            "Im up! I sweaaaaaaaaarrrrr!! *stretches out*"
-        )
+    if (("<@979478034824450149>" in message.content) and (messagereceived[0] != '!')):
+        await message.channel.send("Im up! I sweaaaaaaaaarrrrr!! *stretches out*")
 
     #if(channelDataID == 926219724868681749):
     #member = message.author
