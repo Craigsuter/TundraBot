@@ -344,7 +344,7 @@ async def on_message(message):
     #Checks for a ping of the bot
     if ((mention in message.content) and (messagereceived[0] != '!')):
         await message.channel.send(
-            "Im up! Im up! Are you okay... cool... co... <:OGmonkaThink:821509791523930162> "
+            "Im up! I sweaaaaaaaaarrrrr!! *stretches out*"
         )
 
     #if(channelDataID == 926219724868681749):
