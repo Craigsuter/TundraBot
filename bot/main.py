@@ -343,11 +343,11 @@ async def on_message(message):
     mention = f'<@!{client.user.id}>'
     #Checks for a ping of the bot
     messagelistforping = ["Im up! I sweaaaaaaaaarrrrr!! *stretches out*", 
-                          "I'LL GET YOU, STAY HE... - Oh hi, yes I.. uh.. catches snowflake ", 
-                          "yawns aaaaaaaaaah, ... TIRED?! ME?! NEVER 👀",
-                         "C... Can you please pet me? 🥺 looks up to you",
+                          "I'LL GET YOU, STAY HE... - Oh hi, yes I.. uh.. *catches snowflake* ", 
+                          "*yawns* aaaaaaaaaah, ... TIRED?! ME?! NEVER 👀",
+                         "C... Can you please pet me? 🥺 *looks up to you*",
                          "OH! WHAT DO YOU HAVE THERE?! CAN I SEE THAT?! 👀", 
-                         " stares at the sky I wish I could catch snowflakes now... "]
+                         "*stares at the sky* I wish I could catch snowflakes now... "]
     if (("<@979478034824450149>" in message.content) and (messagereceived[0] != '!')):
         messageofchoice  = random.choice(messagelistforping)
         await message.channel.send(str(messageofchoice))
