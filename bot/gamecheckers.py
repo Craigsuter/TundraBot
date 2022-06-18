@@ -191,7 +191,7 @@ def DotaCheck(channelDataID):
       else:
         print(c)
         embed=discord.Embed(title="Tundra Dota's next game", url="https://liquipedia.net/dota2/Tundra_Esports", color=0xf10909)
-        embed.set_thumbnail(url="https://liquipedia.net/commons/images/thumb/7/7d/Tundra_Esports_2020_allmode_full.png/600px-Tundra_Esports_2020_allmode_full.png")
+        embed.set_thumbnail(url="https://i.imgur.com/am9CvbU.png")
         if(str(epoch) != "No games planned"):
           embed.add_field(name=Teams, value="<t:" + str(epoch) + "> - this is local to your timezone", inline=True)
        
