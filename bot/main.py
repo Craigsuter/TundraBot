@@ -834,114 +834,114 @@ async def on_message(message):
 
 
           
-          if ((messagereceived == "!fifaadd")):
-                download_file('/fifascoreboard.csv', 'scoreboard21.csv')
-                if (len(sectionsofmessage) > 1):
-                    await message.channel.send(
-                        "Starting adding results this might take a while")
-                    try:
-                        server = message.guild
-                        role_name = sectionsofmessage[1]
-                        role_name = role_name[3:-1]
-                        role_name = discord.utils.get(guild.roles,
-                                                      id=int(role_name))
-                        role_name = str(role_name)
-                        i = 0
-                        role_id = server.roles[0]
-                        display_names = []
-                        member_ids = []
-                        file = open("filetosend.txt", "w")
-                        file.close()
-                        for role in server.roles:
-                            if role_name == role.name:
-                                role_id = role
-                                break
-                        else:
-                            await message.channel.send("Role doesn't exist")
-                            return
-                        for member in server.members:
-                            if role_id in member.roles:
-                                i = i + 1
-                                fifascoreboardadder(member.display_name,
-                                                    member.id, 1, i)
-                                display_names.append(member.display_name)
-                                member_ids.append(member.id)
-                        if (i == 0):
-                            await message.channel.send(
-                                "No one was found in that role!")
-                        else:
-                          upload_file('/fifascoreboard.csv', 'scoreboard22.csv')
-                          await message.channel.send(
-                              "I have added the results! This affected: " +
-                              str(i) + " users")
-                    except:
-                        await message.channel.send(
-                            "You need to tag the winning role: example !fifaadd @D9-0"
-                        )
-                else:
-                    await message.channel.send(
-                        "You need to tag the winning role: example !fifaadd @D9-0"
-                    )
-            
-
-          if ((messagereceived == "!fifaremove")):
-                if (len(sectionsofmessage) > 1):
-                    download_file('/fifascoreboard.csv', 'scoreboard21.csv')
-                    await message.channel.send(
-                        "Starting adding results this might take a while")
-                    try:
-                        server = message.guild
-                        role_name = sectionsofmessage[1]
-                        role_name = role_name[3:-1]
-                        role_name = discord.utils.get(guild.roles,
-                                                      id=int(role_name))
-                        role_name = str(role_name)
-                        i = 0
-                        role_id = server.roles[0]
-                        display_names = []
-                        member_ids = []
-                        file = open("filetosend.txt", "w")
-                        file.close()
-                        for role in server.roles:
-                            if role_name == role.name:
-                                role_id = role
-                                break
-                        else:
-                            await message.channel.send("Role doesn't exist")
-                            return
-                        for member in server.members:
-                            if role_id in member.roles:
-                                i = i + 1
-                                fifascoreboardadder(member.display_name,
-                                                    member.id, -1, i)
-                                display_names.append(member.display_name)
-                                member_ids.append(member.id)
-                        if (i == 0):
-                            await message.channel.send(
-                                "No one was found in that role!")
-                        else:
+            if ((messagereceived == "!fifaadd")):
+                  download_file('/fifascoreboard.csv', 'scoreboard21.csv')
+                  if (len(sectionsofmessage) > 1):
+                      await message.channel.send(
+                          "Starting adding results this might take a while")
+                      try:
+                          server = message.guild
+                          role_name = sectionsofmessage[1]
+                          role_name = role_name[3:-1]
+                          role_name = discord.utils.get(guild.roles,
+                                                        id=int(role_name))
+                          role_name = str(role_name)
+                          i = 0
+                          role_id = server.roles[0]
+                          display_names = []
+                          member_ids = []
+                          file = open("filetosend.txt", "w")
+                          file.close()
+                          for role in server.roles:
+                              if role_name == role.name:
+                                  role_id = role
+                                  break
+                          else:
+                              await message.channel.send("Role doesn't exist")
+                              return
+                          for member in server.members:
+                              if role_id in member.roles:
+                                  i = i + 1
+                                  fifascoreboardadder(member.display_name,
+                                                      member.id, 1, i)
+                                  display_names.append(member.display_name)
+                                  member_ids.append(member.id)
+                          if (i == 0):
+                              await message.channel.send(
+                                  "No one was found in that role!")
+                          else:
                             upload_file('/fifascoreboard.csv', 'scoreboard22.csv')
                             await message.channel.send(
                                 "I have added the results! This affected: " +
                                 str(i) + " users")
-                    except:
-                        await message.channel.send(
-                            "You need to tag the winning role: example !fifaremove @D9-0"
-                        )
-                else:
-                    await message.channel.send(
-                        "You need to tag the winning role: example !fifaremove @D9-0"
-                    )
-
-                  
-          if (messagereceived == "!cleardotaboard"):
-              dotascoreboarding()
-              await message.channel.send("The Dota Leaderboard is reset")
-
-          if (messagereceived == "!clearfifaboard"):
-                fifascoreboarding()
-                await message.channel.send("The Fifa Leaderboard is reset")
-
+                      except:
+                          await message.channel.send(
+                              "You need to tag the winning role: example !fifaadd @D9-0"
+                          )
+                  else:
+                      await message.channel.send(
+                          "You need to tag the winning role: example !fifaadd @D9-0"
+                      )
+              
+  
+            if ((messagereceived == "!fifaremove")):
+                  if (len(sectionsofmessage) > 1):
+                      download_file('/fifascoreboard.csv', 'scoreboard21.csv')
+                      await message.channel.send(
+                          "Starting adding results this might take a while")
+                      try:
+                          server = message.guild
+                          role_name = sectionsofmessage[1]
+                          role_name = role_name[3:-1]
+                          role_name = discord.utils.get(guild.roles,
+                                                        id=int(role_name))
+                          role_name = str(role_name)
+                          i = 0
+                          role_id = server.roles[0]
+                          display_names = []
+                          member_ids = []
+                          file = open("filetosend.txt", "w")
+                          file.close()
+                          for role in server.roles:
+                              if role_name == role.name:
+                                  role_id = role
+                                  break
+                          else:
+                              await message.channel.send("Role doesn't exist")
+                              return
+                          for member in server.members:
+                              if role_id in member.roles:
+                                  i = i + 1
+                                  fifascoreboardadder(member.display_name,
+                                                      member.id, -1, i)
+                                  display_names.append(member.display_name)
+                                  member_ids.append(member.id)
+                          if (i == 0):
+                              await message.channel.send(
+                                  "No one was found in that role!")
+                          else:
+                              upload_file('/fifascoreboard.csv', 'scoreboard22.csv')
+                              await message.channel.send(
+                                  "I have added the results! This affected: " +
+                                  str(i) + " users")
+                      except:
+                          await message.channel.send(
+                              "You need to tag the winning role: example !fifaremove @D9-0"
+                          )
+                  else:
+                      await message.channel.send(
+                          "You need to tag the winning role: example !fifaremove @D9-0"
+                      )
+  
+                    
+            if (messagereceived == "!cleardotaboard"):
+                dotascoreboarding()
+                await message.channel.send("The Dota Leaderboard is reset")
+  
+            if (messagereceived == "!clearfifaboard"):
+                  fifascoreboarding()
+                  await message.channel.send("The Fifa Leaderboard is reset")
+  
 
             if ((messagereceived == "!gettingrolelist")):
                 if (len(sectionsofmessage) > 1):
