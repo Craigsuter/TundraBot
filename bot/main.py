@@ -57,6 +57,10 @@ from valoscoreboarding import valoscoreboarding
 from valoscoreboarding import valoscoreboardreader
 from valoscoreboarding import valoscoreboardadder
 from valoscoreboarding import valoscoreboardsingle
+from fifascoreboarding import fifascoreboarding
+from fifascoreboarding import fifascoreboardreader
+from fifascoreboarding import fifascoreboardadder
+from fifascoreboarding import fifascoreboardsingle
 from testscoreboarding import testscoreboarding
 from testscoreboarding import testscoreboardreader
 from testscoreboarding import testscoreboardsingle
@@ -406,6 +410,28 @@ async def on_message(message):
                   test = dotascoreboardsingle(user.id)
                   await message.channel.send(test)
 
+        if ((messagereceived == "!show")
+                  and (str(secondPartOfMessage).lower() == "fifa")
+                  and (message.mentions.__len__() > 0)):
+              for user in message.mentions:
+                  test = fifascoreboardsingle(user.id)
+                  await message.channel.send(test)
+
+        if (messagereceived == "!show"
+                  and (str(secondPartOfMessage).lower() == "fifa")
+                  and message.mentions.__len__() == 0):
+              test = fifascoreboardreader(thirdPartOfMessage)
+              embed = discord.Embed(title="Fifa prediction leaderboard",
+                                    color=0x55a7f7)
+              embed.add_field(name="Fifa Prediction - page: " + str(test[2]) + "/" + str(test[1]),
+                              value="```\n" + test[0] + "\n```",
+                              inline=True)
+              embed.add_field(
+                  name="Can't see yourself?",
+                  value=
+                  "Can't see yourself on the table? use !show fifa @*yourself* to see where you stand!",
+                  inline=False)
+              await message.channel.send(embed=embed)
 
 
 
@@ -806,12 +832,115 @@ async def on_message(message):
                         "You need to tag the winning role: example !dotaremove @D9-0"
                     )
 
+
+          
+          if ((messagereceived == "!fifaadd")):
+                download_file('/fifascoreboard.csv', 'scoreboard21.csv')
+                if (len(sectionsofmessage) > 1):
+                    await message.channel.send(
+                        "Starting adding results this might take a while")
+                    try:
+                        server = message.guild
+                        role_name = sectionsofmessage[1]
+                        role_name = role_name[3:-1]
+                        role_name = discord.utils.get(guild.roles,
+                                                      id=int(role_name))
+                        role_name = str(role_name)
+                        i = 0
+                        role_id = server.roles[0]
+                        display_names = []
+                        member_ids = []
+                        file = open("filetosend.txt", "w")
+                        file.close()
+                        for role in server.roles:
+                            if role_name == role.name:
+                                role_id = role
+                                break
+                        else:
+                            await message.channel.send("Role doesn't exist")
+                            return
+                        for member in server.members:
+                            if role_id in member.roles:
+                                i = i + 1
+                                fifascoreboardadder(member.display_name,
+                                                    member.id, 1, i)
+                                display_names.append(member.display_name)
+                                member_ids.append(member.id)
+                        if (i == 0):
+                            await message.channel.send(
+                                "No one was found in that role!")
+                        else:
+                          upload_file('/fifascoreboard.csv', 'scoreboard22.csv')
+                          await message.channel.send(
+                              "I have added the results! This affected: " +
+                              str(i) + " users")
+                    except:
+                        await message.channel.send(
+                            "You need to tag the winning role: example !fifaadd @D9-0"
+                        )
+                else:
+                    await message.channel.send(
+                        "You need to tag the winning role: example !fifaadd @D9-0"
+                    )
             
 
-  
-            if (messagereceived == "!cleardotaboard"):
-                dotascoreboarding()
-                await message.channel.send("The Dota Leaderboard is reset")
+          if ((messagereceived == "!fifaremove")):
+                if (len(sectionsofmessage) > 1):
+                    download_file('/fifascoreboard.csv', 'scoreboard21.csv')
+                    await message.channel.send(
+                        "Starting adding results this might take a while")
+                    try:
+                        server = message.guild
+                        role_name = sectionsofmessage[1]
+                        role_name = role_name[3:-1]
+                        role_name = discord.utils.get(guild.roles,
+                                                      id=int(role_name))
+                        role_name = str(role_name)
+                        i = 0
+                        role_id = server.roles[0]
+                        display_names = []
+                        member_ids = []
+                        file = open("filetosend.txt", "w")
+                        file.close()
+                        for role in server.roles:
+                            if role_name == role.name:
+                                role_id = role
+                                break
+                        else:
+                            await message.channel.send("Role doesn't exist")
+                            return
+                        for member in server.members:
+                            if role_id in member.roles:
+                                i = i + 1
+                                fifascoreboardadder(member.display_name,
+                                                    member.id, -1, i)
+                                display_names.append(member.display_name)
+                                member_ids.append(member.id)
+                        if (i == 0):
+                            await message.channel.send(
+                                "No one was found in that role!")
+                        else:
+                            upload_file('/fifascoreboard.csv', 'scoreboard22.csv')
+                            await message.channel.send(
+                                "I have added the results! This affected: " +
+                                str(i) + " users")
+                    except:
+                        await message.channel.send(
+                            "You need to tag the winning role: example !fifaremove @D9-0"
+                        )
+                else:
+                    await message.channel.send(
+                        "You need to tag the winning role: example !fifaremove @D9-0"
+                    )
+
+                  
+          if (messagereceived == "!cleardotaboard"):
+              dotascoreboarding()
+              await message.channel.send("The Dota Leaderboard is reset")
+
+          if (messagereceived == "!clearfifaboard"):
+                fifascoreboarding()
+                await message.channel.send("The Fifa Leaderboard is reset")
 
 
             if ((messagereceived == "!gettingrolelist")):
@@ -1161,6 +1290,136 @@ async def on_message(message):
                 except:
                     await message.channel.send("D0-2 not found")
 
+
+
+
+          
+
+            if ((messagereceived == "!deletefifabo1")
+                   ):
+                guild = message.guild
+                #global my_url5
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F1-0")
+                    await role_object.delete()
+                    await message.channel.send("F1-0 deleted")
+                except:
+                    await message.channel.send("F1-0 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F0-1")
+                    await role_object.delete()
+                    await message.channel.send("F0-1 deleted")
+                except:
+                    await message.channel.send("F0-1 not found")
+
+            
+
+            if ((messagereceived == "!deletefifabo3")
+                  ):
+                guild = message.guild
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F2-0")
+                    await role_object.delete()
+                    await message.channel.send("F2-0 deleted")
+                except:
+                    await message.channel.send("F2-0 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F2-1")
+                    await role_object.delete()
+                    await message.channel.send("F2-1 deleted")
+                except:
+                    await message.channel.send("F2-1 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F1-2")
+                    await role_object.delete()
+                    await message.channel.send("F1-2 deleted")
+                except:
+                    await message.channel.send("F1-2 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F0-2")
+                    await role_object.delete()
+                    await message.channel.send("F0-2 deleted")
+                except:
+                    await message.channel.send("F0-2 not found")
+
+            
+
+            if ((messagereceived == "!deletefifabo5")
+                    ):
+                guild = message.guild
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F3-0")
+                    await role_object.delete()
+                    await message.channel.send("F3-0 deleted")
+                except:
+                    await message.channel.send("F3-0 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F3-1")
+                    await role_object.delete()
+                    await message.channel.send("F3-1 deleted")
+                except:
+                    await message.channel.send("F3-1 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F3-2")
+                    await role_object.delete()
+                    await message.channel.send("F3-2 deleted")
+                except:
+                    await message.channel.send("F3-2 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F2-3")
+                    await role_object.delete()
+                    await message.channel.send("F2-3 deleted")
+                except:
+                    await message.channel.send("F2-3 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F1-3")
+                    await role_object.delete()
+                    await message.channel.send("F1-3 deleted")
+                except:
+                    await message.channel.send("F1-3 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F0-3")
+                    await role_object.delete()
+                    await message.channel.send("F0-3 deleted")
+                except:
+                    await message.channel.send("F0-3 not found")
+
+            
+
+            if ((messagereceived == "!deletefifabo2")
+                    ):
+                guild = message.guild
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F2-0")
+                    await role_object.delete()
+                    await message.channel.send("F2-0 deleted")
+                except:
+                    await message.channel.send("F2-0 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F1-1")
+                    await role_object.delete()
+                    await message.channel.send("F1-1 deleted")
+                except:
+                    await message.channel.send("F1-1 not found")
+
+                try:
+                    role_object = discord.utils.get(guild.roles, name="F0-2")
+                    await role_object.delete()
+                    await message.channel.send("F0-2 deleted")
+                except:
+                    await message.channel.send("F0-2 not found")
+
            
             if (messagereceived == "!dotabo1"):
                 guild = message.guild
@@ -1205,6 +1464,52 @@ async def on_message(message):
                 await message.channel.send("D1-3 created")
                 await guild.create_role(name="D0-3")
                 await message.channel.send("D0-3 created")
+
+              
+
+            if (messagereceived == "!fifabo1"):
+                guild = message.guild
+                await guild.create_role(name="F1-0")
+                await message.channel.send("F1-0 created")
+                await guild.create_role(name="F0-1")
+                await message.channel.send("F0-1 created")
+
+            if (messagereceived == "!fifabo3"):
+                guild = message.guild
+                await guild.create_role(name="F2-0")
+                await message.channel.send("F2-0 created")
+                await guild.create_role(name="F2-1")
+                await message.channel.send("F2-1 created")
+                await guild.create_role(name="F1-2")
+                await message.channel.send("F1-2 created")
+                await guild.create_role(name="F0-2")
+                await message.channel.send("F0-2 created")
+
+            if (messagereceived == "!fifabo2"):
+                guild = message.guild
+                await guild.create_role(name="F2-0")
+                await message.channel.send("F2-0 created")
+                await guild.create_role(name="F1-1")
+                await message.channel.send("F1-1 created")
+                await guild.create_role(name="F0-2")
+                await message.channel.send("F0-2 created")
+
+            
+
+            if (messagereceived == "!fifabo5"):
+                guild = message.guild
+                await guild.create_role(name="F3-0")
+                await message.channel.send("F3-0 created")
+                await guild.create_role(name="F3-1")
+                await message.channel.send("F3-1 created")
+                await guild.create_role(name="F3-2")
+                await message.channel.send("F3-2 created")
+                await guild.create_role(name="F2-3")
+                await message.channel.send("F2-3 created")
+                await guild.create_role(name="F1-3")
+                await message.channel.send("F1-3 created")
+                await guild.create_role(name="F0-3")
+                await message.channel.send("F0-3 created")
 
             
             if (messagereceived == "!dotastreams"):
