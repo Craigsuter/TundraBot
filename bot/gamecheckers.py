@@ -56,16 +56,18 @@ def DotaCheck(channelDataID):
           "span", {"class": "team-template-team-short"})
       containers3 = page_soup2.findAll(
           "span", {"class": "timer-object timer-object-countdown-only"})
+      containers5 = page_soup2.findAll("div", {"style": "overflow:hidden; text-overflow:ellipsis; max-width: 170px; vertical-align:middle; white-space:nowrap; font-size:11px; height:16px; margin-top:3px;"})
 
       try:
         v_table = page_soup2.find("table", attrs={"class": "wikitable wikitable-striped infobox_matches_content"})
         tabledata = v_table.tbody.find_all("tr")
+        tournamentname = containers5[0].text
 
 
         tablestorage = tabledata[1].find_all('a', href=True)
         URL = tablestorage[0]['href']
         extendedURL = "https://liquipedia.net" + URL
-        links = links + "\n [Tournament](" + extendedURL +")"
+        links = links + "\n [Tournament - + " + str(tournamentname) + "](" + extendedURL +")"
       except:
         pass
 
@@ -190,7 +192,7 @@ def DotaCheck(channelDataID):
       #Creates the embed with all the details
       else:
         print(c)
-        embed=discord.Embed(title="Tundra Dota's next game", url="https://liquipedia.net/dota2/Tundra_Esports", color=0xf10909)
+        embed=discord.Embed(title="Tundra Dota's next game - " + str(tournamentname) , url="https://liquipedia.net/dota2/Tundra_Esports", color=0xf10909)
         embed.set_thumbnail(url="https://i.imgur.com/xtN4UMj.png")
         if(str(epoch) != "No games planned"):
           embed.add_field(name=Teams, value="<t:" + str(epoch) + "> - this is local to your timezone", inline=True)
